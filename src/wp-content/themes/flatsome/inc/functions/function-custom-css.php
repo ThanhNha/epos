@@ -476,7 +476,7 @@ ins .woocommerce-Price-amount { color: <?php echo get_theme_mod( 'color_sale_pri
 <?php } ?>
 
 <?php if(is_woocommerce_activated() && get_theme_mod('header_shop_bg_image')){ ?>
-.shop-page-title.featured-title .title-bg{background-image: url(<?php echo get_theme_mod('header_shop_bg_image'); ?>);}
+/*.shop-page-title.featured-title .title-bg{background-image: url(<?php echo get_theme_mod('header_shop_bg_image'); ?>);}*/
 <?php } ?>
 
 <?php if(get_theme_mod('button_radius') && get_theme_mod('button_radius')  !== '0px') { ?>
