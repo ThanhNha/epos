@@ -27,7 +27,7 @@
 
 		<?php
 
-		if (woocommerce_product_loop()) {
+		if (woocommerce_product_loop() && !is_shop()) {
 
 			/**
 			 * Hook: woocommerce_before_shop_loop.
@@ -69,7 +69,9 @@
 			 *
 			 * @hooked wc_no_products_found - 10
 			 */
-			do_action('woocommerce_no_products_found');
+			if (!is_shop()) {
+				do_action('woocommerce_no_products_found');
+			}
 		}
 		?>
 
