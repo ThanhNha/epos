@@ -14,7 +14,7 @@
             <div class="text-inner text-center">
 
               <h1 class="h-large uppercase">
-                <span style="font-size: 100%;">Epos</span>
+                <span style="font-size: 100%; font-weight:700">Epos</span>
                 <div id="gap-1295929704" class="gap-element clearfix" style="display:block; height:auto;">
                   <style>
                     #gap-1295929704 {
@@ -22,7 +22,7 @@
                     }
                   </style>
                 </div>
-                <span style="font-size: 100%;">Online Shop</span>
+                <span style="font-size: 100%; font-weight:700">Online Shop</span>
                 <div id="gap-1295929705" class="gap-element clearfix" style="display:block; height:auto;">
                   <style>
                     #gap-1295929705 {

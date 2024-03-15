@@ -1,0 +1,89 @@
+.cart-item {
+  position: fixed !important;
+  width: 50px;
+  height: 50px;
+  right: 40px;
+  bottom: 100px;
+  z-index: 9999;
+  height: 50px;
+  .image-icon {
+    width: auto !important;
+    height: auto;
+    &::after {
+      right: 0px !important;
+    }
+  }
+  .image-icon img {
+    max-width: 50px;
+  }
+  .epos-whatsapp-icon {
+    position: fixed !important;
+    width: 50px;
+    height: 50px;
+    right: 40px;
+    bottom: 40px;
+    z-index: 9999;
+    height: 50px;
+  }
+}
+.cart-container {
+  &.page-checkout {
+    th,
+    table,
+    td {
+      border: none !important;
+    }
+  }
+}
+
+.shop_table {
+  border: none !important;
+
+  thead th {
+    border-width: 0px !important;
+  }
+  th,
+  table,
+  td {
+    border: none !important;
+  }
+  .button {
+    background: #1b459b !important;
+    opacity: 1 !important;
+  }
+  .button-continue-shopping {
+    color: #1b459b !important;
+    background: transparent !important;
+    display: none;
+  }
+}
+
+.cart-related-product {
+  .product-small.box {
+    border: 1px solid #000000;
+  }
+  .product-description {
+    display: none;
+  }
+}
+
+.back-shopping-section {
+  * {
+    padding-bottom: 0px !important;
+    margin-bottom: 0px;
+  }
+  .back-shopping-btn {
+    .icon-box-img {
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+.single_add_to_cart_button {
+  a {
+    color: #ffffff;
+    &:hover {
+      color: #ffffff;
+    }
+  }
+}
