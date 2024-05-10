@@ -5,7 +5,7 @@
  */
 add_filter('admin_footer_text', 'shin_change_footer_text');
 function shin_change_footer_text() {
-    echo "Core developed by <span ><a href='https://trananhtuan.info' target='_blank'>Tuan Tran</a> or call us <a href='tel:+84 0978461665'>0978.461.665</a></span> ";
+    echo "Core developed by <span ><a href='https://zippy.sg' target='_blank'>Zippy</a></span> ";
 }
 
 /*

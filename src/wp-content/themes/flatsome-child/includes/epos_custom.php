@@ -2,12 +2,12 @@
 add_action('wp_enqueue_scripts', 'shin_scripts');
 function shin_scripts()
 {
-  $version = '2.2.0';
+  $version = '1.36.0';
 
   // Load CSS
   wp_enqueue_style('main-style-css', THEME_URL . '-child' . '/assets/main/main.css', array(), $version, 'all');
   // Load JS
-  wp_enqueue_script('main-scripts-js', THEME_URL . '-child' . '/assets/main/main.js', array('jquery'), $version, true);
+  // wp_enqueue_script('main-scripts-js', THEME_URL . '-child' . '/assets/main/flatsome_custom.js', array('jquery'), $version, true);
 }
 
 //Add ACF options page
@@ -91,33 +91,33 @@ function home_banner()
 
                           $image_product = wp_get_attachment_image_src(get_post_thumbnail_id($id_product), 'single-post-thumbnail')
                           ?>
-                          <?php if($product_item):?>
-                          <style>
-                            <?php echo '.' . $class; ?>.tooltip-product {
-                              left: <?php echo $posision_x .'%'; ?>;
-                              top: <?php echo $posision_y.'%'; ?>;
-                            }
-                          </style>
-                          <div class="tooltip-point <?php echo $class; ?>"></div>
-                          <a href="<?php echo get_permalink($id_product) ?>" class="<?php echo $class; ?> tooltip-product active">
-                            <div class="tooltip-icon-bottom"></div>
+                          <?php if ($product_item) : ?>
+                            <style>
+                              <?php echo '.' . $class; ?>.tooltip-product {
+                                left: <?php echo $posision_x . '%'; ?>;
+                                top: <?php echo $posision_y . '%'; ?>;
+                              }
+                            </style>
+                            <div class="tooltip-point <?php echo $class; ?>"></div>
+                            <a href="<?php echo get_permalink($id_product) ?>" class="<?php echo $class; ?> tooltip-product active">
+                              <div class="tooltip-icon-bottom"></div>
 
-                            <div class="tooltip-dot"></div>
-                            <img src="<?php echo $image_product[0]; ?>" alt="">
-                            <div class="info-product">
-                              <div class="name-wrapper">
-                                <!-- <span class="lable">New</span> -->
-                                <span class="name"><?php echo $product_item->name ?></span>
+                              <div class="tooltip-dot"></div>
+                              <img src="<?php echo $image_product[0]; ?>" alt="">
+                              <div class="info-product">
+                                <div class="name-wrapper">
+                                  <!-- <span class="lable">New</span> -->
+                                  <span class="name"><?php echo $product_item->name ?></span>
+                                </div>
+                                <div class="price-wrapper">
+                                  <span class="price-sale"><?php echo  $product_item->sale_price; ?></span>
+                                  <span class="price-rergular"> <?php echo $product_item->regular_price; ?></span>
+                                </div>
                               </div>
-                              <div class="price-wrapper">
-                                <span class="price-sale"><?php echo  $product_item->sale_price; ?></span>
-                                <span class="price-rergular"> <?php echo $product_item->regular_price; ?></span>
-                              </div>
-                            </div>
-                            <div class="tooltip-icon"></div>
+                              <div class="tooltip-icon"></div>
 
-                          </a>
-                          <?php endif;?>
+                            </a>
+                          <?php endif; ?>
 
 
                         <?php endwhile; ?>

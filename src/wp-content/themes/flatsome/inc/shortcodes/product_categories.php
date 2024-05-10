@@ -71,7 +71,7 @@ function ux_product_categories($atts, $content = null, $tag = '' ) {
         $type = 'grid';
       }
 
-    $hide_empty = ( $hide_empty == true || $hide_empty == 1 ) ? 1 : 0;
+    $hide_empty =  0;
 
         // if Ids
     if ( isset( $atts[ 'ids' ] ) ) {
