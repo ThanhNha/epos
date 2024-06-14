@@ -1,4 +1,7 @@
 <?php
+
+use RankMath\Helpers\Arr;
+
 add_action('woocommerce_after_shop_loop_item_title', 'display_short_description_below_title', 2);
 
 function display_short_description_below_title()
@@ -69,3 +72,37 @@ function custom_woocommerce_states($states)
 }
 
 
+// add_action('pre_get_posts', 'hide_out_of_stock_products');
+
+function hide_out_of_stock_products($query)
+{
+  if (!is_admin() && $query->is_main_query() && (is_shop() || is_product_category() || is_product_tag())) {
+    $meta_query = $query->get('meta_query');
+    $meta_query[] = array(
+      array(
+        'key' => '_stock_status',
+        'value' => 'outofstock',
+        'compare' => '!='
+      ),
+      array(
+        'key' => 'post_status',
+        'value' => 'private',
+        'compare' => '!='
+      )
+    );
+
+
+    // var_dump($query);
+    $query->set('meta_query', $meta_query);
+  }
+}
+
+
+add_filter('posts_where', 'hide_private_products');
+
+function hide_private_products($where)
+{
+  if (is_admin()) return $where;
+  global $wpdb;
+  return " $where AND {$wpdb->posts}.post_status != 'private' ";
+}
