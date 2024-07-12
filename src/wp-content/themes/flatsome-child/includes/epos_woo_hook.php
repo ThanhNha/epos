@@ -1,6 +1,5 @@
 <?php
 
-use RankMath\Helpers\Arr;
 
 add_action('woocommerce_after_shop_loop_item_title', 'display_short_description_below_title', 2);
 
@@ -25,7 +24,6 @@ function change_no_products_found_text()
   // and add in my own code.
   add_action('woocommerce_no_products_found', 'dcwd_no_products_found');
 }
-
 
 function dcwd_no_products_found()
 {
@@ -65,12 +63,8 @@ function custom_woocommerce_states($states)
     'SG011' => 'Geylang',
   );
 
-  // var_dump($states['SG']);
-  // die();
-
   return $states;
 }
-
 
 // add_action('pre_get_posts', 'hide_out_of_stock_products');
 
@@ -97,7 +91,6 @@ function hide_out_of_stock_products($query)
   }
 }
 
-
 add_filter('posts_where', 'hide_private_products');
 
 function hide_private_products($where)
@@ -105,4 +98,89 @@ function hide_private_products($where)
   if (is_admin()) return $where;
   global $wpdb;
   return " $where AND {$wpdb->posts}.post_status != 'private' ";
+}
+
+add_filter('woocommerce_package_rates', 'override_ups_rates', 999);
+function override_ups_rates($rates)
+{
+  global $woocommerce;
+  $carttotal = $woocommerce->cart->subtotal;
+  $flat_rate_cost = 100; // Adjust this value as needed
+  foreach ($rates as $rate_key => $rate) {
+    // Check if the shipping method ID is flat_rate
+    if ($rate->method_id == 'flat_rate') {
+      // Set cost based on cart total
+      if ($carttotal >= 150) {
+        $rates[$rate_key]->cost = 0;
+        $rates[$rate_key]->label = 'Free shipping';
+      } else {
+        $rates[$rate_key]->cost = $flat_rate_cost;
+      }
+    }
+  }
+
+  return $rates;
+}
+
+add_action('woocommerce_product_query', 'storeapps_exclude_categories_from_shop_page');
+function storeapps_exclude_categories_from_shop_page($q)
+{
+  $tax_query = (array) $q->get('tax_query');
+
+  $tax_query[] = array(
+    'taxonomy' => 'product_cat',
+    'field' => 'slug',
+    // 'terms' => array('uncategorized'), // Define an array of hidden categories.
+    'operator' => 'NOT IN',
+    'post_status' => 'private'
+  );
+  $q->set('tax_query', $tax_query);  // Return the modified tax query.
+}
+
+add_filter('woocommerce_checkout_fields', 'remove_billing_checkout_fields');
+function remove_billing_checkout_fields($fields)
+{
+  // change below for the method
+  $shipping_method = 'local_pickup:2';
+  // change below for the list of fields
+  $hide_fields = array('billing_address_1', 'billing_address_2', 'billing_city', 'billing_state', 'billing_postcode');
+
+  $chosen_methods = WC()->session->get('chosen_shipping_methods');
+
+  $chosen_shipping = $chosen_methods[0];
+
+  foreach ($hide_fields as $field) {
+    if ($chosen_shipping == $shipping_method) {
+      $fields['billing'][$field]['required'] = false;
+      $fields['billing'][$field]['class'][] = 'hide';
+    }
+    $fields['billing'][$field]['class'][] = 'billing-dynamic';
+  }
+
+  return $fields;
+}
+
+add_action('woocommerce_after_checkout_form', 'disable_shipping_local_pickup');
+
+function disable_shipping_local_pickup($available_gateways)
+{
+
+  // Hide shipping on checkout load
+  $chosen_methods = WC()->session->get('chosen_shipping_methods');
+  $chosen_shipping = $chosen_methods[0];
+  if (0 === strpos($chosen_shipping, 'local_pickup')) {
+    wc_enqueue_js("hideAddPress();");
+  }
+
+  // Hide shipping on checkout shipping change
+  wc_enqueue_js("
+      $('form.checkout').on('change','input[name^=\"shipping_method\"]',function() {
+         var val = $( this ).val();
+         if (val.match('^local_pickup')) {
+           hideAddPress();
+         } else {
+            showAddPress();
+         }
+      });
+   ");
 }

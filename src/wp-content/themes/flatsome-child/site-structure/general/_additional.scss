@@ -1,0 +1,173 @@
+.nav-size-xlarge > li > a {
+  font-size: 1.1em;
+  border: 1px solid;
+  padding: 10px 60px 10px 60px;
+}
+.sh-left-nav li {
+  margin: 0;
+  padding: 7px 0;
+  list-style: none;
+  border-bottom: 1px solid #ececec;
+}
+.sh-left-nav li.active a {
+  font-weight: bold;
+}
+.scroll-to-bullets {
+  display: none;
+}
+
+/* New Design CSS */
+.custom-banner .text-box .text:before {
+  top: 40px;
+  border: solid transparent;
+  content: "";
+  height: 0;
+  width: 0;
+  position: absolute;
+  border-right-color: #404040;
+  border-width: 20px;
+  left: 0px;
+  margin-left: -40px;
+}
+.pos-bsn {
+  padding-bottom: 60px !important;
+}
+.post-list-icon .col-inner p {
+  margin-bottom: 0px;
+  line-height: 16px;
+}
+.post-list-icon .col-inner .img-inner {
+  display: flex;
+  align-items: center;
+}
+.post-list-icon .col:nth-child(1) .col-inner .img-inner img {
+  width: 17px;
+  height: 17px;
+}
+.post-list-icon .col:nth-child(2) {
+  display: flex;
+  align-items: center;
+}
+.post-list-icon .col:nth-child(3) .col-inner .img-inner img {
+  width: 130px;
+  height: 20px;
+}
+.home-banner-background .text-box {
+  z-index: 3;
+}
+.home-banner-background .banner-layers {
+  max-width: 100%;
+}
+.home-banner-background .img {
+  position: absolute;
+  width: calc(100% + 30px);
+  height: 100%;
+  z-index: 2;
+}
+.home-banner-background .img-inner {
+  width: 100%;
+  height: 100%;
+}
+.home-banner-background img {
+  object-fit: cover;
+  height: 100%;
+  opacity: 0.5;
+}
+.home-banner-background.home-no-blur img {
+  opacity: 0.8;
+}
+.home-banner-background.vouchers-home img {
+  opacity: 1;
+}
+.add-to-cart-button .button.product_type_simple {
+  background-color: #1b459b !important;
+  padding: 5px 35px;
+  border-radius: 8px;
+}
+
+/* Should be remove when product has desription */
+.product-description {
+  display: none;
+}
+.vouchers-banner .text-box {
+  margin-top: -30px;
+}
+
+/* Banner voucher  */
+@media (min-width: 768px) {
+  .vouchers-banner .text-box {
+    margin-top: -110px;
+  }
+}
+.vouchers-banner .heading-banner p {
+  margin-bottom: -10px;
+}
+.nav > li > a:hover,
+.nav > li.active > a,
+.nav > li.current > a,
+.nav > li > a.active,
+.nav > li > a.current,
+.nav-dropdown li.active > a,
+.nav-column li.active > a,
+.nav-dropdown > li > a:hover,
+.nav-column li > a:hover,
+.nav-vertical-fly-out > li > a:hover {
+  color: #1b459b !important;
+}
+.wrapper-link-voucher {
+  margin-top: -410px;
+}
+.wrapper-link-voucher a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 200px;
+}
+@media (min-width: 768px) {
+  .wrapper-link-voucher {
+    margin-top: -270px;
+  }
+  .wrapper-link-voucher a {
+    padding: 150px;
+  }
+}
+
+@media (min-width: 998px) {
+  .wrapper-link-voucher {
+    margin-top: -150px;
+  }
+  .wrapper-link-voucher a {
+    padding: 70px;
+  }
+}
+.epos-whatsapp-icon {
+  bottom: 1em;
+}
+
+.support-iconbox .box-image {
+  margin-left: 0px;
+}
+.support-iconbox h3 {
+  margin-bottom: 20px;
+}
+.support-iconbox .box-image img {
+  object-fit: scale-down;
+}
+/* .single-product .product_meta{
+display: none;
+} */
+.cart-item {
+  right: 30px;
+}
+@media (min-width: 768px) {
+  .cart-item {
+    right: 40px;
+  }
+}
+.woocommerce-cart #was-this-helpful,
+.woocommerce-checkout #was-this-helpful {
+  display: none;
+}
+.price-wrapper {
+  min-height: 50px;
+}

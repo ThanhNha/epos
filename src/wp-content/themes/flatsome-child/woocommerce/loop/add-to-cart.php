@@ -23,33 +23,37 @@ if (!defined('ABSPATH')) {
 global $product;
 
 $product_categories = get_the_terms($product->id, 'product_cat');
+
 if (!empty($product_categories)) {
   $is_hidden = false;
   foreach ($product_categories as $prod_term) {
-    if ($prod_term->slug == 'pos-terminal') {
-      $is_hidden = true;
+    $cate = get_term_by('ID', $prod_term->parent, 'product_cat');
+    if (isset($prod_term->slug) && !empty($prod_term->slug)) {
+      if ($prod_term->slug == 'pos-terminal' || $cate->slug == 'pos-terminal') {
+        $is_hidden = true;
+      }
     }
   }
-  if( $is_hidden){
+  if ($is_hidden) {
     echo apply_filters(
       'woocommerce_loop_add_to_cart_link', // WPCS: XSS ok.
       sprintf(
         '<a href="%s" class="%s">%s</a>',
         esc_url('tel:65 6871 8833'),
-        'primary is-small mb-0 button  product_type_simple add_to_cart_button',
+        'primary is-small mb-0 button  product_type_simple add_to_cart_button ajax_add_to_cart',
         esc_html('Contact Sales')
       ),
       $product,
       $args
     );
-  }else{
+  } else {
     echo apply_filters(
       'woocommerce_loop_add_to_cart_link', // WPCS: XSS ok.
       sprintf(
         '<a href="%s" data-quantity="%s" class="%s" %s>%s</a>',
         esc_url($product->add_to_cart_url()),
         esc_attr(isset($args['quantity']) ? $args['quantity'] : 1),
-        'primary is-small mb-0 button  product_type_simple add_to_cart_button',
+        esc_attr(isset($args['class']) ? $args['class'] : 'button'),
         isset($args['attributes']) ? wc_implode_html_attributes($args['attributes']) : '',
         esc_html($product->add_to_cart_text())
 

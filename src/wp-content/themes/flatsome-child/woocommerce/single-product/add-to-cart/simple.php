@@ -51,7 +51,8 @@ echo apply_filters('woocommerce_stock_html', $availability_html, $availability['
 			<?php
 			$is_hidden = false;
 			foreach ($product_categories as $prod_term) {
-				if ($prod_term->slug == 'pos-terminal') {
+				$cate = get_term_by('ID',$prod_term->parent,'product_cat');
+				if ($prod_term->slug == 'pos-terminal' || $cate->slug == 'pos-terminal') {
 					$is_hidden = true;
 				}
 			}

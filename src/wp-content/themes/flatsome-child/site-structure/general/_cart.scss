@@ -81,7 +81,6 @@
 }
 
 .back-shopping-section {
-  
   * {
     padding-bottom: 0px !important;
     margin-bottom: 0px;
@@ -159,14 +158,15 @@
     }
   }
 }
-.wc-block-components-totals-coupon__form .wc-block-components-totals-coupon__button{
+.wc-block-components-totals-coupon__form
+  .wc-block-components-totals-coupon__button {
   height: 35px !important;
   min-height: 1em !important;
 }
 .is-large.wc-block-cart .wc-block-cart__totals-title {
   padding: 0px !important;
 }
-.add_to_cart_button{
+.add_to_cart_button {
   margin-right: 0px !important;
 }
 .added_to_cart.wc-forward {
@@ -174,4 +174,10 @@
 }
 .add_to_cart_button.added {
   display: inline-block !important ;
+}
+.subtotal-custom {
+  p {
+    font-weight: 500;
+    color: #1b459b;
+  }
 }
