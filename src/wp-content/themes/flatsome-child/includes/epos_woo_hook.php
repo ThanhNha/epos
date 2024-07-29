@@ -1,6 +1,6 @@
 <?php
 
-
+//Display pr
 add_action('woocommerce_after_shop_loop_item_title', 'display_short_description_below_title', 2);
 
 function display_short_description_below_title()
@@ -9,12 +9,38 @@ function display_short_description_below_title()
 
   $description = $product->get_short_description();
 
-  $des_text = !empty($description) ? $description : '<div></div>';
+  $des_text = !empty($description) ? '<div class="product-description">' . $description . '</div>' : '';
 
   $des_text = '<div class="product-description">' . $des_text . '</div>';
 
   echo $des_text;
 }
+
+// // add_action('woocommerce_before_shop_loop_item_title', 'display_category_name', 2);
+
+// function display_category_name()
+// {
+//   global $product;
+
+//   $cat_ids = $product->get_category_ids(); // returns an array of cat IDs
+//   var_dump($cat_ids);
+//   $cat_names = [];
+
+//   foreach ((array) $cat_ids as $cat_id) {
+//     $cat_term = get_term_by('id', (int)$cat_id, 'product_cat');
+//     if ($cat_term) {
+//       $cat_names[] = $cat_term->name;
+//     }
+//   }
+
+//   $category = !empty($cat_names) ? $cat_names[array_key_first($cat_names)] : '';
+
+//   // $des_text = !empty($description) ? '<div class="product-description">' . $category . '</div>' : '';
+
+//   $des_text = '<p class="category uppercase is-smaller no-text-overflow product-cat op-7">' . $category . '</p>';
+
+//   echo $des_text;
+// }
 
 add_action('wp_head', 'change_no_products_found_text');
 function change_no_products_found_text()
@@ -22,10 +48,10 @@ function change_no_products_found_text()
   // Remove the original code that uses the no-products-found.php template.
   remove_action('woocommerce_no_products_found', 'wc_no_products_found');
   // and add in my own code.
-  add_action('woocommerce_no_products_found', 'dcwd_no_products_found');
+  add_action('woocommerce_no_products_found', 'display_no_products_found');
 }
 
-function dcwd_no_products_found()
+function display_no_products_found()
 {
   // Use the original message in case one of the conditions below is not met.
   $message = 'No products were found matching your selection.';
@@ -99,12 +125,26 @@ function hide_private_products($where)
   global $wpdb;
   return " $where AND {$wpdb->posts}.post_status != 'private' ";
 }
+add_filter('woocommerce_thankyou_order_received_text', 'change_text_thankyou');
+function change_text_thankyou()
+{
+  $added_text = '<p class="success-color woocommerce-notice woocommerce-notice--success woocommerce-thankyou-order-received"><strong>Thank you. Your order has been received. <br>
+  <br>*We would contact you for the time arrangement Max 1 working day.</strong></p>';
+  return $added_text;
+}
+
+add_action('woocommerce_email_before_order_table', 'mm_email_after_order_table', 10, 4);
+function mm_email_after_order_table($order, $sent_to_admin, $plain_text, $email)
+{
+  echo "<p>Thanks for shopping with us.<br> *We would contact you for the time arrangement within 3 working days.</p>";
+}
 
 add_filter('woocommerce_package_rates', 'override_ups_rates', 999);
 function override_ups_rates($rates)
 {
   global $woocommerce;
-  $carttotal = $woocommerce->cart->subtotal;
+  // get the cart total_product price after minus price product support
+  $carttotal = calculator_subtotal_price();
   $flat_rate_cost = 100; // Adjust this value as needed
   foreach ($rates as $rate_key => $rate) {
     // Check if the shipping method ID is flat_rate
@@ -122,8 +162,19 @@ function override_ups_rates($rates)
   return $rates;
 }
 
-add_action('woocommerce_product_query', 'storeapps_exclude_categories_from_shop_page');
-function storeapps_exclude_categories_from_shop_page($q)
+// Hide Shipping Method in Cart Page 
+
+function disable_shipping_calc_on_cart($show_shipping)
+{
+  if (is_cart()) {
+    return false;
+  }
+  return $show_shipping;
+}
+add_filter('woocommerce_cart_ready_to_calc_shipping', 'disable_shipping_calc_on_cart', 99);
+
+add_action('woocommerce_product_query', 'exclude_categories_from_shop_page');
+function exclude_categories_from_shop_page($q)
 {
   $tax_query = (array) $q->get('tax_query');
 

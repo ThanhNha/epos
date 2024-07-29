@@ -43,6 +43,8 @@
     font-size: 2em !important;
   }
   span {
+    text-transform: initial !important;
+
     position: relative;
     border: 0px !important;
     z-index: 1;
@@ -69,6 +71,8 @@
     max-width: 1320px !important;
   }
   .row {
+    justify-content: center;
+
     max-width: 1320px !important;
   }
 }

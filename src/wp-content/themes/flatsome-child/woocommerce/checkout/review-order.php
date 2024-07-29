@@ -18,6 +18,7 @@
 
 defined('ABSPATH') || exit;
 ?>
+
 <table class="shop_table woocommerce-checkout-review-order-table">
 	<thead>
 		<tr>
@@ -28,7 +29,6 @@ defined('ABSPATH') || exit;
 	<tbody>
 		<?php
 		do_action('woocommerce_review_order_before_cart_contents');
-
 		foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) {
 			$_product = apply_filters('woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key);
 
@@ -55,14 +55,13 @@ defined('ABSPATH') || exit;
 		?>
 	</tbody>
 	<tfoot>
-
 		<tr class="cart-subtotal">
 			<th>
 				<div class="subtotal-custom">
 					<span>
 						<?php esc_html_e('Subtotal (Include GST)', 'woocommerce'); ?>
 					</span>
-					<p><?php echo deduct_the_amount_shipping_fee(WC()->cart->get_subtotal(), 150) ?></p>
+					<p><?php echo deduct_the_amount_shipping_fee(calculator_subtotal_price(), 150) ?></p>
 				</div>
 			</th>
 			<td><?php wc_cart_totals_subtotal_html(); ?></td>

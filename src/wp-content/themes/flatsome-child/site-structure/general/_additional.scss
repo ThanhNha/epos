@@ -171,3 +171,26 @@ display: none;
 .price-wrapper {
   min-height: 50px;
 }
+
+.top-bar-content {
+  padding: 5px 20px;
+  font-weight: bold;
+  display: flex;
+  margin-bottom: 20px;
+  justify-content: center;
+  align-items: center;
+  p {
+    margin-bottom: 0px !important;
+  }
+  a {
+    margin-left: 10px;
+    padding: 5px 10px;
+    background-color: #547756;
+    text-transform: uppercase;
+    text-decoration: none !important;
+    transition: all 0.3 linear;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
