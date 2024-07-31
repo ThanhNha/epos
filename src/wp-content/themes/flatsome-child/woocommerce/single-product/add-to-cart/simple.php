@@ -51,14 +51,29 @@ echo apply_filters('woocommerce_stock_html', $availability_html, $availability['
 			<?php
 			$is_hidden = false;
 			foreach ($product_categories as $prod_term) {
-				if ($prod_term->slug == 'pos-terminal') {
+				$cate = get_term_by('ID', $prod_term->parent, 'product_cat');
+				if ($prod_term->slug == 'pos-terminal' || $cate->slug == 'pos-terminal') {
 					$is_hidden = true;
 				}
 			}
 			if ($is_hidden) : ?>
-				<button type="button" class="single_add_to_cart_button button alt view-all hvr-bounce-to-right shop_add_cart add_cart_second_btn"><a href="/contact-us">Contact For Sale</a></button>
+				<button type="button" class="single_add_to_cart_button button alt view-all hvr-bounce-to-right shop_add_cart add_cart_second_btn"><a href="/contact-us">Contact Sales Now</a></button>
 
 			<?php else : ?>
+
+				<?php
+				do_action('woocommerce_before_add_to_cart_quantity');
+
+				woocommerce_quantity_input(
+					array(
+						'min_value'   => apply_filters('woocommerce_quantity_input_min', $product->get_min_purchase_quantity(), $product),
+						'max_value'   => apply_filters('woocommerce_quantity_input_max', $product->get_max_purchase_quantity(), $product),
+						'input_value' => isset($_POST['quantity']) ? wc_stock_amount(wp_unslash($_POST['quantity'])) : $product->get_min_purchase_quantity(), // WPCS: CSRF ok, input var ok.
+					)
+				);
+
+				do_action('woocommerce_after_add_to_cart_quantity');
+				?>
 
 				<input type="hidden" name="add-to-cart" value="<?php echo esc_attr($product->id); ?>" />
 
@@ -67,6 +82,19 @@ echo apply_filters('woocommerce_stock_html', $availability_html, $availability['
 			<?php endif; ?>
 
 		<?php else : ?>
+			<?php
+			do_action('woocommerce_before_add_to_cart_quantity');
+
+			woocommerce_quantity_input(
+				array(
+					'min_value'   => apply_filters('woocommerce_quantity_input_min', $product->get_min_purchase_quantity(), $product),
+					'max_value'   => apply_filters('woocommerce_quantity_input_max', $product->get_max_purchase_quantity(), $product),
+					'input_value' => isset($_POST['quantity']) ? wc_stock_amount(wp_unslash($_POST['quantity'])) : $product->get_min_purchase_quantity(), // WPCS: CSRF ok, input var ok.
+				)
+			);
+
+			do_action('woocommerce_after_add_to_cart_quantity');
+			?>
 			<input type="hidden" name="add-to-cart" value="<?php echo esc_attr($product->id); ?>" />
 
 			<button type="submit" class="single_add_to_cart_button button alt view-all hvr-bounce-to-right shop_add_cart add_cart_second_btn"><?php echo esc_html($product->add_to_cart_text()) ?></button>

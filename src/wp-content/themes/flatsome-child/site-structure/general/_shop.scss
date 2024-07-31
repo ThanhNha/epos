@@ -1,7 +1,7 @@
 .html_topbar_right {
   .menu-btn-demo,
   .menu-btn-shop {
-    background-color: #78d64b;
+    background-color: $green;
     padding: 0.25rem 0.75rem;
     border: transparent;
     font-size: 0.975rem;
@@ -39,10 +39,12 @@
     background: none !important;
   }
   h2 {
-    color: #1b459b;
+    color: $blue;
     font-size: 2em !important;
   }
   span {
+    text-transform: initial !important;
+
     position: relative;
     border: 0px !important;
     z-index: 1;
@@ -69,6 +71,8 @@
     max-width: 1320px !important;
   }
   .row {
+    justify-content: center;
+
     max-width: 1320px !important;
   }
 }
