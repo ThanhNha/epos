@@ -52,11 +52,11 @@
     border: none !important;
   }
   .button {
-    background: #1b459b !important;
+    background: $blue !important;
     opacity: 1 !important;
   }
   .button-continue-shopping {
-    color: #1b459b !important;
+    color: $blue !important;
     background: transparent !important;
     display: none;
   }
@@ -178,6 +178,42 @@
 .subtotal-custom {
   p {
     font-weight: 500;
-    color: #1b459b;
+    color: $blue;
+  }
+}
+
+a.remove {
+  min-width: 20px;
+  width: 20px !important;
+  height: 20px !important;
+  min-height: 20px;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid currentColor !important;
+  color: $blue !important;
+  &:hover {
+    color: $green !important;
+  }
+}
+
+#order_review {
+  .product-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    line-height: 1;
+
+    .name {
+      line-height: 1.2;
+    }
+  }
+  .quantity.buttons_added{
+    height: 30px;
+    input{
+      line-height: 1.2 !important;
+      height: auto;
+      min-height: auto;
+    }
   }
 }

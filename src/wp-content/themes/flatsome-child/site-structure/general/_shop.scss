@@ -1,7 +1,7 @@
 .html_topbar_right {
   .menu-btn-demo,
   .menu-btn-shop {
-    background-color: #78d64b;
+    background-color: $green;
     padding: 0.25rem 0.75rem;
     border: transparent;
     font-size: 0.975rem;
@@ -39,7 +39,7 @@
     background: none !important;
   }
   h2 {
-    color: #1b459b;
+    color: $blue;
     font-size: 2em !important;
   }
   span {

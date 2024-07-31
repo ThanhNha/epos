@@ -80,7 +80,7 @@
   opacity: 1;
 }
 .add-to-cart-button .button.product_type_simple {
-  background-color: #1b459b !important;
+  background-color: $blue !important;
   padding: 5px 35px;
   border-radius: 8px;
 }
@@ -112,7 +112,7 @@
 .nav-dropdown > li > a:hover,
 .nav-column li > a:hover,
 .nav-vertical-fly-out > li > a:hover {
-  color: #1b459b !important;
+  color: $blue !important;
 }
 .wrapper-link-voucher {
   margin-top: -410px;

@@ -88,7 +88,7 @@
   margin-bottom: 25px;
   .add-to-cart-button {
     .add_to_cart_button {
-      background-color: #1b459b;
+      background-color: $blue;
     }
   }
 }
@@ -103,7 +103,7 @@
 }
 body:not(.theme-twentytwentythree, .theme-zaino)
   .wc-block-components-button:not(.is-link).contained:disabled {
-  background-color: #1b459b !important;
+  background-color: $blue !important;
 }
 
 //pop-up add to cart
