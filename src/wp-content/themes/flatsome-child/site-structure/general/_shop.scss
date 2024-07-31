@@ -1,7 +1,19 @@
 .html_topbar_right {
+  &:hover {
+    a {
+      &::before {
+        opacity: 0 !important;
+      }
+    }
+  }
+  a:hover {
+    &::before {
+      opacity: 1 !important;
+    }
+  }
   .menu-btn-demo,
   .menu-btn-shop {
-    background-color: $green;
+    background-color: $blue;
     padding: 0.25rem 0.75rem;
     border: transparent;
     font-size: 0.975rem;
@@ -9,6 +21,10 @@
     color: white;
     display: block;
     line-height: 40px !important;
+    transition: all 0.3s linear;
+    &:hover {
+      color: $green !important;
+    }
   }
 
   .menu-btn-demo,
