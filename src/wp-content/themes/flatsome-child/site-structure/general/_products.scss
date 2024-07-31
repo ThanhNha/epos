@@ -82,6 +82,9 @@
   .social-icons.share-icons.share-row {
     display: none;
   }
+  .stock {
+    display: none;
+  }
 }
 .product-small.product {
   border: none;
@@ -118,6 +121,7 @@ body:not(.theme-twentytwentythree, .theme-zaino)
   .stock {
     display: none;
   }
+  
   .product_meta,.social-icons {
     display: none !important;
     visibility: hidden;

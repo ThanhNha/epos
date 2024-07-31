@@ -17,7 +17,7 @@ function add_to_cart_button()
     $is_hidden = false;
     foreach ($product_categories as $prod_term) {
       $cate = get_term_by('ID', $prod_term->parent, 'product_cat');
-      if ($prod_term->slug == 'pos-terminal' || $cate->slug == 'pos-terminal') {
+      if (isset($prod_term->slug) && $prod_term->slug == 'pos-terminal' || $prod_term->slug == 'pos-terminal') {
         $is_hidden = true;
       }
     }

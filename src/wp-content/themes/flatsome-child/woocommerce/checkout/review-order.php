@@ -31,16 +31,28 @@ defined('ABSPATH') || exit;
 		do_action('woocommerce_review_order_before_cart_contents');
 		foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) {
 			$_product = apply_filters('woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key);
-
+			$product_id = $_product->get_id();
 			if ($_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters('woocommerce_checkout_cart_item_visible', true, $cart_item, $cart_item_key)) {
 		?>
 				<tr class="<?php echo esc_attr(apply_filters('woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key)); ?>">
 					<td class="product-name">
-						<?php echo wp_kses_post(apply_filters('woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key)) . '&nbsp;'; ?>
+						<div class="name"><span><?php echo $_product->get_name(); ?></span>
+							<strong class="product-quantity">
+								<?php echo sprintf('&times;&nbsp;%s', $cart_item['quantity']) ?>
+							</strong>
+						</div>
 						<?php echo apply_filters('woocommerce_checkout_cart_item_quantity', ' <strong class="product-quantity">' . sprintf('&times;&nbsp;%s', $cart_item['quantity']) . '</strong>', $cart_item, $cart_item_key); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
 						?>
 						<?php echo wc_get_formatted_cart_item_data($cart_item); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
 						?>
+						<?php echo sprintf(
+							'<a href="%s" class="remove" aria-label="%s" data-product_id="%s" data-product_sku="%s" data-cart_item_key="%s">×</a>',
+							esc_url(WC()->cart->get_remove_url($cart_item_key)),
+							__('Remove this item', 'woocommerce'),
+							esc_attr($product_id),
+							esc_attr($_product->get_sku()),
+							$cart_item_key
+						); ?>
 					</td>
 					<td class="product-total">
 						<?php echo apply_filters('woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal($_product, $cart_item['quantity']), $cart_item, $cart_item_key); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
