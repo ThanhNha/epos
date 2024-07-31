@@ -53,3 +53,29 @@ function calculator_subtotal_price()
   $subtotal_price = $woocommerce->cart->get_subtotal() - $service_total_price;
   return $subtotal_price;
 }
+
+// Check is_only_support_product 
+function is_only_support_product()
+{
+  global $woocommerce;
+  $is_product_service = true;
+
+  foreach ($woocommerce->cart->get_cart() as $cart_item_key => $cart_item) {
+    $_product = apply_filters('woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key);
+
+    if ($_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters('woocommerce_checkout_cart_item_visible', true, $cart_item, $cart_item_key)) {
+      $product_id = $_product->get_ID();
+
+      // check if belongto Product Services
+      $terms = get_the_terms($product_id, 'product_cat');
+      foreach ($terms as $term) {
+        $cat_slug = $term->slug;
+        if ($cat_slug != 'service-support') $is_product_service = false;
+
+        break;
+      }
+    }
+    if (!$is_product_service) break;
+  }
+  return $is_product_service;
+}

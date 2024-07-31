@@ -64,7 +64,9 @@ function callback_add_to_cart_button($product_id)
       <div class="product-main">
         <div class="row content-row mb-0">
           <div class="product-gallery col large-4">
-            <?php do_action('woocommerce_before_single_product_summary'); ?>
+            <?php $image = wp_get_attachment_image_src(get_post_thumbnail_id($product_id['id']), 'single-post-thumbnail'); ?>
+
+            <img src="<?php echo $image[0]; ?>" data-id="<?php echo $product_id['id'] ?>">
           </div>
           <div class="product-details col large-8">
             <?php do_action('woocommerce_single_product_summary'); ?>

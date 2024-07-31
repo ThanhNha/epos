@@ -33,6 +33,9 @@ function hideAddPress() {
   $("#billing_city_field").hide();
   $("#billing_city_field input").val("");
 
+  $("#billing_city_field").hide();
+  $("#billing_city_field input").val("");
+
   $(".woocommerce-NoticeGroup").hide();
 }
 
@@ -47,3 +50,9 @@ function showAddPress() {
   $("#billing_state_field").show();
   $("#billing_state_field").show();
 }
+$(document).ready(function () {
+  var val = $("form.checkout input[name^='shipping_method']").val();
+  if (val.match("^local_pickup")) {
+    hideAddPress();
+  }
+});

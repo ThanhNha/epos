@@ -129,14 +129,14 @@ add_filter('woocommerce_thankyou_order_received_text', 'change_text_thankyou');
 function change_text_thankyou()
 {
   $added_text = '<p class="success-color woocommerce-notice woocommerce-notice--success woocommerce-thankyou-order-received"><strong>Thank you. Your order has been received. <br>
-  <br>*We would contact you for the time arrangement Max 1 working day.</strong></p>';
+  <br>*We would contact you for the arrangement for 1 working day.</strong></p>';
   return $added_text;
 }
 
 add_action('woocommerce_email_before_order_table', 'mm_email_after_order_table', 10, 4);
 function mm_email_after_order_table($order, $sent_to_admin, $plain_text, $email)
 {
-  echo "<p>Thanks for shopping with us.<br> *We would contact you for the time arrangement within 3 working days.</p>";
+  echo "<p>Thanks for shopping with us.<br> *We would contact you for the arrangement for 1 working day.</p>";
 }
 
 add_filter('woocommerce_package_rates', 'override_ups_rates', 999);
@@ -144,23 +144,70 @@ function override_ups_rates($rates)
 {
   global $woocommerce;
   // get the cart total_product price after minus price product support
+  $all_free_rates = array();
+
   $carttotal = calculator_subtotal_price();
   $flat_rate_cost = 100; // Adjust this value as needed
+  $only_has_product_service = is_only_support_product();
+
   foreach ($rates as $rate_key => $rate) {
+
     // Check if the shipping method ID is flat_rate
-    if ($rate->method_id == 'flat_rate') {
-      // Set cost based on cart total
-      if ($carttotal >= 150) {
+    if (!$only_has_product_service) {
+
+      if ($rate->method_id == 'flat_rate') {
+        // Set cost based on cart total
+
+        if ($carttotal >= 150) {
+          $rates[$rate_key]->cost = 0;
+          $rates[$rate_key]->label = 'Free shipping';
+        } else {
+          $rates[$rate_key]->cost = $flat_rate_cost;
+        }
+      }
+    } else {
+      if ($rate->method_id == 'local_pickup') {
+
         $rates[$rate_key]->cost = 0;
-        $rates[$rate_key]->label = 'Free shipping';
-      } else {
-        $rates[$rate_key]->cost = $flat_rate_cost;
+        $rates[$rate_key]->label = 'No shipping';
+        $all_free_rates[$rate_key] = $rate;
+        add_filter('woocommerce_checkout_fields', 'remove_billing_checkout_fields');
       }
     }
   }
 
-  return $rates;
+  if (empty($all_free_rates)) {
+    return $rates;
+  } else {
+    return $all_free_rates;
+  }
 }
+
+
+// function no_shipping_for_woocomerce($rates, $package)
+// {
+//   $all_free_rates = array();
+//   $only_has_product_service = is_only_support_product();
+
+//   if ($only_has_product_service) {
+//     foreach ($rates as $rate_id => $rate) {
+//       if ('local_pickup' == $rate->method_id) {
+//         $rates[$rate_id]->cost = 0;
+//         $rates[$rate_id]->label = 'No shipping';
+//         $all_free_rates[$rate_id] = $rate;
+//         break;
+//       }
+//     }
+//   }
+
+//   if (empty($all_free_rates)) {
+//     return $rates;
+//   } else {
+//     return $all_free_rates;
+//   }
+// }
+
+// add_filter('woocommerce_package_rates', 'no_shipping_for_woocomerce', 10, 2);
 
 // Hide Shipping Method in Cart Page 
 
