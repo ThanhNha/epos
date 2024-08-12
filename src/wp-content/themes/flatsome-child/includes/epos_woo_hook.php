@@ -129,7 +129,7 @@ add_filter('woocommerce_thankyou_order_received_text', 'change_text_thankyou');
 function change_text_thankyou()
 {
   $added_text = '<p class="success-color woocommerce-notice woocommerce-notice--success woocommerce-thankyou-order-received"><strong>Thank you. Your order has been received. <br>
-  <br>*We would contact you for the arrangement for 1 working day.</strong></p>';
+  <br>*We would contact you for the arrangement within 1 working day.</strong></p>';
   return $added_text;
 }
 
@@ -182,32 +182,10 @@ function override_ups_rates($rates)
     return $all_free_rates;
   }
 }
-
-
-// function no_shipping_for_woocomerce($rates, $package)
-// {
-//   $all_free_rates = array();
-//   $only_has_product_service = is_only_support_product();
-
-//   if ($only_has_product_service) {
-//     foreach ($rates as $rate_id => $rate) {
-//       if ('local_pickup' == $rate->method_id) {
-//         $rates[$rate_id]->cost = 0;
-//         $rates[$rate_id]->label = 'No shipping';
-//         $all_free_rates[$rate_id] = $rate;
-//         break;
-//       }
-//     }
-//   }
-
-//   if (empty($all_free_rates)) {
-//     return $rates;
-//   } else {
-//     return $all_free_rates;
-//   }
-// }
-
-// add_filter('woocommerce_package_rates', 'no_shipping_for_woocomerce', 10, 2);
+// Disable product gallery
+add_action('woocommerce_before_single_product', function () {
+  add_filter('woocommerce_product_get_gallery_image_ids', '__return_empty_array');
+});
 
 // Hide Shipping Method in Cart Page 
 
@@ -321,4 +299,3 @@ function callback_update_item_quantity_checkout($post_data)
   }
   if ($updated_qty) WC()->cart->calculate_totals();
 }
-
