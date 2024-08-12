@@ -119,6 +119,7 @@ function flatsome_follow($atts, $content = null) {
 		'scale' => '',
 		'twitter' => '',
 		'facebook' => '',
+		'whatsapp' => '',
 		'pinterest' => '',
 		'email' => '',
 		'phone' => '',
@@ -151,11 +152,12 @@ function flatsome_follow($atts, $content = null) {
 	}
 
 	// Use global follow links if non is set individually.
-	$has_custom_link = $twitter || $facebook || $instagram || $tiktok || $snapchat || $youtube || $pinterest || $linkedin || $px500 || $vkontakte || $telegram || $flickr || $email || $phone || $rss || $twitch || $discord;
+	$has_custom_link = $twitter || $facebook  || $whatsapp || $instagram || $tiktok || $snapchat || $youtube || $pinterest || $linkedin || $px500 || $vkontakte || $telegram || $flickr || $email || $phone || $rss || $twitch || $discord;
 
 	if ( ! $has_custom_link ) {
 		$twitter   = get_theme_mod( 'follow_twitter' );
 		$facebook  = get_theme_mod( 'follow_facebook' );
+		$whatsapp  = get_theme_mod( 'follow_whatsapp' );
 		$instagram = get_theme_mod( 'follow_instagram' );
 		$tiktok    = get_theme_mod( 'follow_tiktok' );
 		$snapchat  = get_theme_mod( 'follow_snapchat' );
@@ -187,6 +189,10 @@ function flatsome_follow($atts, $content = null) {
 		<?php }?>
     	<?php if($facebook){?>
     	<a href="<?php echo $facebook; ?>" target="_blank" data-label="Facebook" rel="noopener noreferrer nofollow" class="<?php echo $style; ?> facebook tooltip" title="<?php _e('Follow on Facebook','flatsome') ?>" aria-label="<?php esc_attr_e( 'Follow on Facebook', 'flatsome' ); ?>"><?php echo get_flatsome_icon('icon-facebook'); ?>
+    	</a>
+		<?php }?>
+		<?php if($whatsapp){?>
+    	<a href="<?php echo $whatsapp; ?>" target="_blank" data-label="Whapsapp" rel="noopener noreferrer nofollow" class="<?php echo $style; ?> whatsapp tooltip" title="<?php _e('Follow on Whatsapp','flatsome') ?>" aria-label="<?php esc_attr_e( 'Follow on Whatsapp', 'flatsome' ); ?>"><?php echo get_flatsome_icon('icon-whatsapp'); ?>
     	</a>
 		<?php }?>
 		<?php if($instagram){?>
