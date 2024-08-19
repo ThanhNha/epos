@@ -195,11 +195,9 @@ display: none;
   }
 }
 
-.hide{
+.hide,
+.hidden {
   display: none !important;
-}
-
-.quantity .button{
-  text-shadow: none !important;
-  color: #fff !important;
+  visibility: hidden;
+  pointer-events: none;
 }

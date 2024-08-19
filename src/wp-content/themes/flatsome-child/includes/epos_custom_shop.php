@@ -23,9 +23,13 @@ function custom_sort_by_subcategory($query)
         foreach ($subcategories as $subcat_id) {
           $order = array_merge($order, get_objects_in_term($subcat_id, 'product_cat'));
         }
+        //Store current product cate
+        $current_product = array();
+        $current_product = array_merge($current_product, get_objects_in_term($cat_id, 'product_cat'));
 
         // Modify query to sort by subcategory order
-        $query->set('post__in', $order);
+        $all_post_order = array_merge($order, $current_product);
+        $query->set('post__in', $all_post_order);
         $query->set('orderby', 'post__in');
       }
     }
@@ -36,7 +40,6 @@ function custom_sort_by_subcategory($query)
 add_filter('woocommerce_get_breadcrumb', 'remove_shop_crumb_page', 20, 2);
 function remove_shop_crumb_page($crumbs, $breadcrumb)
 {
-  // pr($crumbs);
 
   foreach ($crumbs as $key => $crumb) {
 
@@ -47,3 +50,5 @@ function remove_shop_crumb_page($crumbs, $breadcrumb)
   }
   return $crumbs;
 }
+
+

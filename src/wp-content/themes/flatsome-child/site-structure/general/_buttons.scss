@@ -1,0 +1,13 @@
+.button {
+  border-radius: 0.25rem !important;
+}
+.quantity {
+  .button.is-form {
+    background: $blue;
+    text-shadow: none !important;
+    color: #fff !important;
+    &:hover{
+      background: #1b459b;
+    }
+  }
+}
