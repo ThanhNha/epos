@@ -46,7 +46,20 @@ function showAddPress() {
   $("#billing_state_field").removeClass("hidden hide");
   $("#billing_state_field").removeClass("hidden hide");
 }
+
+function validation_address_2() {
+  $("body").on("blur change", "#billing_address_2", function () {
+    const wrapper = $(this).closest(".form-row");
+    if ($(this).val().replace(/\s/g, "") == "") {
+      wrapper.addClass("woocommerce-invalid"); // error
+    } else {
+      wrapper.addClass("woocommerce-validated"); // success
+    }
+  });
+}
+
 $(document).ready(function () {
+  validation_address_2();
   var val = $("form.checkout input[name^='shipping_method']").val();
   if (val.match("^local_pickup")) {
     hideAddPress();

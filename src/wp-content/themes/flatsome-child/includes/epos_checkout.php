@@ -1,17 +1,27 @@
 <?php
 
 /**
- * Remove shipping fields
+ * Custom Address  shipping fields
  *
  */
 
-// add_filter('woocommerce_checkout_fields',  'shipping_remove_fields');
-function shipping_remove_fields($fields)
+add_filter('woocommerce_default_address_fields', 'custom_override_default_checkout_fields', 10, 1);
+function custom_override_default_checkout_fields($address_fields)
 {
-  unset($fields['billing']['billing_city_field']);
-  unset($fields['billing']['billing_state_field']);
-  // unset($fields['billing']['billing_country']);
+  // Remove labels for "address 2" shipping fields
+  unset($address_fields['address_2']['placeholder']);
+  unset($address_fields['address_2']['required']);
 
+  return $address_fields;
+}
+
+add_filter('woocommerce_checkout_fields', 'custom_override_checkout_fields');
+function custom_override_checkout_fields($fields)
+{
+
+  unset($fields['billing']['billing_city']);
+  $fields['billing']['billing_address_2']['placeholder'] = __('Apartment, suite, unit etc...', 'woocommerce');
+  $fields['billing']['billing_address_2']['required'] = true; // Making Address 2 field required
   return $fields;
 }
 
@@ -71,7 +81,7 @@ function override_ups_rates($rates)
  *
  */
 
-add_filter('woocommerce_checkout_fields', 'remove_billing_checkout_fields');
+add_filter('woocommerce_checkout_fields', 'remove_billing_checkout_fields', 90, 1);
 function remove_billing_checkout_fields($fields)
 {
   $shipping_method = 'local_pickup:2';
