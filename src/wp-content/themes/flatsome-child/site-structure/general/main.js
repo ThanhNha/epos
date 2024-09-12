@@ -58,7 +58,51 @@ function validation_address_2() {
   });
 }
 
+function customAccordion() {
+  const accordion = $(".accordion .accordion-title");
+  $.each(accordion, function (indexInArray, valueOfElement) {
+    $(this).on("click", function (e) {
+      e.preventDefault();
+      $(this).parent().toggleClass("shin");
+      if ($(this).parent().hasClass("shin")) {
+        $(this)
+          .addClass("active")
+          .next()
+          .slideDown(200, function () {
+            /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(
+              navigator.userAgent
+            ) &&
+              $.scrollTo($(this).prev(), {
+                duration: 300,
+                offset: -100,
+              });
+          }),
+          window.requestAnimationFrame(function () {
+            $.fn.flickity &&
+              $(e)
+                .next()
+                .find("[data-flickity-options].flickity-enabled")
+                .each(function (t, e) {
+                  $(e).flickity("resize");
+                }),
+              $.fn.packery &&
+                $(e).next().find("[data-packery-options]").packery("layout");
+          });
+      } else {
+        $(this)
+          .removeClass("active")
+          .next()
+          .slideUp(200);
+      }
+    });
+  });
+  // $(".accordion").on("click", ".accordion-title.plain", function () {
+
+  // });
+}
+
 $(document).ready(function () {
+  customAccordion();
   validation_address_2();
   var val = $("form.checkout input[name^='shipping_method']").val();
   if (val.match("^local_pickup")) {

@@ -25,56 +25,6 @@ function custom_override_checkout_fields($fields)
   return $fields;
 }
 
-/**
- * Custom rates
- *
- */
-
-
-add_filter('woocommerce_package_rates', 'override_ups_rates', 999);
-function override_ups_rates($rates)
-{
-  global $woocommerce;
-  // get the cart total_product price after minus price product support
-  $all_free_rates = array();
-
-  $carttotal = calculator_subtotal_price();
-  $flat_rate_cost = 38; // Adjust this value as needed
-  $only_has_product_service = is_only_support_product();
-
-  foreach ($rates as $rate_key => $rate) {
-
-    // Check if the shipping method ID is flat_rate
-    if (!$only_has_product_service) {
-
-      if ($rate->method_id == 'flat_rate') {
-        // Set cost based on cart total
-
-        if ($carttotal >= 150) {
-          $rates[$rate_key]->cost = 0;
-          $rates[$rate_key]->label = 'Free shipping';
-        } else {
-          $rates[$rate_key]->cost = $flat_rate_cost;
-        }
-      }
-    } else {
-      if ($rate->method_id == 'local_pickup') {
-
-        $rates[$rate_key]->cost = 0;
-        $rates[$rate_key]->label = 'No shipping';
-        $all_free_rates[$rate_key] = $rate;
-        add_filter('woocommerce_checkout_fields', 'remove_billing_checkout_fields');
-      }
-    }
-  }
-
-  if (empty($all_free_rates)) {
-    return $rates;
-  } else {
-    return $all_free_rates;
-  }
-}
-
 
 /**
  * Custom require fields by Shipping Method
