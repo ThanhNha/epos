@@ -21,7 +21,8 @@ function pr($data)
 }
 function deduct_the_amount_shipping_fee($subtotal, $shipping_fee)
 {
-  if (empty($subtotal) || empty($shipping_fee)) return;
+  $has_peripherals   = is_product_in_category('peripherals');
+  if (empty($subtotal) || empty($shipping_fee) || $has_peripherals) return;
   if ($shipping_fee <= $subtotal) return;
 
   return '*Buy ' . get_woocommerce_currency_symbol() . $shipping_fee - $subtotal . ' more to enjoy free shipping!';
@@ -57,4 +58,66 @@ function calculator_subtotal_price()
     $subtotal_price = $woocommerce->cart->get_subtotal() - $service_total_price;
     return $subtotal_price;
   }
+}
+
+function is_product_in_category($category_slug)
+{
+
+  global $woocommerce;
+  $is_product_service = false;
+
+  foreach ($woocommerce->cart->get_cart() as $cart_item_key => $cart_item) {
+    $_product = apply_filters('woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key);
+
+    if ($_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters('woocommerce_checkout_cart_item_visible', true, $cart_item, $cart_item_key)) {
+      $product_id = $_product->get_ID();
+
+      // check if belongto Product Services
+      $terms = get_the_terms($product_id, 'product_cat');
+
+      foreach ($terms as $term) {
+        $cat_slug = $term->slug;
+        if ($term->parent > 0) {
+          $parent = get_term_by("ID", $term->parent, "product_cat");
+          $cat_slug = $parent->slug;
+        }
+        // Stop if is On Site Support 
+        if ($cat_slug == $category_slug) {
+          $is_product_service = true;
+          break;
+        }
+      }
+    }
+    if ($is_product_service) break;
+  }
+  return $is_product_service;
+}
+
+function only_in_category($category_slug)
+{
+
+  global $woocommerce;
+  $is_only_service = true;
+
+  foreach ($woocommerce->cart->get_cart() as $cart_item_key => $cart_item) {
+    $_product = apply_filters('woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key);
+
+    if ($_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters('woocommerce_checkout_cart_item_visible', true, $cart_item, $cart_item_key)) {
+      $product_id = $_product->get_ID();
+
+      // check if belongto Product Services
+      $terms = get_the_terms($product_id, 'product_cat');
+
+      foreach ($terms as $term) {
+        $cat_slug = $term->slug;
+        // Stop if is On Site Support 
+        if ($cat_slug != $category_slug) {
+          $is_only_service = false;
+          break;
+        }
+      }
+    }
+    if (!$is_only_service) break;
+  }
+  return $is_only_service;
 }
