@@ -48,10 +48,6 @@ function customize_shipping_rates($rates)
 function adjust_flat_rate($rate, $only_online_product, $has_peripherals, $has_miscellaneous, $cart_total, $flat_rate_cost)
 {
 
-  // if ($has_miscellaneous && $has_peripherals) {
-  //   return $rate;
-  // }
-
   if ($has_miscellaneous == true && $has_peripherals == false) {
     if ($cart_total >= 150) {
       echo 'shin';
