@@ -60,7 +60,7 @@ function calculator_subtotal_price()
   }
 }
 
-function is_product_in_category($category_slug)
+function is_product_in_category($category_slug, $find_parent = false)
 {
 
   global $woocommerce;
@@ -77,7 +77,7 @@ function is_product_in_category($category_slug)
 
       foreach ($terms as $term) {
         $cat_slug = $term->slug;
-        if ($term->parent > 0) {
+        if ($term->parent > 0 && $find_parent == false) {
           $parent = get_term_by("ID", $term->parent, "product_cat");
           $cat_slug = $parent->slug;
         }

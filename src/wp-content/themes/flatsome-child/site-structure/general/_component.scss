@@ -1,0 +1,26 @@
+.mfp-bg {
+  background: #1b459b !important;
+}
+
+.lightbox-content {
+  border-radius: 8px !important;
+}
+.shin-popup {
+  .mfp-close {
+    opacity: 1 !important;
+    display: block;
+    svg {
+      fill: #000000 !important;
+      transition: all 0.3 linear;
+      // pointer-events: all !important;
+    }
+    &:hover {
+      svg {
+        fill: #1b459b !important;
+      }
+    }
+  }
+}
+.mfp-close {
+  // display: none;
+}

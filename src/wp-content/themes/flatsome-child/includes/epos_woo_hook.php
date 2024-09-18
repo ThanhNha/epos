@@ -28,13 +28,13 @@ add_action('woocommerce_after_shop_loop_item_title', 'display_contact_for_sale',
 
 function display_contact_for_sale()
 {
-  if(is_cart()) {
+  if (is_cart()) {
     global $product;
     $product_categories = get_the_terms($product->id, 'product_cat');
 
-    if(!empty($product_categories)) : ?>
-      <?php  $is_hidden = false; ?>
-     
+    if (!empty($product_categories)) : ?>
+      <?php $is_hidden = false; ?>
+
       <?php foreach ($product_categories as $prod_term) {
         $cate = get_term_by('ID', $prod_term->parent, 'product_cat');
         if (isset($prod_term->slug) && $prod_term->slug == 'pos-terminal' || $prod_term->slug == 'pos-terminal') {
@@ -42,12 +42,12 @@ function display_contact_for_sale()
         }
       }
 
-      if($is_hidden) : ?>
+      if ($is_hidden) : ?>
 
         <div class="add-to-cart-button"><a class="primary is-small mb-0 button product_type_simple add_to_cart_button ajax_add_to_cart is-gloss" href="/contact-us">Contact Sales</a></div>
 
       <?php endif; ?>
-      
+
     <?php endif; ?>
   <?php
   }
@@ -74,7 +74,7 @@ function display_no_products_found()
 
   if (is_product_category()) :
     $message = sprintf('More products are coming soon.');
-?>
+  ?>
     <div class="message-container container medium-text-center">
 
       <?php echo $message; ?></div>
@@ -262,4 +262,11 @@ Singapore 159086</td>
             </tr>';
     }
   }
+}
+
+add_filter('woocommerce_shipping_package_name', 'custom_shipping_package_name');
+function custom_shipping_package_name($name)
+{
+  return '<div id="shipping_tool" class="tooltip woocommerce-help-tip"><span>Shipping</span>
+  ';
 }

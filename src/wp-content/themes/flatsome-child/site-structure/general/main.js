@@ -58,6 +58,13 @@ function validation_address_2() {
   });
 }
 
+function toogle_shipping_popup() {
+  $("body").on("click", "#shipping_tool", function (e) {
+    e.preventDefault();
+    $(".toogle_shipping_popup").click();
+  });
+}
+
 function customAccordion() {
   const accordion = $(".accordion .accordion-title");
   $.each(accordion, function (indexInArray, valueOfElement) {
@@ -89,20 +96,15 @@ function customAccordion() {
                 $(e).next().find("[data-packery-options]").packery("layout");
           });
       } else {
-        $(this)
-          .removeClass("active")
-          .next()
-          .slideUp(200);
+        $(this).removeClass("active").next().slideUp(200);
       }
     });
   });
-  // $(".accordion").on("click", ".accordion-title.plain", function () {
-
-  // });
 }
 
 $(document).ready(function () {
   customAccordion();
+  toogle_shipping_popup();
   validation_address_2();
   var val = $("form.checkout input[name^='shipping_method']").val();
   if (val.match("^local_pickup")) {

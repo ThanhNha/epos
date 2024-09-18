@@ -59,7 +59,7 @@ function callback_add_to_cart_button($product_id)
 
   $product = wc_get_product($product_id['id']);
 ?>
-  <div class="product-popup-addtocart">
+  <div class="shin-popup">
     <div class="product-container">
       <div class="product-main">
         <div class="row content-row mb-0">
@@ -81,4 +81,34 @@ function callback_add_to_cart_button($product_id)
   </div>
 
 <?php
+}
+
+
+add_action('wp_footer', 'shipping_tool_callback');
+function shipping_tool_callback()
+{
+  if (is_checkout()) {
+    echo do_shortcode('[button text="Lightbox Button" class="hidden toogle_shipping_popup" link="#shipping_tool"][lightbox id="shipping_tool" width="600px" padding="20px"]
+    <div class="shin-popup">
+     <div class="popup-content">
+       <p><strong>Shipping Fee Policy:</strong></p>
+       <p>
+         (1) Miscellaneous Products:
+         - For orders below $150: A shipping fee of $38 will be applied.
+         - For orders of $150 or more: Free shipping.
+       </p>
+       <p>
+         (2) Peripherals Products:
+         A flat shipping fee of $50 will be applied, which includes installation services.
+       </p>
+  
+  
+       <p>(3) Onsite Support Service:
+         If onsite support service is purchased, shipping is free for all items in the order.</span></p>
+       
+     </div>
+   </div>
+   
+  [/lightbox]');
+  }
 }

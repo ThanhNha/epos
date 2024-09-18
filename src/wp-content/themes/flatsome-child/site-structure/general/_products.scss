@@ -111,7 +111,7 @@ body:not(.theme-twentytwentythree, .theme-zaino)
 
 //pop-up add to cart
 
-.product-popup-addtocart {
+.shin-popup {
   padding: 0px 30px;
   .woocommerce-breadcrumb,
   .zoom-button.button {
@@ -132,6 +132,9 @@ body:not(.theme-twentytwentythree, .theme-zaino)
   .mfp-close {
     top: 0px !important;
     right: 0px;
+  }
+  .popup-content{
+    color: #111111;
   }
 }
 
