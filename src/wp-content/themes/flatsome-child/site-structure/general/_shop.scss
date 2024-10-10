@@ -1,7 +1,19 @@
 .html_topbar_right {
+  &:hover {
+    a {
+      &::before {
+        opacity: 0 !important;
+      }
+    }
+  }
+  a:hover {
+    &::before {
+      opacity: 1 !important;
+    }
+  }
   .menu-btn-demo,
   .menu-btn-shop {
-    background-color: #78d64b;
+    background-color: $blue;
     padding: 0.25rem 0.75rem;
     border: transparent;
     font-size: 0.975rem;
@@ -9,6 +21,10 @@
     color: white;
     display: block;
     line-height: 40px !important;
+    transition: all 0.3s linear;
+    &:hover {
+      color: $green !important;
+    }
   }
 
   .menu-btn-demo,
@@ -39,10 +55,12 @@
     background: none !important;
   }
   h2 {
-    color: #1b459b;
+    color: $blue;
     font-size: 2em !important;
   }
   span {
+    text-transform: initial !important;
+
     position: relative;
     border: 0px !important;
     z-index: 1;
@@ -69,6 +87,8 @@
     max-width: 1320px !important;
   }
   .row {
+    justify-content: center;
+
     max-width: 1320px !important;
   }
 }

@@ -57,6 +57,7 @@ Flatsome_Option::add_field( 'option',  array(
 		),
 		'choices'     => array(
 			"facebook" => "Facebook",
+			"whatsapp" => "Whatsapp",
 			"linkedin" => "LinkedIn",
 			"twitter" => "Twitter",
 			"email" => "Email",
@@ -105,6 +106,17 @@ Flatsome_Option::add_field( 'option',  array(
 	'type'        => 'text',
 	'settings'     => 'follow_facebook',
 	'label'       => __( 'Facebook', 'flatsome-admin' ),
+	'transport' => $transport,
+	//'description' => __( 'Add Any HTML or Shortcode here...', 'flatsome-admin' ),
+	//'help'        => __( 'This is some extra help. You can use this to add some additional instructions for users. The main description should go in the "description" of the field, this is only to be used for help tips.', 'flatsome-admin' ),
+	'section'     => 'follow',
+	'default'     => '',
+));
+
+Flatsome_Option::add_field( 'option',  array(
+	'type'        => 'text',
+	'settings'     => 'follow_whatsapp',
+	'label'       => __( 'Whatsapp', 'flatsome-admin' ),
 	'transport' => $transport,
 	//'description' => __( 'Add Any HTML or Shortcode here...', 'flatsome-admin' ),
 	//'help'        => __( 'This is some extra help. You can use this to add some additional instructions for users. The main description should go in the "description" of the field, this is only to be used for help tips.', 'flatsome-admin' ),

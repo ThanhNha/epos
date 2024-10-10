@@ -56,7 +56,7 @@ if ( flatsome_option( 'facebook_login_checkout' ) && get_option( 'woocommerce_en
 <form name="checkout" method="post" class="checkout woocommerce-checkout <?php echo esc_attr( $wrapper_classes ); ?>" action="<?php echo esc_url( wc_get_checkout_url() ); ?>" enctype="multipart/form-data">
 
 	<div class="row pt-0 <?php echo esc_attr( $row_classes ); ?>">
-		<div class="large-7 col  <?php echo esc_attr( $main_classes ); ?>">
+		<div class="large-7 col <?php echo esc_attr( $main_classes ); ?>">
 			<?php if ( $checkout->get_checkout_fields() ) : ?>
 
 				<?php do_action( 'woocommerce_checkout_before_customer_details' ); ?>

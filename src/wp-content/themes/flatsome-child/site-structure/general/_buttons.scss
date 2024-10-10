@@ -1,0 +1,40 @@
+.button {
+  border-radius: 0.25rem !important;
+}
+.quantity {
+  .button.is-form {
+    background: $blue;
+    text-shadow: none !important;
+    color: #fff !important;
+    &:hover {
+      background: #1b459b;
+    }
+  }
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+
+
+.woocommerce-help-tip::after {
+  font-family: Dashicons;
+  speak: never;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  text-indent: 0;
+  position: absolute;
+  top: 1px;
+  right: -20px;
+  width: 16px;
+  height: 16px;
+  text-align: center;
+  content: "\f223";
+  cursor: help;
+}

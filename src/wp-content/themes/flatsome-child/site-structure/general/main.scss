@@ -1,7 +1,37 @@
 @import "mixins";
+@import "variables";
+@import "component";
+@import "buttons";
 @import "shop";
 @import "cart";
+@import "additional";
 @import "products";
 
-
-
+.net-row{
+  .col .col-inner{
+    height: 100%;
+  }
+}
+.net-testimonial {
+  height: 100%;
+  background: rgba(70, 164, 127, 1);
+  padding: 30px;
+  border-radius: 12px;
+  .icon-box-text{
+    width: 100%;
+  }
+  .star-rating span:before {
+    color: #fff;
+  }
+  .testimonial-meta.pt-half {
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+  }
+  .testimonial-name-divider {
+    display: none;
+  }
+  .testimonial-company {
+    color: #6ac19e;
+  }
+}

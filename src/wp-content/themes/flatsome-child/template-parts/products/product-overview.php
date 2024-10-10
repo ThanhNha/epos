@@ -1,2 +1,2 @@
 
-<?php echo do_shortcode('[block id="product-over-view"]') ?>
+<?php echo do_shortcode('[block id="product-overview"]') ?>

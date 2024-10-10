@@ -52,11 +52,11 @@
     border: none !important;
   }
   .button {
-    background: #1b459b !important;
+    background: $blue !important;
     opacity: 1 !important;
   }
   .button-continue-shopping {
-    color: #1b459b !important;
+    color: $blue !important;
     background: transparent !important;
     display: none;
   }
@@ -81,7 +81,6 @@
 }
 
 .back-shopping-section {
-  
   * {
     padding-bottom: 0px !important;
     margin-bottom: 0px;
@@ -159,14 +158,15 @@
     }
   }
 }
-.wc-block-components-totals-coupon__form .wc-block-components-totals-coupon__button{
+.wc-block-components-totals-coupon__form
+  .wc-block-components-totals-coupon__button {
   height: 35px !important;
   min-height: 1em !important;
 }
 .is-large.wc-block-cart .wc-block-cart__totals-title {
   padding: 0px !important;
 }
-.add_to_cart_button{
+.add_to_cart_button {
   margin-right: 0px !important;
 }
 .added_to_cart.wc-forward {
@@ -174,4 +174,46 @@
 }
 .add_to_cart_button.added {
   display: inline-block !important ;
+}
+.subtotal-custom {
+  p {
+    font-weight: 500;
+    color: $blue;
+  }
+}
+
+a.remove {
+  min-width: 20px;
+  width: 20px !important;
+  height: 20px !important;
+  min-height: 20px;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid currentColor !important;
+  color: $blue !important;
+  &:hover {
+    color: $green !important;
+  }
+}
+
+#order_review {
+  .product-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    line-height: 1;
+
+    .name {
+      line-height: 1.2;
+    }
+  }
+  .quantity.buttons_added{
+    height: 30px;
+    input{
+      line-height: 1.2 !important;
+      height: auto;
+      min-height: auto;
+    }
+  }
 }

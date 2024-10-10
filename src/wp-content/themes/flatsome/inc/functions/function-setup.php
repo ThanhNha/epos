@@ -128,7 +128,7 @@ add_action( 'widgets_init', 'flatsome_widgets_init' );
 function flatsome_scripts() {
 	$uri     = get_template_directory_uri();
 	$theme   = wp_get_theme( get_template() );
-	$version = $theme->get( 'Version' );
+	$version = time();
 
 	// Styles.
 	wp_enqueue_style( 'flatsome-main', $uri . '/assets/css/flatsome.css', array(), $version, 'all' );
