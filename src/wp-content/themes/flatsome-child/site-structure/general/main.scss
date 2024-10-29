@@ -7,8 +7,8 @@
 @import "additional";
 @import "products";
 
-.net-row{
-  .col .col-inner{
+.net-row {
+  .col .col-inner {
     height: 100%;
   }
 }
@@ -17,7 +17,7 @@
   background: rgba(70, 164, 127, 1);
   padding: 30px;
   border-radius: 12px;
-  .icon-box-text{
+  .icon-box-text {
     width: 100%;
   }
   .star-rating span:before {
@@ -35,3 +35,4 @@
     color: #6ac19e;
   }
 }
+

@@ -7,8 +7,8 @@
 @import "additional";
 @import "products";
 
-.net-row{
-  .col .col-inner{
+.net-row {
+  .col .col-inner {
     height: 100%;
   }
 }
@@ -17,7 +17,7 @@
   background: rgba(70, 164, 127, 1);
   padding: 30px;
   border-radius: 12px;
-  .icon-box-text{
+  .icon-box-text {
     width: 100%;
   }
   .star-rating span:before {
@@ -34,4 +34,45 @@
   .testimonial-company {
     color: #6ac19e;
   }
+}
+
+// Icon display screen
+.cart-item {
+  position: fixed !important;
+  width: 50px;
+  height: 50px;
+  bottom: 100px;
+  z-index: 9999;
+  height: 50px;
+  right: 30px;
+
+  @include tablet {
+    right: 35px;
+  }
+  .image-icon {
+    width: auto !important;
+    height: auto;
+    &::after {
+      right: 0px !important;
+    }
+  }
+  .image-icon img {
+    max-width: 50px;
+  }
+}
+
+.epos-whatsapp-icon {
+  position: fixed !important;
+  width: 50px;
+  height: 50px;
+  bottom: 40px;
+  z-index: 9999;
+  height: 50px;
+  @include tablet {
+    right: 40px;
+  }
+  right: 30px;
+}
+.epos-whatsapp-icon.shop {
+  bottom: 160px !important;
 }
