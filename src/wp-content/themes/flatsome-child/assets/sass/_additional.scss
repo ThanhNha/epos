@@ -156,14 +156,7 @@
 /* .single-product .product_meta{
 display: none;
 } */
-.cart-item {
-  right: 30px;
-}
-@media (min-width: 768px) {
-  .cart-item {
-    right: 40px;
-  }
-}
+
 .woocommerce-cart #was-this-helpful,
 .woocommerce-checkout #was-this-helpful {
   display: none;
