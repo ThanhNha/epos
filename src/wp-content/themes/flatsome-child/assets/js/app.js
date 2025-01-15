@@ -9,8 +9,6 @@ function onload_shipping() {
 }
 
 function hideAddPress() {
-  $("#billing_company_field").addClass("hidden");
-  $("#billing_company_field input").val("");
 
   $("#billing_country_field").addClass("hidden");
 
@@ -36,7 +34,6 @@ function hideAddPress() {
 }
 
 function showAddPress() {
-  $("#billing_company_field").removeClass("hidden hide");
   $("#billing_country_field").removeClass("hidden hide");
   $("#billing_address_1_field").removeClass("hidden hide");
   $("#billing_address_2_field").removeClass("hidden hide");

@@ -4,7 +4,7 @@
 
 <?php if(!is_single() && get_theme_mod('blog_featured', '') == 'top'){ get_template_part('template-parts/posts/featured-posts'); } ?>
 <div class="row align-center">
-	<div class="large-10 col">
+	<div class="large-12 col">
 	<?php if(!is_single() && get_theme_mod('blog_featured', '') == 'content'){ get_template_part('template-parts/posts/featured-posts'); } ?>
 
 	<?php

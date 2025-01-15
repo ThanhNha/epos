@@ -44,9 +44,9 @@ function conditionally_modify_billing_company_required($fields)
   // Check if we have chosen a shipping method and if it matches 'local_pickup:2'
   if (!empty($chosen_methods) && $chosen_methods[0] === 'local_pickup:2') {
     // If local pickup is chosen, make 'billing_company' field not required
-    if (isset($fields['billing_company'])) {
-      $fields['billing_company']['required'] = false;
-    }
+    // if (isset($fields['billing_company'])) {
+    //   $fields['billing_company']['required'] = false;
+    // }
   }
 
   return $fields;
@@ -101,8 +101,7 @@ function disable_shipping_local_pickup($fields)
     wc_enqueue_js("hideAddPress();");
   }
   wc_enqueue_js('function hideAddPress() {
-    $("#billing_company_field").addClass("hidden");
-    $("#billing_company_field input").val("");
+  
   
     $("#billing_country_field").addClass("hidden");
   
@@ -130,7 +129,7 @@ function disable_shipping_local_pickup($fields)
 
   // Hide shipping on checkout shipping change
   wc_enqueue_js('function showAddPress() {
-    $("#billing_company_field").removeClass("hidden hide");
+ 
     $("#billing_country_field").removeClass("hidden hide");
     $("#billing_address_1_field").removeClass("hidden hide");
     $("#billing_address_2_field").removeClass("hidden hide");
