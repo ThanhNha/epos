@@ -1,5 +1,5 @@
 <div class="searchform-wrapper ux-search-box relative is-normal">
-  <form role="search" method="get" class="searchform" action="http://localhost:66/">
+  <form role="search" method="get" class="searchform" action="<?php echo home_url();?>">
     <div class="flex-row relative">
       <div class="flex-col flex-grow">
         <label class="screen-reader-text" for="woocommerce-product-search-field-0">Search for:</label>

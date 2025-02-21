@@ -2,8 +2,9 @@
 /**
  * The template for displaying 404 pages (not found).
  *
- * @package          Flatsome\Templates
- * @flatsome-version 3.16.0
+ * @link    https://codex.wordpress.org/Creating_an_Error_404_Page
+ *
+ * @package flatsome
  */
 
 get_header(); ?>

@@ -1,5 +1,24 @@
 <?php
+add_filter('woocommerce_billing_fields', 'custom_billing_fields', 90, 1);
+function custom_billing_fields( $fields ) {
+    $fields['billing_company']['required'] = true;
 
+    return $fields;
+}
+// add_filter('woocommerce_billing_fields', 'modify_when_is_local_pickup', 1000, 1);
+function modify_when_is_local_pickup($fields)
+{
+  $shipping_method = 'local_pickup:2';
+  $chosen_methods = WC()->session->get('chosen_shipping_methods');
+
+  $chosen_shipping = $chosen_methods[0];
+
+  if ($chosen_shipping == $shipping_method) {
+    $fields['billing_company']['required'] = false;
+  }
+
+  return $fields;
+}
 /**
  * Custom Address  shipping fields
  *
@@ -22,6 +41,8 @@ function custom_override_checkout_fields($fields)
   unset($fields['billing']['billing_city']);
   $fields['billing']['billing_address_2']['placeholder'] = __('Apartment, suite, unit etc...', 'woocommerce');
   $fields['billing']['billing_address_2']['required'] = true; // Making Address 2 field required
+  $fields['billing_company']['required'] = true;
+//  var_dump($fields);
   return $fields;
 }
 
@@ -58,7 +79,6 @@ function remove_billing_checkout_fields($fields)
  */
 
 add_filter('woocommerce_checkout_fields', 'disable_shipping_local_pickup');
-
 function disable_shipping_local_pickup($fields)
 {
 
@@ -75,9 +95,6 @@ function disable_shipping_local_pickup($fields)
     wc_enqueue_js("hideAddPress();");
   }
   wc_enqueue_js('function hideAddPress() {
-    $("#billing_company_field").addClass("hidden");
-    $("#billing_company_field input").val("");
-  
     $("#billing_country_field").addClass("hidden");
   
     $("#billing_address_1_field").addClass("hidden");
@@ -104,7 +121,6 @@ function disable_shipping_local_pickup($fields)
 
   // Hide shipping on checkout shipping change
   wc_enqueue_js('function showAddPress() {
-    $("#billing_company_field").removeClass("hidden hide");
     $("#billing_country_field").removeClass("hidden hide");
     $("#billing_address_1_field").removeClass("hidden hide");
     $("#billing_address_2_field").removeClass("hidden hide");
