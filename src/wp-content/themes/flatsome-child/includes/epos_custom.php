@@ -145,8 +145,6 @@ function home_banner()
         <?php endwhile; ?>
 
       <?php endif; ?>
-
-
     </div>
   </div>
 
