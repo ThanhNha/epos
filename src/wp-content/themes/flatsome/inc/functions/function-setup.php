@@ -130,6 +130,7 @@ function flatsome_scripts() {
 	$theme   = wp_get_theme( get_template() );
 	$version = time();
 
+
 	// Styles.
 	wp_enqueue_style( 'flatsome-main', $uri . '/assets/css/flatsome.css', array(), $version, 'all' );
 	wp_style_add_data( 'flatsome-main', 'rtl', 'replace' );

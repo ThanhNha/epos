@@ -1,3 +1,12 @@
+<?php
+/**
+ * Product gallery wide.
+ *
+ * @package          Flatsome/WooCommerce/Templates
+ * @flatsome-version 3.18.2
+ */
+
+?>
 <div class="product-container">
 
 	<div class="product-gallery product-gallery-wide">
@@ -10,7 +19,7 @@
 		do_action( 'woocommerce_before_single_product_summary' );
 	?>
 	</div>
-	
+
 	<div class="row">
 		<div class="col large-12">
 			<div class="product-info">
@@ -50,6 +59,20 @@
 							?>
 						</div>
 					</div>
+					<?php if ( get_theme_mod( 'product_offcanvas_sidebar' ) ) : ?>
+					<div id="product-sidebar" class="mfp-hide">
+						<div class="sidebar-inner">
+							<?php
+								do_action( 'flatsome_before_product_sidebar' );
+								if ( is_active_sidebar( 'product-sidebar' ) ) {
+									dynamic_sidebar( 'product-sidebar' );
+								} else if ( is_active_sidebar( 'shop-sidebar' ) ) {
+									dynamic_sidebar( 'shop-sidebar' );
+								}
+							?>
+						</div>
+					</div>
+					<?php endif; ?>
 				</div>
 			</div>
 			<div class="product-footer" style="margin-top: 30px;">

@@ -256,7 +256,7 @@ function shipping_method_custom_notice()
     // Check if the chosen shipping method is in the targeted list
     if (in_array($chosen_method, $targeted_shipping_methods)) {
       echo '<tr class="shipping">
-                <td colspan="2" style="text-align:left"> Pickup location: 2 Leng Kee Road, #02-07
+                <td colspan="2" style="text-align:left"> Pickup location: 2 Leng Kee Road, #06-08
 Thye Hong Centre
 Singapore 159086</td>
             </tr>';

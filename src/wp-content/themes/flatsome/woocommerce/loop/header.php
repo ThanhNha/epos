@@ -1,8 +1,8 @@
 <?php
 /**
- * Single Product title
+ * Product taxonomy archive header
  *
- * This template can be overridden by copying it to yourtheme/woocommerce/single-product/title.php.
+ * This template can be overridden by copying it to yourtheme/woocommerce/loop/header.php.
  *
  * HOWEVER, on occasion WooCommerce will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to
@@ -11,20 +11,20 @@
  * the readme will list any important changes.
  *
  * @see              https://docs.woocommerce.com/document/template-structure/
- * @package          WooCommerce/Templates
- * @version          1.6.4
- * @flatsome-version 3.16.0
+ * @package          WooCommerce\Templates
+ * @version          8.8.0
+ * @flatsome-version 3.18.7
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly.
+	exit;
 }
 
-?>
-<h1 class="product-title product_title entry-title">
-	<?php the_title(); ?>
-</h1>
-
-<?php if ( get_theme_mod( 'product_title_divider', 1 ) ) { ?>
-	<div class="is-divider small"></div>
-<?php } ?>
+/**
+ * Hook: woocommerce_archive_description.
+ *
+ * @since  1.6.2.
+ * @hooked woocommerce_taxonomy_archive_description - 10
+ * @hooked woocommerce_product_archive_description - 10
+ */
+do_action( 'woocommerce_archive_description' );

@@ -1,5 +1,24 @@
 <?php
+add_filter('woocommerce_billing_fields', 'custom_billing_fields', 90, 1);
+function custom_billing_fields( $fields ) {
+    $fields['billing_company']['required'] = true;
 
+    return $fields;
+}
+// add_filter('woocommerce_billing_fields', 'modify_when_is_local_pickup', 1000, 1);
+function modify_when_is_local_pickup($fields)
+{
+  $shipping_method = 'local_pickup:2';
+  $chosen_methods = WC()->session->get('chosen_shipping_methods');
+
+  $chosen_shipping = $chosen_methods[0];
+
+  if ($chosen_shipping == $shipping_method) {
+    $fields['billing_company']['required'] = false;
+  }
+
+  return $fields;
+}
 /**
  * Custom Address  shipping fields
  *
@@ -84,7 +103,6 @@ function remove_billing_checkout_fields($fields)
  */
 
 add_filter('woocommerce_checkout_fields', 'disable_shipping_local_pickup');
-
 function disable_shipping_local_pickup($fields)
 {
 
