@@ -1,5 +1,5 @@
 <?php
-if (is_shop()) {
+if (is_shop() && !$wp_query->is_search()) {
 	get_template_part('template-parts/backgrounds/background', 'shop');
 	get_template_part('template-parts/products/product', 'overview');
 } else {

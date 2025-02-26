@@ -10,9 +10,10 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @see     https://docs.woocommerce.com/document/template-structure/
- * @package WooCommerce/Templates
- * @version 3.9.0
+ * @see              https://docs.woocommerce.com/document/template-structure/
+ * @package          WooCommerce/Templates
+ * @version          8.6.0
+ * @flatsome-version 3.18.4
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -26,7 +27,7 @@ if ( ! $notices ) {
 ?>
 <ul class="woocommerce-error message-wrapper" role="alert">
 	<?php foreach ( $notices as $notice ) : ?>
-		<li<?php echo wc_get_notice_data_attr( $notice ); ?>>
+		<li<?php echo wc_get_notice_data_attr( $notice ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 			<div class="message-container container alert-color medium-text-center">
 				<span class="message-icon icon-close"></span>
 				<?php echo wc_kses_notice( $notice['notice'] ); ?>
@@ -34,4 +35,5 @@ if ( ! $notices ) {
 		</li>
 	<?php endforeach; ?>
 </ul>
+<?php
 
