@@ -67,36 +67,47 @@ function toogle_shipping_popup() {
 
 function customAccordion() {
   const accordion = $(".accordion .accordion-title");
-  $.each(accordion, function (indexInArray, valueOfElement) {
+
+  accordion.each(function () {
     $(this).on("click", function (e) {
       e.preventDefault();
-      $(this).parent().toggleClass("shin");
-      if ($(this).parent().hasClass("shin")) {
-        $(this)
-          .addClass("active")
-          .next()
-          .slideDown(200, function () {
+
+      const $parent = $(this).parent();
+      const $content = $(this).next();
+
+      $parent.toggleClass("shin");
+
+      if ($parent.hasClass("shin")) {
+        $(this).addClass("active");
+        $content.slideDown(200, function () {
+          if (
             /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(
               navigator.userAgent
             ) &&
-              $.scrollTo($(this).prev(), {
-                duration: 300,
-                offset: -100,
+            $.fn.scrollTo
+          ) {
+            $.scrollTo($(this).prev(), {
+              duration: 300,
+              offset: -100,
+            });
+          }
+        });
+
+        window.requestAnimationFrame(() => {
+          if ($.fn.flickity) {
+            $content
+              .find("[data-flickity-options].flickity-enabled")
+              .each(function () {
+                $(this).flickity("resize");
               });
-          }),
-          window.requestAnimationFrame(function () {
-            $.fn.flickity &&
-              $(e)
-                .next()
-                .find("[data-flickity-options].flickity-enabled")
-                .each(function (t, e) {
-                  $(e).flickity("resize");
-                }),
-              $.fn.packery &&
-                $(e).next().find("[data-packery-options]").packery("layout");
-          });
+          }
+          if ($.fn.packery) {
+            $content.find("[data-packery-options]").packery("layout");
+          }
+        });
       } else {
-        $(this).removeClass("active").next().slideUp(200);
+        $(this).removeClass("active");
+        $content.slideUp(200);
       }
     });
   });
@@ -111,3 +122,15 @@ $(document).ready(function () {
     hideAddPress();
   }
 });
+
+setTimeout(function () {
+  var head = jQuery("#hs-form-iframe-0").contents().find("head");
+  if (head.length > 0) {
+    var css =
+      '<style type="text/css">' +
+      ".hs-form__virality-link{display:none};.actions,form{margin-bottom:0px !important} " +
+      "</style>";
+
+    jQuery(head).append(css);
+  }
+}, 5000);

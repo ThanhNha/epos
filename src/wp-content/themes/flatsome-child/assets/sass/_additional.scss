@@ -181,9 +181,15 @@ display: none;
     background-color: #547756;
     text-transform: uppercase;
     text-decoration: none !important;
-    transition: all 0.3 linear;
+    // transition: all 0.3 linear;
     &:hover {
       text-decoration: underline;
+    }
+    @include only-mobile {
+      margin-top: 5px;
+      margin-left: 0;
+      display: inline-block;
+      line-height: 1;
     }
   }
 }
