@@ -15,7 +15,6 @@ include_once(dirname( __FILE__ ).'/options-shop-my-account.php');
 include_once(dirname( __FILE__ ).'/options-shop-cart-checkout.php');
 include_once(dirname( __FILE__ ).'/options-shop-payments-icons.php');
 include_once(dirname( __FILE__ ).'/options-shop-store-notice.php');
-//include_once(dirname( __FILE__ ).'/options-shop-catalog-mode.php');
 
 function flatsome_refresh_shop_partials( WP_Customize_Manager $wp_customize ) {
 
@@ -35,19 +34,27 @@ function flatsome_refresh_shop_partials( WP_Customize_Manager $wp_customize ) {
 	) );
 
 	$wp_customize->selective_refresh->add_partial( 'shop-header', array(
-	    'selector' => '.woocommerce .category-page-title',
-	    	    'fallback_refresh' => false,
-	    'settings' => array('html_shop_page','category_title_style','category_show_title','breadcrumb_home','category_filter_text'),
-	    'container_inclusive' => true,
-	    'render_callback' => function() {
-	        flatsome_category_header();
-	    },
+		'selector'            => '.woocommerce .category-page-title',
+		'fallback_refresh'    => false,
+		'settings'            => array(
+			'html_shop_page',
+			'category_title_style',
+			'category_show_title',
+			'category_show_result_count',
+			'category_show_catalog_ordering',
+			'breadcrumb_home',
+			'category_filter_text',
+		),
+		'container_inclusive' => true,
+		'render_callback'     => function () {
+			flatsome_category_header();
+		},
 	) );
 
 	$wp_customize->selective_refresh->add_partial( 'shop-grid', array(
 	    'selector' => '.category-page-row',
 	    'fallback_refresh' => false,
-	    'settings' => array('sale_bubble_text','category_grid_style','short_description_in_grid','cat_style','category_show_count','sale_bubble_percentage_formatting','new_bubble_auto','add_to_cart_style','add_to_cart_icon','product_box_category','product_box_rating','product_hover','bubble_style','grid_style','category_sidebar','products_pr_page','category_row_count','category_row_count_mobile','category_row_count_tablet','category_shadow','category_shadow_hover','equalize_product_box','disable_quick_view'),
+	    'settings' => array('sale_bubble_text','category_grid_style','short_description_in_grid','cat_style','category_show_count','sale_bubble_percentage_formatting','new_bubble_auto','add_to_cart_style','add_to_cart_icon','product_box_category','product_box_rating','product_box_review_count','product_hover','bubble_style','sale_bubble','grid_style','category_sidebar','products_pr_page','category_row_count','category_row_count_mobile','category_row_count_tablet','category_shadow','category_shadow_hover','equalize_product_box','disable_quick_view'),
 	    'container_inclusive' => true,
 	    'render_callback' => function() {
 		    wc_get_template_part( 'layouts/category', get_theme_mod( 'category_sidebar', 'left-sidebar' ) );

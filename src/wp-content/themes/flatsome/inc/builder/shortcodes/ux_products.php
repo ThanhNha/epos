@@ -23,6 +23,7 @@ $options = array(
     ),
 ),
 'layout_options' => require( __DIR__ . '/commons/repeater-options.php' ),
+'relay_options' => require( __DIR__ . '/commons/relay.php' ),
 'layout_options_slider' => require( __DIR__ . '/commons/repeater-slider.php' ),
 'box_options' => array(
 	'type'    => 'group',
@@ -79,6 +80,7 @@ $options = array(
                 'normal' => 'Normal',
                 'title' => 'Title',
                 'sales' => 'Sales',
+                'price' => 'Price',
                 'rand' => 'Random',
                 'date' => 'Date'
             )
@@ -127,8 +129,10 @@ $options['post_options']['options']['tags'] = array(
   'type' => 'select',
   'heading' => 'Tag',
   'conditions' => 'ids == ""',
+  'full_width' => true,
   'default' => '',
   'config' => array(
+	  'multiple' => true,
       'placeholder' => 'Select...',
       'termSelect' => array(
           'post_type' => 'product',

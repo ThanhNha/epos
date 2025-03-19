@@ -7,8 +7,9 @@ function ux_products($atts, $content = null, $tag = '' ) {
   if ( ! is_array( $atts ) ) {
     $atts = array();
   }
+	$defined_atts = $atts;
 
-	extract(shortcode_atts(array(
+	extract($atts = shortcode_atts(array(
 		'_id' => 'product-grid-'.rand(),
 		'title' => '',
 		'ids' => '',
@@ -40,6 +41,13 @@ function ux_products($atts, $content = null, $tag = '' ) {
 		'depth' => '',
    		'depth_hover' => '',
 	 	'equalize_box' => 'false',
+		// Relay
+		'relay' => '',
+		'relay_control_result_count' => 'true',
+		'relay_control_position' => 'bottom',
+		'relay_control_align' => 'center',
+		'relay_id' => '',
+		'relay_class' => '',
 	 	// posts
 	 	'products' => '8',
 		'cat' => '',
@@ -52,6 +60,7 @@ function ux_products($atts, $content = null, $tag = '' ) {
 		'tags' => '',
 		'show' => '', //featured, onsale
 		'out_of_stock' => '', // exclude.
+		'page_number' => '1',
 		// Box styles
 		'animate' => '',
 		'text_pos' => 'bottom',
@@ -150,14 +159,13 @@ function ux_products($atts, $content = null, $tag = '' ) {
 	  $current_grid = 0;
 	  $grid = flatsome_get_grid($grid);
 	  $grid_total = count($grid);
-	  flatsome_get_grid_height($grid_height, $_id);
 	}
 
 	// Fix image size
 	if(!$image_size) $image_size = 'woocommerce_thumbnail';
 
    	// Add Animations
-	if($animate) {$animate = 'data-animate="'.$animate.'"';}
+	if($animate) {$animate = 'data-animate="'.esc_attr($animate).'"';}
 
 
 	// Set box style
@@ -223,8 +231,6 @@ function ux_products($atts, $content = null, $tag = '' ) {
 	$repeater['depth'] = $depth;
 	$repeater['depth_hover'] = $depth_hover;
 
-	get_flatsome_repeater_start($repeater);
-
 	?>
 	<?php
 
@@ -233,6 +239,7 @@ function ux_products($atts, $content = null, $tag = '' ) {
 			// Get products
 			$atts['products'] = $products;
 			$atts['offset'] = $offset;
+			$atts['page_number'] = $page_number;
 			$atts['cat'] = $cat;
 
 			$products = ux_list_products($atts);
@@ -253,6 +260,14 @@ function ux_products($atts, $content = null, $tag = '' ) {
 
 			$products = new WP_Query( $args );
 		}
+
+	Flatsome_Relay::render_container_open( $products, $tag, $defined_atts, $atts );
+
+	if ( $type == 'grid' ) {
+		flatsome_get_grid_height( $grid_height, $_id );
+	}
+
+	get_flatsome_repeater_start($repeater);
 
 	    if ( $products->have_posts() ) : ?>
 
@@ -284,19 +299,19 @@ function ux_products($atts, $content = null, $tag = '' ) {
 				        // Set image size
 				        if($grid[$current]['size']) $image_size = $grid[$current]['size'];
 				    }
-	            	?><div class="<?php echo implode(' ', $classes_col); ?>" <?php echo $animate;?>>
+	            	?><div class="<?php echo esc_attr(implode(' ', $classes_col)); ?>" <?php echo $animate;?>>
 						<div class="col-inner">
 						<?php woocommerce_show_product_loop_sale_flash(); ?>
-						<div class="product-small <?php echo implode(' ', $classes_box); ?>">
+						<div class="product-small <?php echo esc_attr(implode(' ', $classes_box)); ?>">
 							<div class="box-image" <?php echo get_shortcode_inline_css($css_args_img); ?>>
-								<div class="<?php echo implode(' ', $classes_image); ?>" <?php echo get_shortcode_inline_css($css_image_height); ?>>
-									<a href="<?php echo get_the_permalink(); ?>" aria-label="<?php echo esc_attr( $product->get_title() ); ?>">
+								<div class="<?php echo esc_attr(implode(' ', $classes_image)); ?>" <?php echo get_shortcode_inline_css($css_image_height); ?>>
+									<a href="<?php echo esc_url(get_the_permalink()); ?>" aria-label="<?php echo esc_attr( $product->get_title() ); ?>">
 										<?php
 											if($back_image) flatsome_woocommerce_get_alt_product_thumbnail($image_size);
 											echo woocommerce_get_product_thumbnail($image_size);
 										?>
 									</a>
-									<?php if($image_overlay){ ?><div class="overlay fill" style="background-color: <?php echo $image_overlay;?>"></div><?php } ?>
+									<?php if($image_overlay){ ?><div class="overlay fill" style="background-color: <?php echo esc_attr($image_overlay);?>"></div><?php } ?>
 									 <?php if($style == 'shade'){ ?><div class="shade"></div><?php } ?>
 								</div>
 								<div class="image-tools top right show-on-hover">
@@ -310,7 +325,7 @@ function ux_products($atts, $content = null, $tag = '' ) {
 								<?php if($out_of_stock) { ?><div class="out-of-stock-label"><?php _e( 'Out of stock', 'woocommerce' ); ?></div><?php }?>
 							</div>
 
-							<div class="box-text <?php echo implode(' ', $classes_text); ?>" <?php echo get_shortcode_inline_css($css_args); ?>>
+							<div class="box-text <?php echo esc_attr(implode(' ', $classes_text)); ?>" <?php echo get_shortcode_inline_css($css_args); ?>>
 								<?php
 									do_action( 'woocommerce_before_shop_loop_item_title' );
 
@@ -340,6 +355,9 @@ function ux_products($atts, $content = null, $tag = '' ) {
 	        wp_reset_query();
 
 	get_flatsome_repeater_end($repeater);
+
+	Flatsome_Relay::render_container_close();
+
 	flatsome_box_item_toggle_end( $items );
 
 	$content = ob_get_contents();
