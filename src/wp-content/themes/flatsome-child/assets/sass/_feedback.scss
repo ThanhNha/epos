@@ -51,3 +51,14 @@ section,
     }
   }
 }
+
+.blog-wrapper .box-text.text-center {
+  transform: translateY(-50%);
+  top: 50%;
+}
+
+[data-animate="fadeInUp"] {
+  opacity: 1 !important;
+  transition: all 0s !important;
+  transform: translate3d(0, 0px, 0) !important;
+}
