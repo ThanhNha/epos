@@ -99,7 +99,7 @@ if ( ! function_exists( 'flatsome_woocommerce_shop_loop_category' ) ) {
 		<p class="category uppercase is-smaller no-text-overflow product-cat op-7">
 			<?php
 			global $product;
-			$product_cats = wc_get_product_category_list( get_the_ID(), '\n', '', '' );
+			$product_cats = function_exists( 'wc_get_product_category_list' ) ? wc_get_product_category_list( get_the_ID(), '\n', '', '' ) : $product->get_categories( '\n', '', '' );
 			$product_cats = strip_tags( $product_cats );
 
 			if ( $product_cats ) {
@@ -256,22 +256,19 @@ if ( ! function_exists( 'flatsome_product_box_class' ) ) {
 	/**
 	 * Add Classes to product box
 	 *
-	 * @return string
+	 * @return null/string
 	 */
 	function flatsome_product_box_class() {
 		$classes             = array();
-		$category_grid_style = get_theme_mod( 'category_grid_style', 'grid' );
+		$category_grid_style = get_theme_mod( 'category_grid_style', 'grid');
 
 		if ( $category_grid_style == 'list' ) {
 			$classes[] = 'box-vertical';
 		}
-
-		$classes = apply_filters( 'flatsome_product_box_classes', $classes );
-
 		if ( ! empty( $classes ) ) {
 			return implode( ' ', $classes );
 		}
-		return '';
+		return null;
 	}
 }
 
@@ -279,21 +276,19 @@ if ( ! function_exists( 'flatsome_product_box_image_class' ) ) {
 	/**
 	 * Add Classes to product image box
 	 *
-	 * @return string
+	 * @return null/string
 	 */
 	function flatsome_product_box_image_class() {
-		$hover_style = get_theme_mod( 'product_hover', 'fade_in_back' );
-
+		$hover_style = flatsome_option( 'product_hover' );
+		if ( $hover_style == 'fade_in_back' && $hover_style == 'zoom_in' ) {
+			return null;
+		}
 		$classes   = array();
 		$classes[] = 'image-' . $hover_style;
-
-		$classes = apply_filters( 'flatsome_product_box_image_classes', $classes );
-
 		if ( ! empty( $classes ) ) {
 			return implode( ' ', $classes );
 		}
-
-		return '';
+		return null;
 	}
 }
 
@@ -304,20 +299,7 @@ if ( ! function_exists( 'flatsome_product_box_actions_class' ) ) {
 	 * @return string
 	 */
 	function flatsome_product_box_actions_class() {
-		$classes = apply_filters( 'flatsome_product_box_actions_classes', [
-			'grid-tools',
-			'text-center',
-			'hide-for-small',
-			'bottom',
-			'hover-slide-in',
-			'show-on-hover',
-		] );
-
-		if ( ! empty( $classes ) ) {
-			return implode( ' ', $classes );
-		}
-
-		return '';
+		return 'grid-tools text-center hide-for-small bottom hover-slide-in show-on-hover';
 	}
 }
 
@@ -330,7 +312,7 @@ if ( ! function_exists( 'flatsome_product_box_text_class' ) ) {
 	function flatsome_product_box_text_class() {
 		$classes = array( 'box-text-products' );
 
-		$grid_style = get_theme_mod( 'grid_style', 'grid1' );
+		$grid_style = flatsome_option( 'grid_style' );
 
 		if ( $grid_style == 'grid2' ) {
 			$classes[] = 'text-center grid-style-2';
@@ -340,12 +322,6 @@ if ( ! function_exists( 'flatsome_product_box_text_class' ) ) {
 			$classes[] = 'flex-row align-top grid-style-3 flex-wrap';
 		}
 
-		$classes = apply_filters( 'flatsome_product_box_text_classes', $classes );
-
-		if ( ! empty( $classes ) ) {
-			return implode( ' ', $classes );
-		}
-
-		return '';
+		return implode( ' ', $classes );
 	}
 }

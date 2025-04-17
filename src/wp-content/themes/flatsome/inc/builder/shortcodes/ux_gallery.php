@@ -32,8 +32,14 @@ $options = array(
 	    'type'       => 'select',
 	    'heading'    => __( 'Lightbox Image Size' ),
 	    'conditions' => 'lightbox == "true"',
-	    'default'    => 'large',
-	    'options'    => flatsome_ux_builder_image_sizes(),
+	    'default'    => '',
+	    'options'    => array(
+	        ''          => 'Default',
+	        'large'     => 'Large',
+	        'medium'    => 'Medium',
+	        'thumbnail' => 'Thumbnail',
+	        'original'  => 'Original',
+	    ),
     ),
 
   ),

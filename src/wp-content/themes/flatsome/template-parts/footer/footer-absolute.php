@@ -1,10 +1,4 @@
 <?php
-/**
- * Absolute footer.
- *
- * @package          Flatsome\Templates
- * @flatsome-version 3.16.0
- */
 
 $align = 'small-text-center';
 if ( get_theme_mod( 'footer_bottom_align' ) == 'center' ) {

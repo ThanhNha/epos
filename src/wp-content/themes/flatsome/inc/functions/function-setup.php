@@ -15,55 +15,6 @@ flatsome_envato();
 add_filter( 'should_load_separate_core_block_assets', '__return_true' );
 
 /**
- * Use shortcodes for cart & checkout, since WC 8.3 cart & checkout are blocks by default upon first installation.
- *
- * @param array $pages Pages.
- *
- * @return array
- */
-function flatsome_woocommerce_create_pages( $pages ) {
-	if ( ! fl_woocommerce_version_check( '8.3' ) ) {
-		return $pages;
-	}
-
-	if ( apply_filters( 'experimental_flatsome_woocommerce_blockify', false ) ) {
-		return $pages;
-	}
-
-	$pages['cart']['content']     = '<!-- wp:shortcode -->[woocommerce_cart]<!-- /wp:shortcode -->';
-	$pages['checkout']['content'] = '<!-- wp:shortcode -->[woocommerce_checkout]<!-- /wp:shortcode -->';
-
-	return $pages;
-}
-
-add_filter( 'woocommerce_create_pages', 'flatsome_woocommerce_create_pages' );
-
-/**
- * Remove the "CustomizeStore" task from each task list.
- *
- * @param array $task_lists An array of task lists.
- *
- * @return array The modified task lists.
- */
-function experimental_flatsome_woocommerce_admin_onboarding_tasklists( $task_lists ) {
-	if ( isset( $task_lists ) && is_array( $task_lists ) ) {
-		foreach ( $task_lists as $task_list ) {
-			if ( isset( $task_list->tasks ) && is_array( $task_list->tasks ) ) {
-				foreach ( $task_list->tasks as $key => $task ) {
-					if ( is_object( $task ) && get_class( $task ) == 'Automattic\WooCommerce\Admin\Features\OnboardingTasks\Tasks\CustomizeStore' ) {
-						unset( $task_list->tasks[ $key ] );
-					}
-				}
-			}
-		}
-	}
-
-	return $task_lists;
-}
-
-add_filter( 'woocommerce_admin_experimental_onboarding_tasklists', 'experimental_flatsome_woocommerce_admin_onboarding_tasklists' );
-
-/**
  * Setup Flatsome.
  */
 function flatsome_setup() {
@@ -113,22 +64,10 @@ function flatsome_setup() {
 	register_nav_menus( array(
 		'primary'        => __( 'Main Menu', 'flatsome' ),
 		'primary_mobile' => __( 'Main Menu - Mobile', 'flatsome' ),
-		'secondary'      => __( 'Secondary Menu', 'flatsome' ),
 		'footer'         => __( 'Footer Menu', 'flatsome' ),
 		'top_bar_nav'    => __( 'Top Bar Menu', 'flatsome' ),
 		'my_account'     => __( 'My Account Menu', 'flatsome' ),
 		'vertical'       => __( 'Vertical Menu', 'flatsome' ),
-	) );
-
-	/*  Register post meta. */
-	register_post_meta( 'page', '_footer', array(
-		'show_in_rest'  => current_user_can( 'edit_posts' ),
-		'single'        => true,
-		'type'          => 'string',
-		'default'       => 'normal',
-		'auth_callback' => function () {
-			return current_user_can( 'edit_posts' );
-		},
 	) );
 
 	/*  Enable support for Post Formats */
@@ -189,7 +128,8 @@ add_action( 'widgets_init', 'flatsome_widgets_init' );
 function flatsome_scripts() {
 	$uri     = get_template_directory_uri();
 	$theme   = wp_get_theme( get_template() );
-	$version = $theme->get( 'Version' );
+	$version = time();
+
 
 	// Styles.
 	wp_enqueue_style( 'flatsome-main', $uri . '/assets/css/flatsome.css', array(), $version, 'all' );
@@ -216,14 +156,11 @@ function flatsome_scripts() {
 	// Google maps.
 	$maps_api = trim( get_theme_mod( 'google_map_api' ) );
 	if ( ! empty( $maps_api ) ) {
-		wp_register_script( 'flatsome-maps', "//maps.googleapis.com/maps/api/js?key=$maps_api&callback=jQuery.noop", array( 'jquery' ), $version, true );
+		wp_register_script( 'flatsome-maps', '//maps.googleapis.com/maps/api/js?key=' . $maps_api, array( 'jquery' ), $version, true );
 	}
 
 	// Enqueue theme scripts.
 	flatsome_enqueue_asset( 'flatsome-js', 'flatsome', array( 'jquery', 'hoverIntent' ) );
-
-	// Register theme assets.
-	flatsome_register_asset( 'flatsome-relay', 'flatsome-relay', array( 'flatsome-js', 'jquery' ) );
 
 	$sticky_height = get_theme_mod( 'header_height_sticky', 70 );
 
@@ -234,33 +171,29 @@ function flatsome_scripts() {
 	$lightbox_close_markup = apply_filters('flatsome_lightbox_close_button', '<button title="%title%" type="button" class="mfp-close"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>');
 
 	$localize_data = array(
-		'theme'              => array( 'version' => $version ),
-		'ajaxurl'            => admin_url( 'admin-ajax.php' ),
-		'rtl'                => is_rtl(),
-		'sticky_height'      => $sticky_height, // Deprecated.
-		'stickyHeaderHeight' => 0,
-		'scrollPaddingTop'   => 0,
-		'assets_url'         => $uri . '/assets/',
-		'lightbox'           => array(
+		'theme'         => array( 'version' => $version ),
+		'ajaxurl'       => admin_url( 'admin-ajax.php' ),
+		'rtl'           => is_rtl(),
+		'sticky_height' => $sticky_height,
+		'assets_url'    => $uri . '/assets/js/',
+		'lightbox'      => array(
 			'close_markup'     => $lightbox_close_markup,
 			'close_btn_inside' => apply_filters( 'flatsome_lightbox_close_btn_inside', false ),
 		),
-		'user'               => array(
+		'user'          => array(
 			'can_edit_pages' => current_user_can( 'edit_pages' ),
 		),
-		'i18n'               => array(
+		'i18n'          => array(
 			'mainMenu'     => __( 'Main Menu', 'flatsome' ),
 			'toggleButton' => __( 'Toggle', 'flatsome' ),
 		),
-		'options'            => array(
+		'options'       => array(
 			'cookie_notice_version'          => get_theme_mod( 'cookie_notice_version', '1' ),
 			'swatches_layout'                => get_theme_mod( 'swatches_layout' ),
-			'swatches_disable_deselect'      => get_theme_mod( 'swatches_disable_deselect' ),
 			'swatches_box_select_event'      => get_theme_mod( 'swatches_box_select_event' ),
 			'swatches_box_behavior_selected' => get_theme_mod( 'swatches_box_behavior_selected' ),
 			'swatches_box_update_urls'       => get_theme_mod( 'swatches_box_update_urls', '1' ),
 			'swatches_box_reset'             => get_theme_mod( 'swatches_box_reset' ),
-			'swatches_box_reset_limited'     => get_theme_mod( 'swatches_box_reset_limited' ),
 			'swatches_box_reset_extent'      => get_theme_mod( 'swatches_box_reset_extent' ),
 			'swatches_box_reset_time'        => get_theme_mod( 'swatches_box_reset_time', 300 ),
 			'search_result_latency'          => get_theme_mod( 'search_result_latency', '0' ),
@@ -278,28 +211,21 @@ function flatsome_scripts() {
 	// Add variables to scripts.
 	wp_localize_script( 'flatsome-js', 'flatsomeVars', $localize_data );
 
-	if ( apply_filters( 'experimental_flatsome_pjax_enabled', true ) ) {
-		$pjax = apply_filters( 'experimental_flatsome_pjax', array(
-			'cache_bust' => false,
-			'elements'   => array( '#wrapper' ),
-			'entries'    => array(),
-			'scroll_to'  => get_theme_mod( 'pjax_scroll_to_top' ) ? 'top' : '',
-			'timeout'    => 5000,
-		) );
-
-		if ( ! empty( $pjax['entries'] ) ) {
-			flatsome_enqueue_asset( 'flatsome-pjax', 'flatsome-pjax', array( 'flatsome-js', 'jquery' ) );
-			wp_add_inline_script( 'flatsome-pjax', 'var flatsomePjax = ' . wp_json_encode( $pjax ), 'before' );
-		}
-	}
-
 	if ( is_woocommerce_activated() ) {
-		flatsome_enqueue_asset( 'flatsome-theme-woocommerce-js', 'woocommerce', array( 'flatsome-js', 'woocommerce' ) );
+		flatsome_enqueue_asset( 'flatsome-theme-woocommerce-js', 'woocommerce', array( 'flatsome-js' ) );
 	}
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
+
+	// Custom Properties polyfill for Internet Explorer.
+	wp_register_script( 'css-vars-polyfill', 'https://cdn.jsdelivr.net/gh/nuxodin/ie11CustomProperties@4.0.1/ie11CustomProperties.min.js', array(), '4.0.1', true );
+	wp_script_add_data( 'css-vars-polyfill', 'conditional', 'IE' );
+
+	// IntersectionObserver polyfill for IE.
+	wp_enqueue_script( 'intersection-observer-polyfill', 'https://cdn.jsdelivr.net/npm/intersection-observer-polyfill@0.1.0/dist/IntersectionObserver.js', array(), '0.1.0', true );
+	wp_script_add_data( 'intersection-observer-polyfill', 'conditional', 'IE' );
 }
 
 add_action( 'wp_enqueue_scripts', 'flatsome_scripts', 100 );
@@ -342,6 +268,18 @@ function flatsome_ux_builder_scripts( $context ) {
 
 add_action( 'ux_builder_enqueue_scripts', 'flatsome_ux_builder_scripts', 10 );
 
+
+if ( ! is_admin() && get_theme_mod( 'lazy_load_backgrounds', 1 ) ) {
+	/**
+	 * Lazy load backgrounds
+	 */
+	function flatsome_lazy_load_backgrounds_css() {
+		echo '<style>.bg{opacity: 0; transition: opacity 1s; -webkit-transition: opacity 1s;} .bg-loaded{opacity: 1;}</style>';
+	}
+
+	add_filter( 'wp_head', 'flatsome_lazy_load_backgrounds_css' );
+}
+
 /**
  * Remove jQuery migrate.
  *
@@ -378,142 +316,18 @@ add_action( 'wp_print_styles', 'flatsome_deregister_block_styles', 100 );
 /**
  * Prefetch lazy-loaded chunks.
  */
-function flatsome_prefetch_scripts( $urls, $type ) {
-	static $manifest;
+function flatsome_prefetch_scripts() {
+	$manifest_path = get_template_directory() . '/assets/js/manifest.json';
+	$template_uri  = get_template_directory_uri();
 
-	$manifest_path = get_template_directory() . '/assets/manifest.json';
-	$assets_url    = get_template_directory_uri() . '/assets';
-	$theme         = wp_get_theme( get_template() );
-	$version       = $theme->get( 'Version' );
+	if ( ! file_exists( $manifest_path ) ) return;
 
-	if ( empty( $manifest ) ) {
-		if ( ! file_exists( $manifest_path ) ) {
-			return $urls;
-		}
-		$manifest = wp_json_file_decode( $manifest_path, [ 'associative' => true ] );
+	$json     = file_get_contents( $manifest_path );
+	$manifest = json_decode( $json, true );
+
+	foreach ( $manifest as $path ) {
+		$href = esc_attr( "$template_uri/assets/js/$path" );
+		echo "<link rel=\"prefetch\" href=\"$href\" />\n";
 	}
-
-	$asset_handle_map = array(
-		'js/flatsome'    => 'flatsome-js',
-		'js/woocommerce' => 'flatsome-theme-woocommerce-js',
-	);
-
-	foreach ( $manifest as $key => $asset ) {
-		if ( empty( $asset_handle_map[ $key ] ) ) continue;
-
-		$handle = $asset_handle_map[ $key ];
-
-		if ( wp_script_is( $handle, 'enqueued' ) ) {
-			if ( $type === 'prefetch' ) {
-				$script = wp_scripts()->registered[ $handle ];
-				$urls[] = add_query_arg( 'ver', $script->ver, $script->src );
-			}
-			if ( ! empty( $asset[ $type ]['js'] ) ) {
-				foreach ( $asset[ $type ]['js'] as $path ) {
-					$urls[] = $assets_url . "/$path?ver=" . $version;
-				}
-			}
-		}
-	}
-	return $urls;
 }
-add_filter( 'wp_resource_hints', 'flatsome_prefetch_scripts', 10, 2 );
-
-/**
- * Add JSON to allowed file types.
- *
- * @param array $mimes Allowed file types.
- */
-function flatsome_upload_mimes( $mimes ) {
-	if ( ! isset( $mimes['json'] ) ) {
-		$mimes['json'] = 'text/plain';
-	}
-	return $mimes;
-}
-add_filter( 'upload_mimes', 'flatsome_upload_mimes' );
-
-/**
- * Configures Flatsome PJAX.
- *
- * If '$args['selectors'][]' or '$args['element'][]' array is empty, PJAX does not load & activate.
- *
- * @param array $args The original array of arguments provided by the 'flatsome_pjax' filter.
- *
- * @return array The modified array of arguments.
- */
-function experimental_flatsome_pjax_config( $args ) {
-	if ( get_theme_mod( 'blog_pagination' ) === 'ajax' ) {
-		if ( flatsome_is_blog_archive() ) {
-			$args['entries'][] = [
-				'selectors'           => [ '.page-numbers.nav-pagination:not(.ux-relay__pagination) li a' ],
-				'processing_elements' => [
-					'#post-list' => [
-						'style'    => 'spotlight',
-						'position' => 'sticky',
-					],
-				],
-			];
-		}
-
-		if ( is_single() && get_post_type() === 'post' ) {
-			$args['entries'][] = [
-				'selectors'           => [ '.navigation-post a' ],
-				'processing_elements' => [
-					'.blog-single .post' => [
-						'style'    => 'spotlight',
-						'position' => 'sticky',
-					],
-				],
-			];
-		}
-	}
-
-	if ( is_woocommerce_activated() ) {
-		$is_shop_archive          = flatsome_is_shop_archive();
-		$shop_ajax_pagination     = get_theme_mod( 'shop_pagination' ) === 'ajax';
-		$processing_elements_shop = [
-			'.shop-container' => [
-				'style'    => 'spotlight',
-				'position' => 'sticky',
-			],
-		];
-
-		if ( $shop_ajax_pagination && $is_shop_archive ) {
-			$args['entries'][] = [
-				'selectors'           => [ '.woocommerce-pagination a' ],
-				'processing_elements' => $processing_elements_shop,
-			];
-		}
-
-		if ( $shop_ajax_pagination && is_product() ) {
-			$args['entries'][] = [
-				'selectors'           => [ '#reviews .woocommerce-pagination a' ],
-				'elements'            => [ '#reviews #comments' ],
-				'processing_elements' => [ '#comments .commentlist' => [ 'position' => 'sticky' ] ],
-				'scroll_to'           => '#reviews #comments',
-			];
-		}
-
-		if ( get_theme_mod( 'shop_filter_widgets_pjax' ) && $is_shop_archive ) {
-			$args['entries'][] = [
-				'selectors'           => [
-					'.widget_layered_nav li',
-					'.widget_rating_filter li',
-					'.widget_layered_nav_filters li',
-					'.widget_product_categories ul a',
-				],
-				'processing_elements' => $processing_elements_shop,
-			];
-
-			add_filter( 'body_class', function ( $classes ) {
-				$classes[] = 'ux-shop-ajax-filters';
-
-				return $classes;
-			} );
-		}
-	}
-
-	return $args;
-}
-
-add_filter( 'experimental_flatsome_pjax', 'experimental_flatsome_pjax_config' );
+add_action( 'wp_head', 'flatsome_prefetch_scripts', 5 );

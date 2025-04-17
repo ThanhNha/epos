@@ -1,12 +1,3 @@
-<?php
-/**
- * Post loop post simple.
- *
- * @package          Flatsome\Templates
- * @flatsome-version 3.18.0
- */
-
-?>
 <div class="box">
 	<a href="<?php the_permalink() ?>" class="plain">
 		<div class="box-image rectangle">
@@ -19,7 +10,11 @@
 			<div class="is-divider small"></div>
 			<?php if ( $excerpt != 'false' ) { ?>
 				<p class="from_the_blog_excerpt small-font show-next">
-					<?php echo flatsome_get_the_excerpt(); ?>
+					<?php
+					$excerpt      = get_the_excerpt();
+					$excerpt_more = apply_filters( 'excerpt_more', ' [...]' );
+					echo flatsome_string_limit_words( $excerpt, 15 ) . $excerpt_more;
+					?>
 				</p>
 			<?php } ?>
 			<p class="from_the_blog_comments uppercase xxsmall">

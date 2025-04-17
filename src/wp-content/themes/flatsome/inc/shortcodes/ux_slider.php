@@ -15,8 +15,6 @@ function shortcode_ux_slider($atts, $content=null) {
         'slide_align' => 'center',
         'style' => 'normal',
         'slide_width' => '',
-        'slide_width__md' => null,
-        'slide_width__sm' => null,
         'arrows' => 'true',
         'pause_hover' => 'true',
         'hide_nav' => '',
@@ -102,38 +100,33 @@ function shortcode_ux_slider($atts, $content=null) {
 	);
 
 	$args = array(
-		'margin'      => array(
+		'margin' => array(
 			'selector' => '',
 			'property' => 'margin-bottom',
 		),
-		'slide_width' => array(
-			'selector'  => '.flickity-slider > *',
-			'property'  => 'max-width',
-			'important' => true,
-		),
 	);
 ?>
-<div class="<?php echo esc_attr( $wrapper_classes ); ?>" id="<?php echo esc_attr( $_id ); ?>" <?php echo get_shortcode_inline_css($css_args); ?>>
-    <div class="<?php echo esc_attr( $classes ); ?>"
+<div class="<?php echo $wrapper_classes; ?>" id="<?php echo $_id; ?>" <?php echo get_shortcode_inline_css($css_args); ?>>
+    <div class="<?php echo $classes; ?>"
         data-flickity-options='{
-            "cellAlign": "<?php echo esc_attr( $slide_align ); ?>",
+            "cellAlign": "<?php echo $slide_align; ?>",
             "imagesLoaded": true,
             "lazyLoad": 1,
-            "freeScroll": <?php echo esc_attr( $freescroll ); ?>,
-            "wrapAround": <?php echo esc_attr( $infinitive ); ?>,
-            "autoPlay": <?php echo esc_attr( $auto_slide );?>,
-            "pauseAutoPlayOnHover" : <?php echo esc_attr( $pause_hover ); ?>,
-            "prevNextButtons": <?php echo esc_attr( $is_arrows ); ?>,
+            "freeScroll": <?php echo $freescroll; ?>,
+            "wrapAround": <?php echo $infinitive; ?>,
+            "autoPlay": <?php echo $auto_slide;?>,
+            "pauseAutoPlayOnHover" : <?php echo $pause_hover; ?>,
+            "prevNextButtons": <?php echo $is_arrows; ?>,
             "contain" : true,
-            "adaptiveHeight" : <?php echo esc_attr( $auto_height ); ?>,
-            "dragThreshold" : <?php echo esc_attr( $threshold ); ?>,
+            "adaptiveHeight" : <?php echo $auto_height;?>,
+            "dragThreshold" : <?php echo $threshold ;?>,
             "percentPosition": true,
-            "pageDots": <?php echo esc_attr( $is_bullets ); ?>,
-            "rightToLeft": <?php echo esc_attr( $rtl ); ?>,
-            "draggable": <?php echo esc_attr( $draggable ); ?>,
-            "selectedAttraction": <?php echo esc_attr( $selectedattraction ); ?>,
-            "parallax" : <?php echo esc_attr( $parallax ); ?>,
-            "friction": <?php echo esc_attr( $friction ); ?>
+            "pageDots": <?php echo $is_bullets; ?>,
+            "rightToLeft": <?php echo $rtl; ?>,
+            "draggable": <?php echo $draggable; ?>,
+            "selectedAttraction": <?php echo $selectedattraction; ?>,
+            "parallax" : <?php echo $parallax; ?>,
+            "friction": <?php echo $friction; ?>
         }'
         >
         <?php echo do_shortcode( $content ); ?>
@@ -141,6 +134,11 @@ function shortcode_ux_slider($atts, $content=null) {
 
      <div class="loading-spin dark large centered"></div>
 
+     <?php if($slide_width) { ?>
+     <style>
+            #<?php echo $_id; ?> .flickity-slider > * { max-width: <?php echo $slide_width; ?> !important; }
+     </style>
+     <?php } ?>
 	<?php echo ux_builder_element_style_tag( $_id, $args, $atts ); ?>
 </div>
 

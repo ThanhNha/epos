@@ -1,8 +1,5 @@
 <?php // phpcs:disable VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable
-
-$shape_dividers = require get_template_directory() . '/inc/builder/shortcodes/values/dividers.php';
-
-if ( ! empty( $atts['divider_top'] ) && array_key_exists( $atts['divider_top'], $shape_dividers ) ) :
+if ( $atts['divider_top'] ) :
 	$classes_divider_top = array(
 		'ux-shape-divider',
 		'ux-shape-divider--top',
@@ -18,7 +15,7 @@ if ( ! empty( $atts['divider_top'] ) && array_key_exists( $atts['divider_top'], 
 <?php endif; ?>
 
 <?php
-if ( ! empty( $atts['divider'] ) && array_key_exists( $atts['divider'], $shape_dividers ) ) :
+if ( $atts['divider'] ) :
 	$classes_divider = array(
 		'ux-shape-divider',
 		'ux-shape-divider--bottom',

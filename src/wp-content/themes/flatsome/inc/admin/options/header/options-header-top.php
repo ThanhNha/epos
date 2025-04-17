@@ -23,13 +23,6 @@ Flatsome_Option::add_field( '', array(
 	'type'     => 'custom',
 	'settings' => 'custom_title_header_top_layout',
 	'section'  => 'top_bar',
-	'active_callback' => array(
-		array(
-			'setting'  => 'topbar_show',
-			'operator' => '===',
-			'value'    => true,
-		),
-	),
 	'default'  => '<div class="options-title-divider">Layout</div>',
 ) );
 
@@ -38,13 +31,6 @@ Flatsome_Option::add_field( 'option',  array(
 	'settings'     => 'header_top_height',
 	'label'       => __( 'Height', 'flatsome-admin' ),
 	'section'     => 'top_bar',
-	'active_callback' => array(
-		array(
-			'setting'  => 'topbar_show',
-			'operator' => '===',
-			'value'    => true,
-		),
-	),
 	'default'     => 30,
 	'choices'     => array(
 		'min'  => 20,
@@ -60,13 +46,6 @@ Flatsome_Option::add_field( 'option',  array(
 	'settings'     => 'topbar_color',
 	'label'       => __( 'Text Color', 'flatsome-admin' ),
 	'section'     => 'top_bar',
-	'active_callback' => array(
-		array(
-			'setting'  => 'topbar_show',
-			'operator' => '===',
-			'value'    => true,
-		),
-	),
 	'default'     => 'dark',
 	'transport' => 'postMessage',
 	'choices'     => array(
@@ -83,13 +62,6 @@ Flatsome_Option::add_field( 'option',  array(
     //'description' => __( 'This is the control description', 'flatsome-admin' ),
     //'help'        => __( 'This is some extra help. You can use this to add some additional instructions for users. The main description should go in the "description" of the field, this is only to be used for help tips.', 'flatsome-admin' ),
     'section'     => 'top_bar',
-    'active_callback' => array(
-	    array(
-		    'setting'  => 'topbar_show',
-		    'operator' => '===',
-		    'value'    => true,
-	    ),
-    ),
     'default' => '',
     'transport' => 'postMessage',
 	'js_vars'   => array(
@@ -105,13 +77,6 @@ Flatsome_Option::add_field( '', array(
 	'type'     => 'custom',
 	'settings' => 'custom_title_header_top_nav',
 	'section'  => 'top_bar',
-	'active_callback' => array(
-		array(
-			'setting'  => 'topbar_show',
-			'operator' => '===',
-			'value'    => true,
-		),
-	),
 	'default'  => '<div class="options-title-divider">Navigation</div>',
 ) );
 
@@ -120,13 +85,6 @@ Flatsome_Option::add_field( 'option',  array(
 	'settings'     => 'nav_style_top',
 	'label'       => __( 'Navigation Style', 'flatsome-admin' ),
 	'section'     => 'top_bar',
-	'active_callback' => array(
-		array(
-			'setting'  => 'topbar_show',
-			'operator' => '===',
-			'value'    => true,
-		),
-	),
 	'default'     => 'divided',
 	'transport' => $transport,
 	'choices'     => $nav_styles_img
@@ -138,13 +96,6 @@ Flatsome_Option::add_field( 'option', array(
 	'label'     => __( 'Uppercase', 'flatsome-admin' ),
 	'section'   => 'top_bar',
 	'transport' => $transport,
-	'active_callback' => array(
-		array(
-			'setting'  => 'topbar_show',
-			'operator' => '===',
-			'value'    => true,
-		),
-	),
 	'default'   => 0,
 ) );
 
@@ -153,13 +104,6 @@ Flatsome_Option::add_field( 'option', array(
 	'settings' => 'nav_top_body_overlay',
 	'label'    => __( 'Add overlay on hover', 'flatsome-admin' ),
 	'section'  => 'top_bar',
-	'active_callback' => array(
-		array(
-			'setting'  => 'topbar_show',
-			'operator' => '===',
-			'value'    => true,
-		),
-	),
 	'default'  => 0,
 ) );
 
@@ -169,13 +113,6 @@ Flatsome_Option::add_field( 'option', array(
 	'label'     => __( 'Nav Height', 'flatsome-admin' ),
 	'section'   => 'top_bar',
 	'transport' => $transport,
-	'active_callback' => array(
-		array(
-			'setting'  => 'topbar_show',
-			'operator' => '===',
-			'value'    => true,
-		),
-	),
 	'default'   => 16,
 	'choices'   => array(
 		'min'  => 0,
@@ -190,13 +127,6 @@ Flatsome_Option::add_field( 'option', array(
 	'label'       => __( 'Nav Color', 'flatsome-admin' ),
 	'section'     => 'top_bar',
 	'transport'   => $transport,
-	'active_callback' => array(
-		array(
-			'setting'  => 'topbar_show',
-			'operator' => '===',
-			'value'    => true,
-		),
-	),
 ) );
 
 Flatsome_Option::add_field( 'option', array(
@@ -205,11 +135,4 @@ Flatsome_Option::add_field( 'option', array(
 	'label'       => __( 'Nav Color :hover', 'flatsome-admin' ),
 	'section'     => 'top_bar',
 	'transport'   => $transport,
-	'active_callback' => array(
-		array(
-			'setting'  => 'topbar_show',
-			'operator' => '===',
-			'value'    => true,
-		),
-	),
 ) );

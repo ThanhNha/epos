@@ -2,15 +2,15 @@
 /**
  * The Template for previewing blocks.
  *
- * @package          Flatsome\Templates
- * @flatsome-version 3.16.0
+ * @package flatsome
  */
 
 show_admin_bar(false);
 if ( ! current_user_can( 'edit_posts' ) ) die;
 ?>
 <!DOCTYPE html>
-<html <?php language_attributes(); ?>>
+<!--[if lte IE 9 ]><html class="ie lt-ie9" <?php language_attributes(); ?>> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html <?php language_attributes(); ?>> <!--<![endif]-->
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>" />
 	<link rel="profile" href="http://gmpg.org/xfn/11" />

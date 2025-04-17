@@ -1,12 +1,4 @@
-<?php
-/**
- * Directory warning.
- *
- * @package          Flatsome\Templates
- * @flatsome-version 3.16.0
- */
-
-if ( $template !== 'flatsome' ) : ?>
+<?php if ( $template !== 'flatsome' ) : ?>
 <div class="notice notice-warning notice-alt inline" style="display:block!important;margin-bottom:15px!important">
 	<p>
 		<?php /* translators: 1. Template */ ?>

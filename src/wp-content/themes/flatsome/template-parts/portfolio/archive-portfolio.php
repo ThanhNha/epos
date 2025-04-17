@@ -1,13 +1,4 @@
-<?php
-/**
- * Portfolio archive.
- *
- * @package          Flatsome\Templates
- * @flatsome-version 3.16.0
- */
-
-get_template_part( 'template-parts/portfolio/archive-portfolio-title', get_theme_mod( 'portfolio_archive_title', '' ) );
-?>
+<?php get_template_part( 'template-parts/portfolio/archive-portfolio-title', get_theme_mod( 'portfolio_archive_title', '' ) ); ?>
 
 <div id="content" role="main" class="page-wrapper">
 	<?php

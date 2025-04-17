@@ -1,12 +1,3 @@
-<?php
-/**
- * Transparent footer.
- *
- * @package          Flatsome\Templates
- * @flatsome-version 3.16.0
- */
-
-?>
 <div class="absolute-footer fixed dark nav-dark text-center">
 		<div class="footer-primary">
 				<div class="copyright-footer">

@@ -19,7 +19,7 @@ function search_shortcode($atts) {
 
     ob_start();
 
-    echo '<div class="' . esc_attr( $classes ) . '">';
+    echo '<div class="'. $classes. '">';
 	 	 if(function_exists('get_product_search_form')) {
 	        get_product_search_form();
 	    } else {

@@ -2,8 +2,7 @@
 /**
  * The template for displaying image attachments.
  *
- * @package          Flatsome\Templates
- * @flatsome-version 3.16.0
+ * @package flatsome
  */
 
 get_header();
@@ -23,7 +22,7 @@ get_header();
 							<div class="entry-meta">
 								<?php
 									$metadata = wp_get_attachment_metadata();
-									if ( $metadata ) {
+									if ( $metadata ) {					
 										printf( __( 'Published <span class="entry-date"><time class="entry-date" datetime="%1$s">%2$s</time></span> at <a href="%3$s" title="Link to full-size image">%4$s &times; %5$s</a> in <a href="%6$s" title="Return to %7$s" rel="gallery">%8$s</a>', 'flatsome' ),
 											esc_attr( get_the_date( 'c' ) ),
 											esc_html( get_the_date() ),
@@ -109,7 +108,7 @@ get_header();
 							<?php edit_post_link( __( 'Edit', 'flatsome' ), ' <span class="edit-link">', '</span>' ); ?>
 						</footer>
 
-
+						
 							<nav role="navigation" id="image-navigation" class="navigation-image">
 								<div class="nav-previous"><?php previous_image_link( false, __( '<span class="meta-nav">&larr;</span> Previous', 'flatsome' ) ); ?></div>
 								<div class="nav-next"><?php next_image_link( false, __( 'Next <span class="meta-nav">&rarr;</span>', 'flatsome' ) ); ?></div>

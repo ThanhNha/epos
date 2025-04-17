@@ -20,7 +20,6 @@ if ( ! class_exists( 'Envato_Theme_Setup_Wizard' ) ) {
 	/**
 	 * Envato_Theme_Setup_Wizard class
 	 */
-	#[AllowDynamicProperties]
 	class Envato_Theme_Setup_Wizard {
 
 		/**
@@ -124,6 +123,8 @@ if ( ! class_exists( 'Envato_Theme_Setup_Wizard' ) ) {
 		/**
 		 * A dummy constructor to prevent this class from being loaded more than once.
 		 *
+		 * @see Envato_Theme_Setup_Wizard::instance()
+		 *
 		 * @since 1.1.1
 		 * @access private
 		 */
@@ -134,6 +135,8 @@ if ( ! class_exists( 'Envato_Theme_Setup_Wizard' ) ) {
 
 		/**
 		 * Get the site logo URL.
+		 *
+		 * @see Envato_Theme_Setup_Wizard::instance()
 		 *
 		 * @since 3.15.2
 		 * @access public
@@ -154,6 +157,8 @@ if ( ! class_exists( 'Envato_Theme_Setup_Wizard' ) ) {
 
 		/**
 		 * Get the default style. Can be overriden by theme init scripts.
+		 *
+		 * @see Envato_Theme_Setup_Wizard::instance()
 		 *
 		 * @since 1.1.9
 		 * @access public
@@ -400,13 +405,6 @@ if ( ! class_exists( 'Envato_Theme_Setup_Wizard' ) ) {
 
 			wp_enqueue_media();
 			wp_enqueue_script( 'media' );
-
-			if (
-				flatsome_wp_version_check( '6.4' ) &&
-				function_exists( 'wp_enqueue_emoji_styles' )
-			) {
-				wp_enqueue_emoji_styles(); // Removes a deprectation message in WordPress 6.4.
-			}
 
 			ob_start();
 			$this->setup_wizard_header();
@@ -1758,28 +1756,28 @@ if ( ! class_exists( 'Envato_Theme_Setup_Wizard' ) ) {
 			}
 
 			// set the blog page and the home page.
-			$shoppage = flatsome_get_page_by_title( 'Shop' );
+			$shoppage = get_page_by_title( 'Shop' );
 			if ( $shoppage ) {
 				update_option( 'woocommerce_shop_page_id',$shoppage->ID );
 			}
-			$shoppage = flatsome_get_page_by_title( 'Cart' );
+			$shoppage = get_page_by_title( 'Cart' );
 			if ( $shoppage ) {
 				update_option( 'woocommerce_cart_page_id',$shoppage->ID );
 			}
-			$shoppage = flatsome_get_page_by_title( 'Checkout' );
+			$shoppage = get_page_by_title( 'Checkout' );
 			if ( $shoppage ) {
 				update_option( 'woocommerce_checkout_page_id',$shoppage->ID );
 			}
-			$shoppage = flatsome_get_page_by_title( 'My Account' );
+			$shoppage = get_page_by_title( 'My Account' );
 			if ( $shoppage ) {
 				update_option( 'woocommerce_myaccount_page_id',$shoppage->ID );
 			}
-			$homepage = flatsome_get_page_by_title( 'Classic Shop' );
+			$homepage = get_page_by_title( 'Classic Shop' );
 			if ( $homepage ) {
 				update_option( 'page_on_front', $homepage->ID );
 				update_option( 'show_on_front', 'page' );
 			}
-			$blogpage = flatsome_get_page_by_title( 'Blog' );
+			$blogpage = get_page_by_title( 'Blog' );
 			if ( $blogpage ) {
 				update_option( 'page_for_posts', $blogpage->ID );
 				update_option( 'show_on_front', 'page' );
@@ -2015,10 +2013,6 @@ if ( ! class_exists( 'Envato_Theme_Setup_Wizard' ) ) {
 
 			<p class="lead">
 				Enter your Envato purchase code.
-				<a href="<?php echo esc_url( UXTHEMES_ACCOUNT_URL ); ?>" target="_blank" rel="noopener">
-					<?php esc_html_e( 'Manage your licenses', 'flatsome' ); ?>
-					<span class="dashicons dashicons-external" style="vertical-align:middle;font-size:18px;text-decoration: none;"></span>
-				</a>
 			</p>
 
 			<form action="<?php echo admin_url( 'admin-post.php' ); ?>" method="POST" autocomplete="off" onsubmit="return onFlatsomeEnvatoSubmit(this);">

@@ -143,27 +143,30 @@ function flatsome_ux_banner( $atts, $content = null ){
    $start_link = "";
    $end_link = "";
 
-   if($link) {$start_link = '<a class="fill" href="' . esc_url( $link ) . '"' . flatsome_parse_target_rel( $link_atts ) . '>'; $end_link = '</a>';};
+   if($link) {$start_link = '<a class="fill" href="'.$link.'"' . flatsome_parse_target_rel( $link_atts ) . '>'; $end_link = '</a>';};
 
    /* Parallax  */
    if($parallax){
       $classes[] = 'has-parallax';
-      $parallax = 'data-parallax="-' . esc_attr( $parallax ) . '" data-parallax-container=".banner" data-parallax-background';
+      $parallax = 'data-parallax="-'.$parallax.'" data-parallax-container=".banner" data-parallax-background';
    }
+
+   /* Lazy load */
+   $lazy_load = get_theme_mod('lazy_load_backgrounds', 1) ? '' : 'bg-loaded';
 
    $classes = implode(" ", $classes);
 
   ?>
 
-  <div class="banner <?php echo esc_attr( $classes ); ?>" id="<?php echo esc_attr( $_id ); ?>">
+  <div class="banner <?php echo $classes; ?>" id="<?php echo $_id; ?>">
      <?php if($loading) echo '<div class="loading-spin dark centered"></div>'; ?>
      <div class="banner-inner fill">
         <div class="banner-bg fill" <?php echo $parallax; ?>>
-            <?php require __DIR__ . '/commons/background-image.php'; ?>
+            <div class="bg fill bg-fill <?php echo $lazy_load; ?>"></div>
             <?php require( __DIR__ . '/commons/video.php' ) ;?>
             <?php if($bg_overlay) echo '<div class="overlay"></div>' ?>
             <?php require( __DIR__ . '/commons/border.php' ) ;?>
-            <?php if($effect) echo '<div class="effect-' . esc_attr( $effect ) . ' bg-effect fill no-click"></div>'; ?>
+            <?php if($effect) echo '<div class="effect-'.$effect.' bg-effect fill no-click"></div>'; ?>
         </div>
 		<?php require __DIR__ . '/commons/shape-divider.php'; ?>
         <div class="banner-layers <?php if($container_width !== 'full-width') echo 'container'; ?>">
@@ -203,6 +206,11 @@ function flatsome_ux_banner( $atts, $content = null ){
             'selector' => '',
             'property' => 'padding-top',
           ),
+          'bg' => array(
+            'selector' => '.bg.bg-loaded',
+            'property' => 'background-image',
+            'size' => $bg_size
+          ),
           'bg_overlay' => array(
             'selector' => '.overlay',
             'property' => 'background-color',
@@ -212,46 +220,36 @@ function flatsome_ux_banner( $atts, $content = null ){
             'property' => 'background-color',
           ),
           'bg_pos' => array(
-            'selector' => '.banner-bg img',
-            'property' => 'object-position',
+            'selector' => '.bg',
+            'property' => 'background-position',
           ),
+		  'divider_top_height' => array(
+			  'selector' => '.ux-shape-divider--top svg',
+			  'property' => 'height',
+		  ),
+		  'divider_top_width'  => array(
+			  'selector' => '.ux-shape-divider--top svg',
+			  'property' => '--divider-top-width',
+			  'unit'     => '%',
+		  ),
+		  'divider_top_fill'   => array(
+			  'selector' => '.ux-shape-divider--top .ux-shape-fill',
+			  'property' => 'fill',
+		  ),
+		  'divider_height'     => array(
+			  'selector' => '.ux-shape-divider--bottom svg',
+			  'property' => 'height',
+		  ),
+		  'divider_width'      => array(
+			  'selector' => '.ux-shape-divider--bottom svg',
+			  'property' => '--divider-width',
+			  'unit'     => '%',
+		  ),
+		  'divider_fill'       => array(
+			  'selector' => '.ux-shape-divider--bottom .ux-shape-fill',
+			  'property' => 'fill',
+		  ),
         );
-
-	  if ( $divider_top ) {
-		  $args = array_merge( $args, array(
-			  'divider_top_height' => array(
-				  'selector' => '.ux-shape-divider--top svg',
-				  'property' => 'height',
-			  ),
-			  'divider_top_width'  => array(
-				  'selector' => '.ux-shape-divider--top svg',
-				  'property' => '--divider-top-width',
-				  'unit'     => '%',
-			  ),
-			  'divider_top_fill'   => array(
-				  'selector' => '.ux-shape-divider--top .ux-shape-fill',
-				  'property' => 'fill',
-			  ),
-		  ) );
-	  }
-
-	  if ( $divider ) {
-		  $args = array_merge( $args, array(
-			  'divider_height' => array(
-				  'selector' => '.ux-shape-divider--bottom svg',
-				  'property' => 'height',
-			  ),
-			  'divider_width'  => array(
-				  'selector' => '.ux-shape-divider--bottom svg',
-				  'property' => '--divider-width',
-				  'unit'     => '%',
-			  ),
-			  'divider_fill'   => array(
-				  'selector' => '.ux-shape-divider--bottom .ux-shape-fill',
-				  'property' => 'fill',
-			  ),
-		  ) );
-	  }
         echo ux_builder_element_style_tag($_id, $args, $atts);
       ?>
   </div>

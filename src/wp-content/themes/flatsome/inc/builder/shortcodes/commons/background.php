@@ -15,7 +15,12 @@ return array(
           'heading' => 'Size',
           'default' => 'large',
           'conditions' => 'bg',
-          'options' => flatsome_ux_builder_image_sizes(),
+          'options' => array(
+            'original' => 'Original',
+            'large' => 'Large',
+            'medium' => 'Medium',
+            'thumbnail' => 'Thumbnail',
+          )
         ),
         'bg_color' => array(
           'type' => 'colorpicker',

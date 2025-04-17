@@ -1,12 +1,4 @@
-<?php
-/**
- * Posts single.
- *
- * @package          Flatsome\Templates
- * @flatsome-version 3.16.0
- */
-
-if ( have_posts() ) : ?>
+<?php if ( have_posts() ) : ?>
 
 <?php /* Start the Loop */ ?>
 

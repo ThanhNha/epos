@@ -39,7 +39,7 @@ final class Swatches {
 	/**
 	 * Swatches constructor.
 	 */
-	private function __construct() {
+	public function __construct() {
 		$this->types = array(
 			'ux_color' => esc_html__( 'UX Color', 'flatsome' ),
 			'ux_image' => esc_html__( 'UX Image', 'flatsome' ),
@@ -185,38 +185,11 @@ final class Swatches {
 	}
 
 	/**
-	 * Clear all cache on option change.
-	 *
-	 * @param string $new_value The new value of the theme modification or WP option.
-	 * @param string $old_value The current value of the theme modification or WP option.
-	 *
-	 * @return mixed
-	 */
-	public function cache_clear_on_option( $new_value, $old_value ) {
-		if ( $new_value !== $old_value ) {
-			$this->cache_clear();
-		}
-
-		return $new_value;
-	}
-
-	/**
 	 * Main instance.
 	 *
-	 * @deprecated in favor of get_instance()
 	 * @return Swatches
 	 */
 	public static function instance() {
-		_deprecated_function( __METHOD__, '3.19.0', 'get_instance()' );
-		return self::get_instance();
-	}
-
-	/**
-	 * Main instance.
-	 *
-	 * @return Swatches
-	 */
-	public static function get_instance() {
 		if ( is_null( self::$instance ) ) {
 			self::$instance = new self();
 		}
@@ -230,7 +203,7 @@ final class Swatches {
 	 * @return Swatches_Admin
 	 */
 	public function admin() {
-		return Swatches_Admin::get_instance();
+		return Swatches_Admin::instance();
 	}
 
 	/**
@@ -239,29 +212,16 @@ final class Swatches {
 	 * @return Swatches_Frontend
 	 */
 	public function frontend() {
-		return Swatches_Frontend::get_instance();
+		return Swatches_Frontend::instance();
 	}
 }
 
 /**
  * Main instance.
  *
- * @deprecated 3.17 Use swatches()
- *
  * @return Swatches
  */
 function flatsome_swatches() {
-	_deprecated_function( __FUNCTION__, '3.17', 'swatches' );
-
-	return swatches();
-}
-
-/**
- * Main instance.
- *
- * @return Swatches
- */
-function swatches() {
-	return Swatches::get_instance();
+	return Swatches::instance();
 }
 

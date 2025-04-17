@@ -29,19 +29,14 @@ final class Flatsome_Envato {
 	public $registration;
 
 	/**
-	 * The admin instance.
-	 *
-	 * @var Flatsome_Envato_Admin
-	 */
-	public $admin;
-
-	/**
 	 * Setup instance properties.
 	 */
-	private function __construct() {
+	public function __construct() {
 		$api = new UxThemes_API();
 
-		if ( get_option( flatsome_theme_key() . '_wup_purchase_code' ) ) {
+		if ( get_option( 'flatsome_envato' ) ) {
+			$this->registration = new Flatsome_Envato_Registration( $api );
+		} elseif ( get_option( flatsome_theme_key() . '_wup_purchase_code' ) ) {
 			$this->registration = new Flatsome_WUpdates_Registration( $api );
 		} else {
 			$this->registration = new Flatsome_Registration( $api );
@@ -59,15 +54,6 @@ final class Flatsome_Envato {
 	 */
 	public function is_registered() {
 		return $this->registration->is_registered();
-	}
-
-	/**
-	 * Checks whether the purchase code has been verified or not.
-	 *
-	 * @return boolean
-	 */
-	public function is_verified() {
-		return $this->registration->is_verified();
 	}
 
 	/**

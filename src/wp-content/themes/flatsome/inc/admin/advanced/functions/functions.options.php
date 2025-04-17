@@ -130,6 +130,14 @@ if ( ! function_exists( 'of_options' ) ) {
 		);
 
 		$of_options[] = array(
+			'name' => 'Lazy Load Banner and Section backgrounds',
+			'id'   => 'lazy_load_backgrounds',
+			'desc' => 'Enable lazy loading of banner and section backgrounds.',
+			'std'  => 1,
+			'type' => 'checkbox',
+		);
+
+		$of_options[] = array(
 			'name' => 'Lazy Load Images',
 			'id'   => 'lazy_load_images',
 			'desc' => 'Enable lazy loading for images. It will generate an inline blank Base64 image with the same aspect ratio as the original image.',
@@ -167,86 +175,6 @@ if ( ! function_exists( 'of_options' ) ) {
 			'id'   => 'jquery_migrate',
 			'std'  => 0,
 			'desc' => 'Remove jQuery Migrate. Most up-to-date front-end code and plugins don’t require jquery-migrate.min.js. More often than not, keeping this - simply adds unnecessary load to your site.',
-		);
-
-		// Content delivery.
-		$of_options[] = array(
-			'name' => 'Content Delivery',
-			'type' => 'heading',
-		);
-
-		$of_options[] = array(
-			'name' => '',
-			'type' => 'info',
-			'desc' => '<h2 style="font-size:1rem; margin-top: 40px;">AJAX loading<span class="of-tag">Experimental</span></h2><p style="font-size:14px">Fetch content from the server without reloading the whole page. This is an experimental feature and is subject to change. <b>Disable if you experience plugin compatibility issues.</b></p><p><a target="_blank" rel="noopener" href="https://docs.uxthemes.com/article/430-pjax">Learn more</a></p>',
-		);
-
-		$of_options[] = array(
-			'name'    => 'Blog pagination',
-			'id'      => 'blog_pagination',
-			'std'     => '',
-			'type'    => 'select',
-			'options' => array(
-				''     => 'Normal navigation',
-				'ajax' => 'AJAX navigation',
-			),
-		);
-
-		if ( is_woocommerce_activated() ) {
-			$of_options[] = array(
-				'name'    => 'Shop pagination',
-				'id'      => 'shop_pagination',
-				'std'     => '',
-				'type'    => 'select',
-				'options' => array(
-					''                => 'Normal navigation',
-					'ajax'            => 'AJAX navigation',
-					'infinite-scroll' => 'Infinite scroll',
-				),
-			);
-
-			$of_options[] = array(
-				'name' => 'Shop archive',
-				'id'   => 'shop_filter_widgets_pjax',
-				'desc' => 'Enable AJAX for product category widget & filter widgets',
-				'std'  => 0,
-				'type' => 'checkbox',
-			);
-		}
-
-		$of_options[] = array(
-			'name' => 'Scroll to top',
-			'id'   => 'pjax_scroll_to_top',
-			'desc' => 'Scroll to top after AJAX navigation',
-			'std'  => 0,
-			'type' => 'checkbox',
-		);
-
-		$of_options[] = array(
-			'name' => '',
-			'type' => '',
-			'desc' => '<h2 style="font-size:1rem; margin-top: 40px;">Infinite scroll settings</h2>',
-		);
-
-		$of_options[] = array(
-			'name'    => 'Loading type',
-			'id'      => 'infinite_scroll_loader_type',
-			'desc'    => 'Select loading type animation or on button click.',
-			'std'     => 'spinner',
-			'type'    => 'select',
-			'options' => array(
-				'button'  => 'Button (On click)',
-				'spinner' => 'Spinner',
-				'image'   => 'Custom Image',
-			),
-		);
-
-		$of_options[] = array(
-			'name' => 'Custom loader image',
-			'desc' => "Upload or choose a custom loader image (for loading type 'Custom Image').",
-			'id'   => 'infinite_scroll_loader_img',
-			'std'  => '',
-			'type' => 'upload',
 		);
 
 		$of_options[] = array(
@@ -312,12 +240,12 @@ if ( ! function_exists( 'of_options' ) ) {
 			'std'     => '0',
 			'type'    => 'select',
 			'options' => array(
-				'0'    => 'Instant',
-				'500'  => '500 ms',
-				'1000' => '1000 ms',
-				'1500' => '1500 ms',
-				'2000' => '2000 ms',
-			),
+					'0'    => 'Instant',
+					'500'  => '500 ms',
+					'1000' => '1000 ms',
+					'1500' => '1500 ms',
+					'2000' => '2000 ms',
+				),
 		);
 
 		if ( is_woocommerce_activated() ) {
@@ -344,7 +272,7 @@ if ( ! function_exists( 'of_options' ) ) {
 			);
 
 			$of_options[] = array(
-				'name'    => 'Products: Order by',
+				'name'    => 'Search Products Order By',
 				'id'      => 'search_products_order_by',
 				'type'    => 'select',
 				'std'     => 'relevance',
@@ -352,17 +280,6 @@ if ( ! function_exists( 'of_options' ) ) {
 					'relevance' => 'Relevance',
 					'title'     => 'Title',
 					'price'     => 'Price',
-				),
-			);
-
-			$of_options[] = array(
-				'name'    => 'Products: Order',
-				'id'      => 'search_products_order',
-				'type'    => 'select',
-				'std'     => 'ASC',
-				'options' => array(
-					'ASC'  => 'Ascending',
-					'DESC' => 'Descending',
 				),
 			);
 
@@ -384,34 +301,15 @@ if ( ! function_exists( 'of_options' ) ) {
 		}
 
 		$of_options[] = array(
-			'name' => 'Instagram',
-			'type' => 'heading',
+			"name" => "Instagram",
+			"type" => "heading",
 		);
 
 		$of_options[] = array(
-			'name' => 'Feed settings',
-			'id'   => 'instagram_lazy_load',
-			'desc' => 'Lazy load Instagram feeds when they appear in the viewport.',
-			'std'  => 0,
-			'type' => 'checkbox',
-		);
-
-		$of_options[] = array(
-			'name' => 'Accounts',
-			'std'  => flatsome_facebook_accounts_html(),
-			'type' => 'info',
-		);
-
-		$of_options[] = array(
-			'name' => 'Cache',
-			'std'  => flatsome_facebook_cache_html(),
-			'type' => 'info',
-		);
-
-		$of_options[] = array(
-			'name' => 'Business Account',
-			'desc' => flatsome_facebook_login_button_html(),
-			'type' => 'info',
+			"name" => "Accounts",
+			"std"  => flatsome_facebook_accounts_html(),
+			"desc" => flatsome_facebook_login_button_html(),
+			"type" => "info"
 		);
 
 		$of_options[] = array(
@@ -427,58 +325,17 @@ if ( ! function_exists( 'of_options' ) ) {
 			'type' => 'text',
 		);
 
-		$maintenance_mode = apply_filters( 'flatsome_maintenance_mode', [ 'access_mode' => 'roles' ] );
-
 		$of_options[] = array(
 			'name' => 'Maintenance Mode',
 			'type' => 'heading',
 		);
 
-		if ( ! empty( $maintenance_mode['access_mode'] ) ) {
-			$access_mode = $maintenance_mode['access_mode'];
-
-			$supported_modes = [ 'logged_in', 'roles', 'current_user_can' ];
-			$display_mode    = in_array( $access_mode, $supported_modes, true )
-				? $access_mode
-				: sprintf( '%s (not supported)', $access_mode );
-
-			$of_options[] = array(
-				'name' => '',
-				'type' => 'info',
-				'desc' => sprintf( '<p style="font-size:14px">Access mode: %s</p>', $display_mode ),
-			);
-		}
-
 		$of_options[] = array(
 			'name' => 'Maintenance Mode',
 			'id'   => 'maintenance_mode',
-			'desc' => 'Enable Maintenance Mode.',
+			'desc' => 'Enable Maintenance Mode for all users except admins.',
 			'std'  => 0,
 			'type' => 'checkbox',
-		);
-
-		if ( ! empty( $maintenance_mode['access_mode'] && $maintenance_mode['access_mode'] === 'roles' ) ) {
-			$of_options[] = array(
-				'name'    => 'Exclude roles',
-				'id'      => 'maintenance_mode_excluded_roles',
-				'desc'    => 'Exclude roles from maintenance mode (admin always has access).',
-				'std'     => array(),
-				'type'    => 'multicheck',
-				'options' => flatsome_get_role_list( array(
-					'exclude' => array(
-						'super_admin',
-						'administrator',
-					),
-				) ),
-			);
-		}
-
-		$of_options[] = array(
-			'name' => 'Bypass key',
-			'id'   => 'maintenance_mode_bypass_key',
-			'desc' => 'Enter a unique key here. This key, when appended as a parameter in the URL, allows a user to bypass the maintenance mode and access the website. For example, if you enter "key1234" as the key, you can bypass maintenance mode on any URL by appending the key f.ex.: https://example.com/?key1234 or https://example.com/shop/?key1234, etc.',
-			'std'  => '',
-			'type' => 'text',
 		);
 
 		$of_options[] = array(
@@ -528,24 +385,9 @@ if ( ! function_exists( 'of_options' ) ) {
 			);
 
 			$of_options[] = array(
-				'name' => 'Product variations',
+				'name' => 'Variation swatches',
 				'id'   => 'swatches',
 				'desc' => 'Enable variation swatches.',
-				'std'  => 0,
-				'type' => 'checkbox',
-			);
-
-			$of_options[] = array(
-				'id'   => 'additional_variation_images',
-				'desc' => 'Enable additional variation images (Flatsome gallery).',
-				'std'  => 0,
-				'type' => 'checkbox',
-			);
-
-			$of_options[] = array(
-				'name' => 'Single product',
-				'id'   => 'ajax_add_to_cart',
-				'desc' => 'Enable AJAX add to cart buttons on single product page & quick view.',
 				'std'  => 0,
 				'type' => 'checkbox',
 			);
@@ -559,9 +401,9 @@ if ( ! function_exists( 'of_options' ) ) {
 			);
 
 			$of_options[] = array(
-				'name' => 'WooCommerce product gallery',
+				'name' => 'Enable default WooCommerce product gallery',
 				'id'   => 'product_gallery_woocommerce',
-				'desc' => 'Use the default WooCommerce gallery slider for plugin compatibility. <br>(This disables the Flatsome product gallery and multiple options for it)',
+				'desc' => 'Use the default WooCommerce gallery slider for plugin compatibility, such as "Additional Variation Images".',
 				'std'  => 0,
 				'type' => 'checkbox',
 			);
@@ -664,6 +506,40 @@ if ( ! function_exists( 'of_options' ) ) {
 				'std'  => '',
 				'type' => 'textarea',
 				'desc' => 'Enter text that will show in product quick view',
+			);
+
+			$of_options[] = array(
+				'name' => 'Infinite Scroll',
+				'type' => 'heading',
+			);
+
+			$of_options[] = array(
+				'name' => 'Infinite scroll category/products',
+				'id'   => 'flatsome_infinite_scroll',
+				'desc' => 'Enable infinite scroll for WooCommerce category/product archive.',
+				'std'  => 0,
+				'type' => 'checkbox',
+			);
+
+			$of_options[] = array(
+				'name'    => 'Loading type',
+				'id'      => 'infinite_scroll_loader_type',
+				'desc'    => 'Select loading type animation or on button click.',
+				'std'     => 'spinner',
+				'type'    => 'select',
+				'options' => array(
+					'button'  => 'Button (On click)',
+					'spinner' => 'Spinner',
+					'image'   => 'Custom Image',
+				),
+			);
+
+			$of_options[] = array(
+				'name' => 'Custom loader image',
+				'desc' => "Upload or choose a custom loader image (for loading type 'Custom Image').",
+				'id'   => 'infinite_scroll_loader_img',
+				'std'  => '',
+				'type' => 'upload',
 			);
 		}
 
@@ -789,28 +665,6 @@ if ( ! function_exists( 'of_options' ) ) {
 			);
 		}
 
-		// All in one SEO options.
-		if ( class_exists( 'AIOSEO\Plugin\AIOSEO' ) ) {
-			$of_options[] = array(
-				'name' => 'AIOSEO Breadcrumbs',
-				'id'   => 'aioseo_breadcrumb',
-				'desc' => 'Use on product category pages, single product pages and elements.',
-				'std'  => 0,
-				'type' => 'checkbox',
-			);
-		}
-
-		// SEOPress options.
-		if ( defined( 'SEOPRESS_VERSION' ) ) {
-			$of_options[] = array(
-				'name' => defined( 'SEOPRESS_PRO_VERSION' ) ? 'SEOPress Breadcrumbs' : 'SEOPress Breadcrumbs (Requires SeoPress PRO)',
-				'id'   => 'wpseopress_breadcrumb',
-				'desc' => 'Use on product category pages, single product pages and elements.',
-				'std'  => 0,
-				'type' => 'checkbox',
-			);
-		}
-
 		// Updates.
 		$of_options[] = array(
 			'name' => 'Updates',
@@ -845,7 +699,7 @@ if ( ! function_exists( 'of_options' ) ) {
 			'id'   => 'of_backup',
 			'std'  => '',
 			'type' => 'backup',
-			'desc' => 'You can use the buttons above to backup your current options, and then restore it back at a later time. This is useful if you want to experiment on the options but would like to keep the old settings in case you need it back.',
+			'desc' => 'You can use the two buttons below to backup your current options, and then restore it back at a later time. This is useful if you want to experiment on the options but would like to keep the old settings in case you need it back.',
 		);
 
 		$of_options[] = array(

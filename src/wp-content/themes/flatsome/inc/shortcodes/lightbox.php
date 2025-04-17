@@ -17,9 +17,9 @@ function ux_lightbox( $atts, $content = null ) {
 
 	ob_start();
 	?>
-	<div id="<?php echo esc_attr( $id ); ?>"
-	     class="lightbox-by-id lightbox-content mfp-hide lightbox-white <?php echo esc_attr( $class ); ?>"
-	     style="max-width:<?php echo esc_attr( $width ); ?> ;padding:<?php echo esc_attr( $padding ); ?>">
+	<div id="<?php echo $id; ?>"
+	     class="lightbox-by-id lightbox-content mfp-hide lightbox-white <?php echo $class; ?>"
+	     style="max-width:<?php echo $width ?> ;padding:<?php echo $padding; ?>">
 		<?php echo do_shortcode( $content ); ?>
 	</div>
 	<?php if ( $auto_open ) : ?>
@@ -28,17 +28,17 @@ function ux_lightbox( $atts, $content = null ) {
 			jQuery(document).ready(function ($) {
 				/* global flatsomeVars */
 				'use strict'
-				var cookieId = '<?php echo 'lightbox_' . esc_js( $id ); ?>'
-				var cookieValue = '<?php echo 'opened_' . esc_js( $version ); ?>'
-				var timer = parseInt('<?php echo intval( $auto_timer ); ?>', 10)
+				var cookieId = '<?php echo "lightbox_{$id}" ?>'
+				var cookieValue = '<?php echo "opened_{$version}"; ?>'
+				var timer = parseInt('<?php echo $auto_timer; ?>')
 
 				// Auto open lightbox
 				<?php if ( $auto_show == 'always' ) : ?>
-				Flatsome.cookie(cookieId, false)
+				cookie(cookieId, false)
 				<?php endif; ?>
 
 				// Run lightbox if no cookie is set
-				if (Flatsome.cookie(cookieId) !== cookieValue) {
+				if (cookie(cookieId) !== cookieValue) {
 
 					// Ensure closing off canvas
 					setTimeout(function () {
@@ -54,7 +54,7 @@ function ux_lightbox( $atts, $content = null ) {
 								// closeBtnInside: flatsomeVars.lightbox.close_btn_inside,
 								// closeMarkup: flatsomeVars.lightbox.close_markup,
 								items: {
-									src: '#<?php echo esc_js( $id ); ?>',
+									src: '#<?php echo $id; ?>',
 									type: 'inline'
 								}
 							})
@@ -62,7 +62,7 @@ function ux_lightbox( $atts, $content = null ) {
 					}, timer)
 
 					// Set cookie
-					Flatsome.cookie(cookieId, cookieValue, 365)
+					cookie(cookieId, cookieValue, 365)
 				}
 			})
 		</script>

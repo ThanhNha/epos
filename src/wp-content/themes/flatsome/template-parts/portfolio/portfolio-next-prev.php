@@ -1,13 +1,4 @@
-<?php
-/**
- * Portfolio next/prev.
- *
- * @package          Flatsome\Templates
- * @flatsome-version 3.16.0
- */
-
-if(get_theme_mod('portfolio_next_prev',1) == 0) return;
-?>
+<?php  if(get_theme_mod('portfolio_next_prev',1) == 0) return; ?>
 <div class="row">
 <div class="large-12 col pb-0">
 	<div class="flex-row flex-has-center next-prev-nav bt bb">

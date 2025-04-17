@@ -35,8 +35,14 @@ add_ux_builder_shortcode( 'ux_image', array(
             'type' => 'select',
             'heading' => 'Image Size',
             'param_name' => 'image_size',
-            'default' => 'large',
-            'options' => flatsome_ux_builder_image_sizes(),
+            'default' => '',
+            'options' => array(
+                '' => 'Normal',
+                'large' => 'Large',
+                'medium' => 'Medium',
+                'thumbnail' => 'Thumbnail',
+                'original' => 'Original',
+            )
         ),
         'width' => array(
           'type' => 'slider',
@@ -87,8 +93,14 @@ add_ux_builder_shortcode( 'ux_image', array(
 	        'type'       => 'select',
 	        'heading'    => __( 'Lightbox Image Size' ),
 	        'conditions' => 'lightbox == "true"',
-	        'default'    => 'large',
-	        'options'    => flatsome_ux_builder_image_sizes(),
+	        'default'    => '',
+	        'options'    => array(
+		        ''          => 'Default',
+		        'large'     => 'Large',
+		        'medium'    => 'Medium',
+		        'thumbnail' => 'Thumbnail',
+		        'original'  => 'Original',
+	        )
         ),
 
         'caption' => array(
@@ -109,16 +121,6 @@ add_ux_builder_shortcode( 'ux_image', array(
 			'options'    => array(
 				''     => array( 'title' => 'Off' ),
 				'true' => array( 'title' => 'On' ),
-			),
-		),
-
-		'image_title' => array(
-			'type'    => 'radio-buttons',
-			'heading' => __( 'Title' ),
-			'default' => '',
-			'options' => array(
-				''      => array( 'title' => 'Off' ),
-				'true'  => array( 'title' => 'On' ),
 			),
 		),
 

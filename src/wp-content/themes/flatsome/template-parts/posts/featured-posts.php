@@ -1,10 +1,4 @@
 <?php
-/**
- * Posts featured.
- *
- * @package          Flatsome\Templates
- * @flatsome-version 3.16.0
- */
 
 $args = array(
 	'posts_per_page' => 5,

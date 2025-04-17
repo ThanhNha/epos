@@ -1,7 +1,5 @@
 <?php
 
-add_action( 'admin_init', [ Flatsome\Admin\Features::class, 'get_instance' ] );
-
 /* Add Custom WP Editor CSS */
 
 if(!function_exists('flatsome_editor_style')) {
@@ -425,12 +423,6 @@ function flatsome_formats_before_init( $settings ) {
                   'classes' => 'bullet-checkmark',
 
                 ),
-              array(
-	              'title' => 'Bullets List - Cross',
-	              'selector' => 'li',
-	              'classes' => 'bullet-cross',
-
-              ),
                 array(
                   'title' => 'Bullets List - Arrow',
                   'selector' => 'li',

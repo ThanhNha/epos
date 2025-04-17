@@ -1,12 +1,4 @@
-<?php
-/**
- * Header top.
- *
- * @package          Flatsome\Templates
- * @flatsome-version 3.16.0
- */
-
-if(flatsome_has_top_bar()['large_or_mobile']){ ?>
+<?php if(flatsome_has_top_bar()['large_or_mobile']){ ?>
 <div id="top-bar" class="header-top <?php header_inner_class('top'); ?>">
     <div class="flex-row container">
       <div class="flex-col hide-for-medium flex-left">

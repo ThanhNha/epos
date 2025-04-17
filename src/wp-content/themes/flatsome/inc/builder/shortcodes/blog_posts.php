@@ -23,7 +23,6 @@ $options =  array(
     ),
 ),
 'layout_options' => require( __DIR__ . '/commons/repeater-options.php' ),
-'relay_options' => require( __DIR__ . '/commons/relay.php' ),
 'layout_options_slider' => require( __DIR__ . '/commons/repeater-slider.php' ),
 'post_options' => require( __DIR__ . '/commons/repeater-posts.php' ),
 'post_title_options' => array(
@@ -76,7 +75,7 @@ $options =  array(
             'conditions' => 'readmore',
             'default' => 'outline',
             'options' => array(
-                'default' => 'Default',
+                '' => 'Default',
                 'outline' => 'Outline',
                 'link' => 'Simple',
                 'underline' => 'Underline',
@@ -140,7 +139,7 @@ $options =  array(
         'type' => 'slider',
         'heading' => 'Excerpt Length',
         'default' => 15,
-        'max' => 100,
+        'max' => 50,
         'min' => 5,
     ),
     'show_category' => array(

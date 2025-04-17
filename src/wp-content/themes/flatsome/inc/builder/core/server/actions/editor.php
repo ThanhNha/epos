@@ -90,7 +90,7 @@ function ux_builder_editor_data() {
   // Get the back URL. Redirect to admin page if user came
   // from admin or to the post if user came from some other place.
   $back_url = isset( $_SERVER['HTTP_REFERER'] )
-    ? esc_url_raw( $_SERVER['HTTP_REFERER'] )
+    ? $_SERVER['HTTP_REFERER']
     : $current_post->permalink();
 
   // Go back to admin edit screen if not published.
@@ -110,7 +110,6 @@ function ux_builder_editor_data() {
   }
 
   $data = apply_filters( 'ux_builder_data', array(
-    'currentPath' => '/',
     'loading' => true,
     'initialized' => false,
     'nonce' => wp_create_nonce( 'ux-builder-' . $editing_post->post()->ID ),
@@ -163,7 +162,7 @@ function ux_builder_editor_data() {
     return in_array( ux_builder( 'editing-post' )->post()->post_type, $template['post_types'] );
   } );
 
-  $data['isRegistered'] = flatsome_envato()->is_verified();
+  $data['isRegistered'] = flatsome_envato()->is_registered();
 
   return $data;
 }

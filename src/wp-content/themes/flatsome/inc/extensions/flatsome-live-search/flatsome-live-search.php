@@ -197,7 +197,7 @@ function flatsome_ajax_search() {
 	}
 
 	if ( empty( $results ) ) {
-		$no_results = $wc_activated ? __( 'No products found.', 'woocommerce' ) : __( 'No matches found', 'flatsome' );
+		$no_results = $wc_activated ? __( 'No results found. Please try a different keyword.', 'woocommerce' ) : __( 'No matches found', 'flatsome' );
 
 		$suggestions[] = array(
 			'id'    => -1,

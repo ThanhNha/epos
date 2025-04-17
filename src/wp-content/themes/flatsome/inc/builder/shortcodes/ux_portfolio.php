@@ -60,17 +60,22 @@ $options = array(
 	    'type'       => 'select',
 	    'heading'    => __( 'Lightbox Image Size' ),
 	    'conditions' => 'lightbox == "true"',
-	    'default'    => 'original',
-	    'options'    => flatsome_ux_builder_image_sizes(),
+	    'default'    => '',
+	    'options'    => array(
+		    ''          => 'Default',
+		    'large'     => 'Large',
+		    'medium'    => 'Medium',
+		    'thumbnail' => 'Thumbnail',
+		    'original'  => 'Original',
+	    )
     ),
 
     'ids' => array(
         'type' => 'select',
         'heading' => 'Ids',
-        'full_width' => true,
         'config' => array(
             'multiple' => true,
-            'placeholder' => 'Select...',
+            'placeholder' => 'Select..',
             'postSelect' => array(
                 'post_type' => array( 'featured_item' )
             ),
@@ -81,9 +86,8 @@ $options = array(
         'type' => 'select',
         'heading' => 'Category',
         'conditions' => 'ids == ""',
-        'full_width' => true,
         'config' => array(
-            'placeholder' => 'Select...',
+            'placeholder' => 'Select..',
             'termSelect' => array(
                 'post_type' => 'featured_item',
                 'taxonomies' => 'featured_item_category'

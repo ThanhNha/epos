@@ -1,13 +1,5 @@
-<?php
-/**
- * Portfolio single sidebar right.
- *
- * @package          Flatsome\Templates
- * @flatsome-version 3.16.0
- */
+<?php get_template_part('template-parts/portfolio/portfolio-title', flatsome_option('portfolio_title')); ?>
 
-get_template_part('template-parts/portfolio/portfolio-title', flatsome_option('portfolio_title'));
-?>
 <div class="portfolio-top">
 	<div class="row">
 

@@ -1,10 +1,4 @@
 <?php
-/**
- * The template for a single featured item.
- *
- * @package          Flatsome\Templates
- * @flatsome-version 3.16.0
- */
 
 get_header(); ?>
 

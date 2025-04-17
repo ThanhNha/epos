@@ -74,7 +74,7 @@ final class UxThemes_API {
 		if ( $status !== 200 ) {
 			$error = isset( $data['message'] )
 				? new WP_Error( $status, $data['message'], $data )
-				// translators: %d: The status code.
+				// translators: 1. The status code.
 				: new WP_Error( $status, sprintf( __( 'Sorry, an error occurred while accessing the API. Error %d', 'flatsome' ), $status ), $data );
 
 			return $this->get_error( $error, $context, $data );
@@ -110,7 +110,7 @@ final class UxThemes_API {
 	 */
 	public function get_error( $error, $context = null, $data = array() ) {
 		$status        = (int) $error->get_error_code();
-		$account_attrs = ' href="' . esc_url_raw( UXTHEMES_ACCOUNT_URL ) . '" target="_blank" rel="noopener"';
+		$account_attrs = ' href="' . esc_url_raw( UXTHEMES_ACCOUNT_URL ) . '" target="_blank" rel="noopener noreferrer"';
 
 		switch ( $status ) {
 			case 400:
@@ -121,6 +121,7 @@ final class UxThemes_API {
 					return new WP_Error( $status, __( 'Sorry, an error occurred. Please try again.', 'flatsome' ), $data );
 				}
 				if ( $context === 'latest-version' ) {
+					// translators: %s: License manager link attributes.
 					return new WP_Error( $status, __( 'Flatsome was unable to get the latest version. Your site might have changed domain after you registered it.', 'flatsome' ), $data );
 				}
 				return $error;

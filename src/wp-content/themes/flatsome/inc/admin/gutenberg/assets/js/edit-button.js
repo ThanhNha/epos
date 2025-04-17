@@ -1,12 +1,12 @@
-/* global flatsome_gutenberg */
-(function (wp) {
+/* global flatsome_gutenberg, wp */
+(function () {
   'use strict'
 
   var FlatsomeGutenberg = {
     headerToolbar: null,
     editButton: null,
     init: function () {
-      if (!flatsome_gutenberg.edit_button.enabled || this.editButton) {
+      if (!flatsome_gutenberg.edit_button.enabled) {
         return
       }
 
@@ -18,15 +18,7 @@
       this.bindEvents()
     },
     addEditButton: function () {
-      // Pre WP 6.6
       this.headerToolbar = document.querySelector('.block-editor .edit-post-header__toolbar')
-
-      // WP 6.6
-      if (!this.headerToolbar) {
-        this.headerToolbar = document.querySelector(
-          '.block-editor .editor-header__toolbar'
-        )
-		  }
 
       if (!this.headerToolbar) return
       this.headerToolbar.insertAdjacentHTML('beforeend',
@@ -66,11 +58,12 @@
         }
       }, 500)
     }
+
   }
 
-  wp.domReady(function () {
-    wp.data.subscribe(function () {
+  document.addEventListener('DOMContentLoaded', function () {
+    setTimeout(function () {
       FlatsomeGutenberg.init()
-    })
+    }, 10)
   })
-}(window.wp))
+}())

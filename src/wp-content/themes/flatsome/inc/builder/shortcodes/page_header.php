@@ -203,7 +203,12 @@ add_ux_builder_shortcode( 'page_header', array(
           'type' => 'select',
           'heading' => 'Size',
           'default' => 'large',
-          'options' => flatsome_ux_builder_image_sizes()
+          'options' => array(
+            'original' => 'Original',
+            'large' => 'Large',
+            'medium' => 'Medium',
+            'thumbnail' => 'Thumbnail',
+          )
         ),
         'bg_color' => array(
           'type' => 'colorpicker',

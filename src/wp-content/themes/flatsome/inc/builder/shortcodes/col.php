@@ -115,16 +115,6 @@ add_ux_builder_shortcode( 'col', array(
 			    ''     => array( 'title' => 'Off' ),
 		    ),
 	    ),
-	    'sticky_mode' => array(
-		    'type'       => 'select',
-		    'heading'    => 'Sticky mode',
-		    'conditions' => 'sticky === "true"',
-		    'default'    => '',
-		    'options'    => array(
-			    ''           => 'CSS (native)',
-			    'javascript' => 'JavaScript (enhanced)',
-		    ),
-	    ),
         'text_depth' => array(
               'type' => 'slider',
               'heading' => __('Text Shadow'),
@@ -137,7 +127,6 @@ add_ux_builder_shortcode( 'col', array(
         'max_width' => array(
             'type' => 'scrubfield',
             'heading' => 'Max Width',
-            'responsive' => true,
             'default' => '',
             'min' => '0'
         ),

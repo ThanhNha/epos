@@ -116,9 +116,9 @@ if(!function_exists('flatsome_defaults')){
       'contact_phone' => '+47 900 99 000',
       'contact_email' => 'youremail@gmail.com',
       'type_headings' => array('font-family'=> 'Lato','variant' => '700'),
-      'type_texts' => array('font-family'=> 'Lato','variant' => 'regular'),
+      'type_texts' => array('font-family'=> 'Lato','variant' => '400'),
       'type_nav' => array('font-family'=> 'Lato','variant' => '700'),
-      'type_alt' => array('font-family'=> 'Dancing Script','variant' => 'regular'),
+      'type_alt' => array('font-family'=> 'Dancing Script','variant' => '400'),
       'nav_uppercase_bottom' => 1,
       'breadcrumb_title_pos' => 'left',
       'breadcrumb_nav_pos' => 'right',
@@ -131,6 +131,8 @@ if(!function_exists('flatsome_defaults')){
       'footer_1_columns' => '4',
       'footer_2_columns' => '4',
       'footer_bottom_text' => 'dark',
+      // Optimize
+      'lazy_load_backgrounds' => 1,
       'lazy_load_scripts' => 0,
       'payment_icons' => array('visa','paypal','stripe','mastercard','cashondelivery'),
     );

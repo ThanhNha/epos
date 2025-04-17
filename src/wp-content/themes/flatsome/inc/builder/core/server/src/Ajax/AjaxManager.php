@@ -32,7 +32,6 @@ class AjaxManager {
     add_action( 'wp_ajax_ux_builder_save_custom_template', array( $this, 'save_custom_template' ) );
     add_action( 'wp_ajax_ux_builder_delete_custom_template', array( $this, 'delete_custom_template' ) );
     add_action( 'wp_ajax_ux_builder_to_array', array( $this, 'to_array' ) );
-    add_action( 'wp_ajax_ux_builder_copy_as_shortcode', array( $this, 'copy_as_shortcode' ) );
     add_action( 'wp_ajax_ux_builder_parse_presets', array( $this, 'parse_presets' ) );
     add_action( 'wp_ajax_ux_builder_import_media', array( $this, 'import_media' ) );
 
@@ -86,7 +85,7 @@ class AjaxManager {
     );
 
     if ( array_key_exists( 'id', $data ) ) {
-      $args['ID'] = intval( $data['id'] );
+      $args['ID'] = $data['id'];
       $post_id = wp_update_post( $args, true );
     } else {
       $post_id = wp_insert_post( $args, true );
@@ -167,31 +166,6 @@ class AjaxManager {
       'content' => $post_array->get_array()
     ) );
   }
-
-	/**
-	 * Converts a shortcode array to raw shortcode content.
-	 */
-	public function copy_as_shortcode() {
-		if ( ! isset( $_POST['post_id'] ) || ! (int) $_POST['post_id'] ) {
-			wp_die();
-		}
-
-		$post_id   = (int) $_POST['post_id'];
-		$shortcode = array();
-
-		check_ajax_referer( 'ux-builder-' . $post_id, 'security' );
-
-		if ( ! empty( $_POST['data'] ) && ! empty( $_POST['data']['shortcode'] ) ) {
-			$shortcode = wp_unslash( (array) $_POST['data']['shortcode'] );
-		}
-
-		$transformer = ux_builder( 'to-string' );
-		$raw         = $transformer->transform( array( $shortcode ) );
-
-		wp_send_json_success( array(
-			'content' => $raw,
-		) );
-	}
 
   /**
    * Importa external meda files.

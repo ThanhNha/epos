@@ -58,11 +58,13 @@ return array(
                 'type' => 'select',
                 'heading' => __( 'Size' ),
                 'default' => '',
-                'options' => flatsome_ux_builder_image_sizes(
-                    array(
-                        '' => 'Default'
-                    )
-                ),
+                'options' => array(
+                    '' => 'Default',
+                    'large' => 'Large',
+                    'medium' => 'Medium',
+                    'thumbnail' => 'Thumbnail',
+                    'original' => 'Original',
+                )
             ),
 
             'image_overlay' => array(

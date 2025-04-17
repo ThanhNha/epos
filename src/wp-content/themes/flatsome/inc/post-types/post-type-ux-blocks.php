@@ -3,8 +3,7 @@
 register_post_type( 'blocks',
 	array(
 		'labels'              => array(
-			'add_new'            => __( 'Add New', "blocks" ),
-			'add_new_item'       => __( 'Add New Block', "blocks" ),
+			'add_new_item'       => __( 'Add block', "blocks" ),
 			'name'               => __( 'UX Blocks', "blocks" ),
 			'singular_name'      => __( 'Block', "blocks" ),
 			'edit_item'          => __( 'Edit Block', "blocks" ),
@@ -17,7 +16,7 @@ register_post_type( 'blocks',
 		'has_archive'         => false,
 		'show_in_menu'        => true,
 		'supports'            => array( 'thumbnail', 'editor', 'title', 'revisions', 'custom-fields' ),
-		'show_in_nav_menus'   => false,
+		'show_in_nav_menus'   => true,
 		'exclude_from_search' => true,
 		'rewrite'             => array( 'slug' => '' ),
 		'publicly_queryable'  => true,
@@ -32,16 +31,15 @@ register_post_type( 'blocks',
 	)
 );
 
-function my_edit_blocks_columns( $columns ) {
-	$_columns = array();
-	foreach ( $columns as $key => $title ) {
-		$_columns[ $key ] = $title;
-		if ( $key == 'title' ) {
-			$_columns['shortcode'] = __( 'Shortcode', 'blocks' );
-		}
-	}
+function my_edit_blocks_columns() {
+	$columns = array(
+		'cb'        => '<input type="checkbox" />',
+		'title'     => __( 'Title', 'blocks' ),
+		'shortcode' => __( 'Shortcode', 'blocks' ),
+		'date'      => __( 'Date', 'blocks' ),
+	);
 
-	return $_columns;
+	return $columns;
 }
 
 add_filter( 'manage_edit-blocks_columns', 'my_edit_blocks_columns' );
@@ -56,6 +54,7 @@ function my_manage_blocks_columns( $column, $post_id ) {
 			break;
 	}
 }
+
 add_action( 'manage_blocks_posts_custom_column', 'my_manage_blocks_columns', 10, 2 );
 
 
@@ -101,7 +100,7 @@ function ux_block_frontend() {
 		?>
 		<script>
           jQuery(document).ready(function ($) {
-            $.scrollTo('#<?php echo esc_attr( $_GET["block"] );?>')
+            $.scrollTo('#<?php echo esc_attr( $_GET["block"] );?>', 300, {offset: -200})
           })
 		</script>
 		<?php
@@ -172,7 +171,6 @@ if ( ! function_exists( 'blocks_categories' ) ) {
 			'public'            => false,
 			'show_ui'           => true,
 			'show_in_nav_menus' => true,
-			'show_admin_column' => true,
 		);
 		register_taxonomy( 'block_categories', array( 'blocks' ), $args );
 
@@ -181,40 +179,3 @@ if ( ! function_exists( 'blocks_categories' ) ) {
 	// Hook into the 'init' action
 	add_action( 'init', 'blocks_categories', 0 );
 }
-
-function flatsome_blocks_taxonomy_filters() {
-	global $typenow;
-
-	// An array of all the taxonomies you want to display. Use the taxonomy name or slug
-	$taxonomies = array( 'block_categories' );
-
-	// Must set this to the post type you want the filter(s) displayed on
-	if ( 'blocks' != $typenow ) {
-		return;
-	}
-
-	foreach ( $taxonomies as $tax_slug ) {
-		$current_tax_slug = isset( $_GET[ $tax_slug ] ) ? $_GET[ $tax_slug ] : false;
-		$tax_obj          = get_taxonomy( $tax_slug );
-		$tax_name         = $tax_obj->labels->name;
-		$terms            = get_terms( $tax_slug );
-		if ( 0 == count( $terms ) ) {
-			return;
-		}
-		echo '<select name="' . esc_attr( $tax_slug ) . '" id="' . esc_attr( $tax_slug ) . '" class="postform">';
-		echo '<option value="">' . esc_html( $tax_name ) . '</option>';
-		foreach ( $terms as $term ) {
-			printf(
-				'<option value="%s"%s />%s</option>',
-				esc_attr( $term->slug ),
-				selected( $current_tax_slug, $term->slug ),
-				esc_html( $term->name . '(' . $term->count . ')' )
-			);
-		}
-		echo '</select>';
-	}
-}
-
-add_action( 'restrict_manage_posts', 'flatsome_blocks_taxonomy_filters' );
-
-
