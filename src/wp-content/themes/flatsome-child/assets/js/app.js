@@ -68,48 +68,63 @@ function toogle_shipping_popup() {
 function customAccordion() {
   const accordion = $(".accordion .accordion-title");
 
-  accordion.each(function () {
-    $(this).on("click", function (e) {
-      e.preventDefault();
+  accordion.off("click").on("click", function (e) {
+    e.preventDefault();
 
-      const $parent = $(this).parent();
-      const $content = $(this).next();
+    const $this = $(this);
+    const $parent = $this.parent();
+    const $content = $this.next();
 
-      $parent.toggleClass("shin");
+    // Optional: Close other accordion sections
+    $(".accordion .accordion-title")
+      .not($this)
+      .removeClass("active")
+      .next()
+      .slideUp(200)
+      .parent()
+      .removeClass("shin");
 
-      if ($parent.hasClass("shin")) {
-        $(this).addClass("active");
+    $parent.toggleClass("shin");
+
+    if ($parent.hasClass("shin")) {
+      $this.addClass("active");
+
+      if ($content.length) {
         $content.slideDown(200, function () {
+          // Scroll to the opened section on mobile
           if (
             /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(
               navigator.userAgent
             ) &&
             $.fn.scrollTo
           ) {
-            $.scrollTo($(this).prev(), {
+            $.scrollTo($this, {
               duration: 300,
               offset: -100,
             });
           }
         });
+      }
 
-        window.requestAnimationFrame(() => {
-          if ($.fn.flickity) {
-            $content
-              .find("[data-flickity-options].flickity-enabled")
-              .each(function () {
-                $(this).flickity("resize");
-              });
-          }
-          if ($.fn.packery) {
-            $content.find("[data-packery-options]").packery("layout");
-          }
-        });
-      } else {
-        $(this).removeClass("active");
+      // Recalculate layouts and sliders after opening
+      window.requestAnimationFrame(() => {
+        if ($.fn.flickity) {
+          $content
+            .find("[data-flickity-options].flickity-enabled")
+            .each(function () {
+              $(this).flickity("resize");
+            });
+        }
+        if ($.fn.packery) {
+          $content.find("[data-packery-options]").packery("layout");
+        }
+      });
+    } else {
+      $this.removeClass("active");
+      if ($content.length) {
         $content.slideUp(200);
       }
-    });
+    }
   });
 }
 

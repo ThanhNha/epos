@@ -12,6 +12,9 @@
     }
   }
 }
+.no-padding-bottom{
+  padding-bottom: 0px !important;
+}
 section.mobile-no-padding {
   @include only-mobile {
     padding-bottom: 0px !important;
