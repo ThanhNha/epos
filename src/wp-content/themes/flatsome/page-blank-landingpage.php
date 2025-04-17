@@ -1,11 +1,14 @@
 <?php
-/*
-Template name: Page - No Header / No Footer
-*/
+/**
+ * Template name: Page - No Header / No Footer
+ *
+ * @package          Flatsome\Templates
+ * @flatsome-version 3.18.0
+ */
+
 ?>
 <!DOCTYPE html>
-<!--[if lte IE 9 ]><html <?php language_attributes(); ?> class="ie lt-ie9 <?php flatsome_html_classes(); ?>"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--><html <?php language_attributes(); ?> class="<?php flatsome_html_classes(); ?>"> <!--<![endif]-->
+<html <?php language_attributes(); ?> class="<?php flatsome_html_classes(); ?>">
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>" />
 	<link rel="profile" href="http://gmpg.org/xfn/11" />
@@ -26,7 +29,15 @@ Template name: Page - No Header / No Footer
 	<div id="main" class="<?php flatsome_main_classes();  ?>">
 
 	<?php while ( have_posts() ) : the_post(); ?>
+
 		<?php the_content(); ?>
+
+		<?php
+		if ( comments_open() || get_comments_number() ) {
+			comments_template();
+		}
+		?>
+
 	<?php endwhile; // end of the loop. ?>
 
 	</div>

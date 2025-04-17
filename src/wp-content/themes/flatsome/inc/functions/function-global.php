@@ -1,6 +1,15 @@
 <?php
 
 /**
+ * Get the Flatsome instance.
+ *
+ * @return Flatsome
+ */
+function flatsome() {
+	return Flatsome::get_instance();
+}
+
+/**
  * Get the Flatsome Envato instance.
  */
 function flatsome_envato() {
@@ -8,32 +17,48 @@ function flatsome_envato() {
 }
 
 /**
- * Enqueues a webpack bundle.
+ * Register a webpack bundle.
  *
  * @param string $handle       Script handle name.
- * @param string $path         Path to asset fille.
+ * @param string $entrypoint   The entrypoint name.
  * @param array  $dependencies Extra dependencies.
  * @return void
  */
-function flatsome_enqueue_asset( $handle, $path, $dependencies = array() ) {
+function flatsome_register_asset( $handle, $entrypoint, $dependencies = array() ) {
+	$filename     = "js/$entrypoint.js";
 	$theme        = wp_get_theme( get_template() );
 	$version      = $theme->get( 'Version' );
 	$template_dir = get_template_directory();
 	$template_uri = get_template_directory_uri();
-	$script_path  = "$template_dir/assets/js/$path.asset.php";
-	$script_url   = "$template_uri/assets/js/$path.js";
+	$assets_path  = "$template_dir/assets/assets.php";
+	$script_url   = "$template_uri/assets/$filename";
 
-	$script_asset = file_exists( $script_path )
-		? require $script_path
+	$assets = file_exists( $assets_path ) ? require $assets_path : array();
+
+	$script_asset = isset( $assets[ $filename ] )
+		? $assets[ $filename ]
 		: array( 'dependencies' => array(), 'version' => $version );
 
-	wp_enqueue_script(
+	wp_register_script(
 		$handle,
 		$script_url,
 		array_merge( $script_asset['dependencies'], $dependencies ),
 		$script_asset['version'],
 		true
 	);
+}
+
+/**
+ * Enqueues a webpack bundle.
+ *
+ * @param string $handle       Script handle name.
+ * @param string $entrypoint   The entrypoint name.
+ * @param array  $dependencies Extra dependencies.
+ * @return void
+ */
+function flatsome_enqueue_asset( $handle, $entrypoint, $dependencies = array() ) {
+	flatsome_register_asset( $handle, $entrypoint, $dependencies );
+	wp_enqueue_script( $handle );
 }
 
 /**
@@ -159,7 +184,7 @@ function flatsome_facebook_accounts() {
   $theme_mod = get_theme_mod( 'facebook_accounts', array() );
 
   return array_filter( $theme_mod, function ( $account ) {
-    return ! empty( $account );
+    return ! empty( $account ) && is_array( $account );
   } );
 }
 
@@ -171,7 +196,7 @@ function flatsome_facebook_accounts() {
  * @return string
  */
 function flatsome_facebook_api_version() {
-  return 'v8.0';
+  return 'v14.0';
 }
 
 // Get block id by ID or slug.
@@ -240,6 +265,39 @@ function flatsome_get_block_list_by_id( $args = '' ) {
 }
 
 /**
+ * Retrieves a page given its title.
+ *
+ * @param string       $page_title Page title.
+ * @param string       $output     Optional. The required return type. One of OBJECT, ARRAY_A, or ARRAY_N, which
+ *                                 correspond to a WP_Post object, an associative array, or a numeric array,
+ *                                 respectively. Default OBJECT.
+ * @param string|array $post_type  Optional. Post type or array of post types. Default 'page'.
+ *
+ * @return WP_Post|array|null WP_Post (or array) on success, or null on failure.
+ */
+function flatsome_get_page_by_title( $page_title, $output = OBJECT, $post_type = 'page' ) {
+	$args  = array(
+		'title'                  => $page_title,
+		'post_type'              => $post_type,
+		'post_status'            => get_post_stati(),
+		'posts_per_page'         => 1,
+		'update_post_term_cache' => false,
+		'update_post_meta_cache' => false,
+		'no_found_rows'          => true,
+		'orderby'                => 'post_date ID',
+		'order'                  => 'ASC',
+	);
+	$query = new WP_Query( $args );
+	$pages = $query->posts;
+
+	if ( empty( $pages ) ) {
+		return null;
+	}
+
+	return get_post( $pages[0], $output );
+}
+
+/**
  * Calls a shortcode function by its tag name.
  *
  * @param string $tag     The shortcode of the function to be called.
@@ -249,7 +307,6 @@ function flatsome_get_block_list_by_id( $args = '' ) {
  * @return bool|string If a shortcode tag doesn't exist => false, if exists => the result of the shortcode.
  */
 function flatsome_apply_shortcode( $tag, $atts = array(), $content = null ) {
-
 	global $shortcode_tags;
 
 	if ( ! isset( $shortcode_tags[ $tag ] ) ) return false;
@@ -302,6 +359,52 @@ function flatsome_theme_key( $slug = null ) {
 }
 
 /**
+ * Callback to sort on priority.
+ *
+ * @param int $a First item.
+ * @param int $b Second item.
+ *
+ * @return bool
+ */
+function flatsome_sort_on_priority( $a, $b ) {
+	if ( ! isset( $a['priority'], $b['priority'] ) ) {
+		return - 1;
+	}
+
+	if ( $a['priority'] === $b['priority'] ) {
+		return 0;
+	}
+
+	return $a['priority'] < $b['priority'] ? - 1 : 1;
+}
+
+/**
+ * Clean variables using sanitize_text_field. Arrays are cleaned recursively.
+ * Non-scalar values are ignored.
+ *
+ * @param string|array $data Data to sanitize.
+ *
+ * @return string|array
+ * @see wc_clean()
+ */
+function flatsome_clean( $data ) {
+	if ( is_array( $data ) ) {
+		return array_map( 'flatsome_clean', $data );
+	} else {
+		return is_scalar( $data ) ? sanitize_text_field( $data ) : $data;
+	}
+}
+
+/**
+ * Retrieves the directory path for the theme uploaded fonts.
+ *
+ * @return string The directory path for the theme uploaded fonts.
+ */
+function flatsome_get_fonts_dir() {
+	return WP_CONTENT_DIR . '/fonts';
+}
+
+/**
  * Check if support is expired.
  *
  * @return bool
@@ -330,4 +433,134 @@ function flatsome_is_invalid_support_time( $support_ends ) {
  */
 function flatsome_is_theme_enabled() {
 	return flatsome_envato()->registration->is_registered();
+}
+
+/**
+ * Flatsome Payment Icons List.
+ *
+ * Returns a list of Flatsome Payment Icons.
+ *
+ * @return array Payment Icons list.
+ */
+function flatsome_get_payment_icons_list() {
+	return apply_filters( 'flatsome_payment_icons', array(
+		'amazon'          => __( 'Amazon', 'flatsome-admin' ),
+		'americanexpress' => __( 'American Express', 'flatsome-admin' ),
+		'applepay'        => __( 'Apple Pay', 'flatsome-admin' ),
+		'afterpay'        => __( 'AfterPay', 'flatsome-admin' ),
+		'afterpay-2'      => __( 'AfterPay 2', 'flatsome-admin' ),
+		'alipay'          => __( 'Alipay', 'flatsome-admin' ),
+		'atm'             => __( 'Atm', 'flatsome-admin' ),
+		'bancontact'      => __( 'Bancontact', 'flatsome-admin' ),
+		'bankomat'        => __( 'Bankomat', 'flatsome-admin' ),
+		'banktransfer'    => __( 'Bank Transfer', 'flatsome-admin' ),
+		'belfius'         => __( 'Belfius', 'flatsome-admin' ),
+		'bitcoin'         => __( 'BitCoin', 'flatsome-admin' ),
+		'braintree'       => __( 'Braintree', 'flatsome-admin' ),
+		'cartasi'         => __( 'CartaSi', 'flatsome-admin' ),
+		'cashcloud'       => __( 'CashCloud', 'flatsome-admin' ),
+		'cashondelivery'  => __( 'Cash On Delivery', 'flatsome-admin' ),
+		'cashonpickup'    => __( 'Cash on Pickup', 'flatsome-admin' ),
+		'cbc'             => __( 'CBC', 'flatsome-admin' ),
+		'cirrus'          => __( 'Cirrus', 'flatsome-admin' ),
+		'clickandbuy'     => __( 'Click and Buy', 'flatsome-admin' ),
+		'creditcard'      => __( 'Credit Card', 'flatsome-admin' ),
+		'creditcard2'     => __( 'Credit Card 2', 'flatsome-admin' ),
+		'dancard'         => __( 'DanKort', 'flatsome-admin' ),
+		'dinnersclub'     => __( 'Dinners Club', 'flatsome-admin' ),
+		'discover'        => __( 'Discover', 'flatsome-admin' ),
+		'elo'             => __( 'Elo', 'flatsome-admin' ),
+		'eps'             => __( 'Eps', 'flatsome-admin' ),
+		'facture'         => __( 'Facture', 'flatsome-admin' ),
+		'fattura'         => __( 'Fattura', 'flatsome-admin' ),
+		'flattr'          => __( 'Flattr', 'flatsome-admin' ),
+		'giropay'         => __( 'GiroPay', 'flatsome-admin' ),
+		'googlepay'       => __( 'Google Pay', 'flatsome-admin' ),
+		'googlewallet'    => __( 'Google Wallet', 'flatsome-admin' ), // Deprecated, changed to Google Pay.
+		'hiper'           => __( 'Hiper', 'flatsome-admin' ),
+		'ideal'           => __( 'IDeal', 'flatsome-admin' ),
+		'interac'         => __( 'Interac', 'flatsome-admin' ),
+		'invoice'         => __( 'Invoice', 'flatsome-admin' ),
+		'jcb'             => __( 'JCB', 'flatsome-admin' ),
+		'kbc'             => __( 'KBC', 'flatsome-admin' ),
+		'klarna'          => __( 'Klarna', 'flatsome-admin' ),
+		'maestro'         => __( 'Maestro', 'flatsome-admin' ),
+		'mastercard'      => __( 'MasterCard', 'flatsome-admin' ),
+		'mastercard-2'    => __( 'MasterCard 2', 'flatsome-admin' ),
+		'mir'             => __( 'Mir', 'flatsome-admin' ),
+		'moip'            => __( 'Moip', 'flatsome-admin' ),
+		'mollie'          => __( 'Mollie', 'flatsome-admin' ),
+		'ogone'           => __( 'Ogone', 'flatsome-admin' ),
+		'paybox'          => __( 'Paybox', 'flatsome-admin' ),
+		'paylife'         => __( 'Paylife', 'flatsome-admin' ),
+		'paymill'         => __( 'PayMill', 'flatsome-admin' ),
+		'paypal'          => __( 'PayPal', 'flatsome-admin' ),
+		'paypal-2'        => __( 'PayPal 2', 'flatsome-admin' ),
+		'paysafe'         => __( 'PaySafe', 'flatsome-admin' ),
+		'paysera'         => __( 'Paysera', 'flatsome-admin' ),
+		'payshop'         => __( 'PayShop', 'flatsome-admin' ),
+		'paytm'           => __( 'Paytm', 'flatsome-admin' ),
+		'payu'            => __( 'PayU', 'flatsome-admin' ),
+		'postepay'        => __( 'Postepay', 'flatsome-admin' ),
+		'quick'           => __( 'Quick', 'flatsome-admin' ),
+		'rechung'         => __( 'Rechung', 'flatsome-admin' ),
+		'revolut'         => __( 'Revolut', 'flatsome-admin' ),
+		'ripple'          => __( 'Ripple', 'flatsome-admin' ),
+		'rupay'           => __( 'RuPay', 'flatsome-admin' ),
+		'sage'            => __( 'Sage', 'flatsome-admin' ),
+		'sepa'            => __( 'Sepa', 'flatsome-admin' ),
+		'six'             => __( 'Six', 'flatsome-admin' ),
+		'skrill'          => __( 'Skrill', 'flatsome-admin' ),
+		'sofort'          => __( 'Sofort', 'flatsome-admin' ),
+		'square'          => __( 'Square', 'flatsome-admin' ),
+		'stripe'          => __( 'Stripe', 'flatsome-admin' ),
+		'swish'           => __( 'Swish (SE)', 'flatsome-admin' ),
+		'truste'          => __( 'Truste', 'flatsome-admin' ),
+		'twint'           => __( 'Twint', 'flatsome-admin' ),
+		'unionpay'        => __( 'UnionPay', 'flatsome-admin' ),
+		'venmo'           => __( 'Venmo', 'flatsome-admin' ),
+		'verisign'        => __( 'VeriSign', 'flatsome-admin' ),
+		'vipps'           => __( 'Vipps', 'flatsome-admin' ),
+		'visa'            => __( 'Visa', 'flatsome-admin' ),
+		'visa1'           => __( 'Visa 2', 'flatsome-admin' ),
+		'visaelectron'    => __( 'Visa Electron', 'flatsome-admin' ),
+		'westernunion'    => __( 'Western Union', 'flatsome-admin' ),
+		'wirecard'        => __( 'Wirecard', 'flatsome-admin' ),
+	) );
+}
+
+/**
+ * Get an HTML img element representing an image attachment
+ *
+ * @uses wp_get_attachment_image()
+ *
+ * @param int          $attachment_id Image attachment ID.
+ * @param string|int[] $size          Optional. Image size. Accepts any registered image size name, or an array
+ *                                    of width and height values in pixels (in that order). Default 'thumbnail'.
+ * @param bool         $icon          Optional. Whether the image should be treated as an icon. Default false.
+ * @param string|array $attr {
+ *     Optional. Attributes for the image markup.
+ *
+ *     @type string       $src      Image attachment URL.
+ *     @type string       $class    CSS class name or space-separated list of classes.
+ *                                  Default `attachment-$size_class size-$size_class`,
+ *                                  where `$size_class` is the image size being requested.
+ *     @type string       $alt      Image description for the alt attribute.
+ *     @type string       $srcset   The 'srcset' attribute value.
+ *     @type string       $sizes    The 'sizes' attribute value.
+ *     @type string|false $loading  The 'loading' attribute value. Passing a value of false
+ *                                  will result in the attribute being omitted for the image.
+ *                                  Defaults to 'lazy', depending on wp_lazy_loading_enabled().
+ *     @type string       $decoding The 'decoding' attribute value. Possible values are
+ *                                  'async' (default), 'sync', or 'auto'. Passing false or an empty
+ *                                  string will result in the attribute being omitted.
+ * }
+ * @return string HTML img element or empty string on failure.
+ */
+function flatsome_get_attachment_image_no_srcset( $attachment_id, $size = 'thumbnail', $icon = false, $attr = '' ) {
+	add_filter( 'wp_calculate_image_srcset_meta', '__return_null' );
+	$html = wp_get_attachment_image( $attachment_id, $size, $icon, $attr );
+	remove_filter( 'wp_calculate_image_srcset_meta', '__return_null' );
+
+	return $html;
 }

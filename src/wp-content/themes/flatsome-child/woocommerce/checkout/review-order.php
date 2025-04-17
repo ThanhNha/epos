@@ -71,7 +71,7 @@ defined('ABSPATH') || exit;
 			<th>
 				<div class="subtotal-custom">
 					<span>
-						<?php esc_html_e('Subtotal (Include GST)', 'woocommerce'); ?>
+						<?php esc_html_e('Subtotal (Exclude GST)', 'woocommerce'); ?>
 					</span>
 					<p><?php echo deduct_the_amount_shipping_fee(calculator_subtotal_price(), 150) ?></p>
 				</div>

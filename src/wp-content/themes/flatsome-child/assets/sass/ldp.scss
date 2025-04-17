@@ -1,0 +1,209 @@
+$color-ldp: #2eaf7d;
+$main-ldp: #191a15;
+$text-ldp: #a6a6a6;
+$radius: 18px;
+$shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+.ldp-highlight {
+  color: $color-ldp !important;
+}
+.ldp-img-box {
+  display: flex;
+  flex-wrap: nowrap;
+
+  .box-image {
+    min-width: 60px;
+    min-height: 60px;
+    margin-left: 0px;
+    margin-right: 10px;
+    @include tablet {
+      margin-right: 20px;
+    }
+    img {
+      object-fit: scale-down;
+    }
+  }
+  .box-text {
+    width: calc(100% - 80px);
+    padding-top: 0px;
+
+    h4 {
+      font-weight: bold;
+      color: $main-ldp;
+      padding-bottom: 15px;
+      margin: 0;
+      line-height: 1;
+      font-size: 18px;
+      @include tablet {
+        font-size: 24px;
+      }
+    }
+    p {
+      color: $text-ldp;
+    }
+  }
+}
+.col-mid {
+  display: flex;
+  .col-inner {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+body.whatsapp-loyalty-program main {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  span {
+    font-family: "Plus Jakarta Sans", sans-serif;
+  }
+  h1,
+  h2 {
+    font-weight: 700;
+  }
+
+  h3,
+  h4,
+  h5 {
+    font-weight: 400;
+  }
+
+  p,
+  a {
+    font-weight: 400;
+    font-family: "Montserrat", sans-serif;
+  }
+  .btn-ldp {
+    background-color: $color-ldp !important;
+    border-radius: $radius !important;
+  }
+  .ldp-section-2 {
+    padding-bottom: 0px !important;
+  }
+  .ldp-tab {
+    justify-content: center;
+    ul {
+      justify-content: center;
+      max-width: 750px;
+      background: #fff;
+      box-shadow: $shadow;
+      padding: 10px;
+      border-radius: $radius;
+    }
+    li.active a {
+      color: #fff !important;
+      background: $color-ldp;
+    }
+    li a {
+      letter-spacing: 0.03em;
+      line-height: 2.4em;
+      margin-right: 5px;
+      padding: 0 10px;
+      @include tablet {
+        margin-right: 1em;
+        padding: 0 1.2em;
+      }
+      margin-top: 0;
+      max-width: 100%;
+      min-height: 2.5em;
+
+      text-align: center;
+      text-transform: capitalize;
+      font-size: 16px;
+      color: $main-ldp;
+      border-radius: $radius;
+
+      &::before {
+        display: none;
+      }
+    }
+  }
+
+  .ldp-bg-why-epos {
+    background: url("/wp-content/uploads/2025/04/background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: $radius;
+    overflow: hidden;
+  }
+  .ldp-accordion {
+    .toggle {
+      i {
+        display: none;
+      }
+    }
+
+    .accordion-item {
+      position: relative;
+      &::before {
+        position: absolute;
+        content: "";
+        height: 100%;
+        width: 3px;
+        background-color: #cbd5e1;
+      }
+      &.shin {
+        &::before {
+          background-color: $color-ldp;
+        }
+      }
+      margin-bottom: 20px;
+      .accordion-title {
+        border-top: 0px !important;
+        font-size: 22px;
+        span {
+          font-weight: 700;
+          color: $main-ldp;
+        }
+      }
+    }
+  }
+  .section-image-box {
+    .col .col-inner {
+      height: 100%;
+    }
+    .ldp-image-box {
+      height: 100%;
+      background: url("/wp-content/uploads/2025/04/Frame-54.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+      border-radius: $radius;
+      overflow: hidden;
+      padding: 30px;
+      .box-text-inner {
+        h3 {
+          color: $main-ldp;
+        }
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+    }
+  }
+  .ldp-grant {
+    padding-left: 0px;
+    @include tablet {
+      padding-left: 60px;
+    }
+    .ldp-heading-bg {
+      padding: 15px;
+      border-top-right-radius: $radius;
+      border-top-left-radius: $radius;
+      background: $color-ldp;
+      h3 {
+        margin-bottom: 0;
+        font-weight: bold;
+        color: #fff;
+      }
+    }
+    .box {
+      padding: 30px 50px;
+      background: #fff;
+      border-bottom-left-radius: $radius;
+      border-bottom-right-radius: $radius;
+    }
+  }
+}

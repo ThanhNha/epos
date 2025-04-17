@@ -24,12 +24,24 @@ final class Flatsome_Envato_Admin {
 	/**
 	 * Main Flatsome_Envato_Admin instance
 	 *
+	 * @deprecated in favor of get_instance()
 	 * @return Flatsome_Envato_Admin.
 	 */
 	public static function instance() {
+		_deprecated_function( __METHOD__, '3.19.0', 'get_instance()' );
+		return self::get_instance();
+	}
+
+	/**
+	 * Main Flatsome_Envato_Admin instance
+	 *
+	 * @return Flatsome_Envato_Admin.
+	 */
+	public static function get_instance() {
 		if ( is_null( self::$instance ) ) {
 			self::$instance = new self();
 		}
+
 		return self::$instance;
 	}
 
@@ -43,7 +55,7 @@ final class Flatsome_Envato_Admin {
 	/**
 	 * Setup instance properties
 	 *
-	 * @param Flatsome_Envato $registration The Flatsome_Envato instance.
+	 * @param Flatsome_Registration $registration The Flatsome_Registration instance.
 	 */
 	public function __construct( $registration ) {
 		$this->registration = $registration;
@@ -58,7 +70,7 @@ final class Flatsome_Envato_Admin {
 	 * Add necessary admin pages.
 	 */
 	public function add_pages() {
-		add_submenu_page( null, '', '', 'manage_options', 'flatsome-version-info', '__return_empty_string' );
+		add_submenu_page( '', '', '', 'manage_options', 'flatsome-version-info', '__return_empty_string' );
 	}
 
 	/**

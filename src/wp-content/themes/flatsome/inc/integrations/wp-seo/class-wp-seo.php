@@ -9,6 +9,8 @@
 
 namespace Flatsome\Integrations;
 
+use Flatsome_Shortcode_Image_Extractor;
+
 defined( 'ABSPATH' ) || exit;
 
 /**
@@ -28,8 +30,9 @@ class WP_Seo {
 	/**
 	 * WP_Seo constructor.
 	 */
-	public function __construct() {
+	private function __construct() {
 		add_action( 'wp', [ $this, 'integrate' ] );
+		add_filter( 'wpseo_sitemap_urlimages', [ $this, 'sitemap_url_images' ], 10, 2 );
 	}
 
 	/**
@@ -39,6 +42,7 @@ class WP_Seo {
 		// Primary term.
 		if ( get_theme_mod( 'wpseo_primary_term' ) ) {
 			add_filter( 'flatsome_woocommerce_shop_loop_category', [ $this, 'get_primary_term' ], 10, 2 );
+			add_filter( 'woocommerce_product_categories_widget_main_term', [ $this, 'make_primary_term_current_category' ] );
 		}
 		if ( get_theme_mod( 'wpseo_manages_product_layout_priority' ) ) {
 			add_filter( 'flatsome_product_block_primary_term_id', [ $this, 'get_primary_term_id' ], 10, 2 );
@@ -72,6 +76,28 @@ class WP_Seo {
 		}
 		if ( ! empty( $primary_term ) ) {
 			return $primary_term;
+		}
+
+		return $term;
+	}
+
+	/**
+	 * Make primary term the active term in category widget.
+
+	 * @param  \WP_Term $term WooCommerce main term object.
+	 *
+	 * @return \WP_Term Term object.
+	 */
+	public function make_primary_term_current_category( $term ) {
+		global $product;
+
+		$primary_term_id = $this->get_primary_term_id( false, $product );
+
+		if ( $primary_term_id ) {
+			$_term = get_term_by( 'id', $primary_term_id, 'product_cat' );
+			if ( $_term instanceof \WP_Term ) {
+				return $_term;
+			}
 		}
 
 		return $term;
@@ -156,6 +182,28 @@ class WP_Seo {
 	 */
 	public function wrap_crumb_separator( $separator ) {
 		return '<span class="divider">' . $separator . '</span>';
+	}
+
+	/**
+	 * Adds images to XML sitemap.
+	 *
+	 * @param array $images  Current post images.
+	 * @param int   $post_id The post ID.
+	 */
+	public function sitemap_url_images( $images, $post_id ) {
+		$post = get_post( $post_id );
+		if ( ! $post ) return $images;
+
+		$content = $post->post_content;
+
+		$image_extractor = Flatsome_Shortcode_Image_Extractor::get_instance();
+
+		$extracted_images = $image_extractor->extract_images( $content );
+		if ( ! empty( $extracted_images ) ) {
+			$images = array_merge( $images, $extracted_images );
+		}
+
+		return $images;
 	}
 
 	/**

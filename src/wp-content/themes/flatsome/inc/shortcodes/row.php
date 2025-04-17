@@ -55,7 +55,7 @@ function ux_row($atts, $content = null) {
   if($width !== 'custom'){
     $custom_width = '';
   } else{
-    $custom_width = 'style="max-width:'.$custom_width.'"';
+    $custom_width = 'style="max-width:' . esc_attr( $custom_width ) . '"';
   }
 
   $args = array(
@@ -76,7 +76,7 @@ function ux_row($atts, $content = null) {
 
   $classes =  implode(" ", $classes);
 
-  return '<div class="'.$classes.'" '.$custom_width.' id="'.$_id.'">'.do_shortcode( $content ).ux_builder_element_style_tag($_id, $args, $atts).'</div>';
+  return '<div class="' . esc_attr( $classes ) . '" ' . $custom_width . ' id="' . esc_attr( $_id ) . '">'.do_shortcode( $content ).ux_builder_element_style_tag($_id, $args, $atts).'</div>';
 }
 
 
@@ -100,11 +100,14 @@ function ux_col($atts, $content = null) {
     'margin__sm' => '',
     'tooltip' => '',
     'max_width' => '',
+	'max_width__md' => '',
+	'max_width__sm' => '',
     'hover' => '',
     'class' => '',
     'align' => '',
     'color' => '',
 	'sticky' => '',
+	'sticky_mode' => '',
     'parallax' => '',
     'force_first' => '',
     'bg' => '',
@@ -147,7 +150,7 @@ function ux_col($atts, $content = null) {
   if($divider) $classes[] = 'col-divided';
 
   // Add Animation Class
-  if($animate) { $animate = 'data-animate="'.$animate.'"'; }
+  if($animate) { $animate = 'data-animate="' . esc_attr( $animate ) . '"'; }
 
   // Add Align Class
   if($align) $classes_inner[] = 'text-'.$align;
@@ -166,20 +169,16 @@ function ux_col($atts, $content = null) {
   // Add Toolip Html
   $tooltip_class = '';
   if($tooltip) {
-    $tooltip = 'title="'.$tooltip.'"';
+    $tooltip = 'title="' . esc_attr( $tooltip ) . '"';
     $classes[] = 'tip-top';
   }
 
   // Parallax
-  if($parallax) $parallax = 'data-parallax-fade="true" data-parallax="'.$parallax.'"';
+  if($parallax) $parallax = 'data-parallax-fade="true" data-parallax="' . esc_attr( $parallax ) . '"';
 
 	// Inline CSS
 	$css_args = array(
-		'span'          => array(
-			'attribute' => 'max-width',
-			'value'     => $max_width,
-		),
-		'bg_color'      => array(
+		'bg_color' => array(
 			'attribute' => 'background-color',
 			'value'     => $bg_color,
 		),
@@ -201,6 +200,10 @@ function ux_col($atts, $content = null) {
 			'property' => 'border-radius',
 			'unit'     => 'px',
 		),
+		'max_width' => array(
+			'selector' => $col_inner,
+			'property' => 'max-width',
+		),
 	);
 
 	$classes          = implode( ' ', $classes );
@@ -211,8 +214,8 @@ function ux_col($atts, $content = null) {
 	ob_start();
 	?>
 
-	<div id="<?php echo $_id; ?>" class="<?php echo esc_attr( $classes ); ?>" <?php echo $attributes; ?>>
-		<?php if ( $sticky ) flatsome_sticky_column_open(); ?>
+	<div id="<?php echo esc_attr( $_id ); ?>" class="<?php echo esc_attr( $classes ); ?>" <?php echo $attributes; ?>>
+		<?php if ( $sticky ) flatsome_sticky_column_open('', $sticky_mode ); ?>
 		<div class="<?php echo esc_attr( $classes_inner ); ?>" <?php echo get_shortcode_inline_css( $css_args ); ?> <?php echo $attributes_inner; ?>>
 			<?php require __DIR__ . '/commons/border.php'; ?>
 			<?php echo do_shortcode( $content ); ?>

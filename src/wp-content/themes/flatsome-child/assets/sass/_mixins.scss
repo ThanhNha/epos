@@ -149,6 +149,16 @@ flexbox
     @content;
   }
 }
+@mixin only-tablet {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+@mixin only-mobile {
+  @media (max-width: 480px) {
+    @content;
+  }
+}
 @mixin tablet {
   @media (min-width: 768px) {
     @content;

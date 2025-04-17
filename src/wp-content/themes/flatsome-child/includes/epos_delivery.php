@@ -5,6 +5,7 @@
  *
  */
 
+
 add_filter('woocommerce_package_rates', 'customize_shipping_rates', 999);
 
 function customize_shipping_rates($rates)
@@ -49,13 +50,15 @@ function customize_shipping_rates($rates)
 
 function adjust_flat_rate($rate, $only_online_product, $has_peripherals, $has_miscellaneous, $cart_total, $flat_rate_cost)
 {
-
+  $tax_rate = get_tax_percent();
   if ($has_miscellaneous == true && $has_peripherals == false) {
     if ($cart_total >= 150) {
       $rate->cost = 0;
+      $rate->taxes = array('1' => 0);
       $rate->label = 'Free shipping';
     } else {
       $rate->cost = $flat_rate_cost;
+      $rate->taxes = array('1' => ($flat_rate_cost * $tax_rate->tax_rate) / 100);
     }
   }
 
@@ -65,6 +68,7 @@ function adjust_flat_rate($rate, $only_online_product, $has_peripherals, $has_mi
 function adjust_local_pickup($rate, $rate_key)
 {
   $rate->cost = 0;
+  $rate->taxes = array('1' => 0);
   $rate->label = '$0';
 
   return $rate;

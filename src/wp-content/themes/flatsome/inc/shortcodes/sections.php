@@ -78,7 +78,7 @@ function ux_section( $atts, $content = null ) {
 
 	$classes = array( 'section' );
 
-	$classes_bg = array( 'bg', 'section-bg', 'fill', 'bg-fill' );
+	$classes_bg = array( 'section-bg', 'fill' );
 
 	// Fix old.
 	if ( strpos( $bg, '#' ) !== false ) {
@@ -114,7 +114,7 @@ function ux_section( $atts, $content = null ) {
 	// Add Parallax.
 	if ( $parallax ) {
 		$classes[] = 'has-parallax';
-		$parallax  = 'data-parallax-container=".section" data-parallax-background data-parallax="-' . $parallax . '"';
+		$parallax  = 'data-parallax-container=".section" data-parallax-background data-parallax="-' . esc_attr( $parallax ) . '"';
 	}
 
 	// Background effects.
@@ -127,10 +127,6 @@ function ux_section( $atts, $content = null ) {
 		$classes[] = 'is-full-height';
 	}
 
-	// Lazy load.
-	$classes_bg[] = get_theme_mod( 'lazy_load_backgrounds', 1 ) ? '' : 'bg-loaded';
-	$classes_bg[] = $bg ? '' : 'bg-loaded';
-
 	if ( $border_hover ) {
 		$classes[] = 'has-hover';
 	}
@@ -138,11 +134,11 @@ function ux_section( $atts, $content = null ) {
 	$classes    = implode( ' ', $classes );
 	$classes_bg = implode( ' ', $classes_bg );
 	?>
-	<section class="<?php echo $classes; ?>" id="<?php echo $_id; ?>">
-		<div class="<?php echo $classes_bg; ?>" <?php echo $parallax; ?>>
 
+	<section class="<?php echo esc_attr( $classes ); ?>" id="<?php echo esc_attr( $_id ); ?>">
+		<div class="<?php echo esc_attr( $classes_bg ); ?>" <?php echo $parallax; ?>>
+			<?php require __DIR__ . '/commons/background-image.php'; ?>
 			<?php require( __DIR__ . '/commons/video.php' ); ?>
-
 			<?php
 			if ( $bg_overlay ) {
 				echo '<div class="section-bg-overlay absolute fill"></div>';
@@ -154,7 +150,7 @@ function ux_section( $atts, $content = null ) {
 				echo '<button class="scroll-for-more z-5 icon absolute bottom h-center" aria-label="' . esc_attr__( 'Scroll for more', 'flatsome' ) . '">' . get_flatsome_icon( 'icon-angle-down', '42px' ) . '</button>';
 			}
 			if ( $effect ) {
-				echo '<div class="effect-' . $effect . ' bg-effect fill no-click"></div>';
+				echo '<div class="effect-' . esc_attr( $effect ) . ' bg-effect fill no-click"></div>';
 			}
 			?>
 
@@ -191,42 +187,47 @@ function ux_section( $atts, $content = null ) {
 				'selector' => '.section-bg-overlay',
 				'property' => 'background-color',
 			),
-			'bg'         => array(
-				'selector' => '.section-bg.bg-loaded',
-				'property' => 'background-image',
-				'size'     => $bg_size,
-			),
 			'bg_pos'     => array(
-				'selector' => '.section-bg',
-				'property' => 'background-position',
-			),
-			'divider_top_height' => array(
-				'selector' => '.ux-shape-divider--top svg',
-				'property' => 'height',
-			),
-			'divider_top_width'  => array(
-				'selector' => '.ux-shape-divider--top svg',
-				'property' => '--divider-top-width',
-				'unit'     => '%',
-			),
-			'divider_top_fill'   => array(
-				'selector' => '.ux-shape-divider--top .ux-shape-fill',
-				'property' => 'fill',
-			),
-			'divider_height'     => array(
-				'selector' => '.ux-shape-divider--bottom svg',
-				'property' => 'height',
-			),
-			'divider_width'      => array(
-				'selector' => '.ux-shape-divider--bottom svg',
-				'property' => '--divider-width',
-				'unit'     => '%',
-			),
-			'divider_fill'       => array(
-				'selector' => '.ux-shape-divider--bottom .ux-shape-fill',
-				'property' => 'fill',
+				'selector' => '.section-bg img',
+				'property' => 'object-position',
 			),
 		);
+
+		if ( $divider_top ) {
+			$args = array_merge( $args, array(
+				'divider_top_height' => array(
+					'selector' => '.ux-shape-divider--top svg',
+					'property' => 'height',
+				),
+				'divider_top_width'  => array(
+					'selector' => '.ux-shape-divider--top svg',
+					'property' => '--divider-top-width',
+					'unit'     => '%',
+				),
+				'divider_top_fill'   => array(
+					'selector' => '.ux-shape-divider--top .ux-shape-fill',
+					'property' => 'fill',
+				),
+			) );
+		}
+
+		if ( $divider ) {
+			$args = array_merge( $args, array(
+				'divider_height' => array(
+					'selector' => '.ux-shape-divider--bottom svg',
+					'property' => 'height',
+				),
+				'divider_width'  => array(
+					'selector' => '.ux-shape-divider--bottom svg',
+					'property' => '--divider-width',
+					'unit'     => '%',
+				),
+				'divider_fill'   => array(
+					'selector' => '.ux-shape-divider--bottom .ux-shape-fill',
+					'property' => 'fill',
+				),
+			) );
+		}
 		echo ux_builder_element_style_tag( $_id, $args, $atts );
 		?>
 	</section>

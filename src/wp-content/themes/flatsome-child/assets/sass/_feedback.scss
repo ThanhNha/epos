@@ -1,0 +1,67 @@
+.row.mobile-reverse {
+  @include only-mobile {
+    flex-direction: column-reverse;
+  }
+}
+.flickity-page-dots {
+  li {
+    @include only-mobile {
+      width: 6px !important;
+      height: 6px !important;
+      margin: 0px 3px !important;
+    }
+  }
+}
+.no-padding-bottom{
+  padding-bottom: 0px !important;
+}
+section.mobile-no-padding {
+  @include only-mobile {
+    padding-bottom: 0px !important;
+  }
+}
+.col {
+  @include only-mobile {
+    padding-bottom: 10px !important;
+  }
+}
+section,
+.footer-1 {
+  @include only-mobile {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+  }
+}
+.text-center {
+  .accordion {
+    .toggle {
+      @include only-mobile {
+        margin-left: 0px;
+      }
+    }
+  }
+}
+
+.tabbed-content.show-for-small {
+  .nav.nav-pills {
+    gap: 5px;
+
+    .tab a {
+      border-radius: 8px !important;
+    }
+    .tab.active a {
+      border: 1px solid transparent !important;
+    }
+  }
+}
+
+.blog-wrapper .box-text.text-center {
+  transform: translateY(-50%);
+  top: 50%;
+}
+
+[data-animate="fadeInUp"] {
+  opacity: 1 !important;
+  transition: all 0s !important;
+  transform: translate3d(0, 0px, 0) !important;
+}

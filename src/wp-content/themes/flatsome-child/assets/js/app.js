@@ -67,38 +67,64 @@ function toogle_shipping_popup() {
 
 function customAccordion() {
   const accordion = $(".accordion .accordion-title");
-  $.each(accordion, function (indexInArray, valueOfElement) {
-    $(this).on("click", function (e) {
-      e.preventDefault();
-      $(this).parent().toggleClass("shin");
-      if ($(this).parent().hasClass("shin")) {
-        $(this)
-          .addClass("active")
-          .next()
-          .slideDown(200, function () {
+
+  accordion.off("click").on("click", function (e) {
+    e.preventDefault();
+
+    const $this = $(this);
+    const $parent = $this.parent();
+    const $content = $this.next();
+
+    // Optional: Close other accordion sections
+    $(".accordion .accordion-title")
+      .not($this)
+      .removeClass("active")
+      .next()
+      .slideUp(200)
+      .parent()
+      .removeClass("shin");
+
+    $parent.toggleClass("shin");
+
+    if ($parent.hasClass("shin")) {
+      $this.addClass("active");
+
+      if ($content.length) {
+        $content.slideDown(200, function () {
+          // Scroll to the opened section on mobile
+          if (
             /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(
               navigator.userAgent
             ) &&
-              $.scrollTo($(this).prev(), {
-                duration: 300,
-                offset: -100,
-              });
-          }),
-          window.requestAnimationFrame(function () {
-            $.fn.flickity &&
-              $(e)
-                .next()
-                .find("[data-flickity-options].flickity-enabled")
-                .each(function (t, e) {
-                  $(e).flickity("resize");
-                }),
-              $.fn.packery &&
-                $(e).next().find("[data-packery-options]").packery("layout");
-          });
-      } else {
-        $(this).removeClass("active").next().slideUp(200);
+            $.fn.scrollTo
+          ) {
+            $.scrollTo($this, {
+              duration: 300,
+              offset: -100,
+            });
+          }
+        });
       }
-    });
+
+      // Recalculate layouts and sliders after opening
+      window.requestAnimationFrame(() => {
+        if ($.fn.flickity) {
+          $content
+            .find("[data-flickity-options].flickity-enabled")
+            .each(function () {
+              $(this).flickity("resize");
+            });
+        }
+        if ($.fn.packery) {
+          $content.find("[data-packery-options]").packery("layout");
+        }
+      });
+    } else {
+      $this.removeClass("active");
+      if ($content.length) {
+        $content.slideUp(200);
+      }
+    }
   });
 }
 
@@ -111,3 +137,15 @@ $(document).ready(function () {
     hideAddPress();
   }
 });
+
+setTimeout(function () {
+  var head = jQuery("#hs-form-iframe-0").contents().find("head");
+  if (head.length > 0) {
+    var css =
+      '<style type="text/css">' +
+      ".hs-form__virality-link{display:none};.actions,form{margin-bottom:0px !important} " +
+      "</style>";
+
+    jQuery(head).append(css);
+  }
+}, 5000);
