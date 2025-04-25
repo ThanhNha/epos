@@ -20,6 +20,11 @@ section.mobile-no-padding {
     padding-bottom: 0px !important;
   }
 }
+.col.mobile-no-padding {
+  @include only-mobile {
+    padding-bottom: 0px !important;
+  }
+}
 .col {
   @include only-mobile {
     padding-bottom: 10px !important;
