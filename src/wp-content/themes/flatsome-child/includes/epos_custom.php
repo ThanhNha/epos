@@ -16,32 +16,30 @@ add_action('wp_enqueue_scripts', 'enqueue_ldp_assets');
 
 function enqueue_ldp_assets()
 {
-  if (!is_page('whatsapp-loyalty-program')) {
-    return;
+  if (is_page('whatsapp-loyalty-program') || is_page('payment-soundbox')) {
+    $version = time();
+
+    // Slick Styles
+    wp_enqueue_style('slick-css', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css', [], $version);
+    wp_enqueue_style('slick-theme', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css', ['slick-css'], $version);
+
+    // Slick Script
+    wp_enqueue_script('slick-js', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js', ['jquery'], $version, true);
+
+    // Custom Js
+    wp_enqueue_script('custom-slider-init', THEME_URL . '-child' . '/assets/js/slider.js', ['jquery', 'slick-js', 'marquee-init'], $version, true);
+
+    //Marquee
+    wp_enqueue_script('marquee-init', THEME_URL . '-child' . '/assets/js/marquee.js', ['jquery'], $version, true);
+
+    // Enqueue Google Fonts
+    wp_enqueue_style(
+      'ldp-google-fonts',
+      'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap',
+      [],
+      null
+    );
   }
-
-  $version = time();
-
-  // Slick Styles
-  wp_enqueue_style('slick-css', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css', [], $version);
-  wp_enqueue_style('slick-theme', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css', ['slick-css'], $version);
-
-  // Slick Script
-  wp_enqueue_script('slick-js', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js', ['jquery'], $version, true);
-
-  // Custom Js
-  wp_enqueue_script('custom-slider-init', THEME_URL . '-child' . '/assets/js/slider.js', ['jquery', 'slick-js', 'marquee-init'], $version, true);
-
-  //Marquee
-  wp_enqueue_script('marquee-init', THEME_URL . '-child' . '/assets/js/marquee.js', ['jquery', 'slick-js'], $version, true);
-
-  // Enqueue Google Fonts
-  wp_enqueue_style(
-    'ldp-google-fonts',
-    'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap',
-    [],
-    null
-  );
 }
 
 

@@ -1,6 +1,6 @@
 $color-ldp: #2eaf7d;
 $main-ldp: #191a15;
-$text-ldp: #a6a6a6;
+$text-ldp: #777777;
 $radius: 18px;
 $main-font: "Montserrat", sans-serif;
 $second-font: "Plus Jakarta Sans", sans-serif;
@@ -44,9 +44,32 @@ $shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
     }
   }
 }
+
+.ldp-image-box {
+  height: 100%;
+  border-radius: $radius;
+  overflow: hidden;
+  padding: 15px;
+  @include tablet {
+    padding: 30px;
+  }
+  .box-text-inner {
+    h3 {
+      color: $main-ldp;
+    }
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+}
 .mb-0 {
   p {
     margin-bottom: 0px !important;
+  }
+}
+.pr-0 {
+  @include tablet {
+    padding-right: 0px !important;
   }
 }
 .col-mid {
@@ -97,6 +120,19 @@ $shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
   display: flex !important;
   gap: 15px;
 }
+.ldp-footer .col-inner {
+  overflow: hidden;
+  border-radius: $radius;
+  .ldp-hbspt {
+    margin-bottom: -30px;
+    .col {
+      padding-bottom: 0px !important;
+    }
+    p {
+      margin-bottom: 0;
+    }
+  }
+}
 body.whatsapp-loyalty-program {
   header#header,
   footer#footer {
@@ -106,13 +142,14 @@ body.whatsapp-loyalty-program {
   }
 }
 body.whatsapp-loyalty-program main {
-  background-image: url("/wp-content/uploads/2025/04/Group-253.png");
+  // background-image: url("/wp-content/uploads/2025/04/Group-253.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top right;
 }
 
-body.whatsapp-loyalty-program main {
+body.whatsapp-loyalty-program main,
+body.payment-soundbox main {
   h1,
   h2,
   h3,
@@ -140,7 +177,28 @@ body.whatsapp-loyalty-program main {
   .btn-ldp {
     background-color: $color-ldp !important;
     border-radius: $radius !important;
+    font-weight: 500;
+    &.white {
+      width: fit-content;
+      max-width: 250px;
+      background-color: #fff !important;
+      color: $color-ldp !important;
+    }
+    &.large {
+      padding: 8px 24px;
+      border-radius: 30px !important;
+    }
+    &.border {
+      border: 1px solid #fff;
+      background: transparent !important;
+    }
+    &.main {
+      background: $blue !important;
+    }
   }
+}
+
+body.whatsapp-loyalty-program main {
   .ldp-section-2 {
     padding-bottom: 0px !important;
   }
@@ -159,8 +217,10 @@ body.whatsapp-loyalty-program main {
       box-shadow: $shadow;
       padding: 10px;
       border-radius: 8px;
-      margin-bottom: 40px;
+      margin-bottom: 16px;
+
       @include tablet {
+        margin-bottom: 40px;
         justify-content: space-between;
       }
     }
@@ -191,6 +251,18 @@ body.whatsapp-loyalty-program main {
         display: none;
       }
     }
+
+    .tab-panels {
+      #tab_registration,
+      #tab_engagement {
+        .row {
+          flex-direction: column-reverse;
+          @include tablet {
+            flex-direction: row;
+          }
+        }
+      }
+    }
   }
 
   .ldp-bg-why-epos {
@@ -199,6 +271,13 @@ body.whatsapp-loyalty-program main {
     background-size: cover;
     border-radius: $radius;
     overflow: hidden;
+    @include only-mobile {
+      .mobile-no-padding {
+        .col-inner {
+          padding-bottom: 0px !important;
+        }
+      }
+    }
   }
   .sp-image {
     margin: 0px auto !important;
@@ -346,7 +425,10 @@ body.whatsapp-loyalty-program main {
   .testimonial-slider {
     .tes-item {
       position: relative;
-      max-width: 33%;
+      max-width: 100%;
+      @include tablet {
+        max-width: 33%;
+      }
       background: #fff;
       box-shadow: $shadow;
       padding: 24px;
@@ -360,7 +442,7 @@ body.whatsapp-loyalty-program main {
         right: -10px;
         background-size: cover;
         background-repeat: no-repeat;
-        background-image: url("/wp-content/uploads/2025/04/bde-icon-icon.png");
+        // background-image: url("/wp-content/uploads/2025/04/bde-icon-icon.png");
       }
     }
     .box-image {
@@ -371,7 +453,30 @@ body.whatsapp-loyalty-program main {
     }
     .tes-description {
       margin-top: 20px;
-      min-height: 155px;
+      p {
+        min-height: 180px;
+      }
+      display: -webkit-box;
+      -webkit-line-clamp: 7;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 10px;
+
+      .read-more-icon {
+        position: absolute;
+        bottom: 27px;
+        right: 0;
+        padding: 5px 10px;
+        background: #fff;
+        cursor: pointer;
+        font-size: 14px;
+        color: #2eaf7d !important;
+        font-weight: bold;
+      }
+      .learn-more-btn:nth-child(3) {
+        display: none;
+      }
     }
     .star-icon {
       max-width: 150px;
@@ -396,10 +501,7 @@ body.whatsapp-loyalty-program main {
       padding-bottom: 40px;
     }
   }
-  .ldp-footer .col-inner {
-    overflow: hidden;
-    border-radius: $radius;
-  }
+
   .ldp-col-accodior {
     padding-left: 0;
     padding-bottom: 280px !important;
@@ -456,21 +558,182 @@ body.whatsapp-loyalty-program main {
       }
     }
   }
-  .gallery-marquee {
+
+  .ldp-member-portal {
+    @include tablet {
+      max-width: 480px;
+    }
+  }
+  .mkt-ai {
+    .mkt-col {
+      position: static;
+      .col-inner {
+        position: static;
+      }
+    }
+    .btn-ldp.white {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      width: 250px;
+      @include tablet {
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: translate(0);
+      }
+    }
+  }
+  .ldp-feature-img {
+    img {
+      width: auto !important;
+      text-align: center;
+      max-height: 60px;
+      max-width: 120px;
+    }
     .gallery-col {
-      width: 200px !important;
-      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .box-image {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+
+  /* Modal styles */
+  .modal.tes-modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    .modal-content {
+      background-color: #fff;
+      margin: auto;
+      padding: 30px 20px;
+      @include tablet {
+        padding: 50px;
+      }
+      width: 80%;
+      max-width: 600px;
+      border-radius: 10px;
+      position: relative;
+    }
+
+    .close {
+      color: #aaa;
+      position: absolute;
+      top: 0px;
+      right: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      color: #000;
+    }
+  }
+
+  .gallery-marquee {
+    margin-top: -10px;
+    margin-bottom: 20px;
+    height: 120px;
+    overflow: hidden;
+
+    .gallery-customize {
+      position: relative;
+      max-width: auto !important;
+      width: 100%;
+      display: block !important;
+      margin: 0 !important;
+      height: 120px;
+    }
+    .gallery-col {
+      max-width: 120px !important;
+      height: 120px;
+      width: 50%;
+      min-width: 120px !important;
+      flex-basis: auto !important;
       display: inline-block;
       padding: 0px !important;
       margin-left: 8px;
     }
+    .box-image {
+      padding: 0% !important;
+      img {
+        object-fit: scale-down !important;
+      }
+    }
   }
-  .ldp-hbspt {
-    margin-bottom: -30px;
-  }
-  .ldp-member-portal {
+
+  .customer-section {
+    flex-direction: column-reverse;
     @include tablet {
-      max-width: 480px;
+      flex-direction: row;
+    }
+  }
+}
+
+//Sound box page
+body.payment-soundbox main {
+  footer#footer {
+    display: none;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  .sound-box-image-box {
+    .col {
+      .col-inner {
+        height: 100%;
+      }
+    }
+    .ldp-image-box {
+      background: #fff;
+      img {
+        max-height: 270px;
+      }
+    }
+  }
+
+  .ldp-claim-row {
+    background: $color-ldp;
+    border-radius: 24px;
+    overflow: hidden;
+    .content-col {
+      padding-left: 20px;
+      @include tablet {
+        padding-left: 50px;
+      }
+    }
+    .content-img {
+      padding: 0px !important;
+    }
+  }
+
+  .sound-box-review {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    padding: 20px;
+    border-radius: $radius;
+
+    @include tablet {
+      padding: 40px;
+    }
+    .box-image {
+      margin-right: 10px;
+      max-width: 250px;
     }
   }
 }

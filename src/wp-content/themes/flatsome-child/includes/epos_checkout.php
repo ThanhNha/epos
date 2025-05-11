@@ -1,9 +1,10 @@
 <?php
 add_filter('woocommerce_billing_fields', 'custom_billing_fields', 90, 1);
-function custom_billing_fields( $fields ) {
-    $fields['billing_company']['required'] = true;
+function custom_billing_fields($fields)
+{
+  $fields['billing_company']['required'] = true;
 
-    return $fields;
+  return $fields;
 }
 // add_filter('woocommerce_billing_fields', 'modify_when_is_local_pickup', 1000, 1);
 function modify_when_is_local_pickup($fields)
@@ -42,7 +43,7 @@ function custom_override_checkout_fields($fields)
   $fields['billing']['billing_address_2']['placeholder'] = __('Apartment, suite, unit etc...', 'woocommerce');
   $fields['billing']['billing_address_2']['required'] = true; // Making Address 2 field required
   $fields['billing_company']['required'] = true;
-//  var_dump($fields);
+  //  var_dump($fields);
   return $fields;
 }
 
@@ -81,7 +82,7 @@ function remove_billing_checkout_fields($fields)
 add_filter('woocommerce_checkout_fields', 'disable_shipping_local_pickup');
 function disable_shipping_local_pickup($fields)
 {
-
+  if (!is_checkout()) return;
   // Hide shipping on checkout load
 
   $shipping_method = 'local_pickup:2';
