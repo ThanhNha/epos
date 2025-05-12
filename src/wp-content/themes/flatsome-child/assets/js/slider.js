@@ -117,7 +117,7 @@ jQuery(document).ready(function ($) {
       neutral: 200,
       random: false,
     });
-  }, 1000);
+  }, 2000);
 
   setTimeout(function () {
     var head = jQuery("#hs-form-iframe-0").contents().find("head");
