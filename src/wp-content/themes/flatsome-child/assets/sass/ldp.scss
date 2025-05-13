@@ -652,6 +652,10 @@ body.whatsapp-loyalty-program main {
     margin-top: -10px;
     margin-bottom: 20px;
     height: 120px;
+    pointer-events: none;
+    @include tablet {
+      pointer-events: all;
+    }
     // overflow: hidden;
 
     .gallery-customize {
@@ -663,14 +667,17 @@ body.whatsapp-loyalty-program main {
       height: 120px;
     }
     .gallery-col {
-      max-width: 120px !important;
       height: 120px;
       width: 50%;
       min-width: 120px !important;
+      max-width: 165px !important;
       flex-basis: auto !important;
       display: inline-block;
       padding: 0px !important;
       margin-left: 8px;
+      @include tablet {
+        max-width: 180px !important;
+      }
       // position: absolute;
 
       @include tablet {
@@ -680,9 +687,15 @@ body.whatsapp-loyalty-program main {
     .box-image {
       padding: 0% !important;
       img {
+        right: auto;
+        width: 100%;
+        height: 100%;
+        bottom: auto;
+        left: auto;
+        top: auto;
+        position: relative;
         object-fit: scale-down !important;
         max-height: 120px !important;
-
       }
     }
   }
