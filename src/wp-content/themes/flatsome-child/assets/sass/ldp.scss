@@ -1,138 +1,3 @@
-$color-ldp: #2eaf7d;
-$main-ldp: #191a15;
-$text-ldp: #777777;
-$radius: 18px;
-$main-font: "Montserrat", sans-serif;
-$second-font: "Plus Jakarta Sans", sans-serif;
-$shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-.ldp-highlight {
-  color: $color-ldp !important;
-}
-.ldp-img-box {
-  display: flex;
-  flex-wrap: nowrap;
-
-  .box-image {
-    min-width: 60px;
-    min-height: 60px;
-    margin-left: 0px;
-    margin-right: 10px;
-    @include tablet {
-      margin-right: 20px;
-    }
-    img {
-      object-fit: scale-down;
-    }
-  }
-  .box-text {
-    width: calc(100% - 80px);
-    padding-top: 0px;
-
-    h4 {
-      font-weight: bold;
-      color: $main-ldp;
-      padding-bottom: 15px;
-      margin: 0;
-      line-height: 1;
-      font-size: 18px;
-      @include tablet {
-        font-size: 24px;
-      }
-    }
-    p {
-      color: $text-ldp;
-    }
-  }
-}
-
-.ldp-image-box {
-  height: 100%;
-  border-radius: $radius;
-  overflow: hidden;
-  padding: 15px;
-  @include tablet {
-    padding: 30px;
-  }
-  .box-text-inner {
-    h3 {
-      color: $main-ldp;
-    }
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-}
-.mb-0 {
-  p {
-    margin-bottom: 0px !important;
-  }
-}
-.pr-0 {
-  @include tablet {
-    padding-right: 0px !important;
-  }
-}
-.col-mid {
-  display: flex;
-  .col-inner {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-}
-.hide-arrow {
-  .flickity-button {
-    display: none;
-    visibility: hidden;
-  }
-}
-.slick-dots {
-  bottom: -50px !important;
-  li {
-    width: 5px !important;
-  }
-}
-@media (min-width: 768px) {
-  .slick-dots li {
-    width: 20px !important;
-    margin-left: 10px !important;
-  }
-}
-.slick-dots li button:before {
-  color: #2faf7e !important;
-  transition: all 0.2s linear;
-  font-size: 8px !important;
-  width: 15px !important;
-  height: 15px !important;
-}
-@media (min-width: 768px) {
-  .slick-dots li button:before {
-    font-size: 14px !important;
-    width: 20px !important;
-    height: 15px !important;
-  }
-}
-.slick-dots li button:before:hover {
-  color: #2faf7e !important;
-}
-.slick-track {
-  display: flex !important;
-  gap: 15px;
-}
-.ldp-footer .col-inner {
-  overflow: hidden;
-  border-radius: $radius;
-  .ldp-hbspt {
-    margin-bottom: -30px;
-    .col {
-      padding-bottom: 0px !important;
-    }
-    p {
-      margin-bottom: 0;
-    }
-  }
-}
 body.whatsapp-loyalty-program {
   header#header,
   footer#footer {
@@ -174,29 +39,46 @@ body.payment-soundbox main {
     font-weight: 400;
     font-family: $main-font;
   }
-  .btn-ldp {
-    background-color: $color-ldp !important;
-    border-radius: $radius !important;
-    font-weight: 500;
-    &.white {
-      width: fit-content;
-      max-width: 250px;
-      background-color: #fff !important;
-      color: $color-ldp !important;
+  /* Modal styles */
+  .modal.tes-modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    .modal-content {
+      background-color: #fff;
+      margin: auto;
+      padding: 30px 20px;
+      @include tablet {
+        padding: 50px;
+      }
+      width: 80%;
+      max-width: 600px;
+      border-radius: 10px;
+      position: relative;
     }
-    &.large {
-      padding: 8px 24px;
-      border-radius: 30px !important;
+
+    .close {
+      color: #aaa;
+      position: absolute;
+      top: 0px;
+      right: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
     }
-    &.border {
-      border: 1px solid #fff;
-      background: transparent !important;
-    }
-    &.main {
-      background: $blue !important;
+
+    .close:hover {
+      color: #000;
     }
   }
 }
+//Whatsapp Loyalty Program
 
 body.whatsapp-loyalty-program main {
   .ldp-section-2 {
@@ -251,7 +133,9 @@ body.whatsapp-loyalty-program main {
         display: none;
       }
     }
-
+    .icon-box-text h3 {
+      font-family: $second-font;
+    }
     .tab-panels {
       #tab_registration,
       #tab_engagement {
@@ -550,14 +434,6 @@ body.whatsapp-loyalty-program main {
       }
     }
   }
-  .center-mobile {
-    .col-inner {
-      text-align: center;
-      @include tablet {
-        text-align: left;
-      }
-    }
-  }
 
   .ldp-member-portal {
     @include tablet {
@@ -606,45 +482,6 @@ body.whatsapp-loyalty-program main {
         align-items: center;
         justify-content: center;
       }
-    }
-  }
-
-  /* Modal styles */
-  .modal.tes-modal {
-    display: none;
-    position: fixed;
-    z-index: 999;
-    padding-top: 100px;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    .modal-content {
-      background-color: #fff;
-      margin: auto;
-      padding: 30px 20px;
-      @include tablet {
-        padding: 50px;
-      }
-      width: 80%;
-      max-width: 600px;
-      border-radius: 10px;
-      position: relative;
-    }
-
-    .close {
-      color: #aaa;
-      position: absolute;
-      top: 0px;
-      right: 20px;
-      font-size: 24px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .close:hover {
-      color: #000;
     }
   }
 
@@ -708,13 +545,31 @@ body.whatsapp-loyalty-program main {
   }
 }
 
-//Sound box page
-body.payment-soundbox main {
+//Sound Box Payment
+body.payment-soundbox {
   footer#footer {
     display: none;
     visibility: hidden;
     pointer-events: none;
   }
+}
+body.payment-soundbox main {
+  .modal.tes-modal {
+    padding-top: 200px;
+  }
+  .section {
+    padding-left: 0px;
+    padding-right: 0px;
+    @include tablet {
+      padding-left: 60px;
+      padding-right: 60px;
+    }
+    @include desktop {
+      padding-left: 120px;
+      padding-right: 120px;
+    }
+  }
+
   .sound-box-image-box {
     .col {
       .col-inner {
@@ -723,16 +578,25 @@ body.payment-soundbox main {
     }
     .ldp-image-box {
       background: #fff;
+      box-shadow: $shadow;
+      padding: 30px 10px;
       img {
-        max-height: 270px;
+        object-fit: scale-down;
+        max-height: 250px;
       }
     }
   }
 
+  .ldp-claim-now {
+    .section-content {
+      padding: 0px 15px;
+    }
+  }
   .ldp-claim-row {
     background: $color-ldp;
     border-radius: 24px;
     overflow: hidden;
+    background-image: url(https://www.epos.com.sg/wp-content/uploads/2025/05/Brand-Mark.png);
     .content-col {
       padding-left: 20px;
       @include tablet {
@@ -743,21 +607,93 @@ body.payment-soundbox main {
       padding: 0px !important;
     }
   }
-
-  .sound-box-review {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #fff;
-    padding: 20px;
-    border-radius: $radius;
-
+  .see-it-icon {
+    max-width: 160px;
+    position: absolute;
+    right: 0px;
+    display: none;
     @include tablet {
-      padding: 40px;
+      display: block;
+    }
+  }
+
+  .testimonial-slider {
+    .tes-item {
+      position: relative;
+      max-width: 100%;
+      @include tablet {
+        max-width: 33%;
+      }
+      background: #fff;
+      box-shadow: $shadow;
+      padding: 24px;
+      border-radius: $radius;
+      &::after {
+        content: "";
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        top: -30px;
+        right: -10px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-image: url("https://www.epos.com.sg/wp-content/uploads/2025/05/bde-icon-icon.png");
+      }
     }
     .box-image {
-      margin-right: 10px;
-      max-width: 250px;
+      img {
+        height: 150px;
+        object-fit: scale-down;
+      }
+    }
+    .tes-description {
+      margin-top: 20px;
+      p {
+        min-height: 180px;
+      }
+      display: -webkit-box;
+      -webkit-line-clamp: 7;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 10px;
+
+      .read-more-icon {
+        position: absolute;
+        bottom: 27px;
+        right: 0;
+        padding: 5px 10px;
+        background: #fff;
+        cursor: pointer;
+        font-size: 14px;
+        color: #2eaf7d !important;
+        font-weight: bold;
+      }
+      .learn-more-btn:nth-child(3) {
+        display: none;
+      }
+    }
+    .star-icon {
+      max-width: 150px;
+      img {
+        object-fit: scale-down;
+        object-position: center;
+      }
+    }
+    .slick-track {
+      gap: 15px;
+      @include tablet {
+        gap: 40px;
+      }
+    }
+    .slick-list {
+      li {
+        margin-left: 5px !important;
+      }
+    }
+    .slick-list {
+      padding-top: 40px;
+      padding-bottom: 40px;
     }
   }
 }
