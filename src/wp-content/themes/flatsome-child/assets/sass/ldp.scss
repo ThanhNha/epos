@@ -310,6 +310,11 @@ body.whatsapp-loyalty-program main {
     .tes-item {
       position: relative;
       max-width: 100%;
+      padding-top: 40px !important;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       @include tablet {
         max-width: 33%;
       }
@@ -326,19 +331,25 @@ body.whatsapp-loyalty-program main {
         right: -10px;
         background-size: cover;
         background-repeat: no-repeat;
-        // background-image: url("/wp-content/uploads/2025/04/bde-icon-icon.png");
+        background-image: url("https://www.epos.com.sg/wp-content/uploads/2025/05/bde-icon-icon.png");
       }
     }
     .box-image {
       img {
-        height: 150px;
+        height: 120px;
         object-fit: scale-down;
       }
+    }
+    .box-text {
+      padding-bottom: 0px;
     }
     .tes-description {
       margin-top: 20px;
       p {
-        min-height: 180px;
+        min-height: 158px;
+        @include tablet {
+          min-height: 160px;
+        }
       }
       display: -webkit-box;
       -webkit-line-clamp: 7;
@@ -349,12 +360,12 @@ body.whatsapp-loyalty-program main {
 
       .read-more-icon {
         position: absolute;
-        bottom: 27px;
+        bottom: -15px;
         right: 0;
         padding: 5px 10px;
         background: #fff;
         cursor: pointer;
-        font-size: 14px;
+        font-size: 12px;
         color: #2eaf7d !important;
         font-weight: bold;
       }
@@ -363,7 +374,8 @@ body.whatsapp-loyalty-program main {
       }
     }
     .star-icon {
-      max-width: 150px;
+      max-width: 120px;
+      margin-top: 10px;
       img {
         object-fit: scale-down;
         object-position: left;
@@ -371,11 +383,13 @@ body.whatsapp-loyalty-program main {
     }
     .slick-track {
       gap: 15px;
+      margin-left: -12px;
       @include tablet {
         gap: 40px;
       }
     }
     .slick-list {
+      padding-bottom: 5px !important;
       li {
         margin-left: 5px !important;
       }
@@ -579,7 +593,10 @@ body.payment-soundbox main {
     .ldp-image-box {
       background: #fff;
       box-shadow: $shadow;
-      padding: 30px 10px;
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-top: 30px;
+      padding-bottom: 10px;
       img {
         object-fit: scale-down;
         max-height: 250px;
@@ -621,6 +638,11 @@ body.payment-soundbox main {
     .tes-item {
       position: relative;
       max-width: 100%;
+      padding-top: 40px !important;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       @include tablet {
         max-width: 33%;
       }
@@ -642,30 +664,36 @@ body.payment-soundbox main {
     }
     .box-image {
       img {
-        height: 150px;
+        height: 120px;
         object-fit: scale-down;
       }
     }
+    .box-text {
+      padding-bottom: 0px;
+    }
     .tes-description {
       margin-top: 20px;
-      p {
-        min-height: 180px;
-      }
+
       display: -webkit-box;
       -webkit-line-clamp: 7;
       -webkit-box-orient: vertical;
       overflow: hidden;
       text-overflow: ellipsis;
       margin-bottom: 10px;
-
+      p {
+        min-height: 158px;
+        @include tablet {
+          min-height: 160px;
+        }
+      }
       .read-more-icon {
         position: absolute;
-        bottom: 27px;
+        bottom: -15px;
         right: 0;
         padding: 5px 10px;
         background: #fff;
         cursor: pointer;
-        font-size: 14px;
+        font-size: 12px;
         color: #2eaf7d !important;
         font-weight: bold;
       }
@@ -674,7 +702,8 @@ body.payment-soundbox main {
       }
     }
     .star-icon {
-      max-width: 150px;
+      max-width: 120px;
+      margin-top: 10px;
       img {
         object-fit: scale-down;
         object-position: center;
@@ -682,11 +711,13 @@ body.payment-soundbox main {
     }
     .slick-track {
       gap: 15px;
+      margin-left: -12px;
       @include tablet {
         gap: 40px;
       }
     }
     .slick-list {
+      padding-bottom: 5px !important;
       li {
         margin-left: 5px !important;
       }
