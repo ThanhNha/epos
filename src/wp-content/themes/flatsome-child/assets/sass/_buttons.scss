@@ -40,7 +40,6 @@
 .button {
   border-radius: 30px !important;
   padding: 8px 24px !important;
-  opacity: 0.8 !important;
   &.primary {
     background: #2eaf7d !important;
     color: white !important;
@@ -57,15 +56,13 @@
       background: rgba(0, 0, 0, 0.089) !important;
     }
   }
-  &:hover {
-    opacity: 1 !important;
-  }
   &.back-to-top {
     border-radius: 50% !important;
     padding: 4px 15px !important;
   }
   &.menu-btn-demo,
   &.menu-btn-shop {
+    opacity: 1 !important;
     background: #1b459b !important;
     padding: 0.25rem 0.75rem !important;
     border-radius: 0.25rem !important;
