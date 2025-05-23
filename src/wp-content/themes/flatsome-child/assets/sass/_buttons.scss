@@ -17,8 +17,6 @@
   display: inline-block;
 }
 
-
-
 .woocommerce-help-tip::after {
   font-family: Dashicons;
   speak: never;
@@ -37,4 +35,39 @@
   text-align: center;
   content: "\f223";
   cursor: help;
+}
+
+.button {
+  border-radius: 30px !important;
+  padding: 8px 24px !important;
+  opacity: 0.8 !important;
+  &.primary {
+    background: #2eaf7d !important;
+    color: white !important;
+  }
+  &.secondary {
+    background: #1b459b !important;
+    color: white !important;
+  }
+  &.outline {
+    border: 1px solid white !important;
+    color: white !important;
+    background: transparent !important;
+    &:hover {
+      background: rgba(0, 0, 0, 0.089) !important;
+    }
+  }
+  &:hover {
+    opacity: 1 !important;
+  }
+  &.back-to-top {
+    border-radius: 50% !important;
+    padding: 4px 15px !important;
+  }
+  &.menu-btn-demo,
+  &.menu-btn-shop {
+    background: #1b459b !important;
+    padding: 0.25rem 0.75rem !important;
+    border-radius: 0.25rem !important;
+  }
 }
