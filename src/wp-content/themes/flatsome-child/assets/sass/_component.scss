@@ -21,6 +21,147 @@
     }
   }
 }
-.mfp-close {
-  // display: none;
+
+.ldp-highlight {
+  color: $color-ldp !important;
+}
+.ldp-img-box {
+  display: flex;
+  flex-wrap: nowrap;
+
+  .box-image {
+    min-width: 60px;
+    min-height: 60px;
+    margin-left: 0px;
+    margin-right: 10px;
+    @include tablet {
+      margin-right: 20px;
+    }
+    img {
+      object-fit: scale-down;
+    }
+  }
+  .box-text {
+    width: calc(100% - 80px);
+    padding-top: 0px;
+
+    h4 {
+      font-weight: bold;
+      color: $main-ldp;
+      padding-bottom: 15px;
+      margin: 0;
+      line-height: 1;
+      font-size: 18px;
+      @include tablet {
+        font-size: 24px;
+      }
+    }
+    p {
+      color: $text-ldp;
+    }
+  }
+}
+
+.ldp-image-box {
+  height: 100%;
+  border-radius: $radius;
+  overflow: hidden;
+  padding: 15px;
+  @include tablet {
+    padding: 30px;
+  }
+  .box-text-inner {
+    h3 {
+      color: $main-ldp;
+    }
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+.center-mobile {
+  .col-inner {
+    text-align: center;
+    @include tablet {
+      text-align: left;
+    }
+  }
+}
+.mb-0 {
+  p {
+    margin-bottom: 0px !important;
+  }
+}
+.pr-0 {
+  @include tablet {
+    padding-right: 0px !important;
+  }
+}
+.col-mid {
+  display: flex;
+  .col-inner {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+.hide-arrow {
+  .flickity-button {
+    display: none;
+    visibility: hidden;
+  }
+}
+.slick-dots {
+  bottom: -50px !important;
+  li {
+    width: 5px !important;
+  }
+}
+@media (min-width: 768px) {
+  .slick-dots li {
+    width: 20px !important;
+    margin-left: 10px !important;
+  }
+}
+.slick-dots li button:before {
+  color: #2faf7e !important;
+  transition: all 0.2s linear;
+  font-size: 8px !important;
+  width: 15px !important;
+  height: 15px !important;
+}
+@media (min-width: 768px) {
+  .slick-dots li button:before {
+    font-size: 14px !important;
+    width: 20px !important;
+    height: 15px !important;
+  }
+}
+.slick-dots li button:before:hover {
+  color: #2faf7e !important;
+}
+.slick-track {
+  display: flex !important;
+  gap: 15px;
+}
+.ldp-footer .col-inner {
+  overflow: hidden;
+  border-radius: $radius;
+  .ldp-hbspt {
+    margin-bottom: -15px;
+    .col {
+      padding-bottom: 0px !important;
+    }
+    p {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.mobile-col-reverse {
+  flex-direction: column-reverse !important;
+  @include tablet {
+    flex-direction: row !important;
+  }
 }

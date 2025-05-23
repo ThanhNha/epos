@@ -71,3 +71,30 @@
     border-radius: 0.25rem !important;
   }
 }
+
+.btn-ldp {
+  background-color: $color-ldp !important;
+  border-radius: $radius !important;
+  font-weight: 500;
+  &.white {
+    width: fit-content;
+    max-width: 250px;
+    background-color: #fff !important;
+    color: $color-ldp !important;
+  }
+  &.large {
+    padding: 4px 18px;
+    border-radius: 30px !important;
+    @include tablet {
+      padding: 8px 24px;
+      border-radius: 30px !important;
+    }
+  }
+  &.border {
+    border: 1px solid #fff;
+    background: transparent !important;
+  }
+  &.main {
+    background: $blue !important;
+  }
+}
