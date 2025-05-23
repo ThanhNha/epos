@@ -125,7 +125,7 @@
   }
 }
 .slick-dots li button:before {
-  color: #2faf7e !important;
+  color: $color-ldp !important;
   transition: all 0.2s linear;
   font-size: 8px !important;
   width: 15px !important;
@@ -139,7 +139,7 @@
   }
 }
 .slick-dots li button:before:hover {
-  color: #2faf7e !important;
+  color: $color-ldp !important;
 }
 .slick-track {
   display: flex !important;
@@ -163,5 +163,36 @@
   flex-direction: column-reverse !important;
   @include tablet {
     flex-direction: row !important;
+  }
+}
+.rounded {
+  border-radius: 15px !important;
+  img {
+    border-radius: 15px !important;
+  }
+}
+.section {
+  &.bg-image {
+    margin: 30px !important;
+    width: auto !important;
+  }
+  &.rounded {
+    border-radius: 30px !important;
+    .section-bg{
+      border-radius: 30px !important;
+    }
+  }
+}
+
+.icon-style-bg-color{
+ .icon{
+   background-color: $color-ldp !important;
+   padding: 6px 10px 10px;
+   border-radius: 15px;
+ }
+}
+.icon-box-text {
+  h3{
+    color: $title-icon-box-color !important;
   }
 }

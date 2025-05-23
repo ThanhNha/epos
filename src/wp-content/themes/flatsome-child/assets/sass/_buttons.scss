@@ -3,11 +3,11 @@
 }
 .quantity {
   .button.is-form {
-    background: $blue;
+    background: $blue-dark;
     text-shadow: none !important;
     color: #fff !important;
     &:hover {
-      background: #1b459b;
+      background: $blue-dark;
     }
   }
 }
@@ -41,11 +41,11 @@
   border-radius: 30px !important;
   padding: 8px 24px !important;
   &.primary {
-    background: #2eaf7d !important;
+    background: $color-ldp !important;
     color: white !important;
   }
   &.secondary {
-    background: #1b459b !important;
+    background: $blue-dark !important;
     color: white !important;
   }
   &.outline {
@@ -62,9 +62,24 @@
   }
   &.menu-btn-demo,
   &.menu-btn-shop {
-    background: #1b459b !important;
+    background: $blue-dark !important;
     padding: 0.25rem 0.75rem !important;
     border-radius: 0.25rem !important;
+  }
+  &.button-tab {
+    padding: 3px 5px!important;
+    border-radius: 8px !important;
+    color: $blue-dark !important;
+    border: 1px solid $blue-dark !important;
+    background: transparent !important;
+    width: 25%;
+    &:hover {
+      background: $blue-dark !important;
+      color: white !important;
+    }
+    span{
+      font-size: 12px;
+    }
   }
 }
 
@@ -91,6 +106,6 @@
     background: transparent !important;
   }
   &.main {
-    background: $blue !important;
+    background: $blue-dark !important;
   }
 }

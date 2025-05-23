@@ -80,3 +80,11 @@
 .epos-whatsapp-icon.shop {
   bottom: 160px !important;
 }
+@media screen and (max-width: 1280px) {
+  .container-width,
+  .full-width .ubermenu-nav,
+  .container,
+  .row {
+    max-width: 1140px !important;
+  }
+}

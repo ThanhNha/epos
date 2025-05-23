@@ -55,6 +55,35 @@ h6 {
   font-family: "PlusJakartaSans", sans-serif !important;
 }
 p,
-a {
+a,
+span {
   font-family: "Montserrat", sans-serif !important;
+  font-size: 16px;
+  @include mobile {
+    font-size: 15px;
+  }
+  @include tablet {
+    font-size: 15px;
+  }
+}
+h1,
+h2 {
+  font-size: 48px !important;
+  color: $blue-dark ;
+  @include mobile {
+    font-size: 28px !important;
+  }
+  @include tablet {
+    font-size: 44px !important;
+  }
+}
+h3 {
+  font-size: 22px !important;
+  color: $blue-dark;
+  @include mobile {
+    font-size: 18px !important;
+  }
+  @include tablet {
+    font-size: 22px !important;
+  }
 }

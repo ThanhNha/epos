@@ -1,6 +1,7 @@
 footer {
   h3 {
     font-size: 18px;
+    font-family: "Montserrat", sans-serif !important;
   }
   .social-icons {
     margin-top: 20px;
@@ -11,11 +12,6 @@ footer {
       img {
         height: 24px;
         object-fit: contain;
-        &.icon-linkedin,
-        &.icon-xiaohongshu {
-          height: 31px;
-          object-fit: contain;
-        }
       }
     }
   }
@@ -28,6 +24,6 @@ footer {
   }
   p,
   a {
-    font-size: 14px;
+    font-size: 0.9em;
   }
 }
