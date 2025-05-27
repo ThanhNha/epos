@@ -70,11 +70,11 @@ h1,
 h2 {
   font-size: 48px !important;
   color: $blue-dark ;
-  @include mobile {
+  @include only-mobile {
     font-size: 28px !important;
   }
-  @include tablet {
-    font-size: 44px !important;
+  @include only-tablet {
+    font-size: 38px !important;
   }
 }
 h3 {

@@ -73,6 +73,9 @@
     border: 1px solid $blue-dark !important;
     background: transparent !important;
     width: 25%;
+    @include only-tablet {
+      width: 100%;
+    }
     &:hover {
       background: $blue-dark !important;
       color: white !important;
