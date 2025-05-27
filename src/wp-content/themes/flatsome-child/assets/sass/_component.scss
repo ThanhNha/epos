@@ -184,21 +184,22 @@
   }
   &.rounded {
     border-radius: 30px !important;
-    .section-bg{
+    .section-bg {
       border-radius: 30px !important;
+      opacity: 0.2;
     }
   }
 }
 
-.icon-style-bg-color{
- .icon{
-   background-color: $color-ldp !important;
-   padding: 6px 10px 10px;
-   border-radius: 15px;
- }
+.icon-style-bg-color {
+  .icon {
+    background-color: $color-ldp !important;
+    padding: 6px 10px 10px;
+    border-radius: 15px;
+  }
 }
 .icon-box-text {
-  h3{
+  h3 {
     color: $title-icon-box-color !important;
   }
 }
