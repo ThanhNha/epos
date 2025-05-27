@@ -58,13 +58,7 @@ p,
 a,
 span {
   font-family: "Montserrat", sans-serif !important;
-  font-size: 16px;
-  @include mobile {
-    font-size: 15px;
-  }
-  @include tablet {
-    font-size: 15px;
-  }
+  font-size: 14px;
 }
 h1,
 h2 {
