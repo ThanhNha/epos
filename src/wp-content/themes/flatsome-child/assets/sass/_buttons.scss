@@ -60,14 +60,8 @@
     border-radius: 50% !important;
     padding: 4px 15px !important;
   }
-  &.menu-btn-demo,
-  &.menu-btn-shop {
-    background: $blue-dark !important;
-    padding: 0.25rem 0.75rem !important;
-    border-radius: 0.25rem !important;
-  }
   &.button-tab {
-    padding: 3px 5px!important;
+    padding: 3px 5px !important;
     border-radius: 8px !important;
     color: $blue-dark !important;
     border: 1px solid $blue-dark !important;
@@ -80,7 +74,7 @@
       background: $blue-dark !important;
       color: white !important;
     }
-    span{
+    span {
       font-size: 12px;
     }
   }
