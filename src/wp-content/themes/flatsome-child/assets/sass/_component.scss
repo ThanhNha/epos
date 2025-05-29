@@ -186,7 +186,10 @@
     border-radius: 30px !important;
     .section-bg {
       border-radius: 30px !important;
-      opacity: 0.3;
+      opacity: 0.2;
+    }
+    .section-bg-overlay{
+      opacity: 0.2;
     }
   }
 }
