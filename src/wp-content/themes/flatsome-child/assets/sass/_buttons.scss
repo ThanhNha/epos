@@ -40,6 +40,9 @@
 .button {
   border-radius: 30px !important;
   padding: 8px 24px !important;
+  &.is-form {
+    padding: 0 15px !important;
+  }
   &.primary {
     background: $color-ldp !important;
     color: white !important;
