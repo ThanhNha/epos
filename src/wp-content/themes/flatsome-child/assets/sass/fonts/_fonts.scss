@@ -60,24 +60,35 @@ span {
   font-family: "Montserrat", sans-serif !important;
   font-size: 14px;
 }
-h1,
-h2 {
-  font-size: 48px !important;
-  color: $blue-dark ;
-  @include only-mobile {
-    font-size: 28px !important;
+body {
+  h1,
+  h2 {
+    font-size: 48px !important;
+    color: $blue-dark;
+    @include only-mobile {
+      font-size: 28px !important;
+    }
+    @include only-tablet {
+      font-size: 38px !important;
+    }
+    span {
+      font-size: 48px !important;
+      @include only-mobile {
+        font-size: 28px !important;
+      }
+      @include only-tablet {
+        font-size: 38px !important;
+      }
+    }
   }
-  @include only-tablet {
-    font-size: 38px !important;
-  }
-}
-h3 {
-  font-size: 22px !important;
-  color: $blue-dark;
-  @include mobile {
-    font-size: 18px !important;
-  }
-  @include tablet {
+  h3 {
     font-size: 22px !important;
+    color: $blue-dark;
+    @include mobile {
+      font-size: 18px !important;
+    }
+    @include tablet {
+      font-size: 22px !important;
+    }
   }
 }
