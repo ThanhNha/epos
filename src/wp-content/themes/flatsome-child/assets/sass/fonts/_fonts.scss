@@ -73,6 +73,7 @@ body {
     }
     span {
       font-size: 48px !important;
+      font-family: "PlusJakartaSans", sans-serif !important;
       @include only-mobile {
         font-size: 28px !important;
       }
