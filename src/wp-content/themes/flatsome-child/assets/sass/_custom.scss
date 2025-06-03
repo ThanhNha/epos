@@ -49,3 +49,139 @@
     margin-bottom: 10px !important;
   }
 }
+.epos-whatsapp-wa.wapp-chatCta {
+  width: 50px !important;
+  height: 50px !important;
+  z-index: 1;
+  right: 30px !important;
+  bottom: 2em !important;
+  margin: 0px !important;
+
+  @media (min-width: 768px) {
+    width: 50px !important;
+  }
+}
+
+.wapp-widgetGrp {
+  bottom: 55px !important;
+
+  @media (min-width: 768px) {
+    bottom: 25px !important;
+    right: 85px !important;
+  }
+}
+
+.text-center {
+  .toggle {
+    margin-left: 0px;
+  }
+}
+
+.blog-wrapper {
+  .box-text.text-center {
+    transform: translateY(-50%);
+    top: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .page.page-id-5836 {
+    .featured-box {
+      .icon-box-img {
+        display: none;
+      }
+    }
+  }
+
+  .have-icon {
+    .featured-box {
+      .icon-box-img {
+        display: block !important;
+      }
+    }
+  }
+
+  .mobile-reverse.flex {
+    .col-inner {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+  }
+
+  .top-bar-content {
+    p {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}
+
+[data-animate="fadeInUp"],
+[data-animate="bounceInUp"],
+[data-animate="fadeInLeft"] {
+  opacity: 1 !important;
+  transition: all 0s !important;
+  transform: translate3d(0, 0px, 0) !important;
+}
+
+// WhatsApp Loyalty Program Page
+body.whatsapp-loyalty-program {
+  main {
+    background-image: url('https://www.epos.com.sg/wp-content/uploads/2025/05/Group-253.png');
+
+    .ldp-bg-why-epos {
+      background-image: url('https://www.epos.com.sg/wp-content/uploads/2025/05/background.png');
+    }
+
+    .testimonial-slider {
+      .tes-item:after {
+        background-image: url('/wp-content/uploads/2025/05/bde-icon-icon.png');
+      }
+
+      .slick-track {
+        margin-left: -12px;
+      }
+    }
+
+    .section-image-box {
+      .ldp-image-box {
+        background-image: url('/wp-content/uploads/2025/05/Frame-54.png');
+      }
+    }
+  }
+}
+
+// Payment Soundbox Page
+body.payment-soundbox {
+  main {
+    .testimonial-slider {
+      .tes-description.two {
+        p {
+          min-height: 160px;
+        }
+      }
+
+      .tes-item {
+        padding-top: 35px;
+      }
+
+      .star-icon {
+        max-width: 120px;
+        margin-top: 10px;
+      }
+
+      .slick-track {
+        margin-left: -12px;
+      }
+
+      .slick-list {
+        padding-bottom: 5px !important;
+      }
+    }
+  }
+}
+
+.star-rating {
+  font-size: 14px !important;
+}
