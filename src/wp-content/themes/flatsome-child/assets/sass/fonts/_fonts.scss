@@ -55,11 +55,11 @@ h6 {
   font-family: "PlusJakartaSans", sans-serif !important;
 }
 p,
-a,
-span {
+a {
   font-family: "Montserrat", sans-serif !important;
   font-size: 14px;
 }
+
 body {
   h1,
   h2 {
@@ -95,9 +95,4 @@ body {
 }
 .star-rating {
   font-size: 14px !important;
-  &::before {
-    span {
-      font-size: 14px !important;
-    }
-  }
 }
