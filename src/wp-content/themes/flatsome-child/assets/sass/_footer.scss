@@ -8,6 +8,13 @@ footer {
     display: flex;
     gap: 20px;
     align-items: center;
+    .facebook img {
+      width: auto;
+    }
+    .youtube a {
+      width: auto;
+      max-width: none;
+    }
   }
   .footer-copyright {
     padding: 20px 0;
