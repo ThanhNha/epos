@@ -44,8 +44,8 @@
     line-height: 0.8;
   }
 }
-.number-load{
-  h2{
+.number-load {
+  h2 {
     margin-bottom: 10px !important;
   }
 }
@@ -128,15 +128,15 @@
 // WhatsApp Loyalty Program Page
 body.whatsapp-loyalty-program {
   main {
-    background-image: url('https://www.epos.com.sg/wp-content/uploads/2025/05/Group-253.png');
+    background-image: url("https://www.epos.com.sg/wp-content/uploads/2025/05/Group-253.png");
 
     .ldp-bg-why-epos {
-      background-image: url('https://www.epos.com.sg/wp-content/uploads/2025/05/background.png');
+      background-image: url("https://www.epos.com.sg/wp-content/uploads/2025/05/background.png");
     }
 
     .testimonial-slider {
       .tes-item:after {
-        background-image: url('/wp-content/uploads/2025/05/bde-icon-icon.png');
+        background-image: url("/wp-content/uploads/2025/05/bde-icon-icon.png");
       }
 
       .slick-track {
@@ -146,7 +146,7 @@ body.whatsapp-loyalty-program {
 
     .section-image-box {
       .ldp-image-box {
-        background-image: url('/wp-content/uploads/2025/05/Frame-54.png');
+        background-image: url("/wp-content/uploads/2025/05/Frame-54.png");
       }
     }
   }
@@ -177,6 +177,20 @@ body.payment-soundbox {
 
       .slick-list {
         padding-bottom: 5px !important;
+      }
+    }
+  }
+}
+.img-folow-content {
+  .col-inner {
+    height: 100%;
+    .img {
+      height: 100%;
+      .img-inner {
+        height: 100%;
+        img {
+          height: 100%;
+        }
       }
     }
   }
