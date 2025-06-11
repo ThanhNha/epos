@@ -190,8 +190,16 @@ body.payment-soundbox {
         height: 100%;
         img {
           height: 100%;
+          object-fit: cover;
         }
       }
+    }
+  }
+}
+.box {
+  .box-text-inner {
+    h3 {
+      font-size: 18px !important;
     }
   }
 }

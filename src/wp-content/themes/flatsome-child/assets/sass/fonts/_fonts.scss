@@ -63,33 +63,30 @@ a {
 body {
   h1,
   h2 {
-    font-size: 48px !important;
+    font-size: 28px !important;
     color: $blue-dark;
-    @include only-mobile {
-      font-size: 28px !important;
-    }
-    @include only-tablet {
+    @include tablet {
       font-size: 38px !important;
     }
-    span {
+    @include desktop {
       font-size: 48px !important;
+    }
+    span {
+      font-size: 28px !important;
       font-family: "PlusJakartaSans", sans-serif !important;
-      @include only-mobile {
-        font-size: 28px !important;
-      }
-      @include only-tablet {
+      @include tablet {
         font-size: 38px !important;
+      }
+      @include desktop {
+        font-size: 48px !important;
       }
     }
   }
   h3 {
-    font-size: 22px !important;
+    font-size: 18px !important;
     color: $blue-dark;
-    @include mobile {
-      font-size: 18px !important;
-    }
-    @include tablet {
-      font-size: 22px !important;
+    @include desktop {
+      font-size: 20px !important;
     }
   }
 }
