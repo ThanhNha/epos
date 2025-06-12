@@ -42,7 +42,8 @@ a.button {
   border-radius: 30px !important;
   padding: 8px 24px !important;
   &.is-form {
-    padding: 0 15px !important;
+    padding: 0 8px !important;
+    border-radius: 5px !important;
   }
   &.primary {
     background: $color-ldp !important;
@@ -70,9 +71,12 @@ a.button {
     color: $blue-dark !important;
     border: 1px solid $blue-dark !important;
     background: transparent !important;
-    width: 25%;
-    @include only-tablet {
+    width: 100%;
+    @include tablet {
       width: 100%;
+    }
+    @include desktop {
+      width: 25%;
     }
     &:hover {
       background: $blue-dark !important;
