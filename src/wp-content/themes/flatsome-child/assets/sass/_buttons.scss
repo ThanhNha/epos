@@ -1,6 +1,3 @@
-.button {
-  border-radius: 0.25rem !important;
-}
 .quantity {
   .button.is-form {
     background: $blue-dark;
@@ -36,7 +33,11 @@
   content: "\f223";
   cursor: help;
 }
-
+a.button {
+  span {
+    font-weight: 600;
+  }
+}
 .button {
   border-radius: 30px !important;
   padding: 8px 24px !important;
