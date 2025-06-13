@@ -31,17 +31,8 @@ function enqueue_ldp_assets()
 
     //Marquee
     wp_enqueue_script('marquee-init', THEME_URL . '-child' . '/assets/js/marquee.js', ['jquery'], $version, true);
-
-    // // Enqueue Google Fonts
-    // wp_enqueue_style(
-    //   'ldp-google-fonts',
-    //   'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap',
-    //   [],
-    //   null
-    // );
   }
 }
-
 
 
 //Add ACF options page
