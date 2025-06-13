@@ -174,9 +174,12 @@ $(document).ready(function () {
   customAccordion();
   toogle_shipping_popup();
   validation_address_2();
-  var val = $("form.checkout input[name^='shipping_method']").val();
-  if (val.match("^local_pickup")) {
-    hideAddPress();
+
+  if ($("form.checkout input[name^='shipping_method']").length) {
+    var val = $("form.checkout input[name^='shipping_method']").val();
+    if (val.match("^local_pickup")) {
+      hideAddPress();
+    }
   }
 });
 
