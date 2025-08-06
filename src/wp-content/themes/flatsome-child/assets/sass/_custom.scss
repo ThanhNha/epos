@@ -234,38 +234,45 @@ body.payment-soundbox {
   display: flex !important;
   gap: 20px;
 }
-.blog-single{
+.blog-single {
   padding-top: 0px !important;
   .large-9 {
     padding: 0 !important;
   }
   .custom-post-sidebar {
-  background-color: #f3f3f3 !important;
-  .author-sidebar {
-    padding-top: 20px;
-    .name-author {
-      margin-bottom: 0px !important;
-      span {
-        color: $blue-dark !important;
-        font-weight: 600 !important;
+    background-color: #f3f3f3 !important;
+    .author-sidebar {
+      padding-top: 40px;
+      .name-author {
+        margin-bottom: 0px !important;
+        span {
+          color: $blue-dark !important;
+          font-weight: 600 !important;
+        }
+      }
+      .post-date {
+        margin-bottom: 0px !important;
+        font-size: 14px !important;
       }
     }
-    .post-date {
-      margin-bottom: 0px !important;
-      font-size: 14px !important;
+    .toc-widget {
+      .lwptoc_i {
+        padding: 0 !important;
+      }
+      .lwptoc_title {
+        font-size: 16px !important;
+      }
     }
   }
-  .toc-widget {
-    .lwptoc_i {
-      padding: 0 !important;
+  .custom-single-post-layout {
+    padding: 10px 20px;
+    @include desktop {
+      padding: 10px 40px;
+    }
+  }
+  .entry-content {
+    .lwptoc {
+      display: none;
     }
   }
 }
-.custom-single-post-layout{
-  padding: 10px 20px;
-  @include desktop {
-    padding: 10px 40px;
-  }
-}
-}
-
