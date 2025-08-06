@@ -28,13 +28,19 @@ do_action('flatsome_before_blog');
 	</div>
 	<div class="custom-post-sidebar large-3 col">
 		<?php flatsome_sticky_column_open('blog_sticky_sidebar'); ?>
-		<div class="author-sidebar">
-			<p class="name-author">by <span><?php the_author(); ?><span></p>
-			<p class="post-date">Posted on <?php echo get_the_date(); ?></p>
-		</div>
-		<div class="toc-widget">
-          <?php echo do_shortcode('[lwptoc]'); ?>
-        </div>
+
+		<?php if (is_single()) : ?>
+			<div class="author-sidebar">
+				<p class="name-author">by <span><?php the_author(); ?><span></p>
+				<p class="post-date">Posted on <?php echo get_the_date(); ?></p>
+			</div>
+			<div class="toc-widget">
+				<?php echo do_shortcode('[lwptoc hierarchical="1" numeration="none" title="Table of Contents" smoothScrollOffset="120" titleFontSize="150%" itemsFontSize="100%"]'); ?>
+			</div>
+		<?php else : ?>
+			<?php get_sidebar(); ?>
+		<?php endif; ?>
+
 		<?php flatsome_sticky_column_close('blog_sticky_sidebar'); ?>
 	</div>
 </div>

@@ -234,7 +234,12 @@ body.payment-soundbox {
   display: flex !important;
   gap: 20px;
 }
-.custom-post-sidebar {
+.blog-single{
+  padding-top: 0px !important;
+  .large-9 {
+    padding: 0 !important;
+  }
+  .custom-post-sidebar {
   background-color: #f3f3f3 !important;
   .author-sidebar {
     padding-top: 20px;
@@ -256,3 +261,11 @@ body.payment-soundbox {
     }
   }
 }
+.custom-single-post-layout{
+  padding: 10px 20px;
+  @include desktop {
+    padding: 10px 40px;
+  }
+}
+}
+
