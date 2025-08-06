@@ -20,7 +20,3 @@ foreach (glob(THEME_DIR . '-child' . "/includes/*.php") as $file_name) {
 // ini_set('display_startup_errors', 1);
 // error_reporting(E_ALL);
 
-function disable_flatsome_single_page_header() {
-    remove_action('flatsome_after_header','flatsome_single_page_header', 10);
-}
-add_action('after_setup_theme', 'disable_flatsome_single_page_header', 20);

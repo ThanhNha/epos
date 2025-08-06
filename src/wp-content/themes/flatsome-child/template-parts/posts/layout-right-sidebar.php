@@ -37,6 +37,9 @@ do_action('flatsome_before_blog');
 			<div class="toc-widget">
 				<?php echo do_shortcode('[lwptoc hierarchical="1" numeration="none" title="Table of Contents" smoothScrollOffset="120" titleFontSize="150%" itemsFontSize="100%"]'); ?>
 			</div>
+			<div class="newsletter">
+				<?php echo do_shortcode('[block id="newsletter-blog-detail"]'); ?>
+			</div>
 		<?php else : ?>
 			<?php get_sidebar(); ?>
 		<?php endif; ?>

@@ -171,6 +171,13 @@ function triggeOpenImage(item, className) {
 }
 
 $(document).ready(function () {
+  if ($(".toc-widget").length > 0) {
+    $(".lwptoc_item a").on("click", function (e) {
+      $(".lwptoc_item").removeClass("active");
+
+      $(this).closest(".lwptoc_item").addClass("active");
+    });
+  }
   customAccordion();
   toogle_shipping_popup();
   validation_address_2();

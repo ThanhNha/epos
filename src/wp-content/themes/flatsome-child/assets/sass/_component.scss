@@ -214,13 +214,22 @@
     background-color: $blue-light !important;
   }
 }
+.bg-blue-light-2 {
+  .col-inner {
+    background-color: $blue-light-2 !important;
+  }
+}
+.bg-green-light {
+  .col-inner {
+    background-color: $color-ldp-2 !important;
+  }
+}
 
 .bg-blue-dark {
   .col-inner {
     background-color: $blue-dark !important;
   }
 }
-
 
 .box-price {
   .col-inner {
@@ -232,18 +241,33 @@
     .icon-box {
       margin-bottom: 10px;
     }
-    h2{
+    h2 {
       font-size: 28px !important;
     }
-    h3{
+    h3 {
       color: $blue-dark !important;
       font-size: 16px !important;
     }
   }
-  &.white{
-    .col-inner{
+  &.white {
+    .col-inner {
       background-color: white !important;
       box-shadow: $shadow !important;
     }
+  }
+}
+.p-1 {
+  .col-inner {
+    padding: 10px !important;
+  }
+}
+.p-2 {
+  .col-inner {
+    padding: 15px !important;
+  }
+}
+.p-3 {
+  .col-inner {
+    padding: 20px !important;
   }
 }
