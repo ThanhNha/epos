@@ -203,3 +203,56 @@ body.payment-soundbox {
     }
   }
 }
+.tabbed-content {
+  &.tab-menu {
+    ul {
+      border-bottom: 1px solid #e5e5e5 !important;
+      justify-content: space-between;
+      li {
+        &.active,
+        &:hover {
+          a {
+            color: $blue-dark !important;
+            &::before {
+              background-color: $blue-dark;
+              height: 2px;
+            }
+          }
+        }
+        a {
+          font-size: 21px !important;
+          font-weight: 600 !important;
+          line-height: 1.4em !important;
+          padding-bottom: 20px;
+        }
+      }
+    }
+  }
+}
+
+.d-flex {
+  display: flex !important;
+  gap: 20px;
+}
+.custom-post-sidebar {
+  background-color: #f3f3f3 !important;
+  .author-sidebar {
+    padding-top: 20px;
+    .name-author {
+      margin-bottom: 0px !important;
+      span {
+        color: $blue-dark !important;
+        font-weight: 600 !important;
+      }
+    }
+    .post-date {
+      margin-bottom: 0px !important;
+      font-size: 14px !important;
+    }
+  }
+  .toc-widget {
+    .lwptoc_i {
+      padding: 0 !important;
+    }
+  }
+}
