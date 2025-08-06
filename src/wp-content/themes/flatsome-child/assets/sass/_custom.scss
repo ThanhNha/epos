@@ -239,61 +239,34 @@ body.payment-soundbox {
   .large-9 {
     padding: 0 !important;
   }
+  //Sidebar
   .custom-post-sidebar {
-    background-color: #f3f3f3 !important;
-    .author-sidebar {
-      padding-top: 40px;
-      .name-author {
-        margin-bottom: 0px !important;
-        span {
-          color: $blue-dark !important;
-          font-weight: 600 !important;
+    display: none;;
+    @include desktop {
+      display: block;
+      background-color: #f3f3f3 !important;
+      .author-sidebar {
+        padding-top: 40px;
+        .name-author {
+          margin-bottom: 0px !important;
+          span {
+            text-transform: capitalize;
+            color: $blue-dark !important;
+            font-weight: 600 !important;
+          }
         }
-      }
-      .post-date {
-        margin-bottom: 0px !important;
-        font-size: 14px !important;
-      }
-    }
-    .toc-widget {
-      .lwptoc_i {
-        padding: 0 !important;
-      }
-      .lwptoc_title {
-        font-size: 16px !important;
-      }
-      .lwptoc_items {
-        border-left: 1px solid #e5e5e5;
-        .lwptoc_item {
-          position: relative;
-          padding-left: 20px;
-          a {
-            font-size: 14px !important;
-          }
-          &.active {
-            a {
-              color: $blue-dark !important;
-              font-weight: bold;
-
-              &::before {
-                content: "";
-                position: absolute;
-                left: 0;
-                top: 0;
-                bottom: 0;
-                width: 3px;
-                border-left: 3px solid $blue-dark !important;
-              }
-            }
-          }
+        .post-date {
+          margin-bottom: 0px !important;
+          font-size: 14px !important;
         }
       }
     }
   }
+  // end sidebar
   .custom-single-post-layout {
     padding: 10px 20px;
     @include desktop {
-      padding: 10px 80px;
+      padding: 10px 60px;
     }
   }
   .entry-content {
@@ -301,14 +274,65 @@ body.payment-soundbox {
       display: none !important;
     }
   }
+  .blog-featured-title {
+    display: none;
+    @include desktop {
+      display: block;
+    }
+  }
+  // Banner mobile
+  .mobile-banner-wrapper {
+    display: block;
+    padding: 20px;
+    .blog-title {
+      padding-bottom: 10px;
+    }
+    .blog-category-name {
+      margin: 20px 0;
+      a {
+        background-color: $color-ldp-2;
+        padding: 8px;
+        text-transform: uppercase;
+        border-radius: 5px;
+        color: $main-ldp;
+        font-weight: 500;
+        font-size: 14px;
+      }
+    }
+    .mobile-banner {
+      img {
+        border-radius: 15px;
+      }
+    }
+    @include desktop {
+      display: none;
+    }
+    .author-sidebar {
+      padding: 10px 0 0;
+      border-bottom: 1px solid #e5e5e5;
+      .name-author {
+        margin-bottom: 0px !important;
+        span {
+          text-transform: capitalize;
+          color: $blue-dark !important;
+          font-weight: 600 !important;
+        }
+      }
+    }
+    .toc-widget {
+      padding-bottom: 10px;
+      border-bottom: 1px solid #e5e5e5;
+    }
+  }
+  // end banner mobile
 }
 .newsletter {
-  .section.has-block {
+  .section {
     padding: 0 !important;
   }
 }
 .newletter-box {
-  .col-inner {
+  > .col-inner {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     border-top: 2px solid #007b5f;
     border-bottom: 2px solid #007b5f;
@@ -318,7 +342,7 @@ body.payment-soundbox {
   }
   &.bg-blue-light-2 {
     margin-bottom: 20px;
-    .col-inner {
+    > .col-inner {
       padding: 25px !important;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
       border-top: 2px solid $blue-dark;
@@ -326,6 +350,40 @@ body.payment-soundbox {
       h3,
       p {
         color: white !important;
+      }
+    }
+  }
+}
+.toc-widget {
+  .lwptoc_i {
+    padding: 0 !important;
+  }
+  .lwptoc_title {
+    font-size: 16px !important;
+  }
+  .lwptoc_items {
+    border-left: 1px solid #e5e5e5;
+    .lwptoc_item {
+      position: relative;
+      padding-left: 20px;
+      a {
+        font-size: 14px !important;
+      }
+      &.active {
+        a {
+          color: $blue-dark !important;
+          font-weight: bold;
+
+          &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            border-left: 3px solid $blue-dark !important;
+          }
+        }
       }
     }
   }
