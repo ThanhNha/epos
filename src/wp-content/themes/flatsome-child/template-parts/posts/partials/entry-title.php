@@ -4,13 +4,12 @@
 
 <?php
 if ( is_single() ) {
-	echo '<h1 class="entry-title">' . get_the_title() . '</h1>';
+	echo '<h1 class="entry-title fs-32">' . get_the_title() . '</h1>';
 } else {
 	echo '<h2 class="entry-title"><a href="' . get_the_permalink() . '" rel="bookmark" class="plain">' . get_the_title() . '</a></h2>';
 }
 ?>
 
-<div class="entry-divider is-divider small"></div>
 
 <?php
 $single_post = is_singular( 'post' );

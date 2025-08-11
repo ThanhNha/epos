@@ -10,7 +10,7 @@
 		</div>
 
 		<div class="page-title-inner container  flex-row  dark is-large" style="min-height: 300px">
-			<div class="flex-col flex-center text-center">
+			<div class="flex-col flex-center text-center w-50">
 				<?php get_template_part('template-parts/posts/partials/entry', 'title');  ?>
 			</div>
 		</div>

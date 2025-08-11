@@ -18,7 +18,7 @@ function insert_multiple_shortcodes_in_content($content)
         //
         $paragraphs = explode('</p>', $content);
         if (count($paragraphs) > 1) {
-            $paragraphs[1] .= '</p>' . $shortcode1;
+            $paragraphs[0] .= '</p>' . $shortcode1;
         }
         $content = implode('</p>', $paragraphs);
 

@@ -6,7 +6,7 @@ do_action('flatsome_before_blog');
 	get_template_part('template-parts/posts/featured-posts');
 } ?>
 
-<div class="row row-large <?php if (flatsome_option('blog_layout_divider')) echo 'row-divided '; ?>">
+<div class="row row-large <?php if (flatsome_option('blog_layout_divider')) echo 'row-divided '; ?>full-width-1">
 
 	<div class="large-9 col">
 		<?php if (!is_single() && flatsome_option('blog_featured') == 'content') {
