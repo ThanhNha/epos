@@ -18,23 +18,6 @@
   <link rel="preload" href="/wp-content/themes/flatsome/assets/js/chunk.vendors-slider.f0d2cbc9.js" as="script">
   <link rel="preload" href="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js" as="script">
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org/",
-  "@type": "Product",
-  "name": "EPOS POS System",
-  "image": "",
-  "brand": "EPOS",
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "5",
-    "bestRating": "5",
-    "worstRating": "1",
-    "ratingCount": "965"
-  }
-}
-</script>
-
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],

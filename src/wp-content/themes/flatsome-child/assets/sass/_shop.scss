@@ -1,4 +1,7 @@
 .html_topbar_right {
+  display: flex !important;
+  align-items: center;
+  gap: 15px;
   &:hover {
     a {
       &::before {
@@ -13,26 +16,27 @@
   }
   .menu-btn-demo,
   .menu-btn-shop {
-    background-color: $blue;
-    padding: 0.25rem 0.75rem;
+    background: $blue-dark !important;
+    padding: 0.25rem 0.75rem !important;
     border: transparent;
-    font-size: 0.975rem;
-    border-radius: 0.25rem;
+    font-size: 16px;
+    border-radius: 8px !important;
     color: white;
     display: block;
     line-height: 40px !important;
     transition: all 0.3s linear;
+    text-transform: capitalize;
     &:hover {
-      color: $green !important;
+      color: white !important;
+    }
+    &::before {
+      display: none;
     }
   }
 
   .menu-btn-demo,
   .menu-btn-shop {
     margin-right: 0;
-  }
-  .menu-btn-shop {
-    margin-left: 10px;
   }
 
   @include tablet {

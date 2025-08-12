@@ -58,10 +58,12 @@ function testimonialDes() {
       .removeClass()
       .appendTo($item.eq(index));
 
-    if ($clone.height() > $p.height()) {
-      // Append icon
-      const $icon = jQuery('<span class="read-more-icon">...>></span>');
-      $desc.append($icon);
+    if (!jQuery(this).hasClass("skip")) {
+      if ($clone.height() > $p.height()) {
+        // Append icon
+        const $icon = jQuery('<span class="read-more-icon">Read more</span>');
+        $desc.append($icon);
+      }
     }
 
     $clone.remove();

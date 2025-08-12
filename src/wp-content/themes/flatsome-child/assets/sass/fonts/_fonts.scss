@@ -1,0 +1,107 @@
+/* Font face for web template */
+// Montserrat
+@include font-face(
+  "Montserrat",
+  "#{$assets_path}fonts/Montserrat/Montserrat-Regular",
+  400
+);
+@include font-face(
+  "Montserrat",
+  "#{$assets_path}fonts/Montserrat/Montserrat-Light",
+  300
+);
+@include font-face(
+  "Montserrat",
+  "#{$assets_path}fonts/Montserrat/Montserrat-Medium",
+  500
+);
+@include font-face(
+  "Montserrat",
+  "#{$assets_path}fonts/Montserrat/Montserrat-Bold",
+  900
+);
+
+//PlusJakartaSans
+@include font-face(
+  "PlusJakartaSans",
+  "#{$assets_path}fonts/PlusJakartaSans/PlusJakartaSans-Regular",
+  400
+);
+@include font-face(
+  "PlusJakartaSans",
+  "#{$assets_path}fonts/PlusJakartaSans/PlusJakartaSans-Light",
+  300
+);
+@include font-face(
+  "PlusJakartaSans",
+  "#{$assets_path}fonts/PlusJakartaSans/PlusJakartaSans-Medium",
+  500
+);
+@include font-face(
+  "PlusJakartaSans",
+  "#{$assets_path}fonts/PlusJakartaSans/PlusJakartaSans-Bold",
+  900
+);
+
+body {
+  font-family: $main-font;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $second-font;
+}
+p,
+a {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 16px;
+}
+
+body {
+  h1,
+  h2 {
+    font-size: 28px !important;
+    color: $blue-dark;
+    line-height: 1.2em;
+
+    @include tablet {
+      font-size: 38px !important;
+    }
+    @include desktop {
+      font-size: 48px !important;
+    }
+    span {
+      font-size: 28px !important;
+      font-family: "PlusJakartaSans", sans-serif !important;
+      @include tablet {
+        font-size: 38px !important;
+      }
+      @include desktop {
+        font-size: 48px !important;
+      }
+    }
+  }
+  h3 {
+    font-size: 18px !important;
+    color: $blue-dark;
+    @include desktop {
+      font-size: 20px !important;
+    }
+  }
+}
+.star-rating {
+  font-size: 14px !important;
+}
+
+// testimonial
+
+.testimonial-box {
+  .testimonial-text {
+    p {
+      font-size: 14px;
+    }
+  }
+}
