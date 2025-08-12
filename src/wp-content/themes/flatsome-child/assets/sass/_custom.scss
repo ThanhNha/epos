@@ -213,6 +213,12 @@ body.payment-soundbox {
       border-bottom: 1px solid #e5e5e5 !important;
       justify-content: space-between;
       li {
+        width: 100% !important;
+        text-align: center;
+        @include desktop {
+          width: auto !important;
+          text-align: start;
+        }
         &.active,
         &:hover {
           a {

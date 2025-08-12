@@ -4,7 +4,7 @@
       &.nav-left {
         justify-content: center;
       }
-      li {
+      > li {
         &.menu-item {
           a {
             text-transform: capitalize;
@@ -37,7 +37,45 @@
             border: 0;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            li {
+            > li.menu-item-has-children {
+              margin-bottom: 5px;
+              a {
+                color: $blue-dark !important;
+                border-bottom: 0;
+                border-bottom: 1px solid $blue-dark;
+                &:hover {
+                  color: $title-icon-box-color !important;
+                }
+              }
+              &:hover {
+                background-color: transparent !important;
+                border-radius: 8px;
+              }
+              .sub-menu {
+                margin-top: 10px;
+                li {
+                  a {
+                    border-bottom: 0;
+                    font-size: 14px;
+                    color: $blue-dark !important;
+                    text-decoration: none;
+                  }
+                  &:hover {
+                    background-color: $title-icon-box-color !important ;
+                    border-radius: 8px;
+                    a {
+                      color: white !important;
+                    }
+                  }
+                  &.active {
+                    a {
+                      color: $title-icon-box-color !important;
+                    }
+                  }
+                }
+              }
+            }
+            li:not(.menu-item-has-children) {
               a {
                 border-bottom: 0;
                 font-size: 14px;
@@ -48,11 +86,6 @@
                 border-radius: 8px;
                 a {
                   color: white !important;
-                }
-              }
-              &.active {
-                a {
-                  color: $title-icon-box-color !important;
                 }
               }
             }
@@ -97,6 +130,14 @@
     margin-right: 15px;
     img {
       width: 90px;
+    }
+  }
+}
+.hero-image {
+  img {
+    @include desktop {
+      height: 500px;
+      object-fit: cover;
     }
   }
 }
