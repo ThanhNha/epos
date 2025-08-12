@@ -1,13 +1,10 @@
-.button {
-  border-radius: 0.25rem !important;
-}
 .quantity {
   .button.is-form {
-    background: $blue;
+    background: $blue-dark;
     text-shadow: none !important;
     color: #fff !important;
     &:hover {
-      background: #1b459b;
+      background: $blue-dark;
     }
   }
 }
@@ -36,6 +33,61 @@
   content: "\f223";
   cursor: help;
 }
+a.button {
+  span {
+    font-weight: 600;
+  }
+}
+.button {
+  border-radius: 30px !important;
+  padding: 8px 24px !important;
+  &.is-form {
+    padding: 0 8px !important;
+    border-radius: 5px !important;
+  }
+  &.primary {
+    background: $color-ldp !important;
+    color: white !important;
+  }
+  &.secondary {
+    background: $blue-dark !important;
+    color: white !important;
+  }
+  &.outline {
+    border: 1px solid $blue-dark !important;
+    color: $blue-dark !important;
+    background: transparent !important;
+    &:hover {
+      background: $blue-dark !important;
+      color: white !important;
+    }
+  }
+  &.back-to-top {
+    border-radius: 50% !important;
+    padding: 4px 15px !important;
+  }
+  &.button-tab {
+    padding: 3px 5px !important;
+    border-radius: 8px !important;
+    color: $blue-dark !important;
+    border: 1px solid $blue-dark !important;
+    background: transparent !important;
+    width: 100%;
+    @include tablet {
+      width: 100%;
+    }
+    @include desktop {
+      width: 25%;
+    }
+    &:hover {
+      background: $blue-dark !important;
+      color: white !important;
+    }
+    span {
+      font-size: 14px;
+    }
+  }
+}
 
 .btn-ldp {
   background-color: $color-ldp !important;
@@ -60,6 +112,6 @@
     background: transparent !important;
   }
   &.main {
-    background: $blue !important;
+    background: $blue-dark !important;
   }
 }

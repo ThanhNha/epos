@@ -5,9 +5,14 @@
 @import "shop";
 @import "cart";
 @import "additional";
+@import "accordion";
 @import "products";
 @import "feedback";
 @import "ldp";
+@import "fonts/fonts";
+@import "footer";
+@import "./custom";
+@import "./header";
 
 .net-row {
   .col .col-inner {
@@ -77,4 +82,12 @@
 }
 .epos-whatsapp-icon.shop {
   bottom: 160px !important;
+}
+@media screen and (max-width: 1280px) {
+  .container-width,
+  .full-width .ubermenu-nav,
+  .container,
+  .row {
+    max-width: 1140px !important;
+  }
 }
