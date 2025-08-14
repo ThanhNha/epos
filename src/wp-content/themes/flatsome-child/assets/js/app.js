@@ -125,9 +125,14 @@ function customAccordion() {
           });
         }
       } else {
-        $parent.toggleClass("shin");
+        const isOpen = $parent.hasClass("shin");
 
-        if ($parent.hasClass("shin")) {
+        $accordionWrapper.find(".accordion-item").removeClass("shin");
+        $accordionWrapper.find(".accordion-title").removeClass("active");
+        $accordionWrapper.find(".accordion-inner").slideUp(200);
+
+        if (!isOpen) {
+          $parent.addClass("shin");
           $this.addClass("active");
           $content.slideDown(200, function () {
             if (
@@ -155,14 +160,12 @@ function customAccordion() {
               $content.find("[data-packery-options]").packery("layout");
             }
           });
-        } else {
-          $this.removeClass("active");
-          $content.slideUp(200);
         }
       }
     });
   });
 }
+
 
 function triggeOpenImage(item, className) {
   //hide all first
@@ -171,6 +174,13 @@ function triggeOpenImage(item, className) {
 }
 
 $(document).ready(function () {
+  if ($(".toc-widget").length > 0) {
+    $(".lwptoc_item a").on("click", function (e) {
+      $(".lwptoc_item").removeClass("active");
+
+      $(this).closest(".lwptoc_item").addClass("active");
+    });
+  }
   customAccordion();
   toogle_shipping_popup();
   validation_address_2();
