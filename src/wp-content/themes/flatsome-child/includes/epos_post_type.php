@@ -1,25 +1,25 @@
 <?php
-function create_jobs_post_type()
+function create_careers_post_type()
 {
     $labels = array(
-        'name'                  => _x('Jobs', 'Post Type General Name', 'textdomain'),
-        'singular_name'         => _x('Job', 'Post Type Singular Name', 'textdomain'),
-        'menu_name'             => __('Jobs', 'textdomain'),
-        'name_admin_bar'        => __('Job', 'textdomain'),
+        'name'                  => _x('Careers', 'Post Type General Name', 'textdomain'),
+        'singular_name'         => _x('Career', 'Post Type Singular Name', 'textdomain'),
+        'menu_name'             => __('Careers', 'textdomain'),
+        'name_admin_bar'        => __('Career', 'textdomain'),
         'add_new'               => __('Add New', 'textdomain'),
-        'add_new_item'          => __('Add New Job', 'textdomain'),
-        'edit_item'             => __('Edit Job', 'textdomain'),
-        'new_item'              => __('New Job', 'textdomain'),
-        'view_item'             => __('View Job', 'textdomain'),
-        'view_items'            => __('View Jobs', 'textdomain'),
-        'search_items'          => __('Search Job', 'textdomain'),
-        'not_found'             => __('No jobs found', 'textdomain'),
-        'not_found_in_trash'    => __('No jobs found in Trash', 'textdomain'),
-        'all_items'             => __('All Jobs', 'textdomain'),
+        'add_new_item'          => __('Add New Career', 'textdomain'),
+        'edit_item'             => __('Edit Career', 'textdomain'),
+        'new_item'              => __('New Career', 'textdomain'),
+        'view_item'             => __('View Career', 'textdomain'),
+        'view_items'            => __('View Careers', 'textdomain'),
+        'search_items'          => __('Search Career', 'textdomain'),
+        'not_found'             => __('No careers found', 'textdomain'),
+        'not_found_in_trash'    => __('No careers found in Trash', 'textdomain'),
+        'all_items'             => __('All Careers', 'textdomain'),
     );
 
     $args = array(
-        'label'                 => __('Jobs', 'textdomain'),
+        'label'                 => __('Careers', 'textdomain'),
         'labels'                => $labels,
         'supports'              => array('title', 'editor', 'thumbnail', 'excerpt', 'custom-fields'),
         'hierarchical'          => false,
@@ -34,16 +34,16 @@ function create_jobs_post_type()
         'has_archive'           => true,
         'exclude_from_search'   => false,
         'publicly_queryable'    => true,
-        'rewrite'               => array('slug' => 'jobs'),
+        'rewrite'               => array('slug' => 'careers'),
         'capability_type'       => 'post',
         'show_in_rest'          => true
     );
 
-    register_post_type('jobs', $args);
+    register_post_type('careers', $args);
 }
-add_action('init', 'create_jobs_post_type');
+add_action('init', 'create_careers_post_type');
 
-function create_jobs_taxonomy()
+function create_careers_taxonomy()
 {
     $labels = array(
         'name'              => _x('Departments', 'taxonomy general name', 'textdomain'),
@@ -69,9 +69,9 @@ function create_jobs_taxonomy()
         'show_in_rest'      => true
     );
 
-    register_taxonomy('department', array('jobs'), $args);
+    register_taxonomy('department', array('careers'), $args);
 }
-add_action('init', 'create_jobs_taxonomy');
+add_action('init', 'create_careers_taxonomy');
 
 
 add_action('department_add_form_fields', function () {
