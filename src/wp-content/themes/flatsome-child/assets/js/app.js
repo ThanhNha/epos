@@ -184,13 +184,17 @@ $(document).ready(function () {
   customAccordion();
   toogle_shipping_popup();
   validation_address_2();
-
-  if ($("form.checkout input[name^='shipping_method']").length) {
-    var val = $("form.checkout input[name^='shipping_method']").val();
-    if (val.match("^local_pickup")) {
-      hideAddPress();
-    }
+  var val = $("form.checkout input[name^='shipping_method']").val();
+  if (val?.match("^local_pickup")) {
+    hideAddPress();
   }
+  $(document).on('click', '.apply-btn', function(e){
+    e.preventDefault();
+    $.featherlight.current().close();
+    $('html, body').animate({
+      scrollTop: $('#contact').offset().top - 100
+    }, 800);
+  });
 });
 
 setTimeout(function () {

@@ -86,9 +86,10 @@ function testimonialDes() {
 
 jQuery(document).ready(function ($) {
   setTimeout(function () {
-    initSlider();
-    const $marquee = jQuery(".gallery-customize");
-    if ($marquee.length) {
+    if ($(".testimonial-slider .col-inner").length > 0) {
+      initSlider();
+    }
+    if (typeof marqueeInit === "function") {
       marqueeInit({
         uniqueid: "gallery-customize",
         style: {},

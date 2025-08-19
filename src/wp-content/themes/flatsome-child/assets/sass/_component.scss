@@ -173,6 +173,11 @@
   img {
     border-radius: 15px !important;
   }
+  .icon-box-img {
+    img {
+      border-radius: 0 !important;
+    }
+  }
 }
 .section {
   &.bg-image {
@@ -215,29 +220,29 @@
   }
 }
 .bg-blue-light {
-  >.col-inner {
+  > .col-inner {
     background-color: $blue-light !important;
   }
 }
 .bg-blue-light-2 {
-  >.col-inner {
+  > .col-inner {
     background-color: $blue-light-2 !important;
   }
 }
 .bg-green-light {
-  >.col-inner {
+  > .col-inner {
     background-color: $color-ldp-2 !important;
   }
 }
 
 .bg-blue-dark {
-  >.col-inner {
+  > .col-inner {
     background-color: $blue-dark !important;
   }
 }
 
 .bg-white {
-  >.col-inner {
+  > .col-inner {
     background-color: white !important;
   }
 }
