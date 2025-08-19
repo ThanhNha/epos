@@ -56,6 +56,9 @@
   @include tablet {
     right: 35px;
   }
+  @include desktop {
+    right: 22px;
+  }
   .image-icon {
     width: auto !important;
     height: auto;
@@ -65,6 +68,9 @@
   }
   .image-icon img {
     max-width: 50px;
+  }
+  &:hover {
+    transform: translateY(-10%);
   }
 }
 

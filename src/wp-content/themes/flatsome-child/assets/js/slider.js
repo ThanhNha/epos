@@ -86,18 +86,22 @@ function testimonialDes() {
 
 jQuery(document).ready(function ($) {
   setTimeout(function () {
-    initSlider();
-    marqueeInit({
-      uniqueid: "gallery-customize",
-      style: {},
-      type: "class",
-      moveatleast: 3,
-      savedirection: "1",
-      mouse: "cursor driven",
-      inc: 3,
-      neutral: 200,
-      random: false,
-    });
+    if ($(".testimonial-slider .col-inner").length > 0) {
+      initSlider();
+    }
+    if (typeof marqueeInit === "function") {
+      marqueeInit({
+        uniqueid: "gallery-customize",
+        style: {},
+        type: "class",
+        moveatleast: 3,
+        savedirection: "1",
+        mouse: "cursor driven",
+        inc: 3,
+        neutral: 200,
+        random: false,
+      });
+    }
   }, 2000);
 
   setTimeout(function () {

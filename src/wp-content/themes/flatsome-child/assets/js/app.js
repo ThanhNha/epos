@@ -185,9 +185,16 @@ $(document).ready(function () {
   toogle_shipping_popup();
   validation_address_2();
   var val = $("form.checkout input[name^='shipping_method']").val();
-  if (val.match("^local_pickup")) {
+  if (val?.match("^local_pickup")) {
     hideAddPress();
   }
+  $(document).on('click', '.apply-btn', function(e){
+    e.preventDefault();
+    $.featherlight.current().close();
+    $('html, body').animate({
+      scrollTop: $('#contact').offset().top - 100
+    }, 800);
+  });
 });
 
 setTimeout(function () {
