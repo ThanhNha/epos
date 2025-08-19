@@ -133,7 +133,7 @@ function jobs_available_shortcode($atts)
           $image_url = wp_get_attachment_url($image_id);
 
           $jobs_query = new WP_Query(array(
-            'post_type'      => 'jobs',
+            'post_type'      => 'careers',
             'posts_per_page' => -1,
             'tax_query'      => array(
               array(
