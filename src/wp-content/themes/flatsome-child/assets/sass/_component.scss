@@ -372,14 +372,26 @@
   }
 }
 .fs-28 {
-  font-size: 28px !important;
+  font-size: 24px !important;
   h2 {
+    font-size: 24px !important;
+    @include desktop {
+      font-style: 28px !important;
+    }
+  }
+  @include desktop {
     font-size: 28px !important;
   }
 }
 .fs-26 {
-  font-size: 26px !important;
+  font-size: 22px !important;
   h2 {
+    font-size: 22px !important;
+    @include desktop {
+      font-style: 26px !important;
+    }
+  }
+  @include desktop {
     font-size: 26px !important;
   }
 }
