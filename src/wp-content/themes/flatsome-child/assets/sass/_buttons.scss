@@ -40,7 +40,10 @@ a.button {
 }
 .button {
   border-radius: 30px !important;
-  padding: 8px 24px !important;
+  padding: 8px 12px !important;
+  @include desktop {
+    padding: 8px 24px !important;
+  }
   border: none !important;
   &.is-form {
     padding: 0 8px !important;

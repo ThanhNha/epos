@@ -163,3 +163,48 @@ function cta_block_shortcode($atts)
     return ob_get_clean();
 }
 add_shortcode('cta_block_2', 'cta_block_shortcode');
+
+// Shortcode CTA Block 3
+function cta_block_shortcode_3($atts)
+{
+    $atts = shortcode_atts(
+        array(
+            'id' => '1',
+        ),
+        $atts,
+        'cta_block'
+    );
+
+    $post_id  = get_the_ID();
+
+    $title       = get_field('title_cta_block_3', $post_id);
+    $description = get_field('description_cta_block_3', $post_id);
+
+    if (!$title && !$description) {
+        return '';
+    }
+
+    ob_start(); ?>
+
+    <div class="container section cta-block cta-block-3">
+        <div class="row">
+            <div class="col medium-6 small-12 col-content">
+                <?php if ($title): ?>
+                    <h3 style="font-weight:700; font-size:22px;"><?php echo ($title); ?></h3>
+                <?php endif; ?>
+
+                <?php if ($description): ?>
+                    <p style="font-size:15px;"><?php echo esc_html($description); ?></p>
+                <?php endif; ?>
+
+            </div>
+                <div class="col medium-6 small-12 col-form hubspot-form">
+                    <?php echo do_shortcode('[hubspot type=form portal=2578781 id=c5447ff7-9519-4699-ae40-3bd839fbc84c]'); ?>
+                </div>
+        </div>
+    </div>
+
+<?php
+    return ob_get_clean();
+}
+add_shortcode('cta_block_3', 'cta_block_shortcode_3');

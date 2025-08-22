@@ -1,5 +1,6 @@
 .cta-block {
-  &.cta-block-2 {
+  &.cta-block-2,
+  &.cta-block-3 {
     background-color: $blue-light-2;
     border-radius: 30px;
     color: white;
@@ -36,12 +37,16 @@
             font-size: 16px;
           }
         }
+        &.col-form {
+          padding: 25px;
+        }
       }
     }
   }
   .button-group {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     @include desktop {
       flex-wrap: nowrap;
     }
