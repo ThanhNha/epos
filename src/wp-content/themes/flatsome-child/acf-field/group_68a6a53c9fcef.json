@@ -4,7 +4,7 @@
     "fields": [
         {
             "key": "field_68a6bd5c6af3e",
-            "label": "CTA Block 1",
+            "label": "Newsletter Subscription",
             "name": "",
             "aria-label": "",
             "type": "tab",
@@ -127,7 +127,7 @@
         },
         {
             "key": "field_68a6bd6f6af3f",
-            "label": "CTA Block 2",
+            "label": "CTA Banner",
             "name": "",
             "aria-label": "",
             "type": "tab",
@@ -250,7 +250,7 @@
         },
         {
             "key": "field_68a8188a81006",
-            "label": "CTA Block 3",
+            "label": "Blog Form",
             "name": "",
             "aria-label": "",
             "type": "tab",
@@ -324,5 +324,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1755846900
+    "modified": 1755853150
 }
