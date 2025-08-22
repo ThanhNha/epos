@@ -40,7 +40,11 @@ a.button {
 }
 .button {
   border-radius: 30px !important;
-  padding: 8px 24px !important;
+  padding: 8px 12px !important;
+  @include desktop {
+    padding: 8px 24px !important;
+  }
+  border: none !important;
   &.is-form {
     padding: 0 8px !important;
     border-radius: 5px !important;
@@ -54,7 +58,7 @@ a.button {
     color: white !important;
   }
   &.outline {
-    border: 1px solid $blue-dark !important;
+    border: 2px solid $blue-dark !important;
     color: $blue-dark !important;
     background: transparent !important;
     &:hover {
