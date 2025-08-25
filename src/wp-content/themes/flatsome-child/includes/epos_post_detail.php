@@ -186,7 +186,7 @@ function cta_block_shortcode_3($atts)
 
     ob_start(); ?>
 
-    <div class="container section cta-block cta-block-3">
+    <div id="bog-form" class="container section cta-block cta-block-3">
         <div class="row">
             <div class="col medium-6 small-12 col-content">
                 <?php if ($title): ?>
