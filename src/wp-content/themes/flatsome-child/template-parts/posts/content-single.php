@@ -4,7 +4,7 @@
 	<div class="entry-content single-page">
 		<?php the_content(); ?>
 		<div class="newsletter">
-		<?php echo do_shortcode('[block id="newsletter-blog-detail-4"]'); ?>
+		<?php echo do_shortcode('[cta_block_3]'); ?>
 		</div>
 	</div>
 
