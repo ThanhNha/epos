@@ -186,15 +186,15 @@ function cta_block_shortcode_3($atts)
 
     ob_start(); ?>
 
-    <div id="bog-form" class="container section cta-block cta-block-3">
+    <div id="blog-form" class="container section cta-block cta-block-3">
         <div class="row">
             <div class="col medium-6 small-12 col-content">
                 <?php if ($title): ?>
-                    <h3 style="font-weight:700; font-size:22px;"><?php echo ($title); ?></h3>
+                    <h3><?php echo ($title); ?></h3>
                 <?php endif; ?>
 
                 <?php if ($description): ?>
-                    <p style="font-size:15px;"><?php echo esc_html($description); ?></p>
+                    <p><?php echo esc_html($description); ?></p>
                 <?php endif; ?>
 
             </div>
