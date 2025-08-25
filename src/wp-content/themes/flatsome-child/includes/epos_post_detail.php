@@ -208,3 +208,10 @@ function cta_block_shortcode_3($atts)
     return ob_get_clean();
 }
 add_shortcode('cta_block_3', 'cta_block_shortcode_3');
+
+
+
+function my_custom_rp4wp_thumbnail_size( $size ) {
+    return 'full';
+}
+add_filter( 'rp4wp_thumbnail_size', 'my_custom_rp4wp_thumbnail_size' );
