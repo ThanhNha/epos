@@ -188,14 +188,32 @@ function home_banner()
 }
 
 
-add_filter( 'rest_endpoints', function( $endpoints ) {
-    if ( ! is_user_logged_in() ) {
-        if ( isset( $endpoints['/wp/v2/posts'] ) ) {
-            unset( $endpoints['/wp/v2/posts'] );
-        }
-        if ( isset( $endpoints['/wp/v2/users'] ) ) {
-            unset( $endpoints['/wp/v2/users'] );
-        }
+add_filter( 'rest_authentication_errors', function( $result ) {
+    if ( ! empty( $result ) ) {
+        return $result;
     }
-    return $endpoints;
+
+    if ( is_user_logged_in() ) {
+        return $result;
+    }
+
+    $request_uri = $_SERVER['REQUEST_URI'];
+
+    if ( strpos( $request_uri, '/wp-json/wp/v2/posts' ) !== false ) {
+        return new WP_Error(
+            'rest_forbidden',
+            __( 'You must be logged in to access posts API.', 'your-textdomain' ),
+            [ 'status' => 401 ]
+        );
+    }
+
+    if ( strpos( $request_uri, '/wp-json/wp/v2/users' ) !== false ) {
+        return new WP_Error(
+            'rest_forbidden',
+            __( 'You must be logged in to access users API.', 'your-textdomain' ),
+            [ 'status' => 401 ]
+        );
+    }
+
+    return $result;
 });
