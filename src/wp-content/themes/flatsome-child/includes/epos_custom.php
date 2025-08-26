@@ -188,33 +188,22 @@ function home_banner()
 }
 
 
-add_filter( 'rest_authentication_errors', function( $result ) {
+add_filter('rest_authentication_errors', 'rudr_turn_off_rest_api_not_logged_in');
 
-    if ( ! empty( $result ) ) {
-        return $result;
-    }
+function rudr_turn_off_rest_api_not_logged_in($errors)
+{
 
-    if ( is_user_logged_in() ) {
-        return $result;
-    }
+  if (is_wp_error($errors)) {
+    return $errors;
+  }
 
-    $request_uri = $_SERVER['REQUEST_URI'];
+  if (! is_user_logged_in() || ! current_user_can('administrator')) {
+    return new WP_Error(
+      'no_rest_api_sorry',
+      'REST API not allowed',
+      array('status' => 401)
+    );
+  }
 
-    if ( strpos( $request_uri, '/wp-json/wp/v2/posts' ) !== false ) {
-        return new WP_Error(
-            'rest_forbidden',
-            __( 'You must be logged in to access posts API.', 'your-textdomain' ),
-            [ 'status' => 401 ]
-        );
-    }
-
-    if ( strpos( $request_uri, '/wp-json/wp/v2/users' ) !== false ) {
-        return new WP_Error(
-            'rest_forbidden',
-            __( 'You must be logged in to access users API.', 'your-textdomain' ),
-            [ 'status' => 401 ]
-        );
-    }
-
-    return $result;
-});
+  return $errors;
+}
