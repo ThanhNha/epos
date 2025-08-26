@@ -186,3 +186,16 @@ function home_banner()
 <?php
 
 }
+
+
+add_filter( 'rest_endpoints', function( $endpoints ) {
+    if ( ! is_user_logged_in() ) {
+        if ( isset( $endpoints['/wp/v2/posts'] ) ) {
+            unset( $endpoints['/wp/v2/posts'] );
+        }
+        if ( isset( $endpoints['/wp/v2/users'] ) ) {
+            unset( $endpoints['/wp/v2/users'] );
+        }
+    }
+    return $endpoints;
+});

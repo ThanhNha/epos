@@ -68,9 +68,9 @@ function cta_block_1_shortcode($atts)
         <div class="row">
             <div class="col small-12 col-content newletter-box bg-green-light">
                 <?php if ($title): ?>
-                    <h3 class="cta-title">
+                    <p class="cta-title">
                         <?php echo esc_html($title); ?>
-                    </h3>
+                    </p>
                 <?php endif; ?>
 
                 <?php if ($description): ?>
@@ -120,11 +120,11 @@ function cta_block_shortcode($atts)
         <div class="row">
             <div class="col medium-<?php echo $image ? '7' : '12'; ?> small-12 col-content">
                 <?php if ($title): ?>
-                    <h3 style="font-weight:700; font-size:22px;"><?php echo ($title); ?></h3>
+                    <p class="cta-title"><?php echo ($title); ?></p>
                 <?php endif; ?>
 
                 <?php if ($description): ?>
-                    <p style="font-size:15px;"><?php echo esc_html($description); ?></p>
+                    <p class="cta-description"><?php echo esc_html($description); ?></p>
                 <?php endif; ?>
 
                 <?php if ($buttons): ?>
@@ -190,17 +190,17 @@ function cta_block_shortcode_3($atts)
         <div class="row">
             <div class="col medium-6 small-12 col-content">
                 <?php if ($title): ?>
-                    <h3><?php echo ($title); ?></h3>
+                    <p class="cta-title"><?php echo ($title); ?></p>
                 <?php endif; ?>
 
                 <?php if ($description): ?>
-                    <p><?php echo esc_html($description); ?></p>
+                    <p class="cta-description"><?php echo esc_html($description); ?></p>
                 <?php endif; ?>
 
             </div>
-                <div class="col medium-6 small-12 col-form hubspot-form">
-                    <?php echo do_shortcode('[hubspot type=form portal=2578781 id=c5447ff7-9519-4699-ae40-3bd839fbc84c]'); ?>
-                </div>
+            <div class="col medium-6 small-12 col-form hubspot-form">
+                <?php echo do_shortcode('[hubspot type=form portal=2578781 id=c5447ff7-9519-4699-ae40-3bd839fbc84c]'); ?>
+            </div>
         </div>
     </div>
 
@@ -211,7 +211,8 @@ add_shortcode('cta_block_3', 'cta_block_shortcode_3');
 
 
 
-function my_custom_rp4wp_thumbnail_size( $size ) {
+function my_custom_rp4wp_thumbnail_size($size)
+{
     return 'full';
 }
-add_filter( 'rp4wp_thumbnail_size', 'my_custom_rp4wp_thumbnail_size' );
+add_filter('rp4wp_thumbnail_size', 'my_custom_rp4wp_thumbnail_size');
