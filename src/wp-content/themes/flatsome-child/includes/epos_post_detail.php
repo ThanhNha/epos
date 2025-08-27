@@ -9,13 +9,15 @@ function insert_multiple_shortcodes_in_content($content)
 {
     if (is_singular('post') && is_main_query()) {
 
-        // Shortcode [block id="newsletter-blog-detail-2"]
+        // Shortcode [cta_block_1]
         $shortcode1 = '<div class="newsletter">' . do_shortcode('[cta_block_1]') . '</div>';
 
-        // Shortcode [block id="cta-box"]
-        $shortcode2 = '<div class="cta-box">' . do_shortcode('[cta_block_2]') . '</div>';
+        // Shortcode [cta_block_2]
+        $shortcode2 = '<div class="newsletter">' . do_shortcode('[cta_block_2]') . '</div>';
 
-        //
+        // Shortcode [cta_block_3]
+        $shortcode3 = '<div class="newsletter">' . do_shortcode('[cta_block_3]') . '</div>';
+
         $paragraphs = explode('</p>', $content);
         if (count($paragraphs) > 1) {
             $paragraphs[0] .= '</p>' . $shortcode1;
@@ -29,16 +31,15 @@ function insert_multiple_shortcodes_in_content($content)
         if ($h3_count >= 2) {
             $insert_index = ceil($h3_count / 2) - 1;
             $insert_position = $h3_matches[$insert_index][1];
-
-            $shortcode2 = '<div class="newsletter">' . do_shortcode('[cta_block_2]') . '</div>';
-
             $content = substr_replace($content, $shortcode2, $insert_position, 0);
         }
+        $content .= $shortcode3;
     }
 
     return $content;
 }
 add_filter('the_content', 'insert_multiple_shortcodes_in_content');
+
 
 
 
