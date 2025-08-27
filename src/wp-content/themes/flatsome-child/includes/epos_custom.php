@@ -177,3 +177,24 @@ function home_banner()
 <?php
 
 }
+
+
+add_filter('rest_authentication_errors', 'rudr_turn_off_rest_api_not_logged_in');
+
+function rudr_turn_off_rest_api_not_logged_in($errors)
+{
+
+  if (is_wp_error($errors)) {
+    return $errors;
+  }
+
+  if (! is_user_logged_in() || ! current_user_can('administrator')) {
+    return new WP_Error(
+      'no_rest_api_sorry',
+      'REST API not allowed',
+      array('status' => 401)
+    );
+  }
+
+  return $errors;
+}
