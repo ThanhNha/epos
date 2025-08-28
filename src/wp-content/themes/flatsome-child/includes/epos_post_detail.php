@@ -58,8 +58,13 @@ function cta_block_1_shortcode($atts)
 
     $title       = get_field('title_cta_block_1', $post_id);
     $description = get_field('description_cta_block_1', $post_id);
+    $image       = get_field('image_cta_block_1', $post_id);
+    $buttons     = get_field('button_cta_block_1', $post_id);
+    $hubspot_form_block = get_field('hubspot_form_block_1', $post_id);
+    $newletter_form = ($hubspot_form_block === "eaf3aa0c-e123-4f54-ac18-5388ad1bbbb9");
+    var_dump($image);
 
-    if (!$title && !$description) {
+    if (!$title && !$description && !$image && !$buttons && !$hubspot_form_block) {
         return '';
     }
 
@@ -67,34 +72,94 @@ function cta_block_1_shortcode($atts)
 
     <div class="container section cta-block cta-block-1">
         <div class="row">
-            <div class="col small-12 col-content newletter-box bg-green-light">
-                <?php if ($title): ?>
-                    <p class="cta-title">
-                        <?php echo esc_html($title); ?>
-                    </p>
+
+            <?php if ($newletter_form): ?>
+                <div class="col medium-12 small-12 col-content newletter-box bg-green-light">
+                    <?php if ($title): ?>
+                        <p class="cta-title"><?php echo ($title); ?></p>
+                    <?php endif; ?>
+
+                    <?php if ($description): ?>
+                        <p class="cta-description"><?php echo ($description); ?></p>
+                    <?php endif; ?>
+                    <div class="hubspot-form">
+                        <?php echo do_shortcode('[hubspot type="form" portal="2578781" id="' . esc_attr($hubspot_form_block) . '"]'); ?>
+                    </div>
+                    <?php if ($buttons): ?>
+                        <div class="button-group">
+                            <?php foreach ($buttons as $index => $btn): ?>
+                                <?php
+                                $btn_class = "button secondary lowercase rounded-1";
+                                if ($index == 1) {
+                                    $btn_class = "button primary is-outline lowercase rounded-1 outline";
+                                }
+                                ?>
+                                <a href="<?php echo esc_url($btn['button']['url']); ?>"
+                                    class="<?php echo esc_attr($btn_class); ?>"
+                                    style="margin-right:10px;">
+                                    <?php echo ($btn['button']['title']); ?>
+                                </a>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
+
+            <?php else: ?>
+                <?php $has_side_block = ($image && $hubspot_form_block == 'none') || ($hubspot_form_block && $hubspot_form_block != 'none' && empty($image)); ?>
+                <div class="col medium-<?php echo $has_side_block ? '6' : '12'; ?> small-12 col-content newletter-box bg-green-light">
+                    <?php if ($title): ?>
+                        <p class="cta-title"><?php echo ($title); ?></p>
+                    <?php endif; ?>
+
+                    <?php if ($description): ?>
+                        <p class="cta-description"><?php echo ($description); ?></p>
+                    <?php endif; ?>
+
+                    <?php if ($buttons): ?>
+                        <div class="button-group">
+                            <?php foreach ($buttons as $index => $btn): ?>
+                                <?php
+                                $btn_class = "button secondary lowercase rounded-1";
+                                if ($index == 1) {
+                                    $btn_class = "button primary is-outline lowercase rounded-1 outline";
+                                }
+                                ?>
+                                <a href="<?php echo esc_url($btn['button']['url']); ?>"
+                                    class="<?php echo esc_attr($btn_class); ?>"
+                                    style="margin-right:10px;">
+                                    <?php echo ($btn['button']['title']); ?>
+                                </a>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
+
+                <?php if ($image && $hubspot_form_block == 'none'): ?>
+                    <div class="col medium-6 small-12 col-image">
+                        <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
+                    </div>
+                <?php elseif ($hubspot_form_block && $hubspot_form_block != 'none' && empty($image)): ?>
+                    <div class="col medium-6 small-12 col-form">
+                        <div class="hubspot-form">
+                            <?php echo do_shortcode('[hubspot type="form" portal="2578781" id="' . esc_attr($hubspot_form_block) . '"]'); ?>
+                        </div>
+                    </div>
                 <?php endif; ?>
 
-                <?php if ($description): ?>
-                    <p class="cta-description">
-                        <?php echo esc_html($description); ?>
-                    </p>
-                <?php endif; ?>
-                <div class="hubspot-form">
-                    <?php echo do_shortcode('[hubspot type=form portal=2578781 id=eaf3aa0c-e123-4f54-ac18-5388ad1bbbb9]'); ?>
-                </div>
-            </div>
+            <?php endif; ?>
+
         </div>
     </div>
-
 
 <?php
     return ob_get_clean();
 }
 add_shortcode('cta_block_1', 'cta_block_1_shortcode');
 
+
 // Shortcode CTA Block 2
 
-function cta_block_shortcode($atts)
+function cta_block_shortcode_2($atts)
 {
     $atts = shortcode_atts(
         array(
@@ -110,8 +175,11 @@ function cta_block_shortcode($atts)
     $description = get_field('description_cta_block_2', $post_id);
     $image       = get_field('image_cta_block_2', $post_id);
     $buttons     = get_field('button_cta_block_2', $post_id);
+    $hubspot_form_block = get_field('hubspot_form_block_2', $post_id);
 
-    if (!$title && !$description && !$image && !$buttons) {
+    $newletter_form = ($hubspot_form_block === "eaf3aa0c-e123-4f54-ac18-5388ad1bbbb9");
+
+    if (!$title && !$description && !$image && !$buttons && !$hubspot_form_block) {
         return '';
     }
 
@@ -119,51 +187,91 @@ function cta_block_shortcode($atts)
 
     <div class="container section cta-block cta-block-2">
         <div class="row">
-            <div class="col medium-<?php echo $image ? '7' : '12'; ?> small-12 col-content">
-                <?php if ($title): ?>
-                    <p class="cta-title"><?php echo ($title); ?></p>
-                <?php endif; ?>
 
-                <?php if ($description): ?>
-                    <p class="cta-description"><?php echo esc_html($description); ?></p>
-                <?php endif; ?>
+            <?php if ($newletter_form): ?>
+                <div class="col medium-12 small-12 col-content">
+                    <?php if ($title): ?>
+                        <p class="cta-title"><?php echo ($title); ?></p>
+                    <?php endif; ?>
 
-                <?php if ($buttons): ?>
-                    <div class="button-group">
-                        <?php foreach ($buttons as $index => $btn): ?>
-                            <?php
-                            $btn_class = "button secondary lowercase rounded-1";
-
-                            if ($index == 0) {
+                    <?php if ($description): ?>
+                        <p class="cta-description"><?php echo ($description); ?></p>
+                    <?php endif; ?>
+                    <div class="hubspot-form">
+                        <?php echo do_shortcode('[hubspot type="form" portal="2578781" id="' . esc_attr($hubspot_form_block) . '"]'); ?>
+                    </div>
+                    <?php if ($buttons): ?>
+                        <div class="button-group">
+                            <?php foreach ($buttons as $index => $btn): ?>
+                                <?php
                                 $btn_class = "button secondary lowercase rounded-1";
-                            }
-                            if ($index == 1) {
-                                $btn_class = "button primary is-outline lowercase rounded-1 outline";
-                            }
-                            ?>
+                                if ($index == 1) {
+                                    $btn_class = "button primary is-outline lowercase rounded-1 outline";
+                                }
+                                ?>
+                                <a href="<?php echo esc_url($btn['button']['url']); ?>"
+                                    class="<?php echo esc_attr($btn_class); ?>"
+                                    style="margin-right:10px;">
+                                    <?php echo ($btn['button']['title']); ?>
+                                </a>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
 
-                            <a href="<?php echo esc_url($btn['button']['url']); ?>"
-                                class="<?php echo esc_attr($btn_class); ?>"
-                                style="margin-right:10px;">
-                                <?php echo esc_html($btn['button']['title']); ?>
-                            </a>
-                        <?php endforeach; ?>
+            <?php else: ?>
+                <?php $has_side_block = ($image && $hubspot_form_block == 'none') || ($hubspot_form_block && $hubspot_form_block != 'none' && empty($image)); ?>
+                <div class="col medium-<?php echo $has_side_block ? '6' : '12'; ?> small-12 col-content">
+
+                    <?php if ($title): ?>
+                        <p class="cta-title"><?php echo ($title); ?></p>
+                    <?php endif; ?>
+
+                    <?php if ($description): ?>
+                        <p class="cta-description"><?php echo ($description); ?></p>
+                    <?php endif; ?>
+
+                    <?php if ($buttons): ?>
+                        <div class="button-group">
+                            <?php foreach ($buttons as $index => $btn): ?>
+                                <?php
+                                $btn_class = "button secondary lowercase rounded-1";
+                                if ($index == 1) {
+                                    $btn_class = "button primary is-outline lowercase rounded-1 outline";
+                                }
+                                ?>
+                                <a href="<?php echo esc_url($btn['button']['url']); ?>"
+                                    class="<?php echo esc_attr($btn_class); ?>"
+                                    style="margin-right:10px;">
+                                    <?php echo ($btn['button']['title']); ?>
+                                </a>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
+
+                <?php if ($image && $hubspot_form_block == 'none'): ?>
+                    <div class="col medium-6 small-12 col-image">
+                        <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
+                    </div>
+                <?php elseif ($hubspot_form_block && $hubspot_form_block != 'none' && empty($image)): ?>
+                    <div class="col medium-6 small-12 col-form">
+                        <div class="hubspot-form">
+                            <?php echo do_shortcode('[hubspot type="form" portal="2578781" id="' . esc_attr($hubspot_form_block) . '"]'); ?>
+                        </div>
                     </div>
                 <?php endif; ?>
 
-            </div>
-            <?php if ($image): ?>
-                <div class="col medium-5 small-12 col-image">
-                    <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
-                </div>
             <?php endif; ?>
+
         </div>
     </div>
 
 <?php
     return ob_get_clean();
 }
-add_shortcode('cta_block_2', 'cta_block_shortcode');
+add_shortcode('cta_block_2', 'cta_block_shortcode_2');
+
 
 // Shortcode CTA Block 3
 function cta_block_shortcode_3($atts)
@@ -173,15 +281,19 @@ function cta_block_shortcode_3($atts)
             'id' => '1',
         ),
         $atts,
-        'cta_block'
+        'cta_block_3'
     );
 
     $post_id  = get_the_ID();
 
     $title       = get_field('title_cta_block_3', $post_id);
     $description = get_field('description_cta_block_3', $post_id);
+    $buttons     = get_field('button_cta_block_3', $post_id);
+    $image       = get_field('image_cta_block_3', $post_id);
+    $hubspot_form_block = get_field('hubspot_form_block_3', $post_id);
+    $newletter_form = ($hubspot_form_block === "eaf3aa0c-e123-4f54-ac18-5388ad1bbbb9");
 
-    if (!$title && !$description) {
+    if (!$title && !$description && !$image && !$buttons && !$hubspot_form_block) {
         return '';
     }
 
@@ -189,19 +301,81 @@ function cta_block_shortcode_3($atts)
 
     <div id="blog-form" class="container section cta-block cta-block-3">
         <div class="row">
-            <div class="col medium-6 small-12 col-content">
-                <?php if ($title): ?>
-                    <p class="cta-title"><?php echo ($title); ?></p>
+
+            <?php if ($newletter_form): ?>
+                <div class="col medium-12 small-12 col-content">
+                    <?php if ($title): ?>
+                        <p class="cta-title"><?php echo ($title); ?></p>
+                    <?php endif; ?>
+
+                    <?php if ($description): ?>
+                        <p class="cta-description"><?php echo ($description); ?></p>
+                    <?php endif; ?>
+
+                    <?php if ($buttons): ?>
+                        <div class="button-group">
+                            <?php foreach ($buttons as $index => $btn): ?>
+                                <?php
+                                $btn_class = "button secondary lowercase rounded-1";
+                                if ($index == 1) {
+                                    $btn_class = "button primary is-outline lowercase rounded-1 outline";
+                                }
+                                ?>
+                                <a href="<?php echo esc_url($btn['button']['url']); ?>"
+                                    class="<?php echo esc_attr($btn_class); ?>"
+                                    style="margin-right:10px;">
+                                    <?php echo ($btn['button']['title']); ?>
+                                </a>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
+                    <div class="hubspot-form">
+                        <?php echo do_shortcode('[hubspot type="form" portal="2578781" id="' . esc_attr($hubspot_form_block) . '"]'); ?>
+                    </div>
+                </div>
+
+            <?php else: ?>
+                <?php $has_side_block = ($image && $hubspot_form_block == 'none') || ($hubspot_form_block && $hubspot_form_block != 'none' && empty($image)); ?>
+                <div class="col medium-<?php echo $has_side_block ? '6' : '12'; ?> small-12 col-content">
+                    <?php if ($title): ?>
+                        <p class="cta-title"><?php echo ($title); ?></p>
+                    <?php endif; ?>
+
+                    <?php if ($description): ?>
+                        <p class="cta-description"><?php echo ($description); ?></p>
+                    <?php endif; ?>
+
+                    <?php if ($buttons): ?>
+                        <div class="button-group">
+                            <?php foreach ($buttons as $index => $btn): ?>
+                                <?php
+                                $btn_class = "button secondary lowercase rounded-1";
+                                if ($index == 1) {
+                                    $btn_class = "button primary is-outline lowercase rounded-1 outline";
+                                }
+                                ?>
+                                <a href="<?php echo esc_url($btn['button']['url']); ?>"
+                                    class="<?php echo esc_attr($btn_class); ?>"
+                                    style="margin-right:10px;">
+                                    <?php echo ($btn['button']['title']); ?>
+                                </a>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
+
+                <?php if ($image && $hubspot_form_block == 'none'): ?>
+                    <div class="col medium-6 small-12 col-image">
+                        <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
+                    </div>
+                <?php elseif ($hubspot_form_block && $hubspot_form_block != 'none' && empty($image)): ?>
+                    <div class="col medium-6 small-12 col-form ">
+                        <?php echo do_shortcode('[hubspot type="form" portal="2578781" id="' . esc_attr($hubspot_form_block) . '"]'); ?>
+                    </div>
                 <?php endif; ?>
 
-                <?php if ($description): ?>
-                    <p class="cta-description"><?php echo esc_html($description); ?></p>
-                <?php endif; ?>
+            <?php endif; ?>
 
-            </div>
-            <div class="col medium-6 small-12 col-form hubspot-form">
-                <?php echo do_shortcode('[hubspot type=form portal=2578781 id=c5447ff7-9519-4699-ae40-3bd839fbc84c]'); ?>
-            </div>
         </div>
     </div>
 
@@ -209,6 +383,7 @@ function cta_block_shortcode_3($atts)
     return ob_get_clean();
 }
 add_shortcode('cta_block_3', 'cta_block_shortcode_3');
+
 
 
 
