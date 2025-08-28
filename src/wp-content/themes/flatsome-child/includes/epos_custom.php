@@ -188,9 +188,9 @@ function home_banner()
 }
 
 
-add_filter('rest_authentication_errors', 'rudr_turn_off_rest_api_not_logged_in');
+add_filter('rest_authentication_errors', 'authentication_rest_api_not_logged_in');
 
-function rudr_turn_off_rest_api_not_logged_in($errors)
+function authentication_rest_api_not_logged_in($errors)
 {
 
   if (is_wp_error($errors)) {
