@@ -52,6 +52,7 @@
     margin-bottom: 20px;
     .row {
       margin: 0 !important;
+      overflow: hidden;
 
       .col {
         &.col-image {
@@ -105,7 +106,7 @@
 
 .cta-block-1 {
   background: $color-ldp-2;
-  border-radius: 10px;
+  border-radius: 30px;
   padding: 40px 30px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   border-top: 2px solid #007b5f;
@@ -113,6 +114,16 @@
   margin-bottom: 20px;
   .row {
     margin: 0px !important;
+    .col-image {
+      padding: 0;
+
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 0 30px 30px 0;
+      }
+    }
     .col-content {
       padding: 30px;
       .cta-title {
@@ -136,4 +147,7 @@ h3 {
     color: $blue-dark;
     font-family: $second-font;
   }
+}
+.col-form {
+  padding: 40px 30px !important;
 }
