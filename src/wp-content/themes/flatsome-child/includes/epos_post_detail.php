@@ -62,7 +62,6 @@ function cta_block_1_shortcode($atts)
     $buttons     = get_field('button_cta_block_1', $post_id);
     $hubspot_form_block = get_field('hubspot_form_block_1', $post_id);
     $newletter_form = ($hubspot_form_block === "eaf3aa0c-e123-4f54-ac18-5388ad1bbbb9");
-    var_dump($image);
 
     if (!$title && !$description && !$image && !$buttons && !$hubspot_form_block) {
         return '';
