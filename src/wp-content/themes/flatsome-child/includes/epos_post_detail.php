@@ -60,9 +60,9 @@ function cta_block_1_shortcode($atts)
     $description = get_field('description_cta_block_1', $post_id);
     $image       = get_field('image_cta_block_1', $post_id);
     $buttons     = get_field('button_cta_block_1', $post_id);
+    $background  = get_field('background_block_1', $post_id);
     $hubspot_form_block = get_field('hubspot_form_block_1', $post_id);
     $newletter_form = ($hubspot_form_block === "eaf3aa0c-e123-4f54-ac18-5388ad1bbbb9");
-    var_dump($image);
 
     if (!$title && !$description && !$image && !$buttons && !$hubspot_form_block) {
         return '';
@@ -70,7 +70,7 @@ function cta_block_1_shortcode($atts)
 
     ob_start(); ?>
 
-    <div class="container section cta-block cta-block-1">
+    <div class="container section cta-block <?php echo ($background); ?>">
         <div class="row">
 
             <?php if ($newletter_form): ?>
@@ -175,6 +175,7 @@ function cta_block_shortcode_2($atts)
     $description = get_field('description_cta_block_2', $post_id);
     $image       = get_field('image_cta_block_2', $post_id);
     $buttons     = get_field('button_cta_block_2', $post_id);
+    $background  = get_field('background_block_2', $post_id);
     $hubspot_form_block = get_field('hubspot_form_block_2', $post_id);
 
     $newletter_form = ($hubspot_form_block === "eaf3aa0c-e123-4f54-ac18-5388ad1bbbb9");
@@ -185,7 +186,7 @@ function cta_block_shortcode_2($atts)
 
     ob_start(); ?>
 
-    <div class="container section cta-block cta-block-2">
+    <div class="container section cta-block <?php echo $background; ?>">
         <div class="row">
 
             <?php if ($newletter_form): ?>
@@ -290,6 +291,7 @@ function cta_block_shortcode_3($atts)
     $description = get_field('description_cta_block_3', $post_id);
     $buttons     = get_field('button_cta_block_3', $post_id);
     $image       = get_field('image_cta_block_3', $post_id);
+    $background  = get_field('background_block_3', $post_id);
     $hubspot_form_block = get_field('hubspot_form_block_3', $post_id);
     $newletter_form = ($hubspot_form_block === "eaf3aa0c-e123-4f54-ac18-5388ad1bbbb9");
 
@@ -299,9 +301,8 @@ function cta_block_shortcode_3($atts)
 
     ob_start(); ?>
 
-    <div id="blog-form" class="container section cta-block cta-block-3">
+    <div id="blog-form" class="container section cta-block <?php echo ($background); ?>">
         <div class="row">
-
             <?php if ($newletter_form): ?>
                 <div class="col medium-12 small-12 col-content">
                     <?php if ($title): ?>
