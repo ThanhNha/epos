@@ -1,6 +1,5 @@
 .cta-block {
-  &.cta-block-2,
-  &.cta-block-3 {
+  &.cta-block-blue {
     background-color: $blue-light-2;
     border-radius: 30px;
     color: white;
@@ -25,16 +24,16 @@
 
         &.col-content {
           height: 100%;
-          padding: 40px !important;
+          padding: 30px !important;
 
-          h3 {
+          .cta-title {
             color: white !important;
-            font-size: 28px;
+            font-size: 24px !important;
             margin-bottom: 15px;
+            font-weight: 700;
           }
-
-          p {
-            font-size: 16px;
+          .cta-description {
+            font-size: 18px;
           }
         }
         &.col-form {
@@ -59,32 +58,52 @@
       }
     }
   }
-}
+  &.cta-block-green {
+    background: $color-ldp-2;
+    border-radius: 30px;
+    padding: 40px 30px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    border-top: 2px solid #007b5f;
+    border-bottom: 2px solid #007b5f;
+    margin-bottom: 20px;
+    .row {
+      margin: 0px !important;
+      .col-image {
+        padding: 0;
 
-.cta-block-1 {
-  background: $color-ldp-2;
-  border-radius: 10px;
-  padding: 40px 30px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  border-top: 2px solid #007b5f;
-  border-bottom: 2px solid #007b5f;
-  margin-bottom: 20px;
-  .row {
-    margin: 0px !important;
-    .col-content {
-      padding: 15px;
-      .cta-title {
-        font-weight: 700;
-        font-size: 22px;
-        color: $blue-dark;
-        margin-bottom: 10px;
+        img {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+          border-radius: 0 30px 30px 0;
+        }
       }
+      .col-content {
+        padding: 30px;
+        .cta-title {
+          font-weight: 700;
+          font-size: 22px;
+          color: $blue-dark;
+          margin-bottom: 10px;
+        }
 
-      .cta-description {
-        font-size: 15px;
-        margin-bottom: 20px;
-        line-height: 1.6;
+        .cta-description {
+          font-size: 15px;
+          margin-bottom: 20px;
+          line-height: 1.6;
+        }
       }
     }
   }
+}
+
+h3 {
+  a {
+    font-size: 20px;
+    color: $blue-dark;
+    font-family: $second-font;
+  }
+}
+.col-form {
+  padding: 40px 30px !important;
 }
