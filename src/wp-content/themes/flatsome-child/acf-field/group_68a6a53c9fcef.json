@@ -20,6 +20,32 @@
             "endpoint": 0
         },
         {
+            "key": "field_68b16b6d63965",
+            "label": "Background Block 1",
+            "name": "background_block_1",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "cta-block-blue": "Background Blue",
+                "cta-block-green": "Background Green"
+            },
+            "default_value": false,
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
             "key": "field_68a6a5405c537",
             "label": "Title CTA Block 1",
             "name": "title_cta_block_1",
@@ -177,6 +203,32 @@
             "endpoint": 0
         },
         {
+            "key": "field_68b16bf963966",
+            "label": "Background Block 2",
+            "name": "background_block_2",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "cta-block-blue": "Background Blue",
+                "cta-block-green": "Background Green"
+            },
+            "default_value": false,
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
             "key": "field_68a6c28126b5f",
             "label": "Title CTA Block 2",
             "name": "title_cta_block_2",
@@ -325,6 +377,32 @@
             },
             "placement": "top",
             "endpoint": 0
+        },
+        {
+            "key": "field_68b16bfc63967",
+            "label": "Background Block 3",
+            "name": "background_block_3",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "cta-block-blue": "Background Blue",
+                "cta-block-green": "Background Green"
+            },
+            "default_value": false,
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
         },
         {
             "key": "field_68a818c081007",
@@ -478,5 +556,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1756373622
+    "modified": 1756457993
 }
