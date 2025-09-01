@@ -64,9 +64,12 @@ function cta_block_1_shortcode($atts)
     $hubspot_form_block = get_field('hubspot_form_block_1', $post_id);
     $newletter_form = ($hubspot_form_block === "eaf3aa0c-e123-4f54-ac18-5388ad1bbbb9");
 
-    if (!$title && !$description && !$image && !$buttons && !$hubspot_form_block) {
+    $has_content = $title || $description || $image || $buttons || ($hubspot_form_block && $hubspot_form_block !== 'none');
+
+    if (!$has_content) {
         return '';
     }
+
 
     ob_start(); ?>
 
@@ -180,10 +183,11 @@ function cta_block_shortcode_2($atts)
 
     $newletter_form = ($hubspot_form_block === "eaf3aa0c-e123-4f54-ac18-5388ad1bbbb9");
 
-    if (!$title && !$description && !$image && !$buttons && !$hubspot_form_block) {
+    $has_content = $title || $description || $image || $buttons || ($hubspot_form_block && $hubspot_form_block !== 'none');
+
+    if (!$has_content) {
         return '';
     }
-
     ob_start(); ?>
 
     <div class="container section cta-block <?php echo $background; ?>">
@@ -295,7 +299,9 @@ function cta_block_shortcode_3($atts)
     $hubspot_form_block = get_field('hubspot_form_block_3', $post_id);
     $newletter_form = ($hubspot_form_block === "eaf3aa0c-e123-4f54-ac18-5388ad1bbbb9");
 
-    if (!$title && !$description && !$image && !$buttons && !$hubspot_form_block) {
+    $has_content = $title || $description || $image || $buttons || ($hubspot_form_block && $hubspot_form_block !== 'none');
+
+    if (!$has_content) {
         return '';
     }
 
