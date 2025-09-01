@@ -34,6 +34,7 @@
                 "id": ""
             },
             "choices": {
+                "none": "None",
                 "cta-block-blue": "Background Blue",
                 "cta-block-green": "Background Green"
             },
@@ -217,6 +218,7 @@
                 "id": ""
             },
             "choices": {
+                "none": "None",
                 "cta-block-blue": "Background Blue",
                 "cta-block-green": "Background Green"
             },
@@ -393,6 +395,7 @@
                 "id": ""
             },
             "choices": {
+                "none": "None",
                 "cta-block-blue": "Background Blue",
                 "cta-block-green": "Background Green"
             },
@@ -556,5 +559,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1756457993
+    "modified": 1756694539
 }
