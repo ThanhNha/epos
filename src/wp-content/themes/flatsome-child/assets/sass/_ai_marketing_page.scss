@@ -91,9 +91,11 @@ body.marketing-ai-page main {
     }
   }
 
-  .col-symbol .col-inner {
-    @include desktop {
-      margin-left: 100px;
+  .col-symbol {
+    .col-inner {
+        @include desktop {
+        margin-left: 100px;
+        }
     }
   }
 
