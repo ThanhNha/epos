@@ -26,6 +26,25 @@
   color: $color-ldp !important;
 }
 .ldp-img-box {
+  &.has-icon-bg-blue {
+    .image-cover {
+      background-color: $blue-dark;
+      display: inline-block;
+      width: 54px;
+      height: 54px;
+      padding: 0 !important;
+      position: relative;
+      border-radius: 8px;
+    }
+    .image-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      padding: 5px;
+      border-radius: 8px;
+    }
+  }
   display: flex;
   flex-wrap: nowrap;
 
