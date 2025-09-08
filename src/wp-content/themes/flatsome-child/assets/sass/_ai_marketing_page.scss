@@ -1,0 +1,442 @@
+//Marrketing AI Page
+body.marketing-ai-page main {
+  .bg-banner {
+    background-color: rgb(234, 247, 255);
+    border-radius: 18px;
+
+    .col-inner {
+      @include desktop {
+        margin-top: 100px !important;
+      }
+    }
+  }
+
+  .bg-green-banner {
+    background-color: rgb(233, 255, 244);
+    border-radius: 18px;
+  }
+
+  .title-banner {
+    @include desktop {
+      margin-top: -30px;
+      margin-left: 30px;
+    }
+  }
+
+  .text-des-banner {
+    @include desktop {
+      margin-left: 30px;
+    }
+    width: 320px;
+  }
+
+  .btn-menu-banner-ai {
+    margin-left: 30px;
+  }
+
+  .p-4-desktop {
+    @include desktop {
+      padding: 60px !important;
+    }
+  }
+
+  .box-text-inner p {
+    width: 264px !important;
+  }
+
+  .registration-qr-bg {
+    .col-inner {
+      border-radius: 18px;
+      @include desktop {
+        width: 450px;
+      }
+    }
+
+    img {
+      border-radius: 18px;
+      @include desktop {
+        height: 450px;
+        width: 450px;
+      }
+    }
+  }
+
+  .text-black {
+    color: #000;
+  }
+
+  .col-text-register {
+    h2 {
+      font-size: 24px;
+      @include desktop {
+        font-size: 32px;
+      }
+    }
+
+    p {
+      width: 360px;
+      font-size: 14px;
+      @include desktop {
+        width: 360px;
+      }
+    }
+
+    .col-inner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      height: 100%;
+    }
+  }
+
+  .col-symbol .col-inner {
+    @include desktop {
+      margin-left: 100px;
+    }
+  }
+
+  .col-img-promotion {
+    padding: 0px !important;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    .col-inner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      @include desktop {
+        justify-content: flex-end;
+      }
+    }
+  }
+
+  .text-statific-title {
+    color: #2eaf7d;
+    margin-bottom: 0px;
+  }
+
+  .container-top-statific {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .top-component-statific,
+  .bottom-component-statific {
+    padding: 2px !important;
+  }
+
+  .top-component-statific {
+    .col-inner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      height: 150px;
+    }
+  }
+
+  .left-component-statific .col-inner {
+    border-top-left-radius: 16px;
+  }
+
+  .right-component-statific .col-inner {
+    border-top-right-radius: 16px;
+  }
+
+  .bottom-component-statific .col-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    height: 150px;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+  }
+
+  .primary-text {
+    color: #2eaf7d;
+  }
+
+  .nav-line-bottom {
+    justify-content: center;
+    gap: 10px;
+
+    @include tablet {
+      gap: 20px;
+    }
+
+    @include desktop {
+      gap: 40px;
+    }
+
+    span {
+      font-size: 16px;
+
+      @include tablet {
+        font-size: 20px;
+      }
+
+      @include desktop {
+        font-size: 24px;
+      }
+    }
+  }
+
+  .tab-panels {
+    #tab_registration,
+    #tab_engagement {
+      .row {
+        flex-direction: column-reverse;
+
+        @include tablet {
+          flex-direction: row;
+        }
+      }
+    }
+  }
+
+  .ldp-feature-img {
+    img {
+      width: auto !important;
+      text-align: center;
+      max-height: 60px;
+      max-width: 100px;
+
+      @include tablet {
+        max-width: 120px;
+      }
+    }
+
+    .gallery-col {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .box-image {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+
+  .gallery-marquee {
+    margin-top: -10px;
+    margin-bottom: 20px;
+    height: 120px;
+    pointer-events: none;
+
+    @include tablet {
+      pointer-events: all;
+    }
+
+    .gallery-customize {
+      position: static;
+      max-width: none !important;
+      width: 100%;
+      display: block !important;
+      margin: 0 !important;
+      height: 120px;
+    }
+
+    .gallery-col {
+      height: 120px;
+      width: 50%;
+      min-width: 120px !important;
+      max-width: 165px !important;
+      flex-basis: auto !important;
+      display: inline-block;
+      padding: 0px !important;
+      margin-left: 8px;
+
+      @include tablet {
+        max-width: 180px !important;
+        position: relative;
+      }
+    }
+
+    .box-image {
+      padding: 0% !important;
+
+      img {
+        right: auto;
+        width: 100%;
+        height: 100%;
+        bottom: auto;
+        left: auto;
+        top: auto;
+        position: relative;
+        object-fit: scale-down !important;
+        max-height: 120px !important;
+      }
+    }
+  }
+
+  .marquee0 {
+    .box-image {
+      padding-top: 0 !important;
+      height: 150px;
+      overflow: hidden;
+      position: relative;
+
+      img {
+        height: 150px;
+        width: 100%;
+        object-fit: contain;
+        display: block;
+        margin: 0 auto;
+      }
+    }
+  }
+
+  .my-banner {
+    position: relative;
+    padding: 20px;
+
+    @include tablet {
+      padding: 0px;
+    }
+
+    @include desktop {
+      padding: 0px;
+    }
+
+    .bg-img {
+      position: relative;
+      z-index: 1;
+
+      img {
+        width: 100%;
+        height: 335px;
+        display: block;
+        border-radius: 8px;
+      }
+    }
+
+    .center-img {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      max-width: 400px;
+      margin-bottom: 0;
+
+      img {
+        height: 335px;
+        display: block;
+      }
+    }
+  }
+
+  .testimonial-slider {
+    .tes-item {
+      position: relative;
+      max-width: 100%;
+      padding-top: 40px !important;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      @include tablet {
+        max-width: 33%;
+      }
+
+      background: #fff;
+      box-shadow: $shadow;
+      padding: 24px;
+      border-radius: $radius;
+
+      &::after {
+        content: "";
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        top: -30px;
+        right: -10px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-image: url("https://www.epos.com.sg/wp-content/uploads/2025/05/bde-icon-icon.png");
+      }
+    }
+
+    .box-image {
+      img {
+        height: 120px;
+        object-fit: scale-down;
+      }
+    }
+
+    .box-text {
+      padding-bottom: 0px;
+    }
+
+    .tes-description {
+      margin-top: 20px;
+      display: -webkit-box;
+      -webkit-line-clamp: 7;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 10px;
+
+      p {
+        min-height: 158px;
+
+        @include tablet {
+          min-height: 160px;
+        }
+      }
+
+      .read-more-icon {
+        position: absolute;
+        bottom: -15px;
+        right: 0;
+        padding: 5px 10px;
+        background: #fff;
+        cursor: pointer;
+        font-size: 12px;
+        color: #2eaf7d !important;
+        font-weight: bold;
+      }
+
+      .learn-more-btn:nth-child(3) {
+        display: none;
+      }
+    }
+
+    .star-icon {
+      max-width: 120px;
+      margin-top: 10px;
+
+      img {
+        object-fit: scale-down;
+        object-position: left;
+      }
+    }
+
+    .slick-track {
+      gap: 15px;
+      margin-left: -12px;
+
+      @include tablet {
+        gap: 40px;
+      }
+    }
+
+    .slick-list {
+      padding-top: 40px;
+      padding-bottom: 40px;
+
+      li {
+        margin-left: 5px !important;
+      }
+    }
+  }
+}
