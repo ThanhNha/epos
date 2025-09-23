@@ -14,7 +14,8 @@ body.whatsapp-loyalty-program main {
 }
 
 body.whatsapp-loyalty-program main,
-body.payment-soundbox main {
+body.payment-soundbox main,
+body.marketing-ai-page main {
   h1,
   h2,
   h3,
@@ -43,8 +44,9 @@ body.payment-soundbox main {
   .modal.tes-modal {
     display: none;
     position: fixed;
+    align-items: center;
+    justify-content: center;
     z-index: 999;
-    padding-top: 100px;
     left: 0;
     top: 0;
     width: 100%;

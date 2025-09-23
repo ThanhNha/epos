@@ -1,4 +1,5 @@
 import "./slider";
+import "./blog";
 
 ("use strict");
 $ = jQuery;
