@@ -416,5 +416,5 @@ whatsappContact({
   welcomeMessage: "Hi there! 👋 How can I help you?",
   prefillMessages: "I am looking for: ",
   replyOptions:
-    "F&B POS System,Retail POS System,Others,Tech Support,EPOS Rewards,Soundbox",
+    "EPOS Rewards Loyalty Program,Others,Tech Support",
 });
