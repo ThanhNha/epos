@@ -9,39 +9,35 @@ function shin_scripts()
 
   wp_enqueue_script('main-scripts-js', THEME_URL . '-child' . '/assets/dist/js/main.min.js', array('jquery'), $version, true);
 
-  wp_enqueue_script('wa-scripts-js', THEME_URL . '-child' . '/assets/js/widgetWhatsappOrigin.js', array('jquery'), $version, true);
+
+  if (is_page('whatsapp-loyalty-program')) {
+    wp_enqueue_script('wa-scripts-js', THEME_URL . '-child' . '/assets/js/widgetWhatsappCustom.js', array('jquery'), $version, true);
+  } else {
+    wp_enqueue_script('wa-scripts-js', THEME_URL . '-child' . '/assets/js/widgetWhatsappOrigin.js', array('jquery'), $version, true);
+  }
 }
 
 add_action('wp_enqueue_scripts', 'enqueue_ldp_assets');
 
 function enqueue_ldp_assets()
 {
-  if (is_page('whatsapp-loyalty-program') || is_page('payment-soundbox')) {
+  if (is_page('whatsapp-loyalty-program') || is_page('payment-soundbox') || is_page('marketing-ai-page') ||  is_home()) {
     $version = time();
 
     // Slick Styles
-    wp_enqueue_style('slick-css', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css', [], $version);
-    wp_enqueue_style('slick-theme', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css', ['slick-css'], $version);
+    wp_enqueue_style('slick-css', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css', [], '1.0.1');
+    wp_enqueue_style('slick-theme', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css', ['slick-css'], '1.0.1');
 
     // Slick Script
-    wp_enqueue_script('slick-js', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js', ['jquery'], $version, true);
+    wp_enqueue_script('slick-js', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js', ['jquery'], '1.0.1', true);
 
     // Custom Js
     wp_enqueue_script('custom-slider-init', THEME_URL . '-child' . '/assets/js/slider.js', ['jquery', 'slick-js', 'marquee-init'], $version, true);
 
     //Marquee
-    wp_enqueue_script('marquee-init', THEME_URL . '-child' . '/assets/js/marquee.js', ['jquery'], $version, true);
-
-    // Enqueue Google Fonts
-    wp_enqueue_style(
-      'ldp-google-fonts',
-      'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap',
-      [],
-      null
-    );
+    wp_enqueue_script('marquee-init', THEME_URL . '-child' . '/assets/js/marquee.js', ['jquery'], '1.0.1', true);
   }
 }
-
 
 
 //Add ACF options page
@@ -185,4 +181,25 @@ function home_banner()
 
 <?php
 
+}
+
+
+add_filter('rest_authentication_errors', 'authentication_rest_api_not_logged_in');
+
+function authentication_rest_api_not_logged_in($errors)
+{
+
+  if (is_wp_error($errors)) {
+    return $errors;
+  }
+
+  if (! is_user_logged_in() || ! current_user_can('administrator')) {
+    return new WP_Error(
+      'no_rest_api_sorry',
+      'REST API not allowed',
+      array('status' => 401)
+    );
+  }
+
+  return $errors;
 }
