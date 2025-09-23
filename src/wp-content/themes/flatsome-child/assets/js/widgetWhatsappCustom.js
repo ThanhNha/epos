@@ -214,6 +214,7 @@ function whatsappContact({
   outline: 0;
   padding: 4px 12px !important;
   transition: all 0.2s ease-out;
+  line-height: 1.2em;
 }
 .wapp-msgSection .wapp-msgRht .wapp-smarttag-btn.active,
 .wapp-msgSection .wapp-msgRht .wapp-smarttag-btn:hover {
