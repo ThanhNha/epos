@@ -214,6 +214,7 @@ function whatsappContact({
   outline: 0;
   padding: 4px 12px !important;
   transition: all 0.2s ease-out;
+  line-height: 1;
 }
 .wapp-msgSection .wapp-msgRht .wapp-smarttag-btn.active,
 .wapp-msgSection .wapp-msgRht .wapp-smarttag-btn:hover {
@@ -416,5 +417,5 @@ whatsappContact({
   welcomeMessage: "Hi there! 👋 How can I help you?",
   prefillMessages: "I am looking for: ",
   replyOptions:
-    "F&B POS System,Retail POS System,Soundbox,EPOS Rewards,Others,Tech Support",
+    "EPOS Rewards Loyalty Program,Others,Tech Support",
 });
