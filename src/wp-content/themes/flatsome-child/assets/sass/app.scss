@@ -5,9 +5,16 @@
 @import "shop";
 @import "cart";
 @import "additional";
+@import "accordion";
 @import "products";
 @import "feedback";
 @import "ldp";
+@import "fonts/fonts";
+@import "footer";
+@import "./custom";
+@import "./header";
+@import "./cta-block";
+@import "./related_post";
 
 .net-row {
   .col .col-inner {
@@ -51,6 +58,9 @@
   @include tablet {
     right: 35px;
   }
+  @include desktop {
+    right: 22px;
+  }
   .image-icon {
     width: auto !important;
     height: auto;
@@ -60,6 +70,9 @@
   }
   .image-icon img {
     max-width: 50px;
+  }
+  &:hover {
+    transform: translateY(-10%);
   }
 }
 
@@ -77,4 +90,12 @@
 }
 .epos-whatsapp-icon.shop {
   bottom: 160px !important;
+}
+@media screen and (max-width: 1280px) {
+  .container-width,
+  .full-width .ubermenu-nav,
+  .container,
+  .row {
+    max-width: 1140px !important;
+  }
 }

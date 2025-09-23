@@ -2,7 +2,7 @@ function initSlider() {
   const $slider = jQuery(".testimonial-slider .col-inner");
 
   if (!$slider.length || typeof $slider.slick !== "function") {
-    console.warn("Slider element not found or Slick not loaded.");
+    // console.warn("Slider element not found or Slick not loaded.");
     return;
   }
 
@@ -58,10 +58,12 @@ function testimonialDes() {
       .removeClass()
       .appendTo($item.eq(index));
 
-    if ($clone.height() > $p.height()) {
-      // Append icon
-      const $icon = jQuery('<span class="read-more-icon">...>></span>');
-      $desc.append($icon);
+    if (!jQuery(this).hasClass("skip")) {
+      if ($clone.height() > $p.height()) {
+        // Append icon
+        const $icon = jQuery('<span class="read-more-icon">Read more</span>');
+        $desc.append($icon);
+      }
     }
 
     $clone.remove();
@@ -84,18 +86,22 @@ function testimonialDes() {
 
 jQuery(document).ready(function ($) {
   setTimeout(function () {
-    initSlider();
-    marqueeInit({
-      uniqueid: "gallery-customize",
-      style: {},
-      type: "class",
-      moveatleast: 3,
-      savedirection: "1",
-      mouse: "cursor driven",
-      inc: 3,
-      neutral: 200,
-      random: false,
-    });
+    if ($(".testimonial-slider .col-inner").length > 0) {
+      initSlider();
+    }
+    if (typeof marqueeInit === "function") {
+      marqueeInit({
+        uniqueid: "gallery-customize",
+        style: {},
+        type: "class",
+        moveatleast: 3,
+        savedirection: "1",
+        mouse: "cursor driven",
+        inc: 3,
+        neutral: 200,
+        random: false,
+      });
+    }
   }, 2000);
 
   setTimeout(function () {

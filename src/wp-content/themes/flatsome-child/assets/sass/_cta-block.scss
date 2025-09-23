@@ -1,0 +1,109 @@
+.cta-block {
+  &.cta-block-blue {
+    background-color: $blue-light-2;
+    border-radius: 30px;
+    color: white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    border-top: 2px solid $blue-dark;
+    border-bottom: 2px solid $blue-dark;
+    margin-bottom: 20px;
+    .row {
+      margin: 0 !important;
+
+      .col {
+        &.col-image {
+          padding: 0;
+
+          img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 0 30px 30px 0;
+          }
+        }
+
+        &.col-content {
+          height: 100%;
+          padding: 30px !important;
+
+          .cta-title {
+            color: white !important;
+            font-size: 24px !important;
+            margin-bottom: 15px;
+            font-weight: 700;
+          }
+          .cta-description {
+            font-size: 18px;
+          }
+        }
+        &.col-form {
+          padding: 25px;
+        }
+      }
+    }
+  }
+  .button-group {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    @include desktop {
+      flex-wrap: nowrap;
+    }
+    .button {
+      font-size: 14px;
+      padding: 10px !important;
+      @include desktop {
+        font-size: 16px;
+        padding: 10px 18px !important;
+      }
+    }
+  }
+  &.cta-block-green {
+    background: $color-ldp-2;
+    border-radius: 30px;
+    padding: 40px 30px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    border-top: 2px solid #007b5f;
+    border-bottom: 2px solid #007b5f;
+    margin-bottom: 20px;
+    .row {
+      margin: 0px !important;
+      .col-image {
+        padding: 0;
+
+        img {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+          border-radius: 0 30px 30px 0;
+        }
+      }
+      .col-content {
+        padding: 30px;
+        .cta-title {
+          font-weight: 700;
+          font-size: 22px;
+          color: $blue-dark;
+          margin-bottom: 10px;
+        }
+
+        .cta-description {
+          font-size: 15px;
+          margin-bottom: 20px;
+          line-height: 1.6;
+        }
+      }
+    }
+  }
+}
+
+h3 {
+  a {
+    font-size: 20px;
+    color: $blue-dark;
+    font-family: $second-font;
+  }
+}
+.col-form {
+  padding: 40px 30px !important;
+}

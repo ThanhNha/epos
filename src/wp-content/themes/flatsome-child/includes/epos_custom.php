@@ -9,7 +9,6 @@ function shin_scripts()
 
   wp_enqueue_script('main-scripts-js', THEME_URL . '-child' . '/assets/dist/js/main.min.js', array('jquery'), $version, true);
 
-
   if (is_page('whatsapp-loyalty-program')) {
     wp_enqueue_script('wa-scripts-js', THEME_URL . '-child' . '/assets/js/widgetWhatsappCustom.js', array('jquery'), $version, true);
   } else {

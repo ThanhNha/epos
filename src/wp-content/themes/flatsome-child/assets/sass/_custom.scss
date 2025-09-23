@@ -1,0 +1,590 @@
+// Epos Awards
+.column-awards {
+  position: relative;
+  .img-inner {
+    border-radius: 15px;
+    box-shadow: 0.5px 0.5px 3px 0.5px rgba(0, 0, 0, 0.57);
+  }
+  img {
+    width: 100%;
+    height: 345px;
+    object-fit: cover;
+    border-radius: 15px;
+  }
+  .title-awards {
+    background-color: white;
+    border-radius: 5px;
+    padding: 5px 20px;
+    position: absolute;
+    bottom: 54px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0.5px 0.5px 3px 0.5px rgba(0, 0, 0, 0.57);
+    margin: 0;
+    width: 80%;
+    text-align: center;
+    h4 {
+      font-size: 16px;
+      font-family: "Montserrat", sans-serif !important;
+      margin-bottom: 0;
+    }
+    p {
+      margin-bottom: 0;
+    }
+    span {
+      font-size: 14px;
+      margin-bottom: 0;
+    }
+  }
+}
+// Title
+.lh-8 {
+  line-height: 0.8;
+  h2 {
+    line-height: 0.8;
+  }
+}
+.number-load {
+  h2 {
+    margin-bottom: 10px !important;
+  }
+}
+.epos-whatsapp-wa.wapp-chatCta {
+  width: 50px !important;
+  height: 50px !important;
+  z-index: 1;
+  right: 30px !important;
+  bottom: 2em !important;
+  margin: 0px !important;
+
+  @media (min-width: 768px) {
+    width: 50px !important;
+  }
+}
+
+.wapp-widgetGrp {
+  bottom: 55px !important;
+
+  @media (min-width: 768px) {
+    bottom: 25px !important;
+    right: 85px !important;
+  }
+}
+
+.text-center {
+  .toggle {
+    margin-left: 0px;
+  }
+}
+
+.blog-wrapper {
+  .box-text.text-center {
+    transform: translateY(-50%);
+    top: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .page.page-id-5836 {
+    .featured-box {
+      .icon-box-img {
+        display: none;
+      }
+    }
+  }
+
+  .have-icon {
+    .featured-box {
+      .icon-box-img {
+        display: block !important;
+      }
+    }
+  }
+
+  .mobile-reverse.flex {
+    .col-inner {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+  }
+
+  .top-bar-content {
+    p {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}
+
+[data-animate="fadeInUp"],
+[data-animate="bounceInUp"],
+[data-animate="fadeInLeft"] {
+  opacity: 1 !important;
+  transition: all 0s !important;
+  transform: translate3d(0, 0px, 0) !important;
+}
+
+// WhatsApp Loyalty Program Page
+body.whatsapp-loyalty-program {
+  main {
+    background-image: url("https://www.epos.com.sg/wp-content/uploads/2025/05/Group-253.png");
+
+    .ldp-bg-why-epos {
+      background-image: url("https://www.epos.com.sg/wp-content/uploads/2025/05/background.png");
+    }
+
+    .testimonial-slider {
+      .tes-item:after {
+        background-image: url("/wp-content/uploads/2025/05/bde-icon-icon.png");
+      }
+
+      .slick-track {
+        margin-left: -12px;
+      }
+    }
+
+    .section-image-box {
+      .ldp-image-box {
+        background-image: url("/wp-content/uploads/2025/05/Frame-54.png");
+      }
+    }
+  }
+}
+
+// Payment Soundbox Page
+body.payment-soundbox {
+  main {
+    .testimonial-slider {
+      .tes-description.two {
+        p {
+          min-height: 160px;
+        }
+      }
+
+      .tes-item {
+        padding-top: 35px;
+      }
+
+      .star-icon {
+        max-width: 120px;
+        margin-top: 10px;
+      }
+
+      .slick-track {
+        margin-left: -12px;
+      }
+
+      .slick-list {
+        padding-bottom: 5px !important;
+      }
+    }
+  }
+}
+.img-folow-content {
+  .col-inner {
+    height: 100%;
+    .img {
+      height: 100%;
+      .img-inner {
+        height: 100%;
+        img {
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+}
+.box {
+  .box-text-inner {
+    h3 {
+      font-size: 18px !important;
+    }
+  }
+}
+.scroll-mt,
+.scroll-to {
+  scroll-margin-top: 1400px;
+}
+.tabbed-content {
+  &.tab-menu {
+    ul {
+      border-bottom: 1px solid #e5e5e5 !important;
+      justify-content: space-between;
+      li {
+        width: 100% !important;
+        text-align: center;
+        @include desktop {
+          width: auto !important;
+          text-align: start;
+        }
+        &.active,
+        &:hover {
+          a {
+            color: $blue-dark !important;
+            &::before {
+              background-color: $blue-dark;
+              height: 2px;
+            }
+          }
+        }
+        a {
+          font-size: 21px !important;
+          font-weight: 600 !important;
+          line-height: 1.4em !important;
+          padding-bottom: 20px;
+        }
+      }
+    }
+  }
+}
+
+.d-flex {
+  display: flex !important;
+  gap: 20px;
+}
+.blog-single {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  .large-9 {
+    padding: 0 !important;
+  }
+  //Sidebar
+  .custom-post-sidebar {
+    display: none;
+    @include desktop {
+      display: block;
+      background-color: #f3f3f3 !important;
+      .author-sidebar {
+        padding-top: 40px;
+        .name-author {
+          margin-bottom: 0px !important;
+          span {
+            text-transform: capitalize;
+            color: $blue-dark !important;
+            font-weight: 600 !important;
+          }
+        }
+        .post-date {
+          margin-bottom: 0px !important;
+          font-size: 14px !important;
+        }
+      }
+    }
+  }
+  // end sidebar
+  .custom-single-post-layout {
+    padding: 10px 20px;
+    @include desktop {
+      padding: 10px 100px;
+    }
+  }
+  .entry-content {
+    .lwptoc {
+      display: none !important;
+    }
+  }
+  .blog-featured-title {
+    display: none;
+    @include desktop {
+      display: block;
+    }
+  }
+  // Banner mobile
+  .mobile-banner-wrapper {
+    display: block;
+    padding: 20px;
+    .blog-title {
+      padding-bottom: 10px;
+    }
+    .blog-category-name {
+      margin: 20px 0;
+      a {
+        background-color: $color-ldp-2;
+        padding: 8px;
+        text-transform: uppercase;
+        border-radius: 5px;
+        color: $main-ldp;
+        font-weight: 500;
+        font-size: 14px;
+      }
+    }
+    .mobile-banner {
+      img {
+        border-radius: 15px;
+      }
+    }
+    @include desktop {
+      display: none;
+    }
+    .author-sidebar {
+      padding: 10px 0 0;
+      border-bottom: 1px solid #e5e5e5;
+      .name-author {
+        margin-bottom: 0px !important;
+        span {
+          text-transform: capitalize;
+          color: $blue-dark !important;
+          font-weight: 600 !important;
+        }
+      }
+    }
+    .toc-widget {
+      padding-bottom: 10px;
+      border-bottom: 1px solid #e5e5e5;
+    }
+  }
+  // end banner mobile
+}
+.newsletter {
+  .section {
+    padding: 0 !important;
+  }
+}
+.newletter-box {
+  > .col-inner {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    border-top: 2px solid #007b5f;
+    border-bottom: 2px solid #007b5f;
+    p {
+      color: $main-ldp !important;
+      &.title {
+        color: $blue-dark !important;
+        font-size: 20px !important;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+    }
+  }
+  &.bg-blue-light-2 {
+    margin-bottom: 20px;
+    > .col-inner {
+      padding: 25px !important;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      border-top: 2px solid $blue-dark;
+      border-bottom: 2px solid $blue-dark;
+      p {
+        color: white !important;
+        &.title {
+          color: white !important;
+          font-size: 20px !important;
+          font-weight: 600;
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+}
+.toc-widget {
+  .lwptoc_i {
+    padding: 0 !important;
+  }
+  .lwptoc_title {
+    font-size: 16px !important;
+  }
+  .lwptoc_items {
+    border-left: 1px solid #e5e5e5;
+    .lwptoc_item {
+      position: relative;
+      padding-left: 20px;
+      a {
+        font-size: 14px !important;
+      }
+      &.active {
+        a {
+          color: $blue-dark !important;
+          font-weight: bold;
+
+          &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            border-left: 3px solid $blue-dark !important;
+          }
+        }
+      }
+    }
+  }
+}
+.grant-coverage-box {
+  > .col-inner {
+    padding: 15px;
+    @include desktop {
+      padding: 20px;
+    }
+  }
+  .grant-coverage-list {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin-bottom: 5px !important;
+    margin-top: 5px !important;
+    .col {
+      padding: 10px 20px !important;
+      background-color: $blue-light !important;
+      h3 {
+        margin-bottom: 0px !important;
+        font-size: 18px !important;
+        @include desktop {
+          font-size: 20px !important;
+        }
+      }
+      h4 {
+        margin-bottom: 0px !important;
+        color: $blue-dark;
+        font-size: 18px !important;
+        @include desktop {
+          font-size: 20px !important;
+        }
+      }
+      &:first-child {
+        &.large-8 {
+          border-radius: 8px 0 0 8px;
+        }
+        &.small-6 {
+          border-radius: 8px 0 0 8px;
+        }
+      }
+      &:last-child {
+        &.large-8 {
+          border-radius: 0 8px 8px 0;
+        }
+        &.small-6 {
+          border-radius: 0 8px 8px 0;
+        }
+      }
+    }
+    &.even {
+      .col {
+        padding: 10px 20px !important;
+        background-color: white !important;
+        h3 {
+          margin-bottom: 0px !important;
+        }
+        h4 {
+          margin-bottom: 0px !important;
+          color: $blue-dark;
+        }
+      }
+    }
+  }
+  .button {
+    margin-top: 20px !important;
+    width: 100% !important;
+  }
+}
+.careers-at-epos main .ldp-claim-row {
+  background: #2eaf7d;
+  border-radius: 24px;
+  overflow: hidden;
+  background-image: url(https://www.epos.com.sg/wp-content/uploads/2025/05/Brand-Mark.png);
+}
+.careers-at-epos main .ldp-claim-row .content-img {
+  padding: 0px !important;
+}
+.floating-mail-btn {
+  position: fixed;
+  bottom: 148px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background-color: #102870;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  transition: all 0.2s linear;
+  img {
+    color: white;
+    width: 30px;
+  }
+  &:hover {
+    transform: translateY(-10%);
+  }
+}
+
+.job-card {
+  background: $blue-light;
+  border-radius: 16px;
+  padding: 25px;
+  text-align: left;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.2s linear;
+  &:hover {
+    box-shadow: $shadow-2;
+  }
+  .job-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    border: 3px solid $color-ldp;
+    transition: all 0.2s linear;
+    &:hover {
+      background: $color-ldp;
+    }
+    img {
+      max-width: 60%;
+      max-height: 60%;
+      object-fit: contain;
+    }
+  }
+  .job-list {
+    list-style: none;
+    padding: 10px 0;
+    margin-bottom: 0;
+    li {
+      border-bottom: 1px solid #e5e5e5;
+      padding-bottom: 10px;
+      &:last-child {
+        border-bottom: none;
+      }
+      &:hover {
+        border-right: 3px solid $color-ldp;
+      }
+      a {
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 0.8em;
+        color: #666666d9;
+        transition: all 0.2s linear;
+        &:hover {
+          color: $blue;
+        }
+      }
+    }
+  }
+}
+.careers-popup {
+  .popup-title {
+    font-size: 30px !important;
+  }
+  .popup-body {
+    p {
+      font-size: 14px !important;
+    }
+  }
+  .popup-footer {
+    padding: 20px 0 !important  ;
+    text-align: center;
+    .apply-btn {
+      margin: 0 !important;
+    }
+  }
+}

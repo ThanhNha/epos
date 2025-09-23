@@ -80,7 +80,7 @@ function callback_add_to_cart_button($product_id)
       </svg></button>
   </div>
 
-<?php
+  <?php
 }
 
 
@@ -112,3 +112,89 @@ function shipping_tool_callback()
   [/lightbox]');
   }
 }
+
+
+// Shortcode Jobs
+function jobs_available_shortcode($atts)
+{
+  ob_start();
+
+  $departments = get_terms(array(
+    'taxonomy'   => 'department',
+    'hide_empty' => true
+  ));
+
+  if (!empty($departments) && !is_wp_error($departments)) {
+  ?>
+    <div class="jobs-available-wrapper">
+      <div class="row">
+        <?php foreach ($departments as $dept) :
+          $image_id  = get_term_meta($dept->term_id, 'department_image', true);
+          $image_url = wp_get_attachment_url($image_id);
+
+          $jobs_query = new WP_Query(array(
+            'post_type'      => 'jobs',
+            'posts_per_page' => -1,
+            'tax_query'      => array(
+              array(
+                'taxonomy' => 'department',
+                'field'    => 'term_id',
+                'terms'    => $dept->term_id
+              )
+            )
+          ));
+        ?>
+          <div class="col medium-6 large-4">
+            <div class="job-card">
+              <div class="job-icon">
+                <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($dept->name); ?>">
+              </div>
+              <h5 class="department-title uppercase"><?php echo esc_html($dept->name); ?></h5>
+
+              <?php if ($jobs_query->have_posts()) : ?>
+                <ul class="job-list">
+                  <?php while ($jobs_query->have_posts()) : $jobs_query->the_post(); ?>
+                    <?php
+                    $post_id  = get_the_ID();
+                    $title    = get_the_title($post_id);
+                    $content  = apply_filters('the_content', get_post_field('post_content', $post_id));
+
+                    ob_start(); ?>
+                    <div class="careers-popup">
+                      <h3 class="popup-title"><?php echo esc_html($title); ?></h3>
+                      <div class="popup-body">
+                        <?php echo $content; ?>
+                      </div>
+                      <div class="popup-footer">
+                        <a href="#contact" class="button primary apply-btn">Apply Now</a>
+                      </div>
+                    </div>
+                    <?php
+                    $popup_inner = ob_get_clean();
+                    $lightbox_sc = '[lightbox id="job-popup-' . $post_id . '" width="800px" padding="20px"]' . $popup_inner . '[/lightbox]';
+                    ?>
+                    <li class="job-item">
+                      <a href="#job-popup-<?php echo esc_attr($post_id); ?>" class="open-popup-link">
+                        <?php echo esc_html($title); ?>
+                      </a>
+
+                      <?php
+                      echo do_shortcode($lightbox_sc);
+                      ?>
+                    </li>
+                  <?php endwhile; ?>
+                </ul>
+              <?php endif; ?>
+            </div>
+          </div>
+        <?php
+          wp_reset_postdata();
+        endforeach; ?>
+      </div>
+    </div>
+<?php
+  }
+
+  return ob_get_clean();
+}
+add_shortcode('jobs_available', 'jobs_available_shortcode');
