@@ -1,0 +1,414 @@
+//Marrketing AI Page
+body.marketing-ai-page {
+  .tab-panels {
+    padding-top: 2rem;
+  }
+  .gallery-marquee {
+    margin-top: -10px;
+    margin-bottom: 0px;
+    height: 120px;
+    pointer-events: none;
+    @include desktop {
+      margin-bottom: 20px;
+    }
+    @include tablet {
+      pointer-events: all;
+    }
+    .marquee0 {
+      div {
+        display: flex !important;
+        align-items: center;
+      }
+    }
+    .gallery-col {
+      height: 93px;
+      width: 230px !important;
+      min-width: 230px !important;
+      max-width: none !important;
+      flex-basis: auto !important;
+      // display: inline-block;
+      padding: 0px !important;
+      margin: 10px;
+      @include tablet {
+        position: relative;
+      }
+      .box-image {
+        padding: 0% !important;
+        .gallery-customize {
+          // position: static !important;
+          max-width: none !important;
+          width: 100%;
+          display: block !important;
+          margin: 0 !important;
+          height: auto !important;
+          max-height: 93px !important;
+          object-fit: scale-down !important;
+          right: auto !important;
+          left: auto !important;
+          top: auto !important;
+          bottom: auto !important;
+        }
+        img {
+          position: static !important;
+        }
+      }
+      .box-text {
+        display: none !important;
+      }
+    }
+  }
+  .col-custom-icon-box {
+    @include desktop {
+      padding-left: 60px !important;
+    }
+    .col-inner {
+      .icon-box {
+        margin-bottom: 10px !important;
+        &:last-child {
+          margin-bottom: 0 !important;
+        }
+        @include desktop {
+          margin-bottom: 20px !important;
+        }
+        .icon-box-text {
+          h3 {
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+  // save-up
+
+  .section-save-up {
+    .row-save-up {
+      position: relative;
+      border-radius: 30px;
+      background-color: #E9FFF4 !important;
+      overflow: hidden;
+      padding: 30px 10px !important;
+      @include desktop {
+        padding: 20px !important;
+      }
+      .col-save-up-content {
+        button {
+          margin-bottom: 0 !important;
+        }
+      }
+      .col-save-up-img {
+        .col-inner {
+          z-index: 2;
+          @include desktop {
+            margin-top: -35px !important;
+          }
+        }
+      }
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -50px;
+        right: -60px;
+        width: 250px;
+        height: 250px;
+        background: #b6ffda;
+        border-radius: 50%;
+        @include desktop {
+          content: "";
+          position: absolute;
+          bottom: -90px;
+          right: -80px;
+          width: 350px;
+          height: 350px;
+          background: #b6ffda;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+}
+//Banner
+.section {
+  &.hero-banner {
+    overflow: hidden;
+    position: relative;
+    align-items: start !important;
+    .section-content {
+      @include desktop {
+        padding: 30px 0 !important;
+      }
+      h1 {
+        font-size: 32px !important;
+        @include tablet {
+          font-size: 42px !important;
+        }
+        @include desktop {
+          font-size: 58px !important;
+        }
+      }
+      .col-banner-content {
+        padding-top: 40px !important;
+        .col-inner {
+          text-align: center;
+          @include desktop {
+            text-align: left;
+          }
+        }
+        @include desktop {
+          padding-top: 100px !important;
+          .banner-desc {
+            padding-right: 120px;
+          }
+        }
+      }
+      .img-banner {
+        padding-bottom: 0 !important;
+        @include desktop {
+          position: relative;
+          &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 850px;
+            height: 750px;
+            right: -20%;
+            background: url("/wp-content/uploads/2025/09/image-2.png");
+            background-size: contain;
+            background-repeat: no-repeat;
+          }
+        }
+      }
+    }
+  }
+}
+.section.rounded {
+  &.section-testimonial {
+    margin-top: 0 !important;
+    margin-bottom: 60px !important;
+  }
+}
+.testimonial-slider {
+  .tes-item {
+    position: relative;
+    max-width: 100%;
+    padding-top: 40px !important;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    @include tablet {
+      max-width: 33%;
+    }
+    background: #fff;
+    box-shadow: $shadow;
+    padding: 24px;
+    border-radius: $radius;
+    &::after {
+      content: "";
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      top: -30px;
+      right: -10px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-image: url("https://www.epos.com.sg/wp-content/uploads/2025/05/bde-icon-icon.png");
+    }
+  }
+  .box-image {
+    img {
+      height: 120px;
+      object-fit: scale-down;
+    }
+  }
+  .box-text {
+    padding-bottom: 0px;
+  }
+  .tes-description {
+    margin-top: 20px;
+    p {
+      min-height: 158px;
+      @include tablet {
+        min-height: 160px;
+      }
+    }
+    display: -webkit-box;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 10px;
+
+    .read-more-icon {
+      position: absolute;
+      bottom: -30px;
+      right: 0;
+      padding: 5px 10px;
+      background: transparent;
+      cursor: pointer;
+      font-size: 14px;
+      color: #2eaf7d !important;
+      font-weight: bold;
+      @include desktop {
+        bottom: -20px;
+      }
+    }
+    .learn-more-btn:nth-child(3) {
+      display: none;
+    }
+  }
+  .star-icon {
+    max-width: 120px;
+    margin-top: 10px;
+    img {
+      object-fit: scale-down;
+      object-position: left;
+    }
+  }
+  .slick-track {
+    gap: 30px;
+    margin: 0 15px !important;
+    @include tablet {
+      gap: 40px;
+    }
+    &:before {
+      display: none;
+    }
+  }
+  .slick-list {
+    padding-bottom: 5px !important;
+    li {
+      margin-left: 5px !important;
+    }
+  }
+  .slick-dots {
+    li {
+      margin-left: 10px !important;
+    }
+  }
+  .slick-list {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+}
+
+.container-top-statific {
+  .content-left-top-statific {
+    padding-bottom: 4px !important;
+    @include desktop {
+      padding-right: 2px !important;
+      padding-bottom: 0 !important;
+    }
+    .col-inner {
+      padding: 10px;
+      border-radius: 30px 30px 0 0;
+      @include desktop {
+        border-radius: 30px 0 0 0;
+      }
+      h2 {
+        margin-bottom: 0 !important;
+        color: $color-ldp !important;
+      }
+    }
+  }
+  .content-right-top-statific {
+    padding-bottom: 4px !important;
+    @include desktop {
+      padding-left: 2px !important;
+      padding-bottom: 0 !important;
+    }
+
+    .col-inner {
+      padding: 10px;
+      @include desktop {
+        border-radius: 0 30px 0 0;
+      }
+      h2 {
+        margin-bottom: 0 !important;
+        color: $color-ldp !important;
+      }
+    }
+  }
+}
+.container-bottom-statific {
+  .content-bottom-statific {
+    @include desktop {
+      padding-top: 4px !important;
+    }
+    .col-inner {
+      padding: 10px;
+      border-radius: 0 0 30px 30px;
+      h2 {
+        margin-bottom: 0 !important;
+        color: $color-ldp !important;
+      }
+    }
+  }
+}
+.tab-menu {
+  &.section-unlock {
+    .nav {
+      .tab {
+        @include desktop {
+          padding: 0 65px;
+        }
+
+        a {
+          span {
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+  &.engage-customers {
+    .nav {
+      .tab {
+        @include desktop {
+          padding: 0 75px;
+        }
+        a {
+          span {
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+}
+.custom-reviews {
+  .star-icon {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100% !important;
+  }
+}
+.video-customer {
+  border-radius: 15px !important;
+}
+
+.menu-btn-demo {
+  background: $blue-dark !important;
+  padding: 0.25rem 0.75rem !important;
+  border: transparent;
+  font-size: 16px;
+  border-radius: 8px !important;
+  color: white;
+  display: block;
+  line-height: 40px !important;
+  transition: all 0.3s linear;
+  text-transform: capitalize;
+  &:hover {
+    color: white !important;
+  }
+  &::before {
+    display: none;
+  }
+}
+
+.col-text-register {
+  &.p-3 {
+    padding: 10px !important;
+  }
+}
