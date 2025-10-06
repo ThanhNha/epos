@@ -471,23 +471,26 @@
     font-size: 24px !important;
   }
 }
-.p-0 {
-  padding: 0 !important;
-}
-.py-0 {
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-}
-.px-0 {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
-.pt-0 {
-  padding-top: 0 !important;
-}
-.pb-0 {
-  padding-bottom: 0 !important;
-}
+
+// .p-0 {
+//   padding: 0 !important;
+// }
+// .py-0 {
+//   padding-top: 0 !important;
+//   padding-bottom: 0 !important;
+// }
+// .px-0 {
+//   padding-left: 0 !important;
+//   padding-right: 0 !important;
+// }
+// .pt-0 {
+//   padding-top: 0 !important;
+// }
+// .pb-0 {
+//   @include desktop {
+//     padding-bottom: 0 !important;
+//   }
+// }
 .p-1 {
   padding: 5px !important;
   @include desktop {
@@ -520,53 +523,69 @@
 }
 // padding Top and Bottom
 .py-4 {
-  padding: 20px 0 !important;
+  padding-top: 20px !important;
+  padding-bottom: 20px !important;
   @include desktop {
-    padding: 40px 0 !important;
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
   }
 }
 .py-3 {
-  padding: 15px 0 !important;
+  padding-top: 15px !important;
+  padding-bottom: 15px !important;
   @include desktop {
-    padding: 30px 0 !important;
+    padding-top: 30px !important;
+    padding-bottom: 30px !important;
   }
 }
 .py-2 {
-  padding: 10px 0 !important;
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
   @include desktop {
-    padding: 20px 0 !important;
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
   }
 }
 .py-1 {
-  padding: 5px 0 !important;
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
   @include desktop {
-    padding: 10px 0 !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
   }
 }
 
 //padding left and right
 .px-4 {
-  padding: 0 20px !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
   @include desktop {
-    padding: 0 40px !important;
+    padding-left: 40px !important;
+    padding-right: 40px !important;
   }
 }
 .px-3 {
-  padding: 0 15px !important;
+  padding-left: 15px !important;
+  padding-right: 15px !important;
   @include desktop {
-    padding: 0 30px !important;
+    padding-left: 30px !important;
+    padding-right: 30px !important;
   }
 }
 .px-2 {
-  padding: 0 10px !important;
+  padding-left: 10px !important;
+  padding-right: 10px !important;
   @include desktop {
-    padding: 0 20px !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
   }
 }
 .px-1 {
-  padding: 0 5px !important;
+  padding-left: 5px !important;
+  padding-right: 5px !important;
   @include desktop {
-    padding: 0 10px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
   }
 }
 //padding top
@@ -587,6 +606,12 @@
   @include desktop {
     padding-top: 20px !important;
   }
+}
+.pt-26px {
+  @include desktop {
+    padding-top: 26px !important;
+  }
+  padding-top: 16px !important;
 }
 .pt-1 {
   padding-top: 5px !important;

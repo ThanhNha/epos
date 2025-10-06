@@ -118,6 +118,13 @@ jQuery(document).ready(function ($) {
         neutral: 200,
         random: false,
       });
+      // Force reflow on Safari
+      const el = document.querySelector(".gallery-customize");
+      if (el) {
+        el.style.display = "none";
+        el.offsetHeight; // trigger reflow
+        el.style.display = "";
+      }
     }
   }, 2000);
 
