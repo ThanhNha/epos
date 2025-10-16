@@ -45,7 +45,7 @@ function testimonialDes() {
   $des.each(function (index) {
     const $desc = jQuery(this);
     const $p = $desc.find("p");
-
+  console.log($p.height() ,'p height');
     // Clone for measuring
     const $clone = $p
       .clone()
@@ -58,7 +58,7 @@ function testimonialDes() {
       })
       .removeClass()
       .appendTo($item.eq(index));
-
+        console.log($clone.height() ,'clone height');
     if (!jQuery(this).hasClass("skip")) {
       if ($clone.height() > $p.height()) {
         // Append icon
@@ -105,27 +105,19 @@ jQuery(document).ready(function ($) {
     if ($(".testimonial-slider .col-inner").length > 0) {
       initSlider();
     }
-
-    if (typeof marqueeInit === "function") {
-      marqueeInit({
-        uniqueid: "gallery-customize",
-        style: {},
-        type: "class",
-        moveatleast: 3,
-        savedirection: "1",
-        mouse: "cursor driven",
-        inc: 3,
-        neutral: 200,
-        random: false,
-      });
-      // Force reflow on Safari
-      const el = document.querySelector(".gallery-customize");
-      if (el) {
-        el.style.display = "none";
-        el.offsetHeight; // trigger reflow
-        el.style.display = "";
-      }
-    }
+    // if (typeof marqueeInit === "function") {
+    //   marqueeInit({
+    //     uniqueid: "gallery-customizes",
+    //     style: {},
+    //     type: "class",
+    //     moveatleast: 3,
+    //     savedirection: "1",
+    //     mouse: "cursor driven",
+    //     inc: 3,
+    //     neutral: 200,
+    //     random: false,
+    //   });
+    // }
   }, 2000);
 
   setTimeout(function () {
@@ -133,6 +125,8 @@ jQuery(document).ready(function ($) {
     if (head.length > 0) {
       var css = `
         <style type="text/css">
+          span {
+         font-family: 'Montserrat', sans-serif !important;}
           .hs-form__virality-link { display: none; }
           .actions, .hbspt-form form { margin-bottom: 0px !important; }
           .hs-button:hover { box-shadow: inset 0 0 0 100px rgba(0,0,0,.2); }

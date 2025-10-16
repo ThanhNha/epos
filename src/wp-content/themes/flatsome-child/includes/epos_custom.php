@@ -21,7 +21,7 @@ add_action('wp_enqueue_scripts', 'enqueue_ldp_assets');
 
 function enqueue_ldp_assets()
 {
-  if (is_page('whatsapp-loyalty-program') || is_page('payment-soundbox') || is_page('marketing-ai-page') ||  is_home()) {
+  if (is_page('whatsapp-loyalty-program') || is_page('payment-soundbox') || is_page('marketing-ai-page') || is_page('rewards-loyalty-programme') ||  is_home()) {
     $version = time();
 
     // Slick Styles
