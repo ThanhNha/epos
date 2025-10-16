@@ -44,6 +44,11 @@
     line-height: 0.8;
   }
 }
+h3 {
+  strong {
+    font-family: "Montserrat", sans-serif !important;
+  }
+}
 .number-load {
   h2 {
     margin-bottom: 10px !important;
@@ -588,3 +593,6 @@ body.payment-soundbox {
     }
   }
 }
+
+
+

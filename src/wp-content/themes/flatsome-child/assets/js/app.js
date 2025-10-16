@@ -1,4 +1,6 @@
 import "./slider";
+import "./blog";
+import "./infiniteScroll";
 
 ("use strict");
 $ = jQuery;
@@ -166,7 +168,6 @@ function customAccordion() {
   });
 }
 
-
 function triggeOpenImage(item, className) {
   //hide all first
   $(className).removeClass("open");
@@ -188,12 +189,15 @@ $(document).ready(function () {
   if (val?.match("^local_pickup")) {
     hideAddPress();
   }
-  $(document).on('click', '.apply-btn', function(e){
+  $(document).on("click", ".apply-btn", function (e) {
     e.preventDefault();
     $.featherlight.current().close();
-    $('html, body').animate({
-      scrollTop: $('#contact').offset().top - 100
-    }, 800);
+    $("html, body").animate(
+      {
+        scrollTop: $("#contact").offset().top - 100,
+      },
+      800
+    );
   });
 });
 
@@ -208,3 +212,5 @@ setTimeout(function () {
     jQuery(head).append(css);
   }
 }, 5000);
+
+
