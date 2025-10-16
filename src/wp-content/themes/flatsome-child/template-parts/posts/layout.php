@@ -19,9 +19,9 @@ do_action('flatsome_before_blog');
 
 			comments_template();
 		} elseif (get_theme_mod('blog_style_archive', '') && (is_archive() || is_search())) {
-			get_template_part('template-parts/posts/archive-category', get_theme_mod('blog_style_archive', ''));
+			get_template_part('template-parts/posts/archive', get_theme_mod('blog_style_archive', ''));
 		} else {
-			get_template_part('template-parts/posts/archive-blog', get_theme_mod('blog_style', 'normal'));
+			get_template_part('template-parts/posts/archive', get_theme_mod('blog_style', 'normal'));
 		}
 		?>
 	</div>
