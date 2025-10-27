@@ -6,7 +6,7 @@ function initSlider() {
     return;
   }
 
-  console.log("Initializing testimonial slider...");
+  // console.log("Initializing testimonial slider...");
 
   // Strrigger Read more
   testimonialDes();
@@ -45,7 +45,6 @@ function testimonialDes() {
   $des.each(function (index) {
     const $desc = jQuery(this);
     const $p = $desc.find("p");
-  console.log($p.height() ,'p height');
     // Clone for measuring
     const $clone = $p
       .clone()
@@ -58,7 +57,6 @@ function testimonialDes() {
       })
       .removeClass()
       .appendTo($item.eq(index));
-        console.log($clone.height() ,'clone height');
     if (!jQuery(this).hasClass("skip")) {
       if ($clone.height() > $p.height()) {
         // Append icon
