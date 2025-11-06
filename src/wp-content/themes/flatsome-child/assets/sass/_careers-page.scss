@@ -58,8 +58,14 @@ $radius: 8px;
   // ===== Job list =====
   .job-item {
     display: flex;
-    align-items: center;
+    align-items: start;
+    flex-direction: column;
     justify-content: space-between;
+    @include desktop {
+      flex-direction: row;
+      align-items: center;
+    }
+
     padding: 20px 0;
     border-top: 1px solid $border-color;
 
@@ -68,7 +74,10 @@ $radius: 8px;
     }
 
     .job-name-wrapper {
-      width: 40%;
+      @include desktop {
+        width: 40%;
+      }
+      width: 100%;
       .job-name {
         cursor: pointer;
         a {
@@ -83,19 +92,37 @@ $radius: 8px;
         font-weight: 400;
       }
     }
+    .job-metas {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 10px;
+      width: 100%;
+      .job-type-wrapper,
+      .job-location-wrapper,
+      .job-work-wrapper {
+        font-size: 14px;
+        width: 20%;
+      }
+      .job-department-wrapper {
+        font-size: 14px;
+        width: 40%;
+      }
+      @include desktop {
+        align-items: center;
+        width: 60%;
+        .job-type-wrapper,
+        .job-location-wrapper,
+        .job-work-wrapper,
+        .job-department-wrapper {
+          width: 15%;
+          font-size: 16px;
+        }
+      }
 
-    .job-type-wrapper,
-    .job-location-wrapper,
-    .job-work-wrapper {
-      width: 10%;
-    }
-
-    .job-department-wrapper {
-      width: 20%;
-    }
-
-    .job-type {
-      font-weight: 500;
+      .job-type {
+        font-weight: 500;
+      }
     }
   }
 

@@ -108,10 +108,12 @@ function job_openings_shortcode()
                                 <span class="job-posted">Posted <?php echo esc_html($diff); ?></span>
                             </div>
                         </div>
-                        <div class="job-type-wrapper"><span class="job-type"><?php echo ucfirst($job['type']); ?></span></div>
-                        <div class="job-location-wrapper"><span class="job-location"><?php echo ucfirst($job['location']); ?></span></div>
-                        <div class="job-department-wrapper"><span class="job-department"><?php echo ucfirst($job['department']); ?></span></div>
-                        <div class="job-work-wrapper"><span class="job-work"><?php echo ucfirst(str_replace('-', ' ', $job['work'])); ?></span></div>
+                        <div class="job-metas">
+                            <div class="job-type-wrapper"><span class="job-type"><?php echo ucfirst($job['type']); ?></span></div>
+                            <div class="job-location-wrapper"><span class="job-location"><?php echo ucfirst($job['location']); ?></span></div>
+                            <div class="job-department-wrapper"><span class="job-department"><?php echo ucfirst($job['department']); ?></span></div>
+                            <div class="job-work-wrapper"><span class="job-work"><?php echo ucfirst(str_replace('-', ' ', $job['work'])); ?></span></div>
+                        </div>
                     </a>
                 </div>
             <?php endforeach; ?>
