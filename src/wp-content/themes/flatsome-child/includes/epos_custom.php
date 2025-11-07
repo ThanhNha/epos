@@ -37,6 +37,15 @@ function enqueue_ldp_assets()
     //Marquee
     wp_enqueue_script('marquee-init', THEME_URL . '-child' . '/assets/js/marquee.js', ['jquery'], '1.0.1', true);
   }
+  //Font Awesome
+  if (is_page('careers-at-epos')) {
+    wp_enqueue_style(
+      'font-awesome',
+      'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css',
+      [],
+      '6.7.2'
+    );
+  }
 }
 
 
@@ -202,4 +211,7 @@ function authentication_rest_api_not_logged_in($errors)
   }
 
   return $errors;
+}
+foreach (glob(THEME_DIR . '-child' . "/includes/workable/*.php") as $file_name) {
+    require_once($file_name);
 }

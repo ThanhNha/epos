@@ -1,7 +1,7 @@
 import "./slider";
 import "./blog";
 import "./infiniteScroll";
-
+import "./careers-page";
 ("use strict");
 $ = jQuery;
 

@@ -594,5 +594,41 @@ body.payment-soundbox {
   }
 }
 
+.careers-at-epos main .ldp-claim-row .content-img {
+  padding: 0px !important;
+}
+.careers-popup .popup-body p {
+  font-size: 16px !important ;
+}
 
-
+@media (max-width: 920px) {
+  .ldp-claim-now {
+    padding: 0 15px !important;
+  }
+  .careers-popup .popup-title {
+    font-size: 26px !important;
+    line-height: 30px;
+  }
+  .careers-popup {
+    padding: 10px !important;
+  }
+  .careers-popup .popup-body p {
+    font-size: 12px !important;
+  }
+  .careers-popup .popup-body ul {
+    font-size: 12px !important;
+  }
+}
+.careers-popup {
+  padding: 20px;
+}
+.social-icons img {
+  max-width: 30px;
+  max-height: 30px;
+}
+.social-icons a.youtube img {
+  max-height: 25px;
+}
+.button {
+  border: none !important;
+}
