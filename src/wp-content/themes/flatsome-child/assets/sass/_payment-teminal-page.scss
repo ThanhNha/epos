@@ -1,0 +1,52 @@
+.col-the-smarter-way {
+  @include desktop {
+    padding: 15px !important;
+  }
+  .col-inner {
+    padding: 30px;
+    @include desktop {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+  }
+  &.bg-white {
+    > .col-inner {
+      background-color: white !important;
+      box-shadow: $shadow !important;
+    }
+  }
+}
+.gallery-accepts {
+  .col-inner {
+    .gallery-custom {
+      justify-content: center;
+      align-items: center;
+      .box-image {
+        img {
+          border-radius: 0px !important;
+          object-fit: contain;
+        }
+      }
+    }
+  }
+}
+
+.payment-teminal-banner {
+  @media (max-width: 768px) {
+    .section-bg.bg-loaded {
+      background-image: url("/wp-content/uploads/2025/11/EPOSMonogram_Pattern-Background_Mobile.svg") !important;
+    }
+  }
+  .button {
+    margin-bottom: 0px !important;
+  }
+}
+body.payment-terminal {
+  h3 {
+    font-size: 18px !important;
+    @include desktop {
+      font-size: 20px !important;
+    }
+  }
+}

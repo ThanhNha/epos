@@ -9,14 +9,19 @@ function shin_scripts()
 
   wp_enqueue_script('main-scripts-js', THEME_URL . '-child' . '/assets/dist/js/main.min.js', array('jquery'), $version, true);
 
-  wp_enqueue_script('wa-scripts-js', THEME_URL . '-child' . '/assets/js/widgetWhatsappOrigin.js', array('jquery'), '1.0.1', true);
+
+  if (is_page('whatsapp-loyalty-program')) {
+    wp_enqueue_script('wa-scripts-js', THEME_URL . '-child' . '/assets/js/widgetWhatsappCustom.js', array('jquery'), $version, true);
+  } else {
+    wp_enqueue_script('wa-scripts-js', THEME_URL . '-child' . '/assets/js/widgetWhatsappOrigin.js', array('jquery'), $version, true);
+  }
 }
 
 add_action('wp_enqueue_scripts', 'enqueue_ldp_assets');
 
 function enqueue_ldp_assets()
 {
-  if (is_page('whatsapp-loyalty-program') || is_page('payment-soundbox')) {
+  if (is_page('whatsapp-loyalty-program') || is_page('payment-soundbox') || is_page('marketing-ai-page') || is_page('rewards-loyalty-programme') ||  is_home()) {
     $version = time();
 
     // Slick Styles
@@ -31,6 +36,15 @@ function enqueue_ldp_assets()
 
     //Marquee
     wp_enqueue_script('marquee-init', THEME_URL . '-child' . '/assets/js/marquee.js', ['jquery'], '1.0.1', true);
+  }
+  //Font Awesome
+  if (is_page('careers-at-epos')) {
+    wp_enqueue_style(
+      'font-awesome',
+      'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css',
+      [],
+      '6.7.2'
+    );
   }
 }
 
@@ -197,4 +211,7 @@ function authentication_rest_api_not_logged_in($errors)
   }
 
   return $errors;
+}
+foreach (glob(THEME_DIR . '-child' . "/includes/workable/*.php") as $file_name) {
+    require_once($file_name);
 }

@@ -1,0 +1,150 @@
+.blog-wrapper.blog-archive {
+  padding-top: 0;
+}
+.blog-banner {
+  background-color: $blue-light-2;
+  padding: 60px 0;
+  text-align: center;
+  margin-bottom: 30px;
+
+  h1,
+  p {
+    color: #fff;
+    width: 100% ;
+    margin: 15px auto;
+    @include desktop {
+      width: 60%;
+    }
+  }
+
+  .search-form {
+    width: 50%;
+    margin: 0 auto;
+    @include desktop {
+      width: 50%;
+    }
+    .submit-button {
+      border-top-left-radius: 0 !important;
+      border-bottom-left-radius: 0 !important;
+    }
+  }
+}
+
+.feature-article {
+  margin: 30px 0;
+  flex: 1;
+  text-align: center;
+  .post-title {
+    margin-top: 10px;
+  }
+  a {
+    text-decoration: none;
+    text-align: center;
+  }
+  p {
+    &.from_the_blog_excerpt {
+      color: #777;
+    }
+  }
+  img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  h3 {
+    margin-top: 10px;
+  }
+}
+
+.category-section {
+  margin: 0 0 60px;
+
+  .section-title {
+    margin-bottom: 30px;
+  }
+}
+
+.blog-archive {
+  .slick-dots {
+    bottom: -25px !important;
+  }
+}
+
+.category-toggle {
+  text-align: center;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-direction: column;
+  @include desktop {
+    flex-direction: row;
+  }
+  .button {
+    background: #002b6d;
+    color: #fff;
+    margin: 0 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    width: 60%;
+    @include desktop {
+      font-size: 16px;
+      width: auto;
+    }
+  }
+}
+.out-container {
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+.recent-posts.grid , .category-list.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+
+  .feature-article {
+    flex: 1 1 100%;
+    max-width: 100%;
+
+    @include tablet {
+      flex: 1 1 calc(50% - 20px);
+      max-width: calc(50% - 20px);
+    }
+
+    @include desktop {
+      flex: 1 1 calc(25% - 20px);
+      max-width: calc(25% - 20px);
+    }
+  }
+}
+.between-posts.newsletter-signup{
+  width: 100%;
+  .section {
+    padding: 0 !important;
+  }
+}
+.load-more {
+  margin: 20px 0;
+  text-align: center;
+  #load-more{
+    background: #002b6d;
+    color: #fff;
+    margin: 0 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    width: 60%;
+    @include desktop {
+      font-size: 16px;
+      width: auto;
+    }
+  }
+}

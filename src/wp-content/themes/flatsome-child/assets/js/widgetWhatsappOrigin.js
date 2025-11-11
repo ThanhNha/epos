@@ -415,5 +415,6 @@ whatsappContact({
   phoneNumber: "6584821888",
   welcomeMessage: "Hi there! 👋 How can I help you?",
   prefillMessages: "I am looking for: ",
-  replyOptions: "F&B POS System,Retail POS System,Others,Tech Support",
+  replyOptions:
+    "F&B POS System,Retail POS System,Soundbox,EPOS Rewards,Others,Tech Support",
 });
