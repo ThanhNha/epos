@@ -139,3 +139,128 @@ function get_tax_percent()
   if (empty($all_tax_rates)) return;
   return $all_tax_rates[0];
 }
+
+// About us page
+add_action('wp_head', 'epos_add_about_us_schema');
+function epos_add_about_us_schema()
+{
+
+  if (is_page('about-us')) {
+
+?>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        "@id": "https://www.epos.com.sg/about-us/#aboutpage",
+        "url": "https://www.epos.com.sg/about-us/",
+        "name": "About Us | EPOS POS System",
+        "description": "At EPOS, we power growth. As Singapore's No.1 POS vendor, we equip businesses with cutting-edge technology to increase sales, streamline operations, and build lasting customer relationships—helping over 6,000 businesses thrive since 2009.",
+        "inLanguage": "en-SG",
+        "mainEntity": {
+          "@type": "Organization",
+          "@id": "https://www.epos.com.sg/#organization",
+          "name": "EPOS Pte. Ltd.",
+          "url": "https://www.epos.com.sg/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.epos.com.sg/wp-content/uploads/2025/12/EPOS_Full-Color.webp",
+            "width": "1509",
+            "height": "662"
+          },
+          "description": "EPOS is the leading POS system provider in Singapore. We empower small businesses with a wide range of technology that boosts sales, enhances operational efficiency, and fosters customer loyalty.",
+          "foundingDate": "2009",
+          "slogan": "Your Success Matters",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "2 Leng Kee Road, #02-07 Thye Hong Centre",
+            "addressLocality": "Singapore",
+            "postalCode": "159086",
+            "addressCountry": "SG"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+65-8482-1888",
+            "contactType": "customer service",
+            "email": "hello@epos.com.sg",
+            "availableLanguage": ["English"],
+            "hoursAvailable": {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday"
+              ],
+              "opens": "00:00",
+              "closes": "23:59"
+            }
+          },
+          "sameAs": [
+            "https://www.facebook.com/epossg",
+            "https://www.instagram.com/epossg/",
+            "https://www.youtube.com/@epospossystemsingapore9807",
+            "https://www.linkedin.com/company/14524422",
+            "https://www.xiaohongshu.com/user/profile/5ecf5cbc000000000100162e"
+          ],
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "5",
+            "reviewCount": "3000",
+            "bestRating": "5",
+            "worstRating": "1"
+          },
+          "numberOfEmployees": {
+            "@type": "QuantitativeValue",
+            "value": "50"
+          },
+          "areaServed": {
+            "@type": "Country",
+            "name": "Singapore"
+          }
+        },
+        "mainContentOfPage": {
+          "@type": "WebPageElement",
+          "about": [{
+              "@type": "Thing",
+              "name": "Client First",
+              "description": "Your Success, Our Priority. By deeply understanding your needs, we build trust, nurture long-term relationships, and celebrate your growth as our own."
+            },
+            {
+              "@type": "Thing",
+              "name": "Growth Mindset",
+              "description": "Always Learning, Always Improving. We embrace change, push beyond limits, and seek smarter solutions every day."
+            },
+            {
+              "@type": "Thing",
+              "name": "Integrity Always",
+              "description": "Principles Over Shortcuts. We hold ourselves to the highest standards, choosing honesty and accountability over convenience."
+            },
+            {
+              "@type": "Thing",
+              "name": "One EPOS",
+              "description": "Stronger Together. We believe in collaboration, support, and unity. Our collective success is what drives us forward."
+            }
+          ]
+        },
+        "specialty": [
+          "Retail POS Systems",
+          "F&B POS Systems",
+          "Minimart POS Systems",
+          "Payment Terminals",
+          "Loyalty Programmes",
+          "Digital Transformation"
+        ],
+        "award": [
+          "IMDA Partner Appreciation Evening 2019",
+          "IMDA Partner Appreciation Evening 2023",
+          "The Asset Asian Awards - Best Payments & Collections Solution"
+        ]
+      }
+    </script>
+<?php
+  }
+}

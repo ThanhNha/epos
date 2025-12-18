@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
+  const jobWrapper = document.querySelector(".job-openings-wrapper");
+  if (!jobWrapper) return;
   const dropdowns = document.querySelectorAll(".custom-select");
   const search = document.getElementById("job-search");
   const allJobs = Array.from(document.querySelectorAll(".job-item"));

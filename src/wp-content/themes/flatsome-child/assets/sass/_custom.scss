@@ -243,6 +243,18 @@ body.payment-soundbox {
       }
     }
   }
+  .nav{
+    .tab{
+      &.active{
+        a{
+          color: white !important;
+          @include desktop {
+            color: #1b459b !important;
+          }
+        }
+      }
+    }
+  }
 }
 
 .d-flex {
