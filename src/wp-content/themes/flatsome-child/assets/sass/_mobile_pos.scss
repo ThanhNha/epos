@@ -1,0 +1,67 @@
+.section-save-up {
+  @include desktop {
+    padding: 0 !important;
+  }
+  padding: 0 20px !important;
+  .row-save-up {
+    position: relative;
+    border-radius: 30px;
+    background-color: #e9fff4 !important;
+    overflow: hidden;
+    padding: 30px 0 0 !important;
+    @include desktop {
+      padding: 20px 43px !important;
+    }
+    .col-save-up-content {
+      button {
+        margin-bottom: 0 !important;
+      }
+      p {
+        span {
+          font-family: "Montserrat", sans-serif !important;
+        }
+      }
+    }
+    .col-save-up-img {
+      .col-inner {
+        z-index: 2;
+        @include desktop {
+          margin-top: -35px !important;
+        }
+      }
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -50px;
+      right: -60px;
+      width: 250px;
+      height: 250px;
+      background: #b6ffda;
+      border-radius: 50%;
+      @include desktop {
+        content: "";
+        position: absolute;
+        bottom: -90px;
+        right: -80px;
+        width: 350px;
+        height: 350px;
+        background: #b6ffda;
+        border-radius: 50%;
+      }
+    }
+  }
+}
+
+//Tab
+.tabbed-content {
+  &.tab-menu-hiden {
+    .nav {
+      display: none;
+    }
+  }
+
+  .tab-panels{
+    
+  }
+}
