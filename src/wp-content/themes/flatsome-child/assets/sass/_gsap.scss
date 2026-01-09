@@ -1,0 +1,277 @@
+///
+// .video-scroll {
+//   min-height: 100vh !important;
+//   will-change: transform;
+// }
+main.epos360 {
+  overflow-x: hidden;
+}
+//sell
+.section-sell {
+  position: relative;
+  height: 100vh;
+  @include desktop {
+    overflow: hidden;
+  }
+
+  .row-sell {
+    position: relative;
+    .col {
+      position: relative;
+      height: 100%;
+      .col-inner {
+        height: 100%;
+        position: relative;
+      }
+    }
+    .image-center {
+      @include desktop {
+        padding-top: 70px;
+      }
+    }
+    .sell-absolute-left {
+      @include desktop {
+        position: absolute;
+        left: 30%;
+        top: 244%;
+        width: 250px;
+        z-index: 1;
+      }
+    }
+    .sell-absolute-center {
+      @include desktop {
+        position: absolute;
+        right: -50px;
+        top: 0;
+        width: 150px !important;
+        height: 150px;
+        z-index: 1;
+      }
+    }
+    .sell-absolute-right {
+      @include desktop {
+        position: absolute;
+        left: -50px;
+        top: 265px;
+        z-index: 1;
+      }
+    }
+  }
+}
+//save
+.section-save {
+  position: relative;
+  overflow: hidden;
+  .row-save {
+    position: relative;
+    .col {
+      position: relative;
+      height: 100%;
+      .col-inner {
+        height: 100%;
+        position: relative;
+      }
+    }
+    .image-center {
+      @include desktop {
+        padding-top: 50px;
+      }
+    }
+    .save-absolute-right {
+      @include desktop {
+        position: absolute;
+        left: -5px;
+        top: 25px;
+        z-index: 1;
+      }
+    }
+    .save-absolute-left {
+      @include desktop {
+        position: absolute;
+        left: -10px;
+        top: 280px;
+        z-index: 1;
+      }
+    }
+  }
+}
+//Manage
+.section-manage {
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+  .row-manage {
+    position: relative;
+    @include desktop {
+      height: 80vh;
+    }
+
+    .col {
+      position: relative;
+      height: 100%;
+      .col-inner {
+        height: 100%;
+        position: relative;
+      }
+    }
+    .manage-absolute-left {
+      @include desktop {
+        &.v1 {
+          position: absolute;
+          left: -5px;
+          top: 345px;
+          width: 280px;
+          z-index: 1;
+        }
+      }
+    }
+    .manage-absolute-right {
+      @include desktop {
+        &.v1 {
+          position: absolute;
+          left: 125px;
+          top: 55px;
+          width: 250px;
+          z-index: 1;
+        }
+        &.v2 {
+          position: absolute;
+          left: -125px;
+          top: 150px;
+          width: 250px;
+          z-index: 2;
+        }
+      }
+    }
+  }
+  .image-center-col {
+    position: relative;
+    .image-center {
+      &.v1,
+      &.v2 {
+        @include desktop {
+          position: absolute;
+          left: 50%;
+          top: 30px;
+          z-index: 1;
+          transform: translateX(-50%) !important;
+        }
+      }
+    }
+  }
+}
+//Loan
+.section-loan {
+  position: relative;
+  overflow: hidden;
+  .row-loan {
+    position: relative;
+    .col {
+      position: relative;
+      height: 100%;
+      .col-inner {
+        height: 100%;
+        position: relative;
+      }
+    }
+    .loan-absolute-left {
+      @include desktop {
+        position: absolute;
+        left: 100px;
+        top: 230px;
+        width: 180px;
+        z-index: 1;
+      }
+    }
+    .loan-absolute-center {
+      @include desktop {
+        position: absolute;
+        right: -90px;
+        top: -410px;
+        width: 250px !important;
+        height: 100%;
+        z-index: 1;
+        display: flex;
+        flex-direction: column-reverse;
+        .box-text {
+          padding: 5px;
+        }
+      }
+    }
+
+    .loan-absolute-right {
+      @include desktop {
+        position: absolute;
+        left: -45px;
+        top: 330px;
+        width: 300px;
+        z-index: 1;
+      }
+    }
+  }
+}
+//
+.section-grow {
+  position: relative;
+  overflow: hidden;
+
+  // Flatsome section content
+  .section-content {
+    position: relative;
+    min-height: 100vh;
+  }
+
+  .row-grow {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    .text-info {
+      @include desktop {
+        position: absolute;
+        top: -270px;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  .tab-image {
+    position: relative;
+    min-height: 100%;
+  }
+
+  .img-1,
+  .img-2,
+  .img-3 {
+    position: absolute;
+    inset: 0;
+    top: -250px;
+    width: 100%;
+    height: 100%;
+  }
+
+  .s5-tabs {
+    position: relative;
+    @include desktop {
+      padding-top: 180px;
+    }
+
+    .tab {
+      opacity: 0.4;
+      transition: opacity 0.3s ease;
+
+      &.active {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.section-bg.bg-loaded {
+  @include only-tablet {
+    background-image: none !important;
+  }
+}

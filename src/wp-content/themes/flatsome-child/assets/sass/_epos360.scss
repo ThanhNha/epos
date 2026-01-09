@@ -1,0 +1,384 @@
+$epos360-primary: #58cc52;
+$epos360-secondary: #1323a6;
+
+body.epos360 {
+  font-family: "Poppins", sans-serif !important;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Poppins", sans-serif !important;
+    letter-spacing: -0.02em !important;
+    line-height: 1.18em !important;
+  }
+  p,
+  a,
+  span {
+    font-family: "Poppins", sans-serif !important;
+  }
+  .text-primary {
+    color: $epos360-primary !important;
+    h1,
+    h2,
+    h3 {
+      color: $epos360-primary !important;
+    }
+  }
+  .text-secondary {
+    color: $epos360-secondary !important;
+    h1,
+    h2,
+    h3 {
+      color: $epos360-secondary !important;
+    }
+  }
+  .text-black {
+    color: $main-ldp !important;
+    h1,
+    h2,
+    h3 {
+      color: $main-ldp !important;
+    }
+  }
+  .text-white {
+    color: #fff !important;
+    h2 {
+      color: #fff !important;
+    }
+  }
+  .button {
+    &.secondary {
+      background-color: $epos360-secondary !important;
+    }
+    &.primary {
+      background-color: $epos360-primary !important;
+    }
+  }
+  .container {
+    @include desktop {
+      max-width: 1440px !important;
+    }
+  }
+  .header-inner {
+    height: 80px;
+    .logo {
+      margin-right: 0 !important;
+      width: 100%;
+      a {
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+
+  .epos360-banner {
+    position: relative;
+    background: #ffffff;
+    overflow: hidden;
+    .images-hero-row {
+      position: relative;
+      .image-absolute-left-1 {
+        position: absolute;
+        left: 10px;
+        top: 35px;
+        width: 240px !important;
+        height: 160px !important;
+        z-index: 1;
+      }
+      .image-absolute-left-2 {
+        position: absolute;
+        left: 58px;
+        top: 223px;
+        width: 260px !important;
+        height: 260px !important;
+        z-index: 1;
+      }
+      .image-absolute-right-1 {
+        position: absolute;
+        right: 50px;
+        top: -35px;
+        width: 200px !important;
+        z-index: 1;
+      }
+      .image-absolute-right-2 {
+        position: absolute;
+        right: 180px;
+        top: 250px;
+        width: 150px !important;
+        z-index: 1;
+      }
+      .image-center-1 {
+        .img-inner {
+          position: relative;
+          &::after {
+            content: "";
+            position: absolute;
+            z-index: 2;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: #ffffff;
+            background: linear-gradient(
+              180deg,
+              rgba(255, 255, 255, 0) 60%,
+              rgb(21 38 172) 100%
+            );
+          }
+        }
+        z-index: 2;
+      }
+      .image-center-2 {
+        z-index: 1;
+      }
+      .image-center-1,
+      .image-center-2 {
+        position: absolute;
+        left: 50%;
+        top: 30px;
+        transform: translateX(-50%) !important;
+        @include desktop {
+          top: 100px;
+        }
+      }
+      .hero-images-360 {
+        height: 100%;
+        .col-inner {
+          @include desktop {
+            height: 650px;
+            padding: 80px 0 0 0;
+          }
+          padding: 30px 0 0 0;
+          height: 350px;
+        }
+      }
+    }
+    .sub-title {
+      p {
+        font-size: 16px;
+        @include desktop {
+          font-size: 18px !important;
+          font-weight: 700 !important;
+          margin-bottom: 23px !important;
+          line-height: 20px;
+          letter-spacing: 0;
+        }
+      }
+    }
+  }
+  .intro-section-epos360 {
+    background: #0a22aa;
+    background: linear-gradient(
+      180deg,
+      rgba(10, 34, 170, 1) 20%,
+      rgba(12, 28, 115, 1) 80%
+    );
+  }
+  //button
+  .button {
+    border: 1px solid !important;
+    border-radius: 8px !important;
+    margin-top: 11px;
+    font-weight: 500 !important;
+    font-size: 16px !important;
+    text-align: center !important;
+    letter-spacing: 0 !important;
+    line-height: 18px !important;
+    padding: 10px 25px !important;
+    &.secondary {
+      &.button-secondary-epos360 {
+        border-color: $epos360-secondary !important;
+        color: #fff !important;
+        &.out-line {
+          border-color: $epos360-secondary !important;
+          color: $epos360-secondary !important;
+          background-color: white !important;
+        }
+        &:hover {
+          background-color: black !important;
+          color: white !important;
+          border-color: black !important;
+        }
+      }
+    }
+    &.primary {
+      &.button-add-to-cart {
+        background-color: $epos360-primary !important;
+        border-color: $epos360-primary !important;
+        color: #fff !important;
+      }
+    }
+  }
+
+  #content {
+    .icon-box {
+      margin-bottom: 8px;
+      @include desktop {
+        margin-bottom: 5px;
+      }
+      &.rounded-14 {
+        .icon-box-img {
+          img {
+            border-radius: 0 !important;
+          }
+        }
+      }
+      .icon-box-text {
+        p {
+          font-size: 14px !important;
+          @include desktop {
+            font-size: 16px !important;
+          }
+        }
+      }
+    }
+    .product-bluetap {
+      .col-inner {
+        .row {
+          .col {
+            .col-inner {
+              .product-sub-title {
+                p {
+                  font-size: 16px !important;
+                  font-weight: medium;
+                }
+              }
+              .product-title {
+                h2 {
+                  color: $main-ldp !important;
+                  font-size: 28px !important;
+                  font-weight: bold;
+                  @include desktop {
+                    font-size: 36px !important;
+                  }
+                }
+              }
+              .product-des {
+                p {
+                  font-size: 18px;
+                }
+              }
+              .product-price {
+                h3 {
+                  .sale-price {
+                    color: $main-ldp !important;
+                    font-size: 28px !important;
+                    font-weight: bold;
+                    @include desktop {
+                      font-size: 36px !important;
+                    }
+                  }
+                  .regular-price {
+                    color: gray !important;
+                    text-decoration: line-through;
+                    font-weight: normal !important;
+                    font-size: 24px !important;
+                    @include desktop {
+                      font-size: 28px !important;
+                    }
+                  }
+                }
+              }
+              .product-thumbnail {
+                img {
+                  @include desktop {
+                    height: 450px;
+                  }
+                  height: 300px;
+                  object-fit: contain;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .section-product {
+      .bg-white.col {
+        .col-inner {
+          background-color: #f3f4f6 !important;
+
+          p {
+            background-color: #f3f4f6 !important;
+          }
+
+          img {
+            border-radius: 0 !important;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    #main {
+      .fp-section {
+        display: block !important;
+        height: 100%;
+      }
+
+      .section-grow {
+        .s5-tabs {
+          .tab {
+            opacity: 1;
+          }
+        }
+
+        .img-1,
+        .img-2,
+        .img-3 {
+          position: relative;
+          inset: auto;
+        }
+      }
+    }
+  }
+  .mobile-left {
+    .mobile-nav {
+      display: none !important;
+    }
+  }
+  .pb-lg-0 {
+    @include desktop {
+      padding-bottom: 0px !important;
+    }
+  }
+  .px-lg-4 {
+    @include desktop {
+      padding-left: 4rem !important;
+      padding-right: 4rem !important;
+    }
+  }
+  .mt-1 {
+    margin-top: 1rem !important;
+  }
+  .mt-2 {
+    margin-top: 2rem !important;
+  }
+  .ps-1 {
+    padding-left: 1rem !important;
+  }
+}
+
+.header-360 {
+  .header-wrapper {
+    background-color: white !important;
+  }
+}
+
+.footnotes {
+  p {
+    font-size: 11px;
+    margin-bottom: 23px !important;
+  }
+  ol {
+    font-size: 11px;
+    margin-bottom: 0 !important;
+    li {
+      font-size: 11px;
+      margin-bottom: 7px !important;
+    }
+  }
+}
