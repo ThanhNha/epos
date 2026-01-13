@@ -4,11 +4,12 @@ window.addEventListener("load", function () {
   initAutoSlider();
 
   if (window.innerWidth < 992) return;
-  Section1();
-  Section2();
-  Section3();
-  Section4();
-  Section5();
+  initFullpageScroll();
+  // Section1();
+  // Section2();
+  // Section3();
+  // Section4();
+  // Section5();
 });
 
 function initAutoSlider() {
@@ -60,125 +61,149 @@ function initAutoSlider() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  gsap.registerPlugin(ScrollToPlugin);
+function initFullpageScroll() {
+  document.addEventListener("DOMContentLoaded", () => {
+    // ======================
+    // REQUIRE
+    // ======================
+    if (typeof gsap === "undefined" || typeof ScrollToPlugin === "undefined") {
+      console.warn("GSAP or ScrollToPlugin not found");
+      return;
+    }
 
-  // ======================
-  // CONFIG
-  // ======================
-  const sections = gsap.utils.toArray(".fp-section");
-  const header = document.querySelector("#header"); // Flatsome header
-  const WHEEL_COOLDOWN = 600; // ms
-  const DESKTOP_MIN_WIDTH = 992;
+    gsap.registerPlugin(ScrollToPlugin);
 
-  if (!sections.length) return;
-  if (window.innerWidth < DESKTOP_MIN_WIDTH) return;
+    // ======================
+    // CONFIG
+    // ======================
+    const sections = gsap.utils.toArray(".fp-section");
+    const header = document.querySelector("#header");
+    const DESKTOP_MIN_WIDTH = 992;
+    const WHEEL_COOLDOWN = 700; // chống trackpad momentum
+    const SCROLL_DURATION = 1.2;
 
-  let isAnimating = false;
-  let lastWheelTime = 0;
+    if (!sections.length) return;
+    if (window.innerWidth < DESKTOP_MIN_WIDTH) return;
 
-  // ======================
-  // HELPERS
-  // ======================
-  function getHeaderHeight() {
-    return header ? header.getBoundingClientRect().height : 0;
-  }
+    let isAnimating = false;
+    let lastWheelTime = 0;
 
-  function getSnapRange() {
-    const first = sections[0];
-    const last = sections[sections.length - 1];
-    return {
-      start: first.offsetTop - getHeaderHeight(),
-      end: last.offsetTop + last.offsetHeight,
+    // ======================
+    // HELPERS
+    // ======================
+    const getHeaderHeight = () =>
+      header ? header.getBoundingClientRect().height : 0;
+
+    const getSnapRange = () => {
+      const first = sections[0];
+      const last = sections[sections.length - 1];
+      return {
+        start: first.offsetTop - getHeaderHeight(),
+        end: last.offsetTop + last.offsetHeight,
+      };
     };
-  }
 
-  function getCurrentSectionIndex() {
-    const headerH = getHeaderHeight();
-    const viewportCenter =
-      window.scrollY + window.innerHeight / 2 + headerH / 2;
+    const getCurrentSectionIndex = () => {
+      const viewportCenter =
+        window.scrollY +
+        window.innerHeight / 2 +
+        getHeaderHeight() / 2;
 
-    return sections.findIndex((section) => {
-      const rect = section.getBoundingClientRect();
-      const sectionCenter = window.scrollY + rect.top + rect.height / 2;
+      return sections.findIndex((section) => {
+        const rect = section.getBoundingClientRect();
+        const sectionCenter =
+          window.scrollY + rect.top + rect.height / 2;
 
-      return Math.abs(sectionCenter - viewportCenter) < rect.height / 2;
-    });
-  }
+        return Math.abs(sectionCenter - viewportCenter) < rect.height / 2;
+      });
+    };
 
-  function scrollToSection(index) {
-    if (index < 0 || index >= sections.length) return;
+    const scrollToSection = (index) => {
+      if (index < 0 || index >= sections.length) return;
 
-    const headerH = getHeaderHeight();
-    const section = sections[index];
+      const section = sections[index];
+      const targetY =
+        section.offsetTop +
+        section.offsetHeight / 2 -
+        window.innerHeight / 2 +
+        getHeaderHeight();
 
-    const targetY =
-      section.offsetTop +
-      section.offsetHeight / 2 -
-      window.innerHeight / 2 +
-      headerH;
+      isAnimating = true;
 
-    isAnimating = true;
+      gsap.to(window, {
+        scrollTo: targetY,
+        duration: SCROLL_DURATION,
+        ease: "power4.out",
+        onComplete: () => {
+          isAnimating = false;
+        },
+      });
+    };
 
-    gsap.to(window, {
-      scrollTo: targetY,
-      duration: 3.5,
-      ease: "power4.out",
-      onComplete: () => {
-        isAnimating = false;
-      },
-    });
-  }
+    // ======================
+    // WHEEL HANDLER (ANTI SKIP)
+    // ======================
+    window.addEventListener(
+      "wheel",
+      (e) => {
+        const now = Date.now();
 
-  // ======================
-  // WHEEL HANDLER
-  // ======================
-  window.addEventListener(
-    "wheel",
-    (e) => {
-      const now = Date.now();
-      if (isAnimating || now - lastWheelTime < WHEEL_COOLDOWN) return;
+        // HARD LOCK
+        if (isAnimating) {
+          e.preventDefault();
+          return;
+        }
 
-      const direction = e.deltaY > 0 ? 1 : -1;
-      const currentY = window.scrollY;
-      const { start, end } = getSnapRange();
+        if (now - lastWheelTime < WHEEL_COOLDOWN) {
+          e.preventDefault();
+          return;
+        }
 
-      /* ==========================
-         CASE 1: NGOÀI FULLPAGE
-      ========================== */
-      if (currentY < start) {
-        // scroll xuống → vào fullpage
-        if (direction > 0) {
+        // Ignore tiny trackpad noise
+        if (Math.abs(e.deltaY) < 10) return;
+
+        const direction = e.deltaY > 0 ? 1 : -1;
+        const currentY = window.scrollY;
+        const { start, end } = getSnapRange();
+
+        /* ==========================
+           NGOÀI FULLPAGE
+        ========================== */
+        if (currentY < start && direction > 0) {
+          e.preventDefault();
           lastWheelTime = now;
           scrollToSection(0);
+          return;
         }
-        return;
-      }
 
-      if (currentY > end) {
-        // scroll lên → vào fullpage từ dưới
-        if (direction < 0) {
+        if (currentY > end && direction < 0) {
+          e.preventDefault();
           lastWheelTime = now;
           scrollToSection(sections.length - 1);
+          return;
         }
-        return;
-      }
 
-      /* ==========================
-         CASE 2: TRONG FULLPAGE
-      ========================== */
-      const currentIndex = getCurrentSectionIndex();
-      if (currentIndex === -1) return;
+        /* ==========================
+           TRONG FULLPAGE
+        ========================== */
+        if (currentY >= start && currentY <= end) {
+          e.preventDefault();
 
-      const targetIndex = currentIndex + direction;
-      if (targetIndex < 0 || targetIndex >= sections.length) return;
+          const currentIndex = getCurrentSectionIndex();
+          if (currentIndex === -1) return;
 
-      lastWheelTime = now;
-      scrollToSection(targetIndex);
-    },
-    { passive: true }
-  );
-});
+          const targetIndex = currentIndex + direction;
+          if (targetIndex < 0 || targetIndex >= sections.length) return;
+
+          lastWheelTime = now;
+          scrollToSection(targetIndex);
+        }
+      },
+      { passive: false } // 🚨 bắt buộc
+    );
+  });
+}
+
 function Section1() {
   const section = document.querySelector(".s1");
   if (!section) return;
