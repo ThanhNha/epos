@@ -1,0 +1,51 @@
+.section-save {
+  position: relative;
+  overflow: hidden;
+  .row-save {
+    position: relative;
+     @include desktop {
+      padding-top: 135px;
+    }
+    .col {
+      position: relative;
+      height: 100%;
+      .col-inner {
+        height: 100%;
+        position: relative;
+      }
+    }
+    .image-center {
+      width: 740px !important;
+      height: 740px !important;
+      .img-inner {
+        width: 100% !important;
+        height: 100% !important;
+        img {
+          width: 100% !important;
+          height: 100% !important;
+          object-fit: cover;
+        }
+      }
+    }
+    .save-absolute-right {
+      @include desktop {
+        position: absolute;
+        left: -28px !important;
+        top: 46px;
+        width: 360px !important;
+        height: 352px !important;
+        z-index: 1;
+      }
+    }
+    .save-absolute-left {
+      @include desktop {
+        position: absolute;
+        left: 52px;
+        top: 382px;
+        width: 360px !important;
+        height: 304px !important;
+        z-index: 1;
+      }
+    }
+  }
+}

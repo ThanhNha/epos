@@ -1,0 +1,40 @@
+//SELL
+@import "./sections/section-sell";
+//SAVE
+@import "./sections/section-save";
+//MANAGE
+@import "./sections/section-manage";
+//LOAN
+@import "./sections/section-loan";
+//GROW
+@import "./sections/section-grow";
+main.epos360 {
+  overflow-x: hidden;
+}
+.section-bg.bg-loaded {
+  @include only-tablet {
+    background-image: none !important;
+  }
+}
+
+html.fp-snap-active {
+  scroll-snap-type: y mandatory;
+  scroll-padding-top: 0;
+}
+
+.fp-section {
+  min-height: 100vh;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+}
+
+// //s1
+// .s1 .text-info,
+// .s1 .image-center,
+// .s1 .sell-absolute-left,
+// .s1 .sell-absolute-center,
+// .s1 .sell-absolute-right {
+//   will-change: transform, opacity;
+//   backface-visibility: hidden;
+//   transform: translateZ(0);
+// }
