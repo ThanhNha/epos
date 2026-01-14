@@ -1,15 +1,14 @@
 window.addEventListener("load", function () {
-  gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
   initAutoSlider();
 
   if (window.innerWidth < 992) return;
-  initFullpageScroll();
-  // Section1();
-  // Section2();
-  // Section3();
-  // Section4();
-  // Section5();
+  SectionSell();
+  SectionSave();
+  SectionManage();
+  SectionLoan();
+  SectionGrow();
 });
 
 function initAutoSlider() {
@@ -61,319 +60,159 @@ function initAutoSlider() {
   });
 }
 
-function initFullpageScroll() {
-  document.addEventListener("DOMContentLoaded", () => {
-    // ======================
-    // REQUIRE
-    // ======================
-    if (typeof gsap === "undefined" || typeof ScrollToPlugin === "undefined") {
-      console.warn("GSAP or ScrollToPlugin not found");
-      return;
-    }
-
-    gsap.registerPlugin(ScrollToPlugin);
-
-    // ======================
-    // CONFIG
-    // ======================
-    const sections = gsap.utils.toArray(".fp-section");
-    const header = document.querySelector("#header");
-    const DESKTOP_MIN_WIDTH = 992;
-    const WHEEL_COOLDOWN = 700; // chống trackpad momentum
-    const SCROLL_DURATION = 1.2;
-
-    if (!sections.length) return;
-    if (window.innerWidth < DESKTOP_MIN_WIDTH) return;
-
-    let isAnimating = false;
-    let lastWheelTime = 0;
-
-    // ======================
-    // HELPERS
-    // ======================
-    const getHeaderHeight = () =>
-      header ? header.getBoundingClientRect().height : 0;
-
-    const getSnapRange = () => {
-      const first = sections[0];
-      const last = sections[sections.length - 1];
-      return {
-        start: first.offsetTop - getHeaderHeight(),
-        end: last.offsetTop + last.offsetHeight,
-      };
-    };
-
-    const getCurrentSectionIndex = () => {
-      const viewportCenter =
-        window.scrollY +
-        window.innerHeight / 2 +
-        getHeaderHeight() / 2;
-
-      return sections.findIndex((section) => {
-        const rect = section.getBoundingClientRect();
-        const sectionCenter =
-          window.scrollY + rect.top + rect.height / 2;
-
-        return Math.abs(sectionCenter - viewportCenter) < rect.height / 2;
-      });
-    };
-
-    const scrollToSection = (index) => {
-      if (index < 0 || index >= sections.length) return;
-
-      const section = sections[index];
-      const targetY =
-        section.offsetTop +
-        section.offsetHeight / 2 -
-        window.innerHeight / 2 +
-        getHeaderHeight();
-
-      isAnimating = true;
-
-      gsap.to(window, {
-        scrollTo: targetY,
-        duration: SCROLL_DURATION,
-        ease: "power4.out",
-        onComplete: () => {
-          isAnimating = false;
-        },
-      });
-    };
-
-    // ======================
-    // WHEEL HANDLER (ANTI SKIP)
-    // ======================
-    window.addEventListener(
-      "wheel",
-      (e) => {
-        const now = Date.now();
-
-        // HARD LOCK
-        if (isAnimating) {
-          e.preventDefault();
-          return;
-        }
-
-        if (now - lastWheelTime < WHEEL_COOLDOWN) {
-          e.preventDefault();
-          return;
-        }
-
-        // Ignore tiny trackpad noise
-        if (Math.abs(e.deltaY) < 10) return;
-
-        const direction = e.deltaY > 0 ? 1 : -1;
-        const currentY = window.scrollY;
-        const { start, end } = getSnapRange();
-
-        /* ==========================
-           NGOÀI FULLPAGE
-        ========================== */
-        if (currentY < start && direction > 0) {
-          e.preventDefault();
-          lastWheelTime = now;
-          scrollToSection(0);
-          return;
-        }
-
-        if (currentY > end && direction < 0) {
-          e.preventDefault();
-          lastWheelTime = now;
-          scrollToSection(sections.length - 1);
-          return;
-        }
-
-        /* ==========================
-           TRONG FULLPAGE
-        ========================== */
-        if (currentY >= start && currentY <= end) {
-          e.preventDefault();
-
-          const currentIndex = getCurrentSectionIndex();
-          if (currentIndex === -1) return;
-
-          const targetIndex = currentIndex + direction;
-          if (targetIndex < 0 || targetIndex >= sections.length) return;
-
-          lastWheelTime = now;
-          scrollToSection(targetIndex);
-        }
-      },
-      { passive: false } // 🚨 bắt buộc
-    );
-  });
-}
-
-function Section1() {
+function SectionSell() {
   const section = document.querySelector(".s1");
   if (!section) return;
 
-  // ==============================
-  // TIMELINE – SECTION 1 (SELL)
-  // ==============================
   const sellTl = gsap.timeline({
     paused: true,
-    defaults: {
-      ease: "power3.out",
-      duration: 1,
-    },
   });
 
-  // STEP 1: TEXT + IMAGE CENTER (CÙNG LÚC SAU 0.6s)
+  sellTl.to({}, { duration: 0.6 });
+
+  /*
+    STEP 1 – TEXT + IMAGE (1 → 2.2s)
+    */
   sellTl
-    .add("showCenter", "+=1.2")
     .fromTo(
       section.querySelector(".text-info"),
-      { autoAlpha: 0, y: 20 },
-      { autoAlpha: 1, y: 0 },
-      "showCenter"
+      { autoAlpha: 0, scale: 0.94 },
+      {
+        autoAlpha: 1,
+        scale: 1,
+        duration: 0.6,
+        ease: "power3.out",
+      }
     )
     .fromTo(
       section.querySelector(".image-center"),
-      { autoAlpha: 0, scale: 0.9 },
-      { autoAlpha: 1, scale: 1 },
-      "showCenter"
+      { autoAlpha: 0, scale: 0.94 },
+      {
+        autoAlpha: 1,
+        scale: 1,
+        duration: 0.6,
+        ease: "power3.out",
+      },
+      "<" // chạy cùng lúc với text
     );
 
-  // STEP 2: ABSOLUTE ITEMS
+  /*
+    STEP 2 – ABSOLUTE ITEMS (2.2 → ~3.6s)
+    */
   sellTl.fromTo(
     section.querySelectorAll(
       ".sell-absolute-left, .sell-absolute-center, .sell-absolute-right"
     ),
-    { autoAlpha: 0, y: 20 },
+    { autoAlpha: 0, y: 5 },
     {
       autoAlpha: 1,
       y: 0,
-      duration: 1.8,
-      ease: "sine.out",
-      stagger: {
-        each: 0.12,
-        from: "center",
-      },
-    },
-    "-=0.15"
+      duration: 0.3,
+      ease: "power2.out",
+    }
   );
 
-  // ==============================
+  //
   // SCROLL TRIGGER
-  // ==============================
+  //
   ScrollTrigger.create({
     trigger: section,
-    start: "top 80%",
-    end: "bottom 20%",
+    start: "top 30%",
+    end: "bottom 30%",
 
     onEnter: () => sellTl.restart(),
     onEnterBack: () => sellTl.restart(),
 
     onLeaveBack: () => {
-      // reset mềm, KHÔNG giật
-      sellTl.pause(0);
+      sellTl.progress(0).pause();
     },
   });
 }
-function Section2() {
+
+function SectionSave() {
   const section = document.querySelector(".s2");
   if (!section) return;
 
-  // initial state
+  /*
+    INITIAL STATE
+    */
   gsap.set(section.querySelector(".text-info"), { autoAlpha: 0, y: 20 });
   gsap.set(section.querySelector(".image-center"), {
     autoAlpha: 0,
-    scale: 0.9,
+    scale: 0.94,
   });
 
   gsap.set(
-    section.querySelectorAll(".save-absolute-left.v1, .save-absolute-right.v1"),
-    { autoAlpha: 0, y: 30 }
+    section.querySelectorAll(
+      ".save-absolute-left.v1, .save-absolute-right.v1, .save-absolute-right-2.v1"
+    ),
+    { autoAlpha: 0, y: 28 }
   );
 
-  gsap.set(
-    section.querySelectorAll(".save-absolute-left.v2, .save-absolute-right.v2"),
-    { autoAlpha: 0, y: 30 }
-  );
+  /*
+    TIMELINE
+    */
+  const saveTl = gsap.timeline({ paused: true });
 
-  const saveTl = gsap.timeline({
-    paused: true,
-    defaults: { ease: "power3.out", duration: 1.2 },
-  });
+  /* HOLD BG – 1 GIÂY */
+  saveTl.to({}, { duration: 1 });
 
-  // text + image center
+  /* STEP 1 – TEXT + IMAGE */
   saveTl
-    .add("showCenter", "+=1.4")
     .fromTo(
       section.querySelector(".text-info"),
       { autoAlpha: 0, y: 20 },
-      { autoAlpha: 1, y: 0 },
-      "showCenter"
+      {
+        autoAlpha: 1,
+        y: 0,
+        duration: 0.6,
+        ease: "power3.out",
+      }
     )
     .fromTo(
       section.querySelector(".image-center"),
-      { autoAlpha: 0, scale: 0.9 },
-      { autoAlpha: 1, scale: 1 },
-      "showCenter"
+      { autoAlpha: 0, scale: 0.94 },
+      {
+        autoAlpha: 1,
+        scale: 1,
+        duration: 0.6,
+        ease: "power4.out",
+      },
+      "<"
     );
 
-  // v1 IN
-  saveTl.to(
-    section.querySelectorAll(".save-absolute-left.v1, .save-absolute-right.v1"),
+  /* STEP 2 – ABSOLUTE ITEMS (v1 – CÙNG LÚC) */
+  saveTl.fromTo(
+    section.querySelectorAll(
+      ".save-absolute-left.v1, .save-absolute-right.v1 ,.save-absolute-right-2.v1"
+    ),
+    { autoAlpha: 0, y: 10 },
     {
       autoAlpha: 1,
       y: 0,
-      duration: 1.2,
-      ease: "sine.out",
-      stagger: {
-        each: 0.1,
-        from: "center",
-      },
-    },
-    "-=0.2"
-  );
-
-  saveTl.to({}, { duration: 3 });
-
-  // v1 OUT
-  saveTl.to(
-    section.querySelectorAll(".save-absolute-left.v1, .save-absolute-right.v1"),
-    {
-      autoAlpha: 0,
-      y: -20,
-      duration: 1.8,
-      ease: "sine.inOut",
-      stagger: {
-        each: 0.08,
-        from: "center",
-      },
+      duration: 0.35,
+      ease: "power2.out",
     }
   );
 
-  // v2 IN (overlap nhẹ)
-  saveTl.to(
-    section.querySelectorAll(".save-absolute-left.v2, .save-absolute-right.v2"),
-    {
-      autoAlpha: 1,
-      y: 0,
-      duration: 1.8,
-      ease: "sine.out",
-      stagger: {
-        each: 0.1,
-        from: "center",
-      },
-    },
-    "-=0.3"
-  );
-
+  /*
+    SCROLL TRIGGER
+    */
   ScrollTrigger.create({
     trigger: section,
-    start: "top 80%",
-    end: "bottom 20%",
+    start: "top 30%",
+    end: "bottom 30%",
 
     onEnter: () => saveTl.restart(),
     onEnterBack: () => saveTl.restart(),
-    onLeaveBack: () => saveTl.pause(0),
+
+    onLeaveBack: () => {
+      saveTl.progress(0).pause();
+    },
   });
 }
 
-function Section3() {
+function SectionManage() {
   const section = document.querySelector(".s3");
   if (!section) return;
 
@@ -390,8 +229,8 @@ function Section3() {
   let phoneLoopTl = null;
 
   /* =============================
-     INIT STATE
-  ============================= */
+    INIT STATE
+============================= */
   gsap.set(text, { autoAlpha: 0, y: 20 });
   gsap.set(imageCenter, { autoAlpha: 0, scale: 0.92 });
   gsap.set(absolutes, { autoAlpha: 0, y: 30 });
@@ -402,8 +241,8 @@ function Section3() {
   });
 
   /* =============================
-     PHONE SCREEN LOOP (1 → 2 → 3)
-  ============================= */
+    PHONE SCREEN LOOP (1 → 2 → 3)
+============================= */
   function createPhoneLoop() {
     if (!screen1 || !screen2 || !screen3) return;
 
@@ -420,7 +259,7 @@ function Section3() {
 
     phoneLoopTl
       // hold screen 1
-      .to({}, { duration: 2 })
+      .to({}, { duration: 0.4 })
 
       // screen 2 IN
       .to(screen2, {
@@ -430,7 +269,7 @@ function Section3() {
       })
 
       // hold screen 2
-      .to({}, { duration: 2 })
+      .to({}, { duration: 0.4 })
 
       // reset screen 2
       .set(screen2, { autoAlpha: 0, y: 12 })
@@ -450,12 +289,12 @@ function Section3() {
   }
 
   /* =============================
-     MAIN TIMELINE
-  ============================= */
+    MAIN TIMELINE
+============================= */
   const manageTl = gsap.timeline({ paused: true });
 
   manageTl
-    .add("showCenter", "+=1.6")
+    .add("showCenter", "+=0.6")
 
     // TEXT
     .fromTo(
@@ -464,7 +303,7 @@ function Section3() {
       {
         autoAlpha: 1,
         y: 0,
-        duration: 1.6,
+        duration: 0.6,
         ease: "power3.out",
       },
       "showCenter"
@@ -477,7 +316,7 @@ function Section3() {
       {
         autoAlpha: 1,
         scale: 1,
-        duration: 1.6,
+        duration: 0.6,
         ease: "power3.out",
       },
       "showCenter"
@@ -504,8 +343,8 @@ function Section3() {
       {
         autoAlpha: 1,
         y: 0,
-        duration: 1.6,
-        ease: "sine.out",
+        duration: 0.3,
+        ease: "power2.out",
         stagger: {
           each: 0.12,
           from: "center",
@@ -515,13 +354,17 @@ function Section3() {
     )
 
     // START PHONE LOOP
-    .call(() => {
-      createPhoneLoop();
-    }, null, "+=1.2");
+    .call(
+      () => {
+        createPhoneLoop();
+      },
+      null,
+      "+=0.4"
+    );
 
   /* =============================
-     SCROLL TRIGGER
-  ============================= */
+    SCROLL TRIGGER
+============================= */
   ScrollTrigger.create({
     trigger: section,
     start: "top 80%",
@@ -579,73 +422,90 @@ function Section3() {
   });
 }
 
-
-function Section4() {
+function SectionLoan() {
   const section = document.querySelector(".s4");
   if (!section) return;
 
-  const text = section.querySelector(".text-info");
-  const imageCenter = section.querySelector(".image-center");
-  const absolutes = section.querySelectorAll(
-    ".loan-absolute-left, .loan-absolute-center, .loan-absolute-right"
-  );
-
-  /* ===== INIT STATE ===== */
-  if (text) gsap.set(text, { autoAlpha: 0, y: 20 });
-  if (imageCenter) gsap.set(imageCenter, { autoAlpha: 0, scale: 0.9 });
-  if (absolutes.length) gsap.set(absolutes, { autoAlpha: 0, y: 30 });
-
-  /* ===== TIMELINE ===== */
-  const loanTl = gsap.timeline({
-    paused: true,
-    defaults: {
-      duration: 0.6,
-      ease: "power3.out",
-    },
+  /*
+    INITIAL STATE
+    */
+  gsap.set(section.querySelector(".text-info"), { autoAlpha: 0, y: 20 });
+  gsap.set(section.querySelector(".image-center"), {
+    autoAlpha: 0,
+    scale: 0.94,
   });
 
-  // STEP 1: TEXT + IMAGE CENTER (CÙNG LÚC)
-  loanTl
-    .add("showCenter", "+=0.6")
-    .to(text, { autoAlpha: 1, y: 0 }, "showCenter")
-    .to(imageCenter, { autoAlpha: 1, scale: 1 }, "showCenter");
+  gsap.set(
+    section.querySelectorAll(
+      ".loan-absolute-left, .loan-absolute-center, .loan-absolute-right"
+    ),
+    { autoAlpha: 0, y: 28 }
+  );
 
-  // STEP 2: ABSOLUTE ITEMS
-  loanTl.to(
-    absolutes,
+  /*
+    TIMELINE
+    */
+  const saveTl = gsap.timeline({ paused: true });
+
+  /* HOLD BG – 1 GIÂY */
+  saveTl.to({}, { duration: 1 });
+
+  /* STEP 1 – TEXT + IMAGE */
+  saveTl
+    .fromTo(
+      section.querySelector(".text-info"),
+      { autoAlpha: 0, y: 20 },
+      {
+        autoAlpha: 1,
+        y: 0,
+        duration: 1,
+        ease: "power3.out",
+      }
+    )
+    .fromTo(
+      section.querySelector(".image-center"),
+      { autoAlpha: 0, scale: 0.94 },
+      {
+        autoAlpha: 1,
+        scale: 1,
+        duration: 1.2,
+        ease: "power4.out",
+      },
+      "<"
+    );
+
+  /* STEP 2 – ABSOLUTE ITEMS */
+  saveTl.fromTo(
+    section.querySelectorAll(
+      ".loan-absolute-left, .loan-absolute-center, .loan-absolute-right"
+    ),
+    { autoAlpha: 0, y: 10 },
     {
       autoAlpha: 1,
       y: 0,
-      duration: 1.8,
-      stagger: {
-        each: 0.12,
-        from: "center",
-      },
-    },
-    "-=0.15"
+      duration: 0.35,
+      ease: "power2.out",
+    }
   );
 
-  /* ===== SCROLL TRIGGER ===== */
+  /*
+    SCROLL TRIGGER
+    */
   ScrollTrigger.create({
     trigger: section,
-    start: "top 80%",
-    end: "bottom 20%",
+    start: "top 30%",
+    end: "bottom 30%",
 
-    onEnter: () => loanTl.restart(),
-    onEnterBack: () => loanTl.restart(),
+    onEnter: () => saveTl.restart(),
+    onEnterBack: () => saveTl.restart(),
 
     onLeaveBack: () => {
-      loanTl.pause(0);
-
-      // reset sạch – không giật
-      if (text) gsap.set(text, { autoAlpha: 0, y: 20 });
-      if (imageCenter) gsap.set(imageCenter, { autoAlpha: 0, scale: 0.9 });
-      if (absolutes.length) gsap.set(absolutes, { autoAlpha: 0, y: 30 });
+      saveTl.progress(0).pause();
     },
   });
 }
 
-function Section5() {
+function SectionGrow() {
   const section = document.querySelector(".s5");
   if (!section) return;
 
@@ -663,8 +523,8 @@ function Section5() {
   let tab3Tl = null;
 
   /* =============================
-     INIT STATE
-  ============================= */
+    INIT STATE
+============================= */
   gsap.set(text, { autoAlpha: 0, y: 20 });
   gsap.set(imageCenter, { autoAlpha: 0, scale: 0.92 });
   gsap.set(tabWrap, { autoAlpha: 0, y: 20 });
@@ -677,8 +537,8 @@ function Section5() {
   });
 
   /* =============================
-     GET ITEMS PER TAB
-  ============================= */
+    GET ITEMS PER TAB
+============================= */
   const group1 = section.querySelector(".grow-visual-group.g1");
   const group2 = section.querySelector(".grow-visual-group.g2");
   const group3 = section.querySelector(".grow-visual-group.g3");
@@ -688,8 +548,8 @@ function Section5() {
   const tab3Items = group3?.querySelectorAll(".ai-step");
 
   /* =============================
-     STACK ANIMATION (SMOOTH)
-  ============================= */
+    STACK ANIMATION (SMOOTH)
+============================= */
   function createStackAnimation(items) {
     if (!items || !items.length) return null;
 
@@ -732,8 +592,8 @@ function Section5() {
   }
 
   /* =============================
-     TAB SWITCH CORE
-  ============================= */
+    TAB SWITCH CORE
+============================= */
   function setActiveTab(tabName, animate = true) {
     activeTab = tabName;
 
@@ -776,8 +636,8 @@ function Section5() {
   }
 
   /* =============================
-     AUTO TAB ROTATE
-  ============================= */
+    AUTO TAB ROTATE
+============================= */
   function startAutoTabs() {
     stopAutoTabs();
 
@@ -796,8 +656,8 @@ function Section5() {
   }
 
   /* =============================
-     TAB CLICK
-  ============================= */
+    TAB CLICK
+============================= */
   tabs.forEach((tab) => {
     tab.addEventListener("click", () => {
       stopAutoTabs();
@@ -807,8 +667,8 @@ function Section5() {
   });
 
   /* =============================
-     INTRO TIMELINE
-  ============================= */
+    INTRO TIMELINE
+============================= */
 
   const growTl = gsap.timeline({
     paused: true,
@@ -826,8 +686,8 @@ function Section5() {
     .to(imageCenter, { autoAlpha: 1, scale: 1, duration: 1.2 }, "showCenter");
 
   /* =============================
-     SCROLL TRIGGER
-  ============================= */
+    SCROLL TRIGGER
+============================= */
   ScrollTrigger.create({
     trigger: section,
     start: "top 80%",
@@ -870,3 +730,136 @@ function Section5() {
     },
   });
 }
+
+// const fpSections = gsap.utils.toArray(".fp-section");
+// let isScrolling = false;
+
+// function scrollToSection(section) {
+//   if (!section || isScrolling) return;
+
+//   isScrolling = true;
+
+//   gsap.to(window, {
+//     scrollTo: {
+//       y: section,
+//       autoKill: false,
+//     },
+//     duration: 1.3,
+//     ease: "power4.out",
+//     onComplete: () => (isScrolling = false),
+//   });
+// }
+
+// fpSections.forEach((section, index) => {
+//   ScrollTrigger.create({
+//     trigger: section,
+//     start: "top center",
+//     end: "bottom center",
+//     onEnter: () => scrollToSection(section),
+//     onEnterBack: () => scrollToSection(section),
+//     markers: false,
+//   });
+// });
+
+// window.addEventListener(
+//   "wheel",
+//   (e) => {
+//     if (isScrolling) return;
+
+//     const current = ScrollTrigger.getAll().find(
+//       (st) => st.isActive && st.trigger.classList.contains("fp-section")
+//     );
+
+//     if (!current) return;
+
+//     const currentIndex = fpSections.indexOf(current.trigger);
+
+//     if (e.deltaY > 0 && currentIndex < fpSections.length - 1) {
+//       e.preventDefault();
+//       scrollToSection(fpSections[currentIndex + 1]);
+//     }
+
+//     if (e.deltaY < 0 && currentIndex > 0) {
+//       e.preventDefault();
+//       scrollToSection(fpSections[currentIndex - 1]);
+//     }
+//   },
+//   { passive: false }
+// );
+const FP = ".fp-section";
+const NFP = ".nfp-section";
+
+/* =========================
+  SMOOTH SCROLL
+========================= */
+const smoother = ScrollSmoother.create({
+  wrapper: "#smooth-wrapper",
+  content: "#smooth-content",
+  smooth: 2.5,
+  normalizeScroll: true,
+  effects: false,
+});
+
+/* =========================
+  SNAP THEO LỰC SCROLL
+========================= */
+const sections = gsap.utils.toArray(FP);
+
+sections.forEach((section, index) => {
+  ScrollTrigger.create({
+    trigger: section,
+    start: "top top",
+    end: () => "+=" + window.innerHeight * 0.6,
+
+    pin: true,
+    pinSpacing: true,
+    anticipatePin: 1,
+
+    snap: {
+      snapTo: (progress, st) => {
+        const velocity = st.getVelocity(); // 🔥 px/sec
+        let direction = velocity > 0 ? 1 : -1;
+
+        const absV = Math.abs(velocity);
+
+        // 🧠 QUY TẮC SNAP
+        let step = 1; // mặc định 1 section
+
+        if (absV > 2000) step = 3; // scroll rất mạnh
+        else if (absV > 1200) step = 2; // scroll mạnh
+
+        let targetIndex = index + direction * step;
+
+        // clamp index
+        targetIndex = Math.max(0, Math.min(sections.length - 1, targetIndex));
+
+        // 🔥 SNAP THEO SECTION INDEX
+        return targetIndex;
+      },
+
+      duration: 0.45,
+      ease: "power2.out",
+      delay: 0,
+    },
+
+    invalidateOnRefresh: true,
+  });
+});
+
+/* =========================
+  NORMAL SCROLL SECTIONS
+========================= */
+gsap.utils.toArray(NFP).forEach((section) => {
+  ScrollTrigger.create({
+    trigger: section,
+    start: "top bottom",
+    end: "bottom top",
+  });
+});
+
+/* =========================
+  REFRESH
+========================= */
+window.addEventListener("load", () => {
+  ScrollTrigger.refresh();
+});

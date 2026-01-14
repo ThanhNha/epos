@@ -14,9 +14,11 @@
         position: relative;
       }
     }
-    .image-center{
+    .image-center {
+      @include desktop {
         width: 586px !important;
         height: 586px !important  ;
+      }
     }
     .loan-absolute-left {
       @include desktop {

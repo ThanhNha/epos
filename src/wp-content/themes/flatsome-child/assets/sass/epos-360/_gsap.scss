@@ -17,24 +17,14 @@ main.epos360 {
   }
 }
 
-html.fp-snap-active {
-  scroll-snap-type: y mandatory;
-  scroll-padding-top: 0;
-}
-
 .fp-section {
   min-height: 100vh;
-  scroll-snap-align: center;
-  scroll-snap-stop: always;
+  position: relative;
 }
-
-// //s1
-// .s1 .text-info,
-// .s1 .image-center,
-// .s1 .sell-absolute-left,
-// .s1 .sell-absolute-center,
-// .s1 .sell-absolute-right {
-//   will-change: transform, opacity;
-//   backface-visibility: hidden;
-//   transform: translateZ(0);
-// }
+html, body {
+  overflow-x: hidden;
+}
+.nfp-section {
+  min-height: auto;
+  overflow: visible;
+}

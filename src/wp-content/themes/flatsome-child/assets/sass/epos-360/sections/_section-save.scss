@@ -15,15 +15,17 @@
       }
     }
     .image-center {
-      width: 740px !important;
-      height: 740px !important;
-      .img-inner {
-        width: 100% !important;
-        height: 100% !important;
-        img {
+      @include desktop {
+        width: 740px !important;
+        height: 740px !important;
+        .img-inner {
           width: 100% !important;
           height: 100% !important;
-          object-fit: cover;
+          img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover;
+          }
         }
       }
     }
@@ -36,14 +38,15 @@
         height: 352px !important;
         z-index: 1;
       }
-      &.v2 {
-        @include desktop {
-          left: -28px !important;
-          top: 46px;
-          width: 277px !important;
-          height: 410px !important;
-          z-index: 1;
-        }
+    }
+    .save-absolute-right-2 {
+      @include desktop {
+        position: absolute;
+        left: 18px !important;
+        top: 438px;
+        width: 250px !important;
+        height: 264px !important;
+        z-index: 1;
       }
     }
     .save-absolute-left {
@@ -54,15 +57,6 @@
         width: 360px !important;
         height: 304px !important;
         z-index: 1;
-      }
-      &.v2 {
-        @include desktop {
-          left: 138px;
-          top: 382px;
-          width: 276px !important;
-          height: 287.33px !important;
-          z-index: 1;
-        }
       }
     }
   }

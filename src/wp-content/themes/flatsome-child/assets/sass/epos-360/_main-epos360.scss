@@ -65,6 +65,9 @@ body.epos360 {
     h3 {
       color: #111827 !important;
     }
+    p {
+      color: #111827 !important;
+    }
   }
   .bg-white {
     background-color: #f9f9f9 !important;
@@ -85,6 +88,9 @@ body.epos360 {
     img {
       border-radius: 16px !important;
     }
+  }
+  .fb-section {
+    height: 100vh;
   }
   .fs-36px {
     @include desktop {
@@ -150,6 +156,10 @@ body.epos360 {
     letter-spacing: 0 !important;
     line-height: 18px !important;
     padding: 8px 20px !important;
+    span {
+      font-weight: 500 !important;
+      line-height: 18px !important;
+    }
     &.secondary {
       &.button-secondary-epos360 {
         border-color: $epos360-secondary !important;
@@ -209,7 +219,7 @@ body.epos360 {
                   line-height: 20px !important;
                   letter-spacing: 0px !important;
                   color: $epos360-secondary !important;
-                  margin-bottom: 16px;
+                  margin-bottom: 12px;
                 }
               }
               .product-title {
@@ -219,6 +229,7 @@ body.epos360 {
                   font-weight: bold;
                   line-height: 45px !important;
                   letter-spacing: -0.72px !important;
+                  margin-bottom: 24px !important;
                   @include desktop {
                     font-size: 36px !important;
                   }
@@ -231,7 +242,7 @@ body.epos360 {
                   line-height: 27px !important;
                   letter-spacing: 0px !important;
                   color: #4b5563 !important;
-                  margin-bottom: 16px !important;
+                  margin-bottom: 26px !important;
                 }
               }
               .icon-box.list-info-product {
@@ -401,7 +412,7 @@ body.epos360 {
       line-height: 21px !important;
       letter-spacing: 0px !important;
       color: #4b5563 !important;
-      font-weight: 400 !important;  
+      font-weight: 400 !important;
       li {
         font-size: 14px;
         margin-bottom: 0px !important;
@@ -420,6 +431,12 @@ body.epos360 {
           p {
             font-size: 16px !important;
             font-weight: 400 !important;
+            line-height: 24px !important;
+            letter-spacing: 0px !important;
+          }
+          strong {
+            font-size: 16px !important;
+            font-weight: 600 !important;
             line-height: 24px !important;
             letter-spacing: 0px !important;
           }

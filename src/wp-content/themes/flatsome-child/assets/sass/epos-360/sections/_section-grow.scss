@@ -65,12 +65,15 @@
     .tab {
       cursor: pointer;
       padding: 30px 0;
-      border-bottom: 2px solid #D1D5DB;
-      opacity: 0.8;
+      border-bottom: 1px solid #D1D5DB;
+      opacity: 20%;
       transition: opacity 0.3s ease;
 
       &.active {
         opacity: 1;
+      }
+      &:last-child {
+        border-bottom: none;
       }
 
       h4 {
@@ -80,6 +83,7 @@
         line-height: 26px !important;
         font-weight: 600 !important;
         letter-spacing: 0px !important;
+        color: #111827 !important;
       }
 
       p {

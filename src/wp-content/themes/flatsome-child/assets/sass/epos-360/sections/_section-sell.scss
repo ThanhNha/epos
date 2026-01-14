@@ -18,8 +18,10 @@
       }
     }
     .image-center {
-      width: 444px !important;
-      height: 612px !important;
+      @include desktop {
+        width: 444px !important;
+        height: 612px !important;
+      }
     }
     .sell-absolute-center {
       @include desktop {

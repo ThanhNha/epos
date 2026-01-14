@@ -5,7 +5,7 @@
   .row-manage {
     position: relative;
     @include desktop {
-        padding-top: 125px;
+      padding-top: 125px;
     }
 
     .col {
@@ -69,25 +69,29 @@
     position: relative;
     // overflow: hidden;
     z-index: 3;
-    height: 734px !important;
-    width: 728px !important;
+    @include desktop {
+      height: 734px !important;
+      width: 728px !important;
+    }
   }
 
-//   .image-center.phone-frame::after {
-//     content: "";
-//     position: absolute;
-//     inset: 9% 9%;
-//     overflow: hidden;
-//     pointer-events: none;
-//   }
+  //   .image-center.phone-frame::after {
+  //     content: "";
+  //     position: absolute;
+  //     inset: 9% 9%;
+  //     overflow: hidden;
+  //     pointer-events: none;
+  //   }
 
   /* SCREEN */
   .image-center.phone-screen {
     position: absolute;
     z-index: 5;
-    height: 734px !important;
-    width: 728px !important;
     top: 0px;
     left: 0px;
+    @include desktop {
+      height: 734px !important;
+      width: 728px !important;
+    }
   }
 }
