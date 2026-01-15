@@ -2,6 +2,9 @@
   @include desktop {
     padding: 0 !important;
   }
+  @include tablet {
+    padding: 30px 20px !important;
+  }
   padding: 30px 20px 0 !important;
   .row-save-up {
     position: relative;
@@ -75,5 +78,54 @@
 .business-section {
   &.bg-image {
     margin: 0 !important;
+  }
+}
+
+//
+/* Mobile pos */
+.section-save-up .row-save-up {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+@media (min-width: 992px) {
+  .section-save-up {
+    padding: 45px 0 !important;
+  }
+  .section-save-up .row-save-up .button.primary {
+    padding: 5px 32px !important;
+    border-radius: 14px !important;
+  }
+  .business-section .tab-content {
+    padding-left: 30px;
+  }
+  .section-save-up .row-save-up::after {
+    width: 340px;
+    height: 340px;
+  }
+}
+/* Mobile pos */
+
+@media (max-width: 768px) {
+  .payment-teminal-banner .section-content {
+    padding: 0 10px;
+  }
+  .designed-section h2 {
+    font-size: 26px !important;
+  }
+  .fast-secure-section .col-the-smarter-way .col-inner {
+    padding: 30px 20px;
+  }
+  .section.business-section {
+    margin-right: 20px !important;
+    margin-left: 20px !important;
+  }
+  .section.business-section .tab-panels {
+    padding: 0 16px;
+  }
+  .tab-panels .button-tab-item {
+    width: 100%;
+  }
+  .section-save-up .row-save-up {
+    padding: 30px 5px 0 !important;
   }
 }
