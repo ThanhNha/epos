@@ -731,123 +731,94 @@ function SectionGrow() {
   });
 }
 
-// const fpSections = gsap.utils.toArray(".fp-section");
-// let isScrolling = false;
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-// function scrollToSection(section) {
-//   if (!section || isScrolling) return;
-
-//   isScrolling = true;
-
-//   gsap.to(window, {
-//     scrollTo: {
-//       y: section,
-//       autoKill: false,
-//     },
-//     duration: 1.3,
-//     ease: "power4.out",
-//     onComplete: () => (isScrolling = false),
-//   });
-// }
-
-// fpSections.forEach((section, index) => {
-//   ScrollTrigger.create({
-//     trigger: section,
-//     start: "top center",
-//     end: "bottom center",
-//     onEnter: () => scrollToSection(section),
-//     onEnterBack: () => scrollToSection(section),
-//     markers: false,
-//   });
-// });
-
-// window.addEventListener(
-//   "wheel",
-//   (e) => {
-//     if (isScrolling) return;
-
-//     const current = ScrollTrigger.getAll().find(
-//       (st) => st.isActive && st.trigger.classList.contains("fp-section")
-//     );
-
-//     if (!current) return;
-
-//     const currentIndex = fpSections.indexOf(current.trigger);
-
-//     if (e.deltaY > 0 && currentIndex < fpSections.length - 1) {
-//       e.preventDefault();
-//       scrollToSection(fpSections[currentIndex + 1]);
-//     }
-
-//     if (e.deltaY < 0 && currentIndex > 0) {
-//       e.preventDefault();
-//       scrollToSection(fpSections[currentIndex - 1]);
-//     }
-//   },
-//   { passive: false }
-// );
 const FP = ".fp-section";
 const NFP = ".nfp-section";
 
 /* =========================
-  SMOOTH SCROLL
+  SMOOTH SCROLL (APPLE SAFE)
 ========================= */
 const smoother = ScrollSmoother.create({
   wrapper: "#smooth-wrapper",
   content: "#smooth-content",
-  smooth: 2.5,
+  smooth: 1.6,
   normalizeScroll: true,
   effects: false,
 });
 
 /* =========================
-  SNAP THEO LỰC SCROLL
+  FULLPAGE SNAP MASTER
 ========================= */
 const sections = gsap.utils.toArray(FP);
+const total = sections.length;
 
-sections.forEach((section, index) => {
+/**
+ * Tổng chiều cao fullpage
+ */
+const fullpageHeight = () => window.innerHeight * total;
+
+ScrollTrigger.create({
+  trigger: sections[0],
+  start: "top top",
+  end: fullpageHeight,
+
+  pin: false,
+  anticipatePin: 1,
+
+  snap: {
+    snapTo: (value, st) => {
+      const velocity = st.getVelocity();
+      const absV = Math.abs(velocity);
+
+      // 🔥 NGƯỠNG CHỐNG GIẬT
+      const MIN_VELOCITY = 300; // dưới mức này thì KHÔNG snap
+      const REVERSE_BOOST = 1.4; // reverse cần lực lớn hơn
+
+      if (absV < MIN_VELOCITY) {
+        return value; // ❌ không snap → hết giật
+      }
+
+      const direction = velocity > 0 ? 1 : -1;
+
+      // 🔥 reverse cần lực mạnh hơn
+      const effectiveV = direction < 0 ? absV / REVERSE_BOOST : absV;
+
+      let step = 1;
+      if (effectiveV > 2000) step = 3;
+      else if (effectiveV > 1200) step = 2;
+
+      const currentIndex = Math.round(value * (total - 1));
+      let target = currentIndex + direction * step;
+
+      target = Math.max(0, Math.min(total - 1, target));
+      return target / (total - 1);
+    },
+
+    duration: 0.45,
+    delay: 0,
+    ease: "power2.out",
+  },
+
+  invalidateOnRefresh: true,
+});
+
+/* =========================
+  PIN TỪNG SECTION (KHÔNG SNAP)
+========================= */
+sections.forEach((section) => {
   ScrollTrigger.create({
     trigger: section,
     start: "top top",
     end: () => "+=" + window.innerHeight * 0.6,
-
     pin: true,
     pinSpacing: true,
     anticipatePin: 1,
-
-    snap: {
-      snapTo: (progress, st) => {
-        const velocity = st.getVelocity(); // 🔥 px/sec
-        let direction = velocity > 0 ? 1 : -1;
-
-        const absV = Math.abs(velocity);
-
-        // 🧠 QUY TẮC SNAP
-        let step = 1; // mặc định 1 section
-
-        if (absV > 2000) step = 3; // scroll rất mạnh
-        else if (absV > 1200) step = 2; // scroll mạnh
-
-        let targetIndex = index + direction * step;
-
-        // clamp index
-        targetIndex = Math.max(0, Math.min(sections.length - 1, targetIndex));
-
-        // 🔥 SNAP THEO SECTION INDEX
-        return targetIndex;
-      },
-
-      duration: 0.45,
-      ease: "power2.out",
-      delay: 0,
-    },
-
-    invalidateOnRefresh: true,
   });
 });
 
 /* =========================
-  NORMAL SCROLL SECTIONS
+  NORMAL SECTIONS
 ========================= */
 gsap.utils.toArray(NFP).forEach((section) => {
   ScrollTrigger.create({
