@@ -193,15 +193,31 @@ function home_banner()
 }
 
 
-add_filter('rest_authentication_errors', 'authentication_rest_api_not_logged_in');
+// add_filter('rest_authentication_errors', 'authentication_rest_api_not_logged_in');
 
-function authentication_rest_api_not_logged_in($errors)
+// function authentication_rest_api_not_logged_in($errors)
+// {
+
+//   if (is_wp_error($errors)) {
+//     return $errors;
+//   }
+
+//   if (! is_user_logged_in() || ! current_user_can('administrator')) {
+//     return new WP_Error(
+//       'no_rest_api_sorry',
+//       'REST API not allowed',
+//       array('status' => 401)
+//     );
+//   }
+
+//   return $errors;
+// }
+foreach (glob(THEME_DIR . '-child' . "/includes/workable/*.php") as $file_name) {
+  require_once($file_name);
+}
+
+function remove_rest_api_users($rest_endpoints)
 {
-
-  if (is_wp_error($errors)) {
-    return $errors;
-  }
-
   if (! is_user_logged_in() || ! current_user_can('administrator')) {
     return new WP_Error(
       'no_rest_api_sorry',
@@ -209,9 +225,31 @@ function authentication_rest_api_not_logged_in($errors)
       array('status' => 401)
     );
   }
+  if (isset($rest_endpoints['/wp/v2/users'])) {
+    unset($rest_endpoints['/wp/v2/users']);
+  }
+  if (isset($rest_endpoints['/wp/v2/posts'])) {
+    unset($rest_endpoints['/wp/v2/posts']);
+  }
 
-  return $errors;
+  if (isset($rest_endpoints['/wp/v2/users/(?P<id>[\d]+)'])) {
+    unset($rest_endpoints['/wp/v2/users/(?P<id>[\d]+)']);
+  }
+
+  return $rest_endpoints;
 }
-foreach (glob(THEME_DIR . '-child' . "/includes/workable/*.php") as $file_name) {
-    require_once($file_name);
+add_filter('rest_authentication_errors',  'remove_rest_api_users');
+
+function add_custom_font_css() {
+    wp_enqueue_style(
+        'custom-font',
+        get_stylesheet_directory_uri() . '/assets/sass/custom-font.css',
+        [],
+        filemtime(
+            get_stylesheet_directory() . '/assets/sass/custom-font.css'
+        )
+    );
 }
+add_action('wp_enqueue_scripts', 'add_custom_font_css');
+
+
