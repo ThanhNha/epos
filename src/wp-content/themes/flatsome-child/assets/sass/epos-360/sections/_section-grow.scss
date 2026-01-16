@@ -1,6 +1,7 @@
 .section-grow {
   position: relative;
-  overflow: hidden;
+  // overflow: hidden;
+  min-height: 100vh;
 
   .section-content,
   .row-grow {
@@ -58,9 +59,9 @@
   .s5-tabs {
     position: relative;
 
-    @media (min-width: 1024px) {
-      padding-top: 180px;
-    }
+    // @media (min-width: 1024px) {
+    //   padding-top: 180px;
+    // }
 
     .tab {
       cursor: pointer;

@@ -1,50 +1,61 @@
-window.addEventListener("load", function () {
-  gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+window.addEventListener("load", () => {
+  gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, ScrollSmoother);
 
   initAutoSlider();
 
   if (window.innerWidth < 992) return;
-  SectionSell();
-  SectionSave();
-  SectionManage();
-  SectionLoan();
-  SectionGrow();
+
+  // SectionSell();
+  // SectionSave();
+  // SectionManage();
+  // SectionLoan();
+  // SectionGrow();
+
+  ScrollTrigger.refresh();
 });
 
+/* =======================
+  BANNER AUTO SLIDER
+======================= */
 function initAutoSlider() {
+  gsap.set(".epos360-banner img", {
+    force3D: true,
+    willChange: "transform, opacity",
+  });
+
   gsap.set(".epos360-banner .image-center-2", {
     autoAlpha: 0,
-    y: 30,
+    yPercent: 15,
   });
 
-  const centerSliderTl = gsap.timeline({
+  const tl = gsap.timeline({
     repeat: -1,
+    repeatDelay: 1.2,
     paused: true,
-    defaults: { ease: "power2.inOut" },
+    defaults: { ease: "power3.inOut" },
   });
 
-  centerSliderTl
-    .to(".epos360-banner .image-center-1", {
-      autoAlpha: 0,
-      y: -30,
-      duration: 0.5,
-    })
+  tl.to(".epos360-banner .image-center-1", {
+    autoAlpha: 0,
+    yPercent: -15,
+    duration: 0.5,
+  })
     .fromTo(
       ".epos360-banner .image-center-2",
-      { autoAlpha: 0, y: 30 },
-      { autoAlpha: 1, y: 0, duration: 0.6 },
+      { autoAlpha: 0, yPercent: 15 },
+      { autoAlpha: 1, yPercent: 0, duration: 0.6 },
       "<0.1"
     )
-    .to({}, { duration: 2 })
+    .to({}, { duration: 1.2 })
     .to(".epos360-banner .image-center-2", {
       autoAlpha: 0,
-      y: -30,
+      yPercent: -15,
       duration: 0.5,
     })
     .fromTo(
       ".epos360-banner .image-center-1",
-      { autoAlpha: 0, y: 30 },
-      { autoAlpha: 1, y: 0, duration: 0.6 },
+      { autoAlpha: 0, yPercent: 15 },
+      { autoAlpha: 1, yPercent: 0, duration: 0.6 },
       "<0.1"
     )
     .to({}, { duration: 2 });
@@ -53,459 +64,291 @@ function initAutoSlider() {
     trigger: ".epos360-banner",
     start: "top 80%",
     end: "bottom 20%",
-    onEnter: () => centerSliderTl.play(),
-    onEnterBack: () => centerSliderTl.play(),
-    onLeave: () => centerSliderTl.pause(),
-    onLeaveBack: () => centerSliderTl.pause(),
+    onEnter: () => tl.restart(true),
+    onEnterBack: () => tl.restart(true),
+    onLeave: () => tl.pause(0),
+    onLeaveBack: () => tl.pause(0),
   });
 }
 
+/* =======================
+  SECTION SELL
+======================= */
 function SectionSell() {
-  const section = document.querySelector(".s1");
-  if (!section) return;
+  const s = document.querySelector(".s1");
+  if (!s) return;
 
-  const sellTl = gsap.timeline({
-    paused: true,
-  });
+  const tl = gsap.timeline({ paused: true });
 
-  sellTl.to({}, { duration: 0.6 });
-
-  /*
-    STEP 1 – TEXT + IMAGE (1 → 2.2s)
-    */
-  sellTl
+  tl.to({}, { duration: 0.6 })
     .fromTo(
-      section.querySelector(".text-info"),
+      s.querySelector(".text-info"),
       { autoAlpha: 0, scale: 0.94 },
-      {
-        autoAlpha: 1,
-        scale: 1,
-        duration: 0.6,
-        ease: "power3.out",
-      }
+      { autoAlpha: 1, scale: 1, duration: 0.6 }
     )
     .fromTo(
-      section.querySelector(".image-center"),
+      s.querySelector(".image-center"),
       { autoAlpha: 0, scale: 0.94 },
-      {
-        autoAlpha: 1,
-        scale: 1,
-        duration: 0.6,
-        ease: "power3.out",
-      },
-      "<" // chạy cùng lúc với text
-    );
-
-  /*
-    STEP 2 – ABSOLUTE ITEMS (2.2 → ~3.6s)
-    */
-  sellTl.fromTo(
-    section.querySelectorAll(
-      ".sell-absolute-left, .sell-absolute-center, .sell-absolute-right"
-    ),
-    { autoAlpha: 0, y: 5 },
-    {
-      autoAlpha: 1,
-      y: 0,
-      duration: 0.3,
-      ease: "power2.out",
-    }
-  );
-
-  //
-  // SCROLL TRIGGER
-  //
-  ScrollTrigger.create({
-    trigger: section,
-    start: "top 30%",
-    end: "bottom 30%",
-
-    onEnter: () => sellTl.restart(),
-    onEnterBack: () => sellTl.restart(),
-
-    onLeaveBack: () => {
-      sellTl.progress(0).pause();
-    },
-  });
-}
-
-function SectionSave() {
-  const section = document.querySelector(".s2");
-  if (!section) return;
-
-  /*
-    INITIAL STATE
-    */
-  gsap.set(section.querySelector(".text-info"), { autoAlpha: 0, y: 20 });
-  gsap.set(section.querySelector(".image-center"), {
-    autoAlpha: 0,
-    scale: 0.94,
-  });
-
-  gsap.set(
-    section.querySelectorAll(
-      ".save-absolute-left.v1, .save-absolute-right.v1, .save-absolute-right-2.v1"
-    ),
-    { autoAlpha: 0, y: 28 }
-  );
-
-  /*
-    TIMELINE
-    */
-  const saveTl = gsap.timeline({ paused: true });
-
-  /* HOLD BG – 1 GIÂY */
-  saveTl.to({}, { duration: 1 });
-
-  /* STEP 1 – TEXT + IMAGE */
-  saveTl
-    .fromTo(
-      section.querySelector(".text-info"),
-      { autoAlpha: 0, y: 20 },
-      {
-        autoAlpha: 1,
-        y: 0,
-        duration: 0.6,
-        ease: "power3.out",
-      }
-    )
-    .fromTo(
-      section.querySelector(".image-center"),
-      { autoAlpha: 0, scale: 0.94 },
-      {
-        autoAlpha: 1,
-        scale: 1,
-        duration: 0.6,
-        ease: "power4.out",
-      },
+      { autoAlpha: 1, scale: 1, duration: 0.6 },
       "<"
+    )
+    .fromTo(
+      s.querySelectorAll(
+        ".sell-absolute-left, .sell-absolute-center, .sell-absolute-right"
+      ),
+      { autoAlpha: 0, y: 5 },
+      { autoAlpha: 1, y: 0, duration: 0.3 }
     );
 
-  /* STEP 2 – ABSOLUTE ITEMS (v1 – CÙNG LÚC) */
-  saveTl.fromTo(
-    section.querySelectorAll(
-      ".save-absolute-left.v1, .save-absolute-right.v1 ,.save-absolute-right-2.v1"
-    ),
-    { autoAlpha: 0, y: 10 },
-    {
-      autoAlpha: 1,
-      y: 0,
-      duration: 0.35,
-      ease: "power2.out",
-    }
-  );
+  gsap.set(s, { autoAlpha: 0 });
 
-  /*
-    SCROLL TRIGGER
-    */
   ScrollTrigger.create({
-    trigger: section,
-    start: "top 30%",
-    end: "bottom 30%",
-
-    onEnter: () => saveTl.restart(),
-    onEnterBack: () => saveTl.restart(),
-
-    onLeaveBack: () => {
-      saveTl.progress(0).pause();
+    trigger: s,
+    start: "top 80%",
+    end: "bottom 20%",
+    onToggle: (e) => {
+      gsap.to(s, { autoAlpha: e.isActive ? 1 : 0, duration: 0.25 });
+      e.isActive ? tl.restart() : tl.pause(0);
     },
   });
 }
 
+/* =======================
+  SECTION SAVE
+======================= */
+function SectionSave() {
+  const s = document.querySelector(".s2");
+  if (!s) return;
+
+  const text = s.querySelector(".text-info");
+  const image = s.querySelector(".image-center");
+  const abs = s.querySelectorAll(
+    ".save-absolute-left.v1, .save-absolute-right.v1, .save-absolute-right-2.v1"
+  );
+
+  gsap.set([s, text, image, abs], { autoAlpha: 0 });
+  gsap.set(text, { y: 20 });
+  gsap.set(image, { scale: 0.94 });
+  gsap.set(abs, { y: 28 });
+
+  const tl = gsap.timeline({ paused: true });
+
+  tl.to({}, { duration: 0.6 })
+    .fromTo(
+      text,
+      { autoAlpha: 0, y: 20 },
+      { autoAlpha: 1, y: 0, duration: 0.6 }
+    )
+    .fromTo(
+      image,
+      { autoAlpha: 0, scale: 0.94 },
+      { autoAlpha: 1, scale: 1, duration: 0.6 },
+      "<"
+    )
+    .fromTo(
+      abs,
+      { autoAlpha: 0, y: 10 },
+      { autoAlpha: 1, y: 0, duration: 0.35 }
+    );
+
+  ScrollTrigger.create({
+    trigger: s,
+    start: "top 80%",
+    end: "bottom 20%",
+    onToggle: (e) => {
+      gsap.to(s, { autoAlpha: e.isActive ? 1 : 0, duration: 0.25 });
+      e.isActive ? tl.restart() : tl.pause(0);
+    },
+  });
+}
+
+/* =======================
+  SECTION MANAGE
+======================= */
 function SectionManage() {
   const section = document.querySelector(".s3");
   if (!section) return;
 
   const text = section.querySelector(".text-info");
-  const imageCenter = section.querySelector(".image-center.phone-frame");
+  const frame = section.querySelector(".phone-wrapper");
   const absolutes = section.querySelectorAll(
     ".manage-absolute-left.v1, .manage-absolute-right.v1, .manage-absolute-right.v2"
   );
 
-  const screen1 = section.querySelector(".phone-screen.s1");
-  const screen2 = section.querySelector(".phone-screen.s2");
-  const screen3 = section.querySelector(".phone-screen.s3");
+  const headerItems = section.querySelectorAll(".screen-header-item");
+  const bodyItems = section.querySelectorAll(".screen-body-item");
 
-  let phoneLoopTl = null;
+  const tabOrder = ["g1", "g2", "g3"];
+  let currentTab = 0;
+  let loopTl = null;
 
-  /* =============================
-    INIT STATE
-============================= */
+  gsap.set(section, { autoAlpha: 0 });
   gsap.set(text, { autoAlpha: 0, y: 20 });
-  gsap.set(imageCenter, { autoAlpha: 0, scale: 0.92 });
+  gsap.set(frame, { autoAlpha: 0, scale: 0.92 });
   gsap.set(absolutes, { autoAlpha: 0, y: 30 });
+  gsap.set(headerItems, { autoAlpha: 0 });
+  gsap.set(bodyItems, { autoAlpha: 0, xPercent: 100 });
 
-  gsap.set([screen1, screen2, screen3], {
-    autoAlpha: 0,
-    y: 20,
-  });
+  function initFirstTab() {
+    currentTab = 0;
 
-  /* =============================
-    PHONE SCREEN LOOP (1 → 2 → 3)
-============================= */
-  function createPhoneLoop() {
-    if (!screen1 || !screen2 || !screen3) return;
+    headerItems.forEach((h) => gsap.set(h, { autoAlpha: 0 }));
+    bodyItems.forEach((b) => gsap.set(b, { autoAlpha: 0, xPercent: 100 }));
 
-    if (phoneLoopTl) phoneLoopTl.kill();
-
-    phoneLoopTl = gsap.timeline({
-      repeat: -1,
-      defaults: { ease: "sine.out" },
+    gsap.set(section.querySelector(".screen-header-item.g1"), { autoAlpha: 1 });
+    gsap.set(section.querySelector(".screen-body-item.g1"), {
+      autoAlpha: 1,
+      xPercent: 0,
     });
-
-    // RESET LOOP STATE
-    gsap.set(screen1, { autoAlpha: 1, y: 0 });
-    gsap.set([screen2, screen3], { autoAlpha: 0, y: 12 });
-
-    phoneLoopTl
-      // hold screen 1
-      .to({}, { duration: 0.4 })
-
-      // screen 2 IN
-      .to(screen2, {
-        autoAlpha: 1,
-        y: 0,
-        duration: 0.6,
-      })
-
-      // hold screen 2
-      .to({}, { duration: 0.4 })
-
-      // reset screen 2
-      .set(screen2, { autoAlpha: 0, y: 12 })
-
-      // screen 3 IN
-      .to(screen3, {
-        autoAlpha: 1,
-        y: 0,
-        duration: 0.6,
-      })
-
-      // hold screen 3
-      .to({}, { duration: 2 })
-
-      // reset screen 3 (loop lại screen 1)
-      .set(screen3, { autoAlpha: 0, y: 12 });
   }
 
-  /* =============================
-    MAIN TIMELINE
-============================= */
-  const manageTl = gsap.timeline({ paused: true });
+  function switchTab(tabName) {
+    headerItems.forEach((h) => {
+      const active = h.classList.contains(tabName);
+      gsap.to(h, { autoAlpha: active ? 1 : 0, duration: 0.3 });
+    });
 
-  manageTl
-    .add("showCenter", "+=0.6")
+    bodyItems.forEach((b) => {
+      const active = b.classList.contains(tabName);
+      if (active) {
+        gsap.fromTo(
+          b,
+          { xPercent: 100, autoAlpha: 0 },
+          { xPercent: 0, autoAlpha: 1, duration: 0.3 }
+        );
+      } else {
+        gsap.to(b, { xPercent: -100, autoAlpha: 0, duration: 0.3 });
+      }
+    });
+  }
 
-    // TEXT
+  function startPhoneLoop() {
+    stopPhoneLoop();
+
+    loopTl = gsap.timeline({ repeat: -1 });
+
+    loopTl.to({}, { duration: 0.4 });
+
+    loopTl.call(() => {
+      currentTab = (currentTab + 1) % tabOrder.length;
+      switchTab(tabOrder[currentTab]);
+    });
+
+    loopTl.to({}, { duration: 2 });
+  }
+
+  function stopPhoneLoop() {
+    if (loopTl) {
+      loopTl.kill();
+      loopTl = null;
+    }
+  }
+
+  const introTl = gsap.timeline({ paused: true });
+
+  introTl
+    .to({}, { duration: 0.6 })
+
+    .add("showCenter")
+
     .fromTo(
       text,
       { autoAlpha: 0, y: 20 },
-      {
-        autoAlpha: 1,
-        y: 0,
-        duration: 0.6,
-        ease: "power3.out",
-      },
+      { autoAlpha: 1, y: 0, duration: 0.6 },
       "showCenter"
     )
-
-    // PHONE FRAME
     .fromTo(
-      imageCenter,
+      frame,
       { autoAlpha: 0, scale: 0.92 },
-      {
-        autoAlpha: 1,
-        scale: 1,
-        duration: 0.6,
-        ease: "power3.out",
-      },
+      { autoAlpha: 1, scale: 1, duration: 0.6 },
       "showCenter"
     )
 
-    // delay trước khi screen xuất hiện
     .to({}, { duration: 0.2 })
 
-    // SCREEN 1 SHOW
-    .fromTo(
-      screen1,
-      { autoAlpha: 0, y: 20 },
-      {
-        autoAlpha: 1,
-        y: 0,
-        duration: 0.4,
-        ease: "power2.out",
-      }
-    )
+    .call(initFirstTab)
 
-    // ABSOLUTE ITEMS
-    .to(
-      absolutes,
-      {
-        autoAlpha: 1,
-        y: 0,
-        duration: 0.3,
-        ease: "power2.out",
-        stagger: {
-          each: 0.12,
-          from: "center",
-        },
-      },
-      "-=0.15"
-    )
+    .to(absolutes, {
+      autoAlpha: 1,
+      y: 0,
+      duration: 0.3,
+      stagger: 0.12,
+    })
 
-    // START PHONE LOOP
-    .call(
-      () => {
-        createPhoneLoop();
-      },
-      null,
-      "+=0.4"
-    );
+    .call(startPhoneLoop);
 
-  /* =============================
-    SCROLL TRIGGER
-============================= */
   ScrollTrigger.create({
     trigger: section,
     start: "top 80%",
     end: "bottom 20%",
-
-    onEnter: () => {
-      // RESET TRƯỚC KHI CHẠY (QUAN TRỌNG)
-      gsap.set(text, { autoAlpha: 0, y: 20 });
-      gsap.set(imageCenter, { autoAlpha: 0, scale: 0.92 });
-      gsap.set(absolutes, { autoAlpha: 0, y: 30 });
-
-      gsap.set([screen1, screen2, screen3], {
-        autoAlpha: 0,
-        y: 20,
-      });
-
-      manageTl.restart();
-    },
-
-    onEnterBack: () => {
-      gsap.set(text, { autoAlpha: 0, y: 20 });
-      gsap.set(imageCenter, { autoAlpha: 0, scale: 0.92 });
-      gsap.set(absolutes, { autoAlpha: 0, y: 30 });
-
-      gsap.set([screen1, screen2, screen3], {
-        autoAlpha: 0,
-        y: 20,
-      });
-
-      manageTl.restart();
-    },
-
-    onLeave: () => {
-      if (phoneLoopTl) phoneLoopTl.pause();
-    },
-
-    onLeaveBack: () => {
-      manageTl.pause(0);
-
-      if (phoneLoopTl) {
-        phoneLoopTl.kill();
-        phoneLoopTl = null;
+    onToggle(self) {
+      if (self.isActive) {
+        gsap.to(section, { autoAlpha: 1, duration: 0.25 });
+        introTl.restart();
+      } else {
+        gsap.to(section, { autoAlpha: 0, duration: 0.25 });
+        introTl.pause(0);
+        stopPhoneLoop();
       }
-
-      // RESET SẠCH
-      gsap.set(text, { autoAlpha: 0, y: 20 });
-      gsap.set(imageCenter, { autoAlpha: 0, scale: 0.92 });
-      gsap.set(absolutes, { autoAlpha: 0, y: 30 });
-
-      gsap.set([screen1, screen2, screen3], {
-        autoAlpha: 0,
-        y: 20,
-      });
     },
   });
 }
 
+/* =======================
+  SECTION LOAN
+======================= */
 function SectionLoan() {
-  const section = document.querySelector(".s4");
-  if (!section) return;
+  const s = document.querySelector(".s4");
+  if (!s) return;
 
-  /*
-    INITIAL STATE
-    */
-  gsap.set(section.querySelector(".text-info"), { autoAlpha: 0, y: 20 });
-  gsap.set(section.querySelector(".image-center"), {
-    autoAlpha: 0,
-    scale: 0.94,
-  });
-
-  gsap.set(
-    section.querySelectorAll(
-      ".loan-absolute-left, .loan-absolute-center, .loan-absolute-right"
-    ),
-    { autoAlpha: 0, y: 28 }
+  const text = s.querySelector(".text-info");
+  const image = s.querySelector(".image-center");
+  const abs = s.querySelectorAll(
+    ".loan-absolute-left, .loan-absolute-center, .loan-absolute-right"
   );
 
-  /*
-    TIMELINE
-    */
-  const saveTl = gsap.timeline({ paused: true });
+  gsap.set([s, text, image, abs], { autoAlpha: 0 });
+  gsap.set(text, { y: 20 });
+  gsap.set(image, { scale: 0.94 });
+  gsap.set(abs, { y: 28 });
 
-  /* HOLD BG – 1 GIÂY */
-  saveTl.to({}, { duration: 1 });
+  const tl = gsap.timeline({ paused: true });
 
-  /* STEP 1 – TEXT + IMAGE */
-  saveTl
+  tl.to({}, { duration: 0.6 })
     .fromTo(
-      section.querySelector(".text-info"),
+      text,
       { autoAlpha: 0, y: 20 },
-      {
-        autoAlpha: 1,
-        y: 0,
-        duration: 1,
-        ease: "power3.out",
-      }
+      { autoAlpha: 1, y: 0, duration: 0.6 }
     )
     .fromTo(
-      section.querySelector(".image-center"),
+      image,
       { autoAlpha: 0, scale: 0.94 },
-      {
-        autoAlpha: 1,
-        scale: 1,
-        duration: 1.2,
-        ease: "power4.out",
-      },
+      { autoAlpha: 1, scale: 1, duration: 0.6 },
       "<"
+    )
+    .fromTo(
+      abs,
+      { autoAlpha: 0, y: 10 },
+      { autoAlpha: 1, y: 0, duration: 0.35 }
     );
 
-  /* STEP 2 – ABSOLUTE ITEMS */
-  saveTl.fromTo(
-    section.querySelectorAll(
-      ".loan-absolute-left, .loan-absolute-center, .loan-absolute-right"
-    ),
-    { autoAlpha: 0, y: 10 },
-    {
-      autoAlpha: 1,
-      y: 0,
-      duration: 0.35,
-      ease: "power2.out",
-    }
-  );
-
-  /*
-    SCROLL TRIGGER
-    */
   ScrollTrigger.create({
-    trigger: section,
-    start: "top 30%",
-    end: "bottom 30%",
-
-    onEnter: () => saveTl.restart(),
-    onEnterBack: () => saveTl.restart(),
-
-    onLeaveBack: () => {
-      saveTl.progress(0).pause();
+    trigger: s,
+    start: "top 80%",
+    end: "bottom 20%",
+    onToggle: (e) => {
+      gsap.to(s, { autoAlpha: e.isActive ? 1 : 0, duration: 0.25 });
+      e.isActive ? tl.restart() : tl.pause(0);
     },
   });
 }
-
+/* =======================
+  SECTION GROW
+======================= */
 function SectionGrow() {
+  /* =========================
+    QUERY SECTION & ELEMENTS
+  ========================== */
   const section = document.querySelector(".s5");
   if (!section) return;
 
@@ -515,41 +358,36 @@ function SectionGrow() {
   const tabs = Array.from(section.querySelectorAll(".s5-tabs .tab"));
   const groups = Array.from(section.querySelectorAll(".grow-visual-group"));
 
-  let activeTab = "g1";
-  let autoTimer = null;
+  // Gom toàn bộ content để show / hide
+  const contentEls = [text, tabWrap, imageCenter, ...groups];
 
+  /* =========================
+    STATE & TIMELINES
+  ========================== */
   let tab1Tl = null;
   let tab2Tl = null;
   let tab3Tl = null;
 
-  /* =============================
-    INIT STATE
-============================= */
-  gsap.set(text, { autoAlpha: 0, y: 20 });
-  gsap.set(imageCenter, { autoAlpha: 0, scale: 0.92 });
-  gsap.set(tabWrap, { autoAlpha: 0, y: 20 });
+  let activeTab = null;
+  let currentTabIndex = 0;
+  let isLocked = false;
 
-  groups.forEach((group) => {
-    gsap.set(group, {
-      autoAlpha: 0,
-      scale: 0.96,
-    });
+  const tabOrder = ["g1", "g2", "g3"];
+
+  /* =========================
+    INIT STATE (ẨN CONTENT)
+  ========================== */
+  gsap.set(text, { autoAlpha: 0, y: 20 });
+  gsap.set(tabWrap, { autoAlpha: 0, y: 20 });
+  gsap.set(imageCenter, { autoAlpha: 0, scale: 0.92 });
+
+  groups.forEach((g) => {
+    gsap.set(g, { autoAlpha: 0, scale: 0.96 });
   });
 
-  /* =============================
-    GET ITEMS PER TAB
-============================= */
-  const group1 = section.querySelector(".grow-visual-group.g1");
-  const group2 = section.querySelector(".grow-visual-group.g2");
-  const group3 = section.querySelector(".grow-visual-group.g3");
-
-  const tab1Items = group1?.querySelectorAll(".phone-screen");
-  const tab2Items = group2?.querySelectorAll(".card");
-  const tab3Items = group3?.querySelectorAll(".ai-step");
-
-  /* =============================
-    STACK ANIMATION (SMOOTH)
-============================= */
+  /* =========================
+    STACK ANIMATION PER TAB
+  ========================== */
   function createStackAnimation(items) {
     if (!items || !items.length) return null;
 
@@ -576,7 +414,7 @@ function SectionGrow() {
 
       tl.to({}, { duration: 2 }).fromTo(
         item,
-        { autoAlpha: 0, y: 12, zIndex: i + 1 },
+        { autoAlpha: 0, y: 12 },
         { autoAlpha: 1, y: 0, duration: 0.6 }
       );
     });
@@ -584,253 +422,198 @@ function SectionGrow() {
     tl.to({}, { duration: 2 });
 
     tl.call(() => {
-      gsap.set(items, { autoAlpha: 0, y: 12, zIndex: 1 });
-      gsap.set(items[0], { autoAlpha: 1, y: 0, zIndex: 1 });
+      gsap.set(items, { autoAlpha: 0, y: 12 });
+      gsap.set(items[0], { autoAlpha: 1, y: 0 });
     });
 
     return tl;
   }
 
-  /* =============================
+  /* =========================
     TAB SWITCH CORE
-============================= */
+  ========================== */
   function setActiveTab(tabName, animate = true) {
+    if (activeTab === tabName) return;
     activeTab = tabName;
 
-    // Tabs UI
+    // Update tab UI
     tabs.forEach((tab) => {
       tab.classList.toggle("active", tab.dataset.tab === tabName);
     });
 
-    // Groups show/hide
+    // Show / hide group
     groups.forEach((group) => {
       const isActive = group.classList.contains(tabName);
-      group.classList.toggle("active", isActive);
 
       if (isActive && animate) {
         gsap.fromTo(
           group,
           { autoAlpha: 0, scale: 0.96 },
-          {
-            autoAlpha: 1,
-            scale: 1,
-            duration: 0.5,
-            ease: "power2.out",
-          }
+          { autoAlpha: 1, scale: 1, duration: 0.5 }
         );
       } else {
         gsap.set(group, { autoAlpha: isActive ? 1 : 0 });
       }
     });
 
-    // Kill old timelines
-    if (tab1Tl) tab1Tl.kill();
-    if (tab2Tl) tab2Tl.kill();
-    if (tab3Tl) tab3Tl.kill();
+    // Kill stack animation cũ
+    tab1Tl && tab1Tl.kill();
+    tab2Tl && tab2Tl.kill();
+    tab3Tl && tab3Tl.kill();
     tab1Tl = tab2Tl = tab3Tl = null;
 
-    // Start stack animation
-    if (tabName === "g1") tab1Tl = createStackAnimation(tab1Items);
-    if (tabName === "g2") tab2Tl = createStackAnimation(tab2Items);
-    if (tabName === "g3") tab3Tl = createStackAnimation(tab3Items);
+    // Start stack animation mới
+    if (tabName === "g1")
+      tab1Tl = createStackAnimation(
+        section.querySelectorAll(".g1 .phone-screen")
+      );
+    if (tabName === "g2")
+      tab2Tl = createStackAnimation(section.querySelectorAll(".g2 .card"));
+    if (tabName === "g3")
+      tab3Tl = createStackAnimation(section.querySelectorAll(".g3 .ai-step"));
   }
 
-  /* =============================
-    AUTO TAB ROTATE
-============================= */
-  function startAutoTabs() {
-    stopAutoTabs();
+  /* =========================
+    INTRO TIMELINE (SHOW)
+  ========================== */
+  const introTl = gsap.timeline({ paused: true });
 
-    autoTimer = setInterval(() => {
-      const index = tabs.findIndex((t) => t.dataset.tab === activeTab);
-      const nextIndex = (index + 1) % tabs.length;
-      setActiveTab(tabs[nextIndex].dataset.tab);
-    }, 6000);
-  }
+  introTl
+    .fromTo(
+      text,
+      { autoAlpha: 0, y: 20 },
+      { autoAlpha: 1, y: 0, duration: 0.5 }
+    )
+    .fromTo(
+      imageCenter,
+      { autoAlpha: 0, scale: 0.94 },
+      { autoAlpha: 1, scale: 1, duration: 0.5 },
+      "<"
+    )
+    .fromTo(
+      tabWrap,
+      { autoAlpha: 0, y: 20 },
+      { autoAlpha: 1, y: 0, duration: 0.4 },
+      "<0.1"
+    );
 
-  function stopAutoTabs() {
-    if (autoTimer) {
-      clearInterval(autoTimer);
-      autoTimer = null;
-    }
-  }
-
-  /* =============================
-    TAB CLICK
-============================= */
-  tabs.forEach((tab) => {
-    tab.addEventListener("click", () => {
-      stopAutoTabs();
-      setActiveTab(tab.dataset.tab);
-      startAutoTabs();
-    });
-  });
-
-  /* =============================
-    INTRO TIMELINE
-============================= */
-
-  const growTl = gsap.timeline({
-    paused: true,
-    defaults: {
-      duration: 1.2,
-      ease: "power3.out",
-    },
-  });
-
-  // STEP 1: TEXT + IMAGE CENTER (CÙNG LÚC)
-  growTl
-    .add("showCenter", "+=1.2")
-    .to(text, { autoAlpha: 1, y: 0, duration: 1.2 }, "showCenter")
-    .to(tabWrap, { autoAlpha: 1, y: 0, duration: 1.2 }, "showCenter")
-    .to(imageCenter, { autoAlpha: 1, scale: 1, duration: 1.2 }, "showCenter");
-
-  /* =============================
-    SCROLL TRIGGER
-============================= */
+  /* =========================
+    SHOW / HIDE (GIỐNG SELL)
+  ========================== */
   ScrollTrigger.create({
     trigger: section,
     start: "top 80%",
     end: "bottom 20%",
 
-    onEnter: () => {
-      growTl.restart();
-      setActiveTab(activeTab, false);
-      startAutoTabs();
+    onToggle(self) {
+      if (self.isActive) {
+        introTl.restart();
+      } else {
+        introTl.pause(0);
+        gsap.to(contentEls, {
+          autoAlpha: 0,
+          duration: 0.25,
+          overwrite: true,
+        });
+      }
+    },
+  });
+
+  /* =========================
+    PIN + STEP TAB SCROLL
+  ========================== */
+  let growST = ScrollTrigger.create({
+    trigger: section,
+    start: "top top",
+    end: "+=150%",
+    pin: true,
+    pinSpacing: true,
+
+    onEnter() {
+      currentTabIndex = 0;
+      setActiveTab(tabOrder[0], false);
     },
 
-    onEnterBack: () => {
-      growTl.restart();
-      setActiveTab(activeTab, false);
-      startAutoTabs();
+    onEnterBack() {
+      currentTabIndex = tabOrder.length - 1;
+      setActiveTab(tabOrder[currentTabIndex], false);
     },
 
-    onLeave: () => {
-      stopAutoTabs();
-      if (tab1Tl) tab1Tl.pause();
-      if (tab2Tl) tab2Tl.pause();
-      if (tab3Tl) tab3Tl.pause();
-    },
+    onUpdate(self) {
+      if (isLocked) return;
 
-    onLeaveBack: () => {
-      stopAutoTabs();
+      const velocity = Math.abs(self.getVelocity());
+      if (velocity < 700) return;
 
-      if (tab1Tl) tab1Tl.kill();
-      if (tab2Tl) tab2Tl.kill();
-      if (tab3Tl) tab3Tl.kill();
+      const dir = self.direction;
 
-      tab1Tl = tab2Tl = tab3Tl = null;
+      // Thoát pin khi hết tab
+      if (
+        (dir === 1 && currentTabIndex === tabOrder.length - 1) ||
+        (dir === -1 && currentTabIndex === 0)
+      ) {
+        growST.disable();
+        ScrollTrigger.refresh();
+        return;
+      }
 
-      gsap.set(text, { autoAlpha: 0, y: 20 });
-      gsap.set(tabWrap, { autoAlpha: 0, y: 20 });
+      isLocked = true;
+      currentTabIndex += dir;
+      setActiveTab(tabOrder[currentTabIndex]);
 
-      groups.forEach((group) => {
-        gsap.set(group, { autoAlpha: 0, scale: 0.96 });
-      });
+      gsap.delayedCall(0.8, () => (isLocked = false));
     },
   });
 }
 
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+/* =======================
+  SMOOTH SCROLL + FULLPAGE
+======================= */
+const mm = gsap.matchMedia();
 
-const FP = ".fp-section";
-const NFP = ".nfp-section";
-
-/* =========================
-  SMOOTH SCROLL (APPLE SAFE)
-========================= */
-const smoother = ScrollSmoother.create({
-  wrapper: "#smooth-wrapper",
-  content: "#smooth-content",
-  smooth: 1.6,
-  normalizeScroll: true,
-  effects: false,
-});
-
-/* =========================
-  FULLPAGE SNAP MASTER
-========================= */
-const sections = gsap.utils.toArray(FP);
-const total = sections.length;
-
-/**
- * Tổng chiều cao fullpage
- */
-const fullpageHeight = () => window.innerHeight * total;
-
-ScrollTrigger.create({
-  trigger: sections[0],
-  start: "top top",
-  end: fullpageHeight,
-
-  pin: false,
-  anticipatePin: 1,
-
-  snap: {
-    snapTo: (value, st) => {
-      const velocity = st.getVelocity();
-      const absV = Math.abs(velocity);
-
-      // 🔥 NGƯỠNG CHỐNG GIẬT
-      const MIN_VELOCITY = 300; // dưới mức này thì KHÔNG snap
-      const REVERSE_BOOST = 1.4; // reverse cần lực lớn hơn
-
-      if (absV < MIN_VELOCITY) {
-        return value; // ❌ không snap → hết giật
-      }
-
-      const direction = velocity > 0 ? 1 : -1;
-
-      // 🔥 reverse cần lực mạnh hơn
-      const effectiveV = direction < 0 ? absV / REVERSE_BOOST : absV;
-
-      let step = 1;
-      if (effectiveV > 2000) step = 3;
-      else if (effectiveV > 1200) step = 2;
-
-      const currentIndex = Math.round(value * (total - 1));
-      let target = currentIndex + direction * step;
-
-      target = Math.max(0, Math.min(total - 1, target));
-      return target / (total - 1);
-    },
-
-    duration: 0.45,
-    delay: 0,
-    ease: "power2.out",
-  },
-
-  invalidateOnRefresh: true,
-});
-
-/* =========================
-  PIN TỪNG SECTION (KHÔNG SNAP)
-========================= */
-sections.forEach((section) => {
-  ScrollTrigger.create({
-    trigger: section,
-    start: "top top",
-    end: () => "+=" + window.innerHeight * 0.6,
-    pin: true,
-    pinSpacing: true,
-    anticipatePin: 1,
+mm.add("(min-width: 992px)", () => {
+  /* =======================
+    SMOOTH SCROLL
+  ======================= */
+  ScrollSmoother.create({
+    wrapper: "#smooth-wrapper",
+    content: "#smooth-content",
+    smooth: 1.4,
+    normalizeScroll: true,
   });
-});
 
-/* =========================
-  NORMAL SECTIONS
-========================= */
-gsap.utils.toArray(NFP).forEach((section) => {
-  ScrollTrigger.create({
-    trigger: section,
-    start: "top bottom",
-    end: "bottom top",
-  });
-});
+  /* =======================
+    FULLPAGE SCROLL
+  ======================= */
+  const sections = gsap.utils.toArray(".fp-section");
 
-/* =========================
-  REFRESH
-========================= */
-window.addEventListener("load", () => {
+  if (sections.length) {
+    ScrollTrigger.create({
+      trigger: sections[0],
+      start: "top top",
+      end: () => "+=" + window.innerHeight * sections.length,
+      snap: {
+        snapTo: 1 / (sections.length - 1),
+        duration: 0.45,
+        ease: "power2.out",
+      },
+    });
+
+    sections.forEach((s) => {
+      ScrollTrigger.create({
+        trigger: s,
+        start: "top top",
+        end: () => "+=" + window.innerHeight * 0.6,
+        pin: true,
+        pinSpacing: true,
+      });
+    });
+  }
+
   ScrollTrigger.refresh();
+
+  return () => {
+    ScrollTrigger.getAll().forEach((st) => st.kill());
+    ScrollSmoother.get()?.kill();
+  };
 });

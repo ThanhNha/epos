@@ -20,10 +20,10 @@
       @include desktop {
         &.v1 {
           position: absolute;
-          left: -5px;
-          top: 345px;
-          width: 330px;
-          height: 284px;
+          left: 96px;
+          top: 318px;
+          width: 240px;
+          height: 384px;
           z-index: 1;
         }
       }
@@ -42,8 +42,8 @@
           position: absolute;
           left: -104px;
           top: 10px;
-          width: 204px;
-          height: 268px;
+          width: 284px;
+          height: 251px;
           z-index: 2;
         }
       }
@@ -64,34 +64,98 @@
       }
     }
   }
-  /* FRAME = MASK */
-  .image-center.phone-frame {
-    position: relative;
-    // overflow: hidden;
-    z-index: 3;
-    @include desktop {
-      height: 734px !important;
-      width: 728px !important;
-    }
-  }
+}
 
-  //   .image-center.phone-frame::after {
-  //     content: "";
-  //     position: absolute;
-  //     inset: 9% 9%;
-  //     overflow: hidden;
-  //     pointer-events: none;
-  //   }
+/* =============================
+  PHONE WRAPPER
+============================= */
+.phone-wrapper {
+  position: relative;
+  width: 728px;
+  height: 734px;
+  margin: 0 auto;
+}
 
-  /* SCREEN */
-  .image-center.phone-screen {
-    position: absolute;
-    z-index: 5;
-    top: 0px;
-    left: 0px;
-    @include desktop {
-      height: 734px !important;
-      width: 728px !important;
-    }
-  }
+/* =============================
+  PHONE FRAME
+============================= */
+.phone-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+}
+
+.phone-frame img {
+  width: 100%;
+  display: block;
+}
+
+/* =============================
+  PHONE SCREEN
+============================= */
+.phone-screen {
+  position: absolute;
+  top: 75px;
+  left: 30%;
+  width: 280px;
+  height: 67%;
+  z-index: 4;
+  overflow: hidden;
+}
+
+/* =============================
+  HEADER
+============================= */
+.screen-header {
+  position: relative;
+  width: 170px;
+  height: 26px;
+  margin-left: 20px;
+}
+
+.screen-header-item {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  opacity: 0;
+  width: 170px;
+  height: 26px;
+}
+
+.screen-header-item.active {
+  opacity: 1;
+}
+
+/* =============================
+  BODY
+============================= */
+.screen-body {
+  position: relative;
+  overflow: hidden;
+  width: 280px;
+  height: 421px;
+}
+
+/* CHỈ layout – KHÔNG animation */
+.screen-body-item {
+  position: absolute;
+  inset: 0;
+  width: 280px;
+  height: 421px;
+}
+
+/* active chỉ để semantic, KHÔNG transform */
+.screen-body-item.active {
+}
+
+
+/* =============================
+  SCREEN IMAGE
+============================= */
+.phone-screen-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }

@@ -85,7 +85,11 @@ body.epos360 {
     }
   }
   .rounded {
+    border-radius: 16px !important;
     img {
+      border-radius: 16px !important;
+    }
+    .img-inner {
       border-radius: 16px !important;
     }
   }
@@ -127,16 +131,28 @@ body.epos360 {
   .container,
   .row {
     @include desktop {
-      max-width: 1440px !important;
+      max-width: 1488px !important;
     }
   }
   .header-inner {
     height: 80px;
-    padding: 0 30px !important;
+    @include desktop {
+      padding: 0 64px !important;
+    }
   }
   .stuck .header-main {
     height: 80px !important;
-    padding: 0 30px !important;
+    @include desktop {
+      padding: 0 64px !important;
+    }
+  }
+  .medium-logo-center .logo {
+    @include only-mobile {
+      order: 1;
+      margin: 0 !important;
+      width: 180px;
+      height: 36px;
+    }
   }
   .text-info {
     p {
@@ -146,6 +162,9 @@ body.epos360 {
 
   //button
   .button {
+    @include only-mobile {
+      width: 100% !important;
+    }
     border: 1px solid !important;
     border-radius: 8px !important;
     margin-top: 11px;
@@ -155,7 +174,7 @@ body.epos360 {
     text-align: center !important;
     letter-spacing: 0 !important;
     line-height: 18px !important;
-    padding: 8px 20px !important;
+    padding: 10px 20px !important;
     span {
       font-weight: 500 !important;
       line-height: 18px !important;
@@ -208,101 +227,99 @@ body.epos360 {
       }
     }
     .product-bluetap {
-      .col-inner {
-        .row {
-          .col {
-            .col-inner {
-              .product-sub-title {
-                p {
-                  font-size: 16px !important;
-                  font-weight: 700 !important;
-                  line-height: 20px !important;
-                  letter-spacing: 0px !important;
-                  color: $epos360-secondary !important;
-                  margin-bottom: 12px;
+      &.row {
+        .col {
+          .col-inner {
+            .product-sub-title {
+              p {
+                font-size: 16px !important;
+                font-weight: 700 !important;
+                line-height: 20px !important;
+                letter-spacing: 0px !important;
+                color: $epos360-secondary !important;
+                margin-bottom: 12px;
+              }
+            }
+            .product-title {
+              h2 {
+                color: #111827 !important;
+                font-size: 28px !important;
+                font-weight: bold;
+                line-height: 45px !important;
+                letter-spacing: -0.72px !important;
+                margin-bottom: 24px !important;
+                @include desktop {
+                  font-size: 36px !important;
                 }
               }
-              .product-title {
-                h2 {
+            }
+            .product-des {
+              p {
+                font-size: 18px;
+                font-weight: 400 !important;
+                line-height: 27px !important;
+                letter-spacing: 0px !important;
+                color: #4b5563 !important;
+                margin-bottom: 26px !important;
+              }
+            }
+            .icon-box.list-info-product {
+              margin-bottom: 14px !important;
+              .icon-box-text {
+                p {
+                  line-height: 24px !important;
+                }
+              }
+            }
+            .product-price {
+              h3 {
+                margin-bottom: 0 !important;
+                .sale-price {
                   color: #111827 !important;
                   font-size: 28px !important;
-                  font-weight: bold;
                   line-height: 45px !important;
                   letter-spacing: -0.72px !important;
-                  margin-bottom: 24px !important;
+                  font-weight: bold;
                   @include desktop {
                     font-size: 36px !important;
                   }
                 }
-              }
-              .product-des {
-                p {
-                  font-size: 18px;
-                  font-weight: 400 !important;
-                  line-height: 27px !important;
+                .regular-price {
+                  color: #9ca3af !important;
+                  text-decoration: line-through;
+                  font-weight: 600 !important;
+                  line-height: 26px !important;
                   letter-spacing: 0px !important;
-                  color: #4b5563 !important;
-                  margin-bottom: 26px !important;
-                }
-              }
-              .icon-box.list-info-product {
-                margin-bottom: 14px !important;
-                .icon-box-text {
-                  p {
-                    line-height: 24px !important;
-                  }
-                }
-              }
-              .product-price {
-                h3 {
-                  margin-bottom: 0 !important;
-                  .sale-price {
-                    color: #111827 !important;
-                    font-size: 28px !important;
-                    line-height: 45px !important;
-                    letter-spacing: -0.72px !important;
-                    font-weight: bold;
-                    @include desktop {
-                      font-size: 36px !important;
-                    }
-                  }
-                  .regular-price {
-                    color: #9ca3af !important;
-                    text-decoration: line-through;
-                    font-weight: 600 !important;
-                    line-height: 26px !important;
-                    letter-spacing: 0px !important;
-                    font-size: 24px !important;
-                    @include desktop {
-                      font-size: 20px !important;
-                    }
-                  }
-                }
-              }
-              .product-thumbnail {
-                img {
+                  font-size: 24px !important;
                   @include desktop {
-                    height: 450px;
+                    font-size: 20px !important;
                   }
-                  height: 300px;
-                  object-fit: contain;
                 }
               }
-              .button-add-to-cart {
-                padding: 12px 18px !important;
-                margin-top: 0 !important;
-                margin-bottom: 0 !important;
-                transition: all 0.2s ease-in-out;
-                span {
-                  font-size: 14px !important;
-                  line-height: 16px !important;
-                  letter-spacing: 0px !important;
-                  font-weight: 500 !important;
+            }
+            .product-thumbnail {
+              img {
+                @include desktop {
+                  height: 450px;
                 }
-                &:hover {
-                  background-color: black !important;
-                  color: white !important;
-                }
+                height: 300px;
+                object-fit: contain;
+              }
+            }
+            .button-add-to-cart {
+              padding: 12px 18px !important;
+              margin-top: 0 !important;
+              margin-bottom: 0 !important;
+              transition: all 0.2s ease-in-out;
+              span {
+                font-size: 14px !important;
+                line-height: 16px !important;
+                letter-spacing: 0px !important;
+                font-weight: 500 !important;
+              }
+              &:hover {
+                background-color: black !important;
+                color: white !important;
               }
             }
           }
@@ -383,12 +400,37 @@ body.epos360 {
       letter-spacing: 0px !important;
     }
     p {
+      @include desktop {
+        font-weight: 600 !important;
+        font-size: 24px !important;
+        line-height: 31.2px !important;
+        letter-spacing: -0.48px !important;
+        display: block !important;
+        width: 320px !important;
+      }
       font-weight: 600 !important;
-      font-size: 24px !important;
-      line-height: 31.2px !important;
-      letter-spacing: -0.48px !important;
+      font-size: 20px !important;
+      line-height: 26px !important;
+      letter-spacing: 0px !important;
       display: block !important;
-      width: 320px !important;
+      strong {
+        @include desktop {
+          font-weight: 600 !important;
+          font-size: 24px !important;
+          line-height: 31.2px !important;
+          letter-spacing: -0.48px !important;
+          display: block !important;
+          width: 320px !important;
+        }
+        font-weight: 600 !important;
+        font-size: 20px !important;
+        line-height: 26px !important;
+        letter-spacing: 0px !important;
+        display: block !important;
+      }
+    }
+    sup {
+      font-size: 12px !important;
     }
   }
   .header-360 {
@@ -444,4 +486,9 @@ body.epos360 {
       }
     }
   }
+}
+
+//
+.header.has-sticky {
+  position: relative !important;
 }

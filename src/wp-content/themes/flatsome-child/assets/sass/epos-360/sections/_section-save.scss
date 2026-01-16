@@ -32,7 +32,7 @@
     .save-absolute-right {
       @include desktop {
         position: absolute;
-        left: -28px !important;
+        left: -17px !important;
         top: 46px;
         width: 360px !important;
         height: 352px !important;
@@ -52,7 +52,7 @@
     .save-absolute-left {
       @include desktop {
         position: absolute;
-        left: 52px;
+        left: 0px;
         top: 382px;
         width: 360px !important;
         height: 304px !important;
