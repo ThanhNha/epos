@@ -211,7 +211,7 @@ function home_banner()
 //   }
 
 //   return $errors;
-// }
+
 foreach (glob(THEME_DIR . '-child' . "/includes/workable/*.php") as $file_name) {
   require_once($file_name);
 }
