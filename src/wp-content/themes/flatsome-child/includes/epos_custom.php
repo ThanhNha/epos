@@ -211,7 +211,7 @@ function home_banner()
 //   }
 
 //   return $errors;
-// }
+
 foreach (glob(THEME_DIR . '-child' . "/includes/workable/*.php") as $file_name) {
   require_once($file_name);
 }
@@ -239,3 +239,17 @@ function remove_rest_api_users($rest_endpoints)
   return $rest_endpoints;
 }
 add_filter('rest_authentication_errors',  'remove_rest_api_users');
+
+function add_custom_font_css() {
+    wp_enqueue_style(
+        'custom-font',
+        get_stylesheet_directory_uri() . '/assets/sass/custom-font.css',
+        [],
+        filemtime(
+            get_stylesheet_directory() . '/assets/sass/custom-font.css'
+        )
+    );
+}
+add_action('wp_enqueue_scripts', 'add_custom_font_css');
+
+
