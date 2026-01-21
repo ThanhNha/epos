@@ -1,0 +1,298 @@
+/*SECTION GROW – ROOT*/
+.section-grow {
+  position: relative;
+  min-height: 100vh;
+
+  .section-content,
+  .row-grow {
+    position: relative;
+    min-height: 100vh;
+  }
+
+  .row-grow {
+    display: flex;
+    align-items: center;
+
+    .text-info {
+      @include desktop {
+        position: absolute;
+        top: -270px;
+        left: 0;
+        width: 100%;
+      }
+    }
+  }
+
+  /* IMAGE COLUMN */
+  .tab-image-col {
+    .col-inner {
+      height: 100%;
+    }
+  }
+
+  .tab-image {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* TABS */
+  .s5-tabs {
+    position: relative;
+
+    .tab {
+      cursor: pointer;
+      padding: 30px 0;
+      border-bottom: 1px solid #d1d5db;
+      opacity: 0.25;
+      transition: opacity 0.3s ease;
+
+      &.active {
+        opacity: 1;
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      h4 {
+        margin: 0 0 10px;
+        font-size: 20px !important;
+        line-height: 26px !important;
+        font-weight: 600 !important;
+        color: #111827 !important;
+      }
+
+      p {
+        margin: 0;
+        font-size: 16px !important;
+        line-height: 24px !important;
+        font-weight: 400 !important;
+
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        padding-top: 0;
+
+        transition:
+          max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+          opacity 0.3s ease,
+          padding-top 0.3s ease;
+      }
+
+      &.active p {
+        max-height: 200px;
+        opacity: 1;
+        padding-top: 8px;
+      }
+    }
+  }
+
+  /* VISUAL GROUP */
+  .grow-visual-group {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    will-change: opacity, transform;
+  }
+
+  /*PHONE FRAME – CORE MASK*/
+  .phone-frame,
+  .grow-visual-group.g2 .phone-wrapper {
+    position: relative;
+    width: 740px;
+    height: 740px;
+    max-width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
+  .phone-frame img,
+  .grow-visual-group.g2 .phone-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  /* =================================================
+     PHONE SCREEN – TAB g1 & g3
+  ================================*/
+  .phone-screen,
+  .ai-step {
+    position: absolute;
+    top: 14%;
+    left: 0;
+    width: 100%;
+    height: 74%;
+    z-index: 2;
+    opacity: 0;
+    pointer-events: none;
+    overflow: hidden;
+    will-change: transform, opacity;
+
+    @include desktop {
+      top: 24%;
+      height: 52%;
+    }
+    @include large-desktop {
+      top: 13%;
+      height: 74%;
+    }
+  }
+}
+
+/* =================================================
+   TAB g2 – PHONE STRUCTURE
+================================*/
+.grow-visual-group.g2 {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.grow-visual-group.g2.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  z-index: 2;
+}
+
+/* PHONE WRAPPER */
+.grow-visual-group.g2 .phone-wrapper {
+  position: relative;
+  width: 740px;
+  height: 740px;
+}
+
+/* PHONE FRAME */
+.grow-visual-group.g2 .phone-frame {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+/* PHONE SCREEN (TAB g2) */
+.grow-visual-group.g2 .phone-screen {
+  position: absolute;
+  top: 9%;
+  left: 30%;
+  width: 40%;
+  height: 82%;
+  z-index: 2;
+  overflow: hidden;
+  pointer-events: none;
+  @include desktop {
+    top: 9%;
+    left: 30%;
+    width: 40%;
+    height: 71%;
+  }
+  @include large-desktop {
+    top: 9%;
+    left: 30%;
+    width: 40%;
+    height: 82%;
+  }
+}
+.grow-visual-group.g2.active .phone-screen {
+  opacity: 1;
+  visibility: visible;
+}
+
+/*BODY */
+.grow-visual-group.g2 .screen-body {
+  position: absolute;
+  inset: 0;
+
+  @include desktop {
+    width: 185px;
+    height: 626px;
+  }
+  @include large-desktop {
+    width: 265px;
+    height: 450px;
+  }
+}
+
+.grow-visual-group.g2 .screen-body-item {
+  position: absolute;
+  inset: 0;
+  top: 35%;
+  width: 100%;
+  height: 260px;
+  opacity: 0;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform, opacity;
+  @include desktop {
+    top: 30%;
+    height: 180px;
+  }
+  @include large-desktop {
+    top: 35%;
+     height: 260px;
+  }
+}
+
+.grow-visual-group.g2 .screen-body-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* FOOTER */
+.grow-visual-group.g2 .screen-footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 20%;
+  height: 20%;
+  width: 96%;
+  overflow: hidden;
+  @include desktop {
+   bottom: 15%;
+  }
+  @include large-desktop {
+    bottom: 16%;
+  }
+}
+
+.grow-visual-group.g2 .screen-footer-item {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  opacity: 0;
+  transform: translateY(40px);
+
+  will-change: transform, opacity;
+}
+
+.grow-visual-group.g2 .screen-footer-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.grow-visual-group.g2 .screen-body-item.active {
+  opacity: 1;
+}
+
+.grow-visual-group.g2 .screen-footer-item.active {
+  opacity: 1;
+  transform: translateY(0);
+}
