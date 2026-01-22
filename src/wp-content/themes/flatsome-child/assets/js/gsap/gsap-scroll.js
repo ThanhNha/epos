@@ -1020,11 +1020,17 @@ document.addEventListener("DOMContentLoaded", () => {
   /* =================================================
     SNAP + TAB WHEEL CONTROL
 ================================================= */
+  let wheelLock = false;
+  const WHEEL_LOCK_TIME = 700;
   window.addEventListener(
     "wheel",
     (e) => {
+      if (wheelLock) {
+        e.preventDefault();
+        return;
+      }
       const delta = e.deltaY;
-      if (Math.abs(delta) < 8) return;
+      if (Math.abs(delta) < 25) return;
 
       if (isSnapping || isTabAnimating) {
         e.preventDefault();
@@ -1035,6 +1041,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const current = getMostVisibleSnap(snapSections);
       if (!current) return;
+      if (current === s5) {
+        const centeredNow = isSectionCentered(s5);
+
+        if (centeredNow && !s5Centered) {
+          console.log("✅ S5 ENTER CENTER");
+          s5Centered = true;
+        }
+
+        if (!centeredNow && s5Centered) {
+          console.log("⬅️ S5 LEAVE CENTER");
+          s5Centered = false;
+        }
+      }
 
       const index = snapSections.indexOf(current);
       if (index === -1) return;
@@ -1061,19 +1080,20 @@ document.addEventListener("DOMContentLoaded", () => {
         if (direction === "DOWN" && currentTabIndex < tabOrder.length - 1) {
           e.preventDefault();
           activateTab(currentTabIndex + 1);
+          setTimeout(() => (wheelLock = false), WHEEL_LOCK_TIME);
           return;
         }
 
         if (direction === "UP" && currentTabIndex > 0) {
           e.preventDefault();
+          wheelLock = true;
           activateTab(currentTabIndex - 1);
+          setTimeout(() => (wheelLock = false), WHEEL_LOCK_TIME);
           return;
         }
       }
 
-      /* =================================================
-      SNAP SECTION
-  ================================================= */
+      /* SNAP SECTION */
       let target = null;
 
       if (direction === "DOWN" && index < snapSections.length - 1) {
@@ -1092,6 +1112,7 @@ document.addEventListener("DOMContentLoaded", () => {
         behavior: "smooth",
         block: "start",
       });
+      console.log("🎯 AUTO CENTER S5");
 
       setTimeout(() => {
         isSnapping = false;
@@ -1104,6 +1125,27 @@ document.addEventListener("DOMContentLoaded", () => {
 /* =================================================
   HELPER
 ================================================= */
+function getHeaderHeight() {
+  const header = document.getElementById("header");
+  if (!header) return 0;
+
+  return Math.round(header.getBoundingClientRect().height);
+}
+
+function isSectionCentered(section) {
+  const r = section.getBoundingClientRect();
+  const headerH = getHeaderHeight();
+  const vh = window.innerHeight;
+
+  const topAligned = Math.abs(r.top - headerH) <= 4;
+  const bottomFilled = r.bottom >= vh - 4;
+  const heightEnough = r.height >= vh - headerH - 4;
+
+  return topAligned && bottomFilled && heightEnough;
+}
+
+let s5Centered = false;
+
 function getMostVisibleSnap(sections) {
   let maxVisible = 0;
   let selected = null;
@@ -1121,3 +1163,4 @@ function getMostVisibleSnap(sections) {
 
   return selected;
 }
+
