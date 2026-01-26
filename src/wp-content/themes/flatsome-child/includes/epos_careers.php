@@ -86,7 +86,7 @@ function job_openings_shortcode()
 
         <div class="label-search-group" style="display: none;">
             <div class="show-tags-choised"></div>
-            <button id="clear-filters"><i class="fa-solid fa-rotate-right"></i> Clear Filters</button>
+            <button id="clear-filters"><i class="fa-solid fa-rotate-right"></i> Clear filters</button>
         </div>
 
         <div class="job-list" id="job-list">
@@ -128,7 +128,7 @@ function job_openings_shortcode()
             No jobs found matching your criteria.
         </div>
         <div class="load-more-wrapper" style="text-align: center; margin-top: 20px;">
-            <button id="load-more" class="load-more-btn">Load More</button>
+            <button id="load-more" class="load-more-btn">Show more</button>
         </div>
     </div>
 

@@ -13,7 +13,6 @@ window.addEventListener("load", () => {
   SectionManage();
   SectionLoan();
   SectionGrowIntro();
-  // SectionGrowScrollTabs_Wheel();
   ScrollTrigger.refresh();
 });
 
@@ -774,6 +773,51 @@ document.addEventListener("DOMContentLoaded", () => {
   let isTabAnimating = false;
   let isSnapping = false;
   let activeTimeline = null;
+/* =================================================
+   AUTO CENTER S5 WHEN 5% VISIBLE
+================================================= */
+let s5AutoCentered = false;
+
+const s5AutoObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.target !== s5) return;
+      if (
+        entry.isIntersecting &&
+        entry.intersectionRatio >= 0.05 &&
+        !s5AutoCentered &&
+        !isSnapping &&
+        !isSectionCentered(s5)
+      ) {
+        s5AutoCentered = true;
+        isSnapping = true;
+
+        gsap.to(window, {
+          scrollTo: {
+            y: s5,
+            offsetY: getHeaderHeight(),
+            autoKill: false,
+          },
+          duration: 0.8,
+          ease: "power3.out",
+          onComplete: () => {
+            isSnapping = false;
+          },
+        });
+      }
+
+      // reset khi rời xa S5 để lần sau vào lại còn dùng
+      if (!entry.isIntersecting && entry.intersectionRatio === 0) {
+        s5AutoCentered = false;
+      }
+    });
+  },
+  {
+    threshold: [0, 0.05],
+  },
+);
+
+s5AutoObserver.observe(s5);
 
   /* =================================================
     RESET HELPERS
@@ -866,26 +910,23 @@ document.addEventListener("DOMContentLoaded", () => {
   // ---------- TAB g2 ----------
   function playG2() {
     const g2Group = s5.querySelector(".grow-visual-group.g2");
+    if (!g2Group) return;
+
     const phoneScreen = g2Group.querySelector(".phone-screen");
-    const bodies = g2Group.querySelectorAll(".screen-body-item");
-    const footers = g2Group.querySelectorAll(".screen-footer-item");
+    const bodies = [...g2Group.querySelectorAll(".screen-body-item")];
+    const footers = [...g2Group.querySelectorAll(".screen-footer-item")];
 
-    if (!phoneScreen || !bodies.length || !footers.length) return;
+    if (!phoneScreen || bodies.length < 2 || footers.length < 2) return;
 
-    g2Group.classList.add("active");
     gsap.set(g2Group, { autoAlpha: 1 });
-
-    /* ===============================
-    SHOW PHONE SCREEN
-=============================== */
     gsap.set(phoneScreen, { autoAlpha: 1 });
 
-    let current = 0;
     const order = ["g1", "g2"];
+    let current = 0;
 
     /* ===============================
-    RESET STATE
-=============================== */
+     RESET STATE
+  =============================== */
     bodies.forEach((b, i) => {
       gsap.set(b, {
         autoAlpha: i === 0 ? 1 : 0,
@@ -897,41 +938,56 @@ document.addEventListener("DOMContentLoaded", () => {
     footers.forEach((f, i) => {
       gsap.set(f, {
         autoAlpha: i === 0 ? 1 : 0,
-        y: i === 0 ? 0 : 40,
       });
       f.classList.toggle("active", i === 0);
     });
 
-    /* ===============================
-    LOOP 
-=============================== */
     if (window.__g2Loop) clearInterval(window.__g2Loop);
 
+    /* ===============================
+     ONE-WAY LOOP (BODY SLIDE / FOOTER FADE)
+  =============================== */
     window.__g2Loop = setInterval(() => {
       const next = (current + 1) % order.length;
+      const nextKey = order[next];
 
-      bodies.forEach((b) => {
-        const active = b.classList.contains(order[next]);
-        b.classList.toggle("active", active);
-
-        gsap.to(b, {
-          autoAlpha: active ? 1 : 0,
-          xPercent: active ? 0 : -100,
-          duration: 0.9,
-          ease: "power2.inOut",
-        });
+      const tl = gsap.timeline({
+        defaults: { ease: "power2.inOut" },
       });
 
-      footers.forEach((f) => {
-        const active = f.classList.contains(order[next]);
-        f.classList.toggle("active", active);
+      /* ---------- BODY ---------- */
+      bodies.forEach((b) => {
+        const isNext = b.classList.contains(nextKey);
 
-        gsap.to(f, {
-          autoAlpha: active ? 1 : 0,
-          y: active ? 0 : 40,
-          duration: 0.5,
-          ease: "power2.out",
-        });
+        if (isNext) {
+          tl.fromTo(
+            b,
+            { autoAlpha: 0, xPercent: 100 },
+            { autoAlpha: 1, xPercent: 0, duration: 0.9 },
+            0,
+          );
+        } else {
+          tl.to(b, { autoAlpha: 0, xPercent: -100, duration: 0.9 }, 0);
+        }
+
+        b.classList.toggle("active", isNext);
+      });
+
+      /* ---------- FOOTER (FADE ONLY) ---------- */
+      footers.forEach((f) => {
+        const isNext = f.classList.contains(nextKey);
+
+        tl.to(
+          f,
+          {
+            autoAlpha: isNext ? 1 : 0,
+            duration: isNext ? 0.4 : 0.25,
+            ease: "power2.out",
+          },
+          0.1,
+        );
+
+        f.classList.toggle("active", isNext);
       });
 
       current = next;
@@ -1045,12 +1101,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const centeredNow = isSectionCentered(s5);
 
         if (centeredNow && !s5Centered) {
-          console.log("✅ S5 ENTER CENTER");
           s5Centered = true;
         }
 
         if (!centeredNow && s5Centered) {
-          console.log("⬅️ S5 LEAVE CENTER");
           s5Centered = false;
         }
       }
@@ -1112,7 +1166,6 @@ document.addEventListener("DOMContentLoaded", () => {
         behavior: "smooth",
         block: "start",
       });
-      console.log("🎯 AUTO CENTER S5");
 
       setTimeout(() => {
         isSnapping = false;
@@ -1163,4 +1216,3 @@ function getMostVisibleSnap(sections) {
 
   return selected;
 }
-

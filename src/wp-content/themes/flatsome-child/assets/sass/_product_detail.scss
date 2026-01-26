@@ -34,3 +34,10 @@ body.single-product {
     }
   }
 }
+
+.product-description {
+  -webkit-line-clamp: none;
+}
+.product-description .sub-desc-product {
+  margin: 15px 10px 0;
+}
