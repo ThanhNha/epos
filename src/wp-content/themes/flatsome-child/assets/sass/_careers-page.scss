@@ -364,6 +364,12 @@ $radius: 8px;
             font-weight: 700;
             font-size: 24px !important;
             line-height: 32px;
+          }
+          h4 {
+            color: #777777;
+            font-weight: 700;
+            font-size: 20px !important;
+            line-height: 32px;
             margin-bottom: 10px;
           }
         }
@@ -395,4 +401,7 @@ $radius: 8px;
     color: #777777;
     line-height: 24px;
   }
+}
+.btn-banner{
+  margin: 20px 0px !important;
 }
