@@ -17,7 +17,27 @@
       }
     }
     .manage-absolute-left {
+      @include tablet {
+        &.v1 {
+          position: absolute;
+          left: 75px;
+          top: 280px;
+          width: 200px;
+          height: 320px;
+          z-index: 1;
+        }
+      }
       @include desktop {
+        &.v1 {
+          position: absolute;
+          left: 75px;
+          top: 280px;
+          width: 200px;
+          height: 320px;
+          z-index: 1;
+        }
+      }
+      @include large-desktop {
         &.v1 {
           position: absolute;
           left: 96px;
@@ -29,7 +49,43 @@
       }
     }
     .manage-absolute-right {
+      @include tablet {
+        &.v1 {
+          position: absolute;
+          left: -9px;
+          top: 390px;
+          width: 245px;
+          height: 235px;
+          z-index: 1;
+        }
+        &.v2 {
+          position: absolute;
+          left: -59px;
+          top: 10px;
+          width: 254px;
+          height: 230px;
+          z-index: 2;
+        }
+      }
       @include desktop {
+        &.v1 {
+          position: absolute;
+          left: -9px;
+          top: 390px;
+          width: 245px;
+          height: 235px;
+          z-index: 1;
+        }
+        &.v2 {
+          position: absolute;
+          left: -59px;
+          top: 10px;
+          width: 254px;
+          height: 230px;
+          z-index: 2;
+        }
+      }
+      @include large-desktop {
         &.v1 {
           position: absolute;
           left: -9px;

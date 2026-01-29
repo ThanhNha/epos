@@ -144,32 +144,24 @@ body.epos360 {
   .row {
     @include large-desktop {
       max-width: 1488px !important;
-      // padding-right: 64px !important;
-      // padding-left: 64px !important;
+      padding-right: 64px !important;
+      padding-left: 64px !important;
     }
     @include desktop {
-      // max-width: 1488px !important;
-      // padding-right: 64px !important;
-      // padding-left: 64px !important;
+      max-width: 1488px !important;
+      padding-right: 64px !important;
+      padding-left: 64px !important;
     }
     @include tablet {
       max-width: 1000px;
-      padding-right: 64px !important;
-      padding-left: 64px !important;
       
     }
   }
   .header-inner {
     height: 80px;
-    @include desktop {
-      padding: 0 64px !important;
-    }
   }
   .stuck .header-main {
     height: 80px !important;
-    @include desktop {
-      padding: 0 64px !important;
-    }
   }
   .medium-logo-center .logo {
     @include only-mobile {
