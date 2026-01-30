@@ -23,6 +23,14 @@
     .loan-absolute-left {
       @include desktop {
         position: absolute;
+        left: 70px;
+        top: 250px;
+        width: 160px;
+        height: 269px;
+        z-index: 1;
+      }
+      @include large-desktop {
+        position: absolute;
         left: 122px;
         top: 250px;
         width: 181px;
@@ -32,6 +40,19 @@
     }
     .loan-absolute-center {
       @include desktop {
+        position: absolute;
+        right: -250px;
+        top: -37px;
+        width: 234px !important;
+        height: 192px !important;
+        z-index: 1;
+        display: flex;
+        flex-direction: column-reverse;
+        .box-text {
+          padding: 5px;
+        }
+      }
+      @include large-desktop {
         position: absolute;
         right: -72px;
         top: -37px;
@@ -48,6 +69,14 @@
 
     .loan-absolute-right {
       @include desktop {
+        position: absolute;
+        left: -115px;
+        top: 357px;
+        width: 345px;
+        height: 194px;
+        z-index: 1;
+      }
+      @include large-desktop {
         position: absolute;
         left: -146px;
         top: 357px;

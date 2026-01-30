@@ -883,7 +883,7 @@ s5AutoObserver.observe(s5);
       // fade + lift next
       gsap.fromTo(
         nextScreen,
-        { autoAlpha: 0, y: 6 },
+        { autoAlpha: 0, y: 20 },
         {
           autoAlpha: 1,
           y: 0,

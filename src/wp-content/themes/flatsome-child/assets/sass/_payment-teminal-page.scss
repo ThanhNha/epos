@@ -86,9 +86,10 @@ body.payment-terminal {
     border: 0px !important;
     border-bottom: 1px solid #ececec !important;
     text-transform: capitalize;
+    vertical-align: middle;
   }
   td {
-    vertical-align: top;
+    vertical-align: middle;
     font-size: 14px;
     width: 37.5%;
     color: #333;
