@@ -1,7 +1,8 @@
 <?php
 
-function add_ahrefs_verification_meta() {
-	echo '<meta name="ahrefs-site-verification" content="e05760c95c9bbd859b594f1e26f914167ca78fb886fb657461df0c853ded7fca">' . "\n";
+function add_ahrefs_verification_meta()
+{
+  echo '<meta name="ahrefs-site-verification" content="e05760c95c9bbd859b594f1e26f914167ca78fb886fb657461df0c853ded7fca">' . "\n";
 }
 add_action('wp_head', 'add_ahrefs_verification_meta');
 
@@ -10,10 +11,10 @@ add_action('wp_head', 'epos_add_about_us_schema');
 function epos_add_about_us_schema()
 {
 
-	if (is_page('about-us')) {
+  if (is_page('about-us')) {
 
 ?>
-<script type="application/ld+json">
+    <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "AboutPage",
@@ -125,9 +126,9 @@ function epos_add_about_us_schema()
           "The Asset Asian Awards - Best Payments & Collections Solution"
         ]
       }
-</script>
-<?php
-	}
+    </script>
+  <?php
+  }
 }
 
 
@@ -136,10 +137,10 @@ add_action('wp_head', 'epos_add_epos_recommends_schema');
 function epos_add_epos_recommends_schema()
 {
 
-	if (is_page('epos-recommends')) {
+  if (is_page('epos-recommends')) {
 
-?>
-<script type="application/ld+json">
+  ?>
+    <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "CollectionPage",
@@ -672,9 +673,9 @@ function epos_add_epos_recommends_schema()
           ]
         }
       }
-</script>
-<?php
-	}
+    </script>
+  <?php
+  }
 }
 
 // KnowledgeBase Pos
@@ -682,10 +683,10 @@ add_action('wp_head', 'epos_add_epos_knowledge_base_frontend_windows_android_pos
 function epos_add_epos_knowledge_base_frontend_windows_android_pos_schema()
 {
 
-	if (is_page('epos-knowledge-base-frontend-windows-android-pos')) {
+  if (is_page('epos-knowledge-base-frontend-windows-android-pos')) {
 
-?>
-<script type="application/ld+json">
+  ?>
+    <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@graph": [{
@@ -823,9 +824,9 @@ function epos_add_epos_knowledge_base_frontend_windows_android_pos_schema()
           }
         ]
       }
-</script>
-<?php
-	}
+    </script>
+  <?php
+  }
 }
 
 
@@ -835,10 +836,10 @@ add_action('wp_head', 'epos_add_knowledge_base_front_end_schema');
 
 function epos_add_knowledge_base_front_end_schema()
 {
-	if (is_page('knowledge-base-front-end')) {
+  if (is_page('knowledge-base-front-end')) {
 
-?>
-<script type="application/ld+json">
+  ?>
+    <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@graph": [{
@@ -1244,19 +1245,19 @@ function epos_add_knowledge_base_front_end_schema()
           }
         ]
       }
-</script>
-<?php
-	}
+    </script>
+  <?php
+  }
 }
 // EPOS Blog
 add_action('wp_head', 'epos_add_epos_blog_schema');
 function epos_add_epos_blog_schema()
 {
 
-	if (is_home() || is_page('blog')) {
+  if (is_home() || is_page('blog')) {
 
-?>
-<script type="application/ld+json" class="epos-schema">
+  ?>
+    <script type="application/ld+json" class="epos-schema">
       {
         "@context": "https://schema.org",
         "@graph": [{
@@ -1590,723 +1591,704 @@ function epos_add_epos_blog_schema()
           }
         ]
       }
-</script>
-<?php
-	}
+    </script>
+  <?php
+  }
 }
 
 add_filter('post_class', function ($classes) {
-	if (is_home() || is_page('blog')) {
-		$classes = array_diff($classes, ['hentry']);
-	}
-	return $classes;
+  if (is_home() || is_page('blog')) {
+    $classes = array_diff($classes, ['hentry']);
+  }
+  return $classes;
 });
 
 add_filter('rank_math/json_ld', function ($data) {
 
-	if (is_home() || is_page('blog')) {
-		foreach ($data as $key => $schema) {
-			if (isset($schema['@type']) && $schema['@type'] === 'CollectionPage') {
-				unset($data[$key]);
-			}
-		}
-	}
+  if (is_home() || is_page('blog')) {
+    foreach ($data as $key => $schema) {
+      if (isset($schema['@type']) && $schema['@type'] === 'CollectionPage') {
+        unset($data[$key]);
+      }
+    }
+  }
 
-	return $data;
+  return $data;
 }, 99);
 // end epos blog schema
 add_action('wp_head', 'epos_add_epos_knowledge_base_schema');
 function epos_add_epos_knowledge_base_schema()
 {
 
-	if (is_page('knowledge-base-self-service-kiosk-front-end')) {
+  if (is_page('knowledge-base-self-service-kiosk-front-end')) {
 
-?>
-<script type="application/ld+json" class="epos-schema">
-    {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "CollectionPage",
-      "@id": "https://www.epos.com.sg/knowledge-base-self-service-kiosk-front-end/#webpage",
-      "url": "https://www.epos.com.sg/knowledge-base-self-service-kiosk-front-end/",
-      "name": "EPOS Knowledge Base Self-Service Kiosk Front End",
-      "headline": "Self-Service Kiosk User Guide",
-      "description": "Comprehensive user guide for EPOS Self-Service Kiosk system. Browse topics including configurations, getting started, transactions, products, payments, and membership/CRM features for unattended retail operations.",
-      "isPartOf": {
-        "@id": "https://www.epos.com.sg/#website"
-      },
-      "about": {
-        "@type": "SoftwareApplication",
-        "name": "EPOS Self-Service Kiosk",
-        "applicationCategory": "BusinessApplication",
-        "applicationSubCategory": "Self-Service Retail Kiosk"
-      },
-      "breadcrumb": {
-        "@id": "https://www.epos.com.sg/knowledge-base-self-service-kiosk-front-end/#breadcrumb"
-      },
-      "inLanguage": "en-SG",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": "https://www.epos.com.sg/knowledge-base-self-service-kiosk-front-end/?s={search_term_string}"
-        },
-        "query-input": "required name=search_term_string"
-      },
-      "mainEntity": [
-        {
-          "@id": "https://www.epos.com.sg/knowledge-base-self-service-kiosk-front-end/#itemlist"
-        },
-        {
-          "@id": "https://www.epos.com.sg/knowledge-base-self-service-kiosk-front-end/#faqpage"
-        }
-      ]
-    },
-    {
-      "@type": "BreadcrumbList",
-      "@id": "https://www.epos.com.sg/knowledge-base-self-service-kiosk-front-end/#breadcrumb",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://www.epos.com.sg/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Knowledge Base",
-          "item": "https://www.epos.com.sg/knowledge-base/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "Self-Service Kiosk"
-        }
-      ]
-    },
-    {
-      "@type": "ItemList",
-      "@id": "https://www.epos.com.sg/knowledge-base-self-service-kiosk-front-end/#itemlist",
-      "name": "Self-Service Kiosk Knowledge Base Topics",
-      "description": "Categorised topics covering all aspects of the EPOS Self-Service Kiosk system for unattended retail operations",
-      "numberOfItems": 6,
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "item": {
-            "@type": "HowTo",
-            "name": "Configurations",
-            "description": "Configure backend portal settings, general settings, cash management, quickpick, hardware, config, local setup, and receipt settings for your self-service kiosk",
-            "step": [
-              {
-                "@type": "HowToStep",
-                "name": "Backend Portal",
-                "url": "https://www.epos.com.sg/knowledge-base-retail-kiosk-front-end-backend-portal"
+  ?>
+    <script type="application/ld+json" class="epos-schema">
+      {
+        "@context": "https://schema.org",
+        "@graph": [{
+            "@type": "CollectionPage",
+            "@id": "https://www.epos.com.sg/knowledge-base-self-service-kiosk-front-end/#webpage",
+            "url": "https://www.epos.com.sg/knowledge-base-self-service-kiosk-front-end/",
+            "name": "EPOS Knowledge Base Self-Service Kiosk Front End",
+            "headline": "Self-Service Kiosk User Guide",
+            "description": "Comprehensive user guide for EPOS Self-Service Kiosk system. Browse topics including configurations, getting started, transactions, products, payments, and membership/CRM features for unattended retail operations.",
+            "isPartOf": {
+              "@id": "https://www.epos.com.sg/#website"
+            },
+            "about": {
+              "@type": "SoftwareApplication",
+              "name": "EPOS Self-Service Kiosk",
+              "applicationCategory": "BusinessApplication",
+              "applicationSubCategory": "Self-Service Retail Kiosk"
+            },
+            "breadcrumb": {
+              "@id": "https://www.epos.com.sg/knowledge-base-self-service-kiosk-front-end/#breadcrumb"
+            },
+            "inLanguage": "en-SG",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://www.epos.com.sg/knowledge-base-self-service-kiosk-front-end/?s={search_term_string}"
+              },
+              "query-input": "required name=search_term_string"
+            },
+            "mainEntity": [{
+                "@id": "https://www.epos.com.sg/knowledge-base-self-service-kiosk-front-end/#itemlist"
               },
               {
-                "@type": "HowToStep",
-                "name": "General Settings",
-                "url": "https://www.epos.com.sg/knowledge-base-retail-kiosk-front-end-general"
-              },
-              {
-                "@type": "HowToStep",
-                "name": "Hardware Settings",
-                "url": "https://www.epos.com.sg/knowledge-base-retail-kiosk-front-end-hardware"
-              },
-              {
-                "@type": "HowToStep",
-                "name": "Receipt Settings",
-                "url": "https://www.epos.com.sg/knowledge-base-portrait-pos-front-end-receipt-settings"
+                "@id": "https://www.epos.com.sg/knowledge-base-self-service-kiosk-front-end/#faqpage"
               }
             ]
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "item": {
-            "@type": "HowTo",
-            "name": "Getting Started",
-            "description": "Learn how to start the kiosk, use training mode, manage shifts and sessions, navigate the retail kiosk interface, and set up quickpick",
-            "step": [
-              {
-                "@type": "HowToStep",
-                "name": "Starting the Kiosk",
-                "url": "https://www.epos.com.sg/knowledge-base-retail-kiosk-front-end-starting-the-pos"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://www.epos.com.sg/knowledge-base-self-service-kiosk-front-end/#breadcrumb",
+            "itemListElement": [{
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.epos.com.sg/"
               },
               {
-                "@type": "HowToStep",
-                "name": "Retail Kiosk Interface",
-                "url": "https://www.epos.com.sg/knowledge-base-retail-kiosk-front-end-pos-interface"
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Knowledge Base",
+                "item": "https://www.epos.com.sg/knowledge-base/"
               },
               {
-                "@type": "HowToStep",
-                "name": "Session Management",
-                "url": "https://www.epos.com.sg/knowledge-base-portrait-pos-front-end-session-management/"
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Self-Service Kiosk"
               }
             ]
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "item": {
-            "@type": "HowTo",
-            "name": "Transaction",
-            "description": "Manage self-service transactions including adding products, editing products, processing retail kiosk orders, and handling returns",
-            "step": [
-              {
-                "@type": "HowToStep",
-                "name": "Add Product",
-                "url": "https://www.epos.com.sg/knowledge-base-portrait-pos-front-end-add-product"
+          },
+          {
+            "@type": "ItemList",
+            "@id": "https://www.epos.com.sg/knowledge-base-self-service-kiosk-front-end/#itemlist",
+            "name": "Self-Service Kiosk Knowledge Base Topics",
+            "description": "Categorised topics covering all aspects of the EPOS Self-Service Kiosk system for unattended retail operations",
+            "numberOfItems": 6,
+            "itemListElement": [{
+                "@type": "ListItem",
+                "position": 1,
+                "item": {
+                  "@type": "HowTo",
+                  "name": "Configurations",
+                  "description": "Configure backend portal settings, general settings, cash management, quickpick, hardware, config, local setup, and receipt settings for your self-service kiosk",
+                  "step": [{
+                      "@type": "HowToStep",
+                      "name": "Backend Portal",
+                      "url": "https://www.epos.com.sg/knowledge-base-retail-kiosk-front-end-backend-portal"
+                    },
+                    {
+                      "@type": "HowToStep",
+                      "name": "General Settings",
+                      "url": "https://www.epos.com.sg/knowledge-base-retail-kiosk-front-end-general"
+                    },
+                    {
+                      "@type": "HowToStep",
+                      "name": "Hardware Settings",
+                      "url": "https://www.epos.com.sg/knowledge-base-retail-kiosk-front-end-hardware"
+                    },
+                    {
+                      "@type": "HowToStep",
+                      "name": "Receipt Settings",
+                      "url": "https://www.epos.com.sg/knowledge-base-portrait-pos-front-end-receipt-settings"
+                    }
+                  ]
+                }
               },
               {
-                "@type": "HowToStep",
-                "name": "Retail Kiosk Order",
-                "url": "https://www.epos.com.sg/knowledge-base-retail-kiosk-front-end-order"
+                "@type": "ListItem",
+                "position": 2,
+                "item": {
+                  "@type": "HowTo",
+                  "name": "Getting Started",
+                  "description": "Learn how to start the kiosk, use training mode, manage shifts and sessions, navigate the retail kiosk interface, and set up quickpick",
+                  "step": [{
+                      "@type": "HowToStep",
+                      "name": "Starting the Kiosk",
+                      "url": "https://www.epos.com.sg/knowledge-base-retail-kiosk-front-end-starting-the-pos"
+                    },
+                    {
+                      "@type": "HowToStep",
+                      "name": "Retail Kiosk Interface",
+                      "url": "https://www.epos.com.sg/knowledge-base-retail-kiosk-front-end-pos-interface"
+                    },
+                    {
+                      "@type": "HowToStep",
+                      "name": "Session Management",
+                      "url": "https://www.epos.com.sg/knowledge-base-portrait-pos-front-end-session-management/"
+                    }
+                  ]
+                }
               },
               {
-                "@type": "HowToStep",
-                "name": "Return Mode",
-                "url": "https://www.epos.com.sg/knowledge-base-portrait-pos-front-end-return-order"
+                "@type": "ListItem",
+                "position": 3,
+                "item": {
+                  "@type": "HowTo",
+                  "name": "Transaction",
+                  "description": "Manage self-service transactions including adding products, editing products, processing retail kiosk orders, and handling returns",
+                  "step": [{
+                      "@type": "HowToStep",
+                      "name": "Add Product",
+                      "url": "https://www.epos.com.sg/knowledge-base-portrait-pos-front-end-add-product"
+                    },
+                    {
+                      "@type": "HowToStep",
+                      "name": "Retail Kiosk Order",
+                      "url": "https://www.epos.com.sg/knowledge-base-retail-kiosk-front-end-order"
+                    },
+                    {
+                      "@type": "HowToStep",
+                      "name": "Return Mode",
+                      "url": "https://www.epos.com.sg/knowledge-base-portrait-pos-front-end-return-order"
+                    }
+                  ]
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 4,
+                "item": {
+                  "@type": "HowTo",
+                  "name": "Product",
+                  "description": "Handle different product types including modifiers, SN/IMEI, open price, set menus, packages, weight scale products, plastic bag prompts, restricted products, and product enquiry",
+                  "step": [{
+                      "@type": "HowToStep",
+                      "name": "Modifier Products",
+                      "url": "https://www.epos.com.sg/knowledge-base-portrait-pos-front-end-modifier-products/"
+                    },
+                    {
+                      "@type": "HowToStep",
+                      "name": "Weight Scale Products",
+                      "url": "https://www.epos.com.sg/knowledge-base-retail-kiosk-front-end-weight-scale-products"
+                    },
+                    {
+                      "@type": "HowToStep",
+                      "name": "Restricted Products",
+                      "url": "https://www.epos.com.sg/knowledge-base-retail-kiosk-front-end-restricted-products"
+                    }
+                  ]
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 5,
+                "item": {
+                  "@type": "HowTo",
+                  "name": "Payment",
+                  "description": "Process payments through multiple methods including credit cards, NETS, PayNow, membership points, vouchers, climate vouchers, and split payments for self-service kiosks",
+                  "step": [{
+                      "@type": "HowToStep",
+                      "name": "Integrated Payments",
+                      "url": "https://www.epos.com.sg/knowledge-base-retail-kiosk-front-end-integrated-payments"
+                    },
+                    {
+                      "@type": "HowToStep",
+                      "name": "EPOS PayNow",
+                      "url": "https://www.epos.com.sg/knowledge-base-portrait-pos-front-end-epos-paynow"
+                    },
+                    {
+                      "@type": "HowToStep",
+                      "name": "Climate Voucher",
+                      "url": "https://www.epos.com.sg/knowledge-base-android-pos-front-end-nea-voucher"
+                    }
+                  ]
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 6,
+                "item": {
+                  "@type": "HowTo",
+                  "name": "Membership/CRM",
+                  "description": "Manage customer membership features including member login, credit consumption, and loyalty programmes on self-service kiosks",
+                  "step": [{
+                      "@type": "HowToStep",
+                      "name": "Members Login",
+                      "url": "https://www.epos.com.sg/knowledge-base-retail-kiosk-front-end-members-login"
+                    },
+                    {
+                      "@type": "HowToStep",
+                      "name": "Credit Consumption",
+                      "url": "https://www.epos.com.sg/knowledge-base-portrait-pos-front-end-credit-consumption"
+                    }
+                  ]
+                }
               }
             ]
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 4,
-          "item": {
-            "@type": "HowTo",
-            "name": "Product",
-            "description": "Handle different product types including modifiers, SN/IMEI, open price, set menus, packages, weight scale products, plastic bag prompts, restricted products, and product enquiry",
-            "step": [
-              {
-                "@type": "HowToStep",
-                "name": "Modifier Products",
-                "url": "https://www.epos.com.sg/knowledge-base-portrait-pos-front-end-modifier-products/"
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://www.epos.com.sg/knowledge-base-self-service-kiosk-front-end/#faqpage",
+            "mainEntity": [{
+                "@type": "Question",
+                "name": "Can my POS work without internet connection?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Without internet connection, transactions made on your frontend POS system will not be synced to the backend. Thus, you will not be able to see the latest sales and reports when you view from the backend."
+                }
               },
               {
-                "@type": "HowToStep",
-                "name": "Weight Scale Products",
-                "url": "https://www.epos.com.sg/knowledge-base-retail-kiosk-front-end-weight-scale-products"
+                "@type": "Question",
+                "name": "Can I reset my receipt number back to 0 at the start of the day?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, you can do so by referring to Receipt Settings at https://www.epos.com.sg/receipt-settings/"
+                }
               },
               {
-                "@type": "HowToStep",
-                "name": "Restricted Products",
-                "url": "https://www.epos.com.sg/knowledge-base-retail-kiosk-front-end-restricted-products"
+                "@type": "Question",
+                "name": "What is the max number of characters I can input for quickpick tab name?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "You can enter a maximum of 15 characters."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I hold my order for a few days?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "An order cannot be held if you want to end your shift. This means that if you end your shift daily, you will not be able to hold orders for the next day."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How many digits can I input for SKU number?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "The minimum number is 1, and the maximum number is 30."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How many digits can I input for barcode number?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "A maximum of 13 characters is allowed. Do note that alphabets take up 2 character space, and numbers take up 1 character space."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What do I do if I forgot my login details?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "If you forget your frontend login password, you can reset it on the backend (Go to Set Up > Users > Edit Staff Account)"
+                }
               }
             ]
+          },
+          {
+            "@type": "SoftwareApplication",
+            "@id": "https://www.epos.com.sg/knowledge-base-self-service-kiosk-front-end/#software",
+            "name": "EPOS Self-Service Kiosk",
+            "applicationCategory": "BusinessApplication",
+            "applicationSubCategory": "Self-Service Retail Kiosk System",
+            "operatingSystem": "Windows, Android",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "SGD"
+            },
+            "featureList": [
+              "Unattended Self-Service Checkout",
+              "Multiple Payment Methods",
+              "Weight Scale Integration",
+              "Restricted Product Controls",
+              "Membership Integration",
+              "Plastic Bag Charge Prompts",
+              "Age-Restricted Product Verification",
+              "Climate Voucher Support",
+              "Integrated Payment Terminals",
+              "Customer-Facing Interface"
+            ],
+            "screenshot": "https://www.epos.com.sg/wp-content/uploads/self-service-kiosk-screenshot.jpg",
+            "provider": {
+              "@id": "https://www.epos.com.sg/#organization"
+            },
+            "availableLanguage": "en-SG",
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "4.8",
+              "ratingCount": "150"
+            }
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://www.epos.com.sg/#website",
+            "url": "https://www.epos.com.sg/",
+            "name": "EPOS POS System",
+            "description": "Leading POS system provider in Singapore",
+            "publisher": {
+              "@id": "https://www.epos.com.sg/#organization"
+            },
+            "inLanguage": "en-SG"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://www.epos.com.sg/#organization",
+            "name": "EPOS Pte. Ltd.",
+            "url": "https://www.epos.com.sg/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://www.epos.com.sg/wp-content/uploads/2025/12/EPOS_Full-Color.webp",
+              "contentUrl": "https://www.epos.com.sg/wp-content/uploads/2025/12/EPOS_Full-Color.webp"
+            },
+            "sameAs": [
+              "https://www.facebook.com/epossg",
+              "https://www.instagram.com/epossg/",
+              "https://www.youtube.com/@epospossystemsingapore9807",
+              "https://www.linkedin.com/company/14524422",
+              "https://www.xiaohongshu.com/user/profile/5ecf5cbc000000000100162e"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "2 Leng Kee Road, #02-07 Thye Hong Centre",
+              "addressLocality": "Singapore",
+              "postalCode": "159086",
+              "addressCountry": "SG"
+            },
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+65-8482-1888",
+              "email": "sales@epos.com.sg",
+              "contactType": "customer service",
+              "areaServed": "SG",
+              "availableLanguage": ["en-SG"]
+            }
           }
-        },
-        {
-          "@type": "ListItem",
-          "position": 5,
-          "item": {
-            "@type": "HowTo",
-            "name": "Payment",
-            "description": "Process payments through multiple methods including credit cards, NETS, PayNow, membership points, vouchers, climate vouchers, and split payments for self-service kiosks",
-            "step": [
-              {
-                "@type": "HowToStep",
-                "name": "Integrated Payments",
-                "url": "https://www.epos.com.sg/knowledge-base-retail-kiosk-front-end-integrated-payments"
-              },
-              {
-                "@type": "HowToStep",
-                "name": "EPOS PayNow",
-                "url": "https://www.epos.com.sg/knowledge-base-portrait-pos-front-end-epos-paynow"
-              },
-              {
-                "@type": "HowToStep",
-                "name": "Climate Voucher",
-                "url": "https://www.epos.com.sg/knowledge-base-android-pos-front-end-nea-voucher"
-              }
-            ]
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 6,
-          "item": {
-            "@type": "HowTo",
-            "name": "Membership/CRM",
-            "description": "Manage customer membership features including member login, credit consumption, and loyalty programmes on self-service kiosks",
-            "step": [
-              {
-                "@type": "HowToStep",
-                "name": "Members Login",
-                "url": "https://www.epos.com.sg/knowledge-base-retail-kiosk-front-end-members-login"
-              },
-              {
-                "@type": "HowToStep",
-                "name": "Credit Consumption",
-                "url": "https://www.epos.com.sg/knowledge-base-portrait-pos-front-end-credit-consumption"
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://www.epos.com.sg/knowledge-base-self-service-kiosk-front-end/#faqpage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Can my POS work without internet connection?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Without internet connection, transactions made on your frontend POS system will not be synced to the backend. Thus, you will not be able to see the latest sales and reports when you view from the backend."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Can I reset my receipt number back to 0 at the start of the day?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes, you can do so by referring to Receipt Settings at https://www.epos.com.sg/receipt-settings/"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What is the max number of characters I can input for quickpick tab name?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "You can enter a maximum of 15 characters."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Can I hold my order for a few days?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "An order cannot be held if you want to end your shift. This means that if you end your shift daily, you will not be able to hold orders for the next day."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How many digits can I input for SKU number?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "The minimum number is 1, and the maximum number is 30."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How many digits can I input for barcode number?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "A maximum of 13 characters is allowed. Do note that alphabets take up 2 character space, and numbers take up 1 character space."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What do I do if I forgot my login details?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "If you forget your frontend login password, you can reset it on the backend (Go to Set Up > Users > Edit Staff Account)"
-          }
-        }
-      ]
-    },
-    {
-      "@type": "SoftwareApplication",
-      "@id": "https://www.epos.com.sg/knowledge-base-self-service-kiosk-front-end/#software",
-      "name": "EPOS Self-Service Kiosk",
-      "applicationCategory": "BusinessApplication",
-      "applicationSubCategory": "Self-Service Retail Kiosk System",
-      "operatingSystem": "Windows, Android",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "SGD"
-      },
-      "featureList": [
-        "Unattended Self-Service Checkout",
-        "Multiple Payment Methods",
-        "Weight Scale Integration",
-        "Restricted Product Controls",
-        "Membership Integration",
-        "Plastic Bag Charge Prompts",
-        "Age-Restricted Product Verification",
-        "Climate Voucher Support",
-        "Integrated Payment Terminals",
-        "Customer-Facing Interface"
-      ],
-      "screenshot": "https://www.epos.com.sg/wp-content/uploads/self-service-kiosk-screenshot.jpg",
-      "provider": {
-        "@id": "https://www.epos.com.sg/#organization"
-      },
-      "availableLanguage": "en-SG",
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.8",
-        "ratingCount": "150"
+        ]
       }
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://www.epos.com.sg/#website",
-      "url": "https://www.epos.com.sg/",
-      "name": "EPOS POS System",
-      "description": "Leading POS system provider in Singapore",
-      "publisher": {
-        "@id": "https://www.epos.com.sg/#organization"
-      },
-      "inLanguage": "en-SG"
-    },
-    {
-      "@type": "Organization",
-      "@id": "https://www.epos.com.sg/#organization",
-      "name": "EPOS Pte. Ltd.",
-      "url": "https://www.epos.com.sg/",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://www.epos.com.sg/wp-content/uploads/2025/12/EPOS_Full-Color.webp",
-        "contentUrl": "https://www.epos.com.sg/wp-content/uploads/2025/12/EPOS_Full-Color.webp"
-      },
-      "sameAs": [
-        "https://www.facebook.com/epossg",
-        "https://www.instagram.com/epossg/",
-        "https://www.youtube.com/@epospossystemsingapore9807",
-        "https://www.linkedin.com/company/14524422",
-        "https://www.xiaohongshu.com/user/profile/5ecf5cbc000000000100162e"
-      ],
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "2 Leng Kee Road, #02-07 Thye Hong Centre",
-        "addressLocality": "Singapore",
-        "postalCode": "159086",
-        "addressCountry": "SG"
-      },
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+65-8482-1888",
-        "email": "sales@epos.com.sg",
-        "contactType": "customer service",
-        "areaServed": "SG",
-        "availableLanguage": ["en-SG"]
-      }
-    }
-  ]
-}
-
-</script>
-<?php
-	}
+    </script>
+  <?php
+  }
 }
 add_action('wp_head', 'epos_add_stock_take_app_schema');
 function epos_add_stock_take_app_schema()
 {
-	if (is_page('stock-take-app')) {
-?>
-<script type="application/ld+json" class="epos-schema">
+  if (is_page('stock-take-app')) {
+  ?>
+    <script type="application/ld+json" class="epos-schema">
       {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "TechArticle",
-      "@id": "https://www.epos.com.sg/knowledge-base-front-end/stock-take-app/#article",
-      "url": "https://www.epos.com.sg/knowledge-base-front-end/stock-take-app/",
-      "headline": "Stock Take App - Stocktake Device User Guide",
-      "name": "Complete Guide to EPOS Stocktake Device",
-      "description": "Comprehensive guide to EPOS Stock Take App covering stock adjustment, stocktake operations, stock in procedures, purchase order management, and stock transfer between outlets. Learn barcode scanning, inventory management, and mobile stocktaking.",
-      "articleBody": "The EPOS Stocktake Device is a mobile handheld solution for managing inventory operations including stock adjustments, stocktake, stock in, purchase orders, and stock transfers between outlets.",
-      "about": {
-        "@id": "https://www.epos.com.sg/knowledge-base-front-end/stock-take-app/#software"
-      },
-      "author": {
-        "@type": "Person",
-        "name": "Nicholas Ten",
-        "url": "https://www.epos.com.sg/author/nicholas/"
-      },
-      "publisher": {
-        "@id": "https://www.epos.com.sg/#organization"
-      },
-      "isPartOf": {
-        "@id": "https://www.epos.com.sg/#website"
-      },
-      "breadcrumb": {
-        "@id": "https://www.epos.com.sg/knowledge-base-front-end/stock-take-app/#breadcrumb"
-      },
-      "inLanguage": "en-SG",
-      "articleSection": "EPOS Knowledge Base",
-      "keywords": [
-        "stock take app",
-        "inventory management",
-        "barcode scanner",
-        "stocktake device",
-        "purchase order mobile",
-        "stock transfer",
-        "inventory counting",
-        "mobile stocktaking"
-      ],
-      "hasPart": [
-        {
-          "@type": "HowToSection",
-          "name": "Stock Adjustment",
-          "description": "Scan barcodes to adjust stock quantities, update supplier information, cost prices, and product descriptions"
-        },
-        {
-          "@type": "HowToSection",
-          "name": "Stock Take",
-          "description": "Perform physical stock counts by scanning products and recording actual quantities"
-        },
-        {
-          "@type": "HowToSection",
-          "name": "Stock In",
-          "description": "Receive inventory into the system for both normal and composite products"
-        },
-        {
-          "@type": "HowToSection",
-          "name": "Purchase Order",
-          "description": "Create, edit, and manage purchase orders directly from the mobile device"
-        },
-        {
-          "@type": "HowToSection",
-          "name": "Stock Transfer",
-          "description": "Transfer inventory between outlets, send goods, and receive transferred stock"
-        }
-      ],
-      "video": [
-        {
-          "@type": "VideoObject",
-          "name": "Creating Purchase Orders on Stock Take App",
-          "description": "Video tutorial showing how to create new purchase orders using the stocktake device",
-          "uploadDate": "2023-10-03"
-        },
-        {
-          "@type": "VideoObject",
-          "name": "Editing Draft and Receiving Goods",
-          "description": "Video tutorial on editing purchase order drafts and receiving goods",
-          "uploadDate": "2023-10-03"
-        }
-      ]
-    },
-    {
-      "@type": "MobileApplication",
-      "@id": "https://www.epos.com.sg/knowledge-base-front-end/stock-take-app/#software",
-      "name": "EPOS Stock Take App",
-      "alternateName": "EPOS Stocktake Device",
-      "applicationCategory": "BusinessApplication",
-      "applicationSubCategory": "Inventory Management System",
-      "operatingSystem": "Android",
-      "offers": {
-        "@type": "Offer",
-        "availability": "https://schema.org/InStock",
-        "price": "0",
-        "priceCurrency": "SGD"
-      },
-      "featureList": [
-        "Barcode Scanning for Product Identification",
-        "Real-Time Stock Adjustment",
-        "Physical Stocktake Recording",
-        "Stock In Management",
-        "Purchase Order Creation and Management",
-        "Multi-Outlet Stock Transfer",
-        "Send and Receive Goods Tracking",
-        "Composite Product Support",
-        "Supplier Management",
-        "Cost Price Updates",
-        "Product Description Editing",
-        "Reference Number Tracking",
-        "Error Validation and Alerts",
-        "Auto-Fill Functionality",
-        "Staff Permission Controls",
-        "Handheld Device Optimisation"
-      ],
-      "screenshot": [
-        "https://www.epos.com.sg/wp-content/uploads/stock-adjustment-screen.png",
-        "https://www.epos.com.sg/wp-content/uploads/stock-take-screen.png",
-        "https://www.epos.com.sg/wp-content/uploads/purchase-order-screen.png",
-        "https://www.epos.com.sg/wp-content/uploads/stock-transfer-screen.png"
-      ],
-      "provider": {
-        "@id": "https://www.epos.com.sg/#organization"
-      },
-      "availableLanguage": "en-SG",
-      "softwareRequirements": "Android handheld device with barcode scanner, Internet connection",
-      "softwareHelp": {
-        "@type": "WebPage",
-        "url": "https://www.epos.com.sg/knowledge-base-front-end/stock-take-app/"
-      },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.7",
-        "ratingCount": "180"
+        "@context": "https://schema.org",
+        "@graph": [{
+            "@type": "TechArticle",
+            "@id": "https://www.epos.com.sg/knowledge-base-front-end/stock-take-app/#article",
+            "url": "https://www.epos.com.sg/knowledge-base-front-end/stock-take-app/",
+            "headline": "Stock Take App - Stocktake Device User Guide",
+            "name": "Complete Guide to EPOS Stocktake Device",
+            "description": "Comprehensive guide to EPOS Stock Take App covering stock adjustment, stocktake operations, stock in procedures, purchase order management, and stock transfer between outlets. Learn barcode scanning, inventory management, and mobile stocktaking.",
+            "articleBody": "The EPOS Stocktake Device is a mobile handheld solution for managing inventory operations including stock adjustments, stocktake, stock in, purchase orders, and stock transfers between outlets.",
+            "about": {
+              "@id": "https://www.epos.com.sg/knowledge-base-front-end/stock-take-app/#software"
+            },
+            "author": {
+              "@type": "Person",
+              "name": "Nicholas Ten",
+              "url": "https://www.epos.com.sg/author/nicholas/"
+            },
+            "publisher": {
+              "@id": "https://www.epos.com.sg/#organization"
+            },
+            "isPartOf": {
+              "@id": "https://www.epos.com.sg/#website"
+            },
+            "breadcrumb": {
+              "@id": "https://www.epos.com.sg/knowledge-base-front-end/stock-take-app/#breadcrumb"
+            },
+            "inLanguage": "en-SG",
+            "articleSection": "EPOS Knowledge Base",
+            "keywords": [
+              "stock take app",
+              "inventory management",
+              "barcode scanner",
+              "stocktake device",
+              "purchase order mobile",
+              "stock transfer",
+              "inventory counting",
+              "mobile stocktaking"
+            ],
+            "hasPart": [{
+                "@type": "HowToSection",
+                "name": "Stock Adjustment",
+                "description": "Scan barcodes to adjust stock quantities, update supplier information, cost prices, and product descriptions"
+              },
+              {
+                "@type": "HowToSection",
+                "name": "Stock Take",
+                "description": "Perform physical stock counts by scanning products and recording actual quantities"
+              },
+              {
+                "@type": "HowToSection",
+                "name": "Stock In",
+                "description": "Receive inventory into the system for both normal and composite products"
+              },
+              {
+                "@type": "HowToSection",
+                "name": "Purchase Order",
+                "description": "Create, edit, and manage purchase orders directly from the mobile device"
+              },
+              {
+                "@type": "HowToSection",
+                "name": "Stock Transfer",
+                "description": "Transfer inventory between outlets, send goods, and receive transferred stock"
+              }
+            ],
+            "video": [{
+                "@type": "VideoObject",
+                "name": "Creating Purchase Orders on Stock Take App",
+                "description": "Video tutorial showing how to create new purchase orders using the stocktake device",
+                "uploadDate": "2023-10-03"
+              },
+              {
+                "@type": "VideoObject",
+                "name": "Editing Draft and Receiving Goods",
+                "description": "Video tutorial on editing purchase order drafts and receiving goods",
+                "uploadDate": "2023-10-03"
+              }
+            ]
+          },
+          {
+            "@type": "MobileApplication",
+            "@id": "https://www.epos.com.sg/knowledge-base-front-end/stock-take-app/#software",
+            "name": "EPOS Stock Take App",
+            "alternateName": "EPOS Stocktake Device",
+            "applicationCategory": "BusinessApplication",
+            "applicationSubCategory": "Inventory Management System",
+            "operatingSystem": "Android",
+            "offers": {
+              "@type": "Offer",
+              "availability": "https://schema.org/InStock",
+              "price": "0",
+              "priceCurrency": "SGD"
+            },
+            "featureList": [
+              "Barcode Scanning for Product Identification",
+              "Real-Time Stock Adjustment",
+              "Physical Stocktake Recording",
+              "Stock In Management",
+              "Purchase Order Creation and Management",
+              "Multi-Outlet Stock Transfer",
+              "Send and Receive Goods Tracking",
+              "Composite Product Support",
+              "Supplier Management",
+              "Cost Price Updates",
+              "Product Description Editing",
+              "Reference Number Tracking",
+              "Error Validation and Alerts",
+              "Auto-Fill Functionality",
+              "Staff Permission Controls",
+              "Handheld Device Optimisation"
+            ],
+            "screenshot": [
+              "https://www.epos.com.sg/wp-content/uploads/stock-adjustment-screen.png",
+              "https://www.epos.com.sg/wp-content/uploads/stock-take-screen.png",
+              "https://www.epos.com.sg/wp-content/uploads/purchase-order-screen.png",
+              "https://www.epos.com.sg/wp-content/uploads/stock-transfer-screen.png"
+            ],
+            "provider": {
+              "@id": "https://www.epos.com.sg/#organization"
+            },
+            "availableLanguage": "en-SG",
+            "softwareRequirements": "Android handheld device with barcode scanner, Internet connection",
+            "softwareHelp": {
+              "@type": "WebPage",
+              "url": "https://www.epos.com.sg/knowledge-base-front-end/stock-take-app/"
+            },
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "4.7",
+              "ratingCount": "180"
+            }
+          },
+          {
+            "@type": "HowTo",
+            "@id": "https://www.epos.com.sg/knowledge-base-front-end/stock-take-app/#howto-stockadjustment",
+            "name": "How to Perform Stock Adjustment with EPOS Stocktake Device",
+            "description": "Step-by-step guide to adjusting stock quantities using the handheld stocktake device",
+            "tool": [{
+                "@type": "HowToTool",
+                "name": "EPOS Stocktake Device (Handheld Scanner)"
+              },
+              {
+                "@type": "HowToTool",
+                "name": "Product Barcodes"
+              }
+            ],
+            "step": [{
+                "@type": "HowToStep",
+                "name": "Select Stock Adjustment Function",
+                "text": "User selects 'Stock Adjustment' button on the stocktake device home screen",
+                "position": 1
+              },
+              {
+                "@type": "HowToStep",
+                "name": "Scan Product Barcode",
+                "text": "Press and hold scanner button on either side of device, point at product barcode. Scanner button is located on both sides of the device for convenience.",
+                "position": 2
+              },
+              {
+                "@type": "HowToStep",
+                "name": "Update Product Details",
+                "text": "Update supplier information, cost price, base price, and product description. For descriptions longer than 5 rows, tap 'Read More' to expand full details.",
+                "position": 3
+              },
+              {
+                "@type": "HowToStep",
+                "name": "Adjust Quantity",
+                "text": "Tap on 'QTY Adjustment', input adjust quality (+number increases stock, -number decreases stock), input reason, then tap 'Update'. For composite products, child product quantities adjust automatically.",
+                "position": 4
+              }
+            ],
+            "totalTime": "PT5M",
+            "estimatedCost": {
+              "@type": "MonetaryAmount",
+              "currency": "SGD",
+              "value": "0"
+            }
+          },
+          {
+            "@type": "HowTo",
+            "@id": "https://www.epos.com.sg/knowledge-base-front-end/stock-take-app/#howto-stocktransfer",
+            "name": "How to Transfer Stock Between Outlets",
+            "description": "Complete guide to creating stock transfers, sending goods, and receiving goods between outlets",
+            "step": [{
+                "@type": "HowToStep",
+                "name": "Create New Stock Transfer",
+                "text": "Navigate to Stock Transfer > New Stock Transfer. Select destination outlet, enter reference number, tap 'Add Product'. Add products by scanning barcodes, input quantity requested, tap 'Create'.",
+                "position": 1
+              },
+              {
+                "@type": "HowToStep",
+                "name": "Send Goods",
+                "text": "View transfer details, enter reference number, manually fill quantity to send or tap 'Auto Fill'. Confirm send goods. System tracks sent quantities and allows partial shipments.",
+                "position": 2
+              },
+              {
+                "@type": "HowToStep",
+                "name": "Receive Goods at Destination",
+                "text": "Navigate to Send/Receive Goods, select ongoing transfer, tap 'Receive Goods'. Enter reference number and quantities received. Use 'Auto Fill' for quick entry or scan barcodes to locate specific items.",
+                "position": 3
+              },
+              {
+                "@type": "HowToStep",
+                "name": "Complete Transfer",
+                "text": "Once 100% receiving rate is achieved, tap 'Complete' > 'Yes'. Status changes to Completed.",
+                "position": 4
+              }
+            ],
+            "totalTime": "PT10M"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://www.epos.com.sg/knowledge-base-front-end/stock-take-app/#breadcrumb",
+            "itemListElement": [{
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.epos.com.sg/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Knowledge Base",
+                "item": "https://www.epos.com.sg/knowledge-base/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Frontend",
+                "item": "https://www.epos.com.sg/knowledge-base-front-end/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 4,
+                "name": "Stock Take App"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://www.epos.com.sg/#website",
+            "url": "https://www.epos.com.sg/",
+            "name": "EPOS POS System",
+            "description": "Leading POS system provider in Singapore",
+            "publisher": {
+              "@id": "https://www.epos.com.sg/#organization"
+            },
+            "inLanguage": "en-SG"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://www.epos.com.sg/#organization",
+            "name": "EPOS Pte. Ltd.",
+            "url": "https://www.epos.com.sg/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://www.epos.com.sg/wp-content/uploads/2025/12/EPOS_Full-Color.webp",
+              "contentUrl": "https://www.epos.com.sg/wp-content/uploads/2025/12/EPOS_Full-Color.webp"
+            },
+            "sameAs": [
+              "https://www.facebook.com/epossg",
+              "https://www.instagram.com/epossg/",
+              "https://www.youtube.com/@epospossystemsingapore9807",
+              "https://www.linkedin.com/company/14524422",
+              "https://www.xiaohongshu.com/user/profile/5ecf5cbc000000000100162e"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "2 Leng Kee Road, #02-07 Thye Hong Centre",
+              "addressLocality": "Singapore",
+              "postalCode": "159086",
+              "addressCountry": "SG"
+            },
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+65-8482-1888",
+              "email": "sales@epos.com.sg",
+              "contactType": "sales",
+              "areaServed": "SG",
+              "availableLanguage": ["en-SG"]
+            }
+          }
+        ]
       }
-    },
-    {
-      "@type": "HowTo",
-      "@id": "https://www.epos.com.sg/knowledge-base-front-end/stock-take-app/#howto-stockadjustment",
-      "name": "How to Perform Stock Adjustment with EPOS Stocktake Device",
-      "description": "Step-by-step guide to adjusting stock quantities using the handheld stocktake device",
-      "tool": [
-        {
-          "@type": "HowToTool",
-          "name": "EPOS Stocktake Device (Handheld Scanner)"
-        },
-        {
-          "@type": "HowToTool",
-          "name": "Product Barcodes"
-        }
-      ],
-      "step": [
-        {
-          "@type": "HowToStep",
-          "name": "Select Stock Adjustment Function",
-          "text": "User selects 'Stock Adjustment' button on the stocktake device home screen",
-          "position": 1
-        },
-        {
-          "@type": "HowToStep",
-          "name": "Scan Product Barcode",
-          "text": "Press and hold scanner button on either side of device, point at product barcode. Scanner button is located on both sides of the device for convenience.",
-          "position": 2
-        },
-        {
-          "@type": "HowToStep",
-          "name": "Update Product Details",
-          "text": "Update supplier information, cost price, base price, and product description. For descriptions longer than 5 rows, tap 'Read More' to expand full details.",
-          "position": 3
-        },
-        {
-          "@type": "HowToStep",
-          "name": "Adjust Quantity",
-          "text": "Tap on 'QTY Adjustment', input adjust quality (+number increases stock, -number decreases stock), input reason, then tap 'Update'. For composite products, child product quantities adjust automatically.",
-          "position": 4
-        }
-      ],
-      "totalTime": "PT5M",
-      "estimatedCost": {
-        "@type": "MonetaryAmount",
-        "currency": "SGD",
-        "value": "0"
-      }
-    },
-    {
-      "@type": "HowTo",
-      "@id": "https://www.epos.com.sg/knowledge-base-front-end/stock-take-app/#howto-stocktransfer",
-      "name": "How to Transfer Stock Between Outlets",
-      "description": "Complete guide to creating stock transfers, sending goods, and receiving goods between outlets",
-      "step": [
-        {
-          "@type": "HowToStep",
-          "name": "Create New Stock Transfer",
-          "text": "Navigate to Stock Transfer > New Stock Transfer. Select destination outlet, enter reference number, tap 'Add Product'. Add products by scanning barcodes, input quantity requested, tap 'Create'.",
-          "position": 1
-        },
-        {
-          "@type": "HowToStep",
-          "name": "Send Goods",
-          "text": "View transfer details, enter reference number, manually fill quantity to send or tap 'Auto Fill'. Confirm send goods. System tracks sent quantities and allows partial shipments.",
-          "position": 2
-        },
-        {
-          "@type": "HowToStep",
-          "name": "Receive Goods at Destination",
-          "text": "Navigate to Send/Receive Goods, select ongoing transfer, tap 'Receive Goods'. Enter reference number and quantities received. Use 'Auto Fill' for quick entry or scan barcodes to locate specific items.",
-          "position": 3
-        },
-        {
-          "@type": "HowToStep",
-          "name": "Complete Transfer",
-          "text": "Once 100% receiving rate is achieved, tap 'Complete' > 'Yes'. Status changes to Completed.",
-          "position": 4
-        }
-      ],
-      "totalTime": "PT10M"
-    },
-    {
-      "@type": "BreadcrumbList",
-      "@id": "https://www.epos.com.sg/knowledge-base-front-end/stock-take-app/#breadcrumb",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://www.epos.com.sg/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Knowledge Base",
-          "item": "https://www.epos.com.sg/knowledge-base/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "Frontend",
-          "item": "https://www.epos.com.sg/knowledge-base-front-end/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 4,
-          "name": "Stock Take App"
-        }
-      ]
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://www.epos.com.sg/#website",
-      "url": "https://www.epos.com.sg/",
-      "name": "EPOS POS System",
-      "description": "Leading POS system provider in Singapore",
-      "publisher": {
-        "@id": "https://www.epos.com.sg/#organization"
-      },
-      "inLanguage": "en-SG"
-    },
-    {
-      "@type": "Organization",
-      "@id": "https://www.epos.com.sg/#organization",
-      "name": "EPOS Pte. Ltd.",
-      "url": "https://www.epos.com.sg/",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://www.epos.com.sg/wp-content/uploads/2025/12/EPOS_Full-Color.webp",
-        "contentUrl": "https://www.epos.com.sg/wp-content/uploads/2025/12/EPOS_Full-Color.webp"
-      },
-      "sameAs": [
-        "https://www.facebook.com/epossg",
-        "https://www.instagram.com/epossg/",
-        "https://www.youtube.com/@epospossystemsingapore9807",
-        "https://www.linkedin.com/company/14524422",
-        "https://www.xiaohongshu.com/user/profile/5ecf5cbc000000000100162e"
-      ],
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "2 Leng Kee Road, #02-07 Thye Hong Centre",
-        "addressLocality": "Singapore",
-        "postalCode": "159086",
-        "addressCountry": "SG"
-      },
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+65-8482-1888",
-        "email": "sales@epos.com.sg",
-        "contactType": "sales",
-        "areaServed": "SG",
-        "availableLanguage": ["en-SG"]
-      }
-    }
-  ]
-}
-</script>
-<?php
-	}
+    </script>
+  <?php
+  }
 }
 add_action('wp_head', 'epos_add_payment_terminal_schema');
 function epos_add_payment_terminal_schema()
 {
-	if (strpos($_SERVER['REQUEST_URI'], '/knowledge-base-back-end/erp-sales/payment-terminal/') !== false) {
+  if (strpos($_SERVER['REQUEST_URI'], '/knowledge-base-back-end/erp-sales/payment-terminal/') !== false) {
 
-?>
-<script type="application/ld+json" class="epos-schema">
+  ?>
+    <script type="application/ld+json" class="epos-schema">
       {
         "@context": "https://schema.org",
         "@graph": [{
@@ -2657,361 +2639,385 @@ function epos_add_payment_terminal_schema()
           }
         ]
       }
-</script>
-<?php
-	}
+    </script>
+  <?php
+  }
 }
 add_action('wp_head', 'epos_add_knowledge_base_back_end_schema');
 function epos_add_knowledge_base_back_end_schema()
 {
-	if (is_page('knowledge-base-back-end')) {
+  if (is_page('knowledge-base-back-end')) {
 
-?>
-<script type="application/ld+json" class="epos-schema">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "CollectionPage",
-      "@id": "https://www.epos.com.sg/knowledge-base-back-end/#webpage",
-      "url": "https://www.epos.com.sg/knowledge-base-back-end/",
-      "name": "EPOS Knowledge Base Back End",
-      "headline": "Backend Portal Management System User Guide",
-      "description": "Comprehensive user guide for EPOS Backend Portal covering sales management, product configuration, customer management, inventory control, reporting, auditing, integrations, EPOS apps, and system setup.",
-      "isPartOf": {
-        "@id": "https://www.epos.com.sg/#website"
-      },
-      "about": {
-        "@type": "SoftwareApplication",
-        "name": "EPOS Backend Portal",
-        "applicationCategory": "BusinessApplication",
-        "applicationSubCategory": "Management System"
-      },
-      "breadcrumb": {
-        "@id": "https://www.epos.com.sg/knowledge-base-back-end/#breadcrumb"
-      },
-      "inLanguage": "en-SG",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": "https://www.epos.com.sg/knowledge-base-back-end/?s={search_term_string}"
-        },
-        "query-input": "required name=search_term_string"
-      },
-      "mainEntity": {
-        "@id": "https://www.epos.com.sg/knowledge-base-back-end/#itemlist"
+  ?>
+    <script type="application/ld+json" class="epos-schema">
+      {
+        "@context": "https://schema.org",
+        "@graph": [{
+            "@type": "CollectionPage",
+            "@id": "https://www.epos.com.sg/knowledge-base-back-end/#webpage",
+            "url": "https://www.epos.com.sg/knowledge-base-back-end/",
+            "name": "EPOS Knowledge Base Back End",
+            "headline": "Backend Portal Management System User Guide",
+            "description": "Comprehensive user guide for EPOS Backend Portal covering sales management, product configuration, customer management, inventory control, reporting, auditing, integrations, EPOS apps, and system setup.",
+            "isPartOf": {
+              "@id": "https://www.epos.com.sg/#website"
+            },
+            "about": {
+              "@type": "SoftwareApplication",
+              "name": "EPOS Backend Portal",
+              "applicationCategory": "BusinessApplication",
+              "applicationSubCategory": "Management System"
+            },
+            "breadcrumb": {
+              "@id": "https://www.epos.com.sg/knowledge-base-back-end/#breadcrumb"
+            },
+            "inLanguage": "en-SG",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://www.epos.com.sg/knowledge-base-back-end/?s={search_term_string}"
+              },
+              "query-input": "required name=search_term_string"
+            },
+            "mainEntity": {
+              "@id": "https://www.epos.com.sg/knowledge-base-back-end/#itemlist"
+            }
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://www.epos.com.sg/knowledge-base-back-end/#breadcrumb",
+            "itemListElement": [{
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.epos.com.sg/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Knowledge Base",
+                "item": "https://www.epos.com.sg/knowledge-base/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Backend Portal"
+              }
+            ]
+          },
+          {
+            "@type": "ItemList",
+            "@id": "https://www.epos.com.sg/knowledge-base-back-end/#itemlist",
+            "name": "EPOS Backend Portal Knowledge Base Categories",
+            "description": "Complete documentation for managing your EPOS system through the backend portal",
+            "numberOfItems": 9,
+            "itemListElement": [{
+                "@type": "ListItem",
+                "position": 1,
+                "item": {
+                  "@type": "HowTo",
+                  "@id": "https://www.epos.com.sg/knowledge-base-back-end/erp-sales/",
+                  "name": "Sales",
+                  "description": "Manage sales transactions, payment methods, orders, and sales-related operations through the backend portal",
+                  "url": "https://www.epos.com.sg/knowledge-base-back-end/erp-sales/"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "item": {
+                  "@type": "HowTo",
+                  "@id": "https://www.epos.com.sg/knowledge-base-back-end/products/",
+                  "name": "Products",
+                  "description": "Configure and manage products, pricing, categories, modifiers, and product-related settings",
+                  "url": "https://www.epos.com.sg/knowledge-base-back-end/products/"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "item": {
+                  "@type": "HowTo",
+                  "@id": "https://www.epos.com.sg/knowledge-base-back-end/customers/",
+                  "name": "Customers",
+                  "description": "Manage customer database, loyalty programmes, customer groups, and customer-related features",
+                  "url": "https://www.epos.com.sg/knowledge-base-back-end/customers/"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 4,
+                "item": {
+                  "@type": "HowTo",
+                  "@id": "https://www.epos.com.sg/knowledge-base-back-end/inventory/",
+                  "name": "Inventory",
+                  "description": "Control stock levels, manage suppliers, handle stock transfers, and monitor inventory operations",
+                  "url": "https://www.epos.com.sg/knowledge-base-back-end/inventory/"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 5,
+                "item": {
+                  "@type": "HowTo",
+                  "@id": "https://www.epos.com.sg/knowledge-base-back-end/reporting/",
+                  "name": "Reporting",
+                  "description": "Generate and analyse sales reports, inventory reports, customer insights, and business analytics",
+                  "url": "https://www.epos.com.sg/knowledge-base-back-end/reporting/"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 6,
+                "item": {
+                  "@type": "HowTo",
+                  "@id": "https://www.epos.com.sg/knowledge-base-back-end/audit/",
+                  "name": "Auditing",
+                  "description": "Track system changes, monitor user activities, and maintain audit trails for compliance",
+                  "url": "https://www.epos.com.sg/knowledge-base-back-end/audit/"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 7,
+                "item": {
+                  "@type": "HowTo",
+                  "@id": "https://www.epos.com.sg/knowledge-base-back-end/integrations/",
+                  "name": "Integrations",
+                  "description": "Connect third-party services, payment gateways, accounting software, and e-commerce platforms",
+                  "url": "https://www.epos.com.sg/knowledge-base-back-end/integrations/"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 8,
+                "item": {
+                  "@type": "HowTo",
+                  "@id": "https://www.epos.com.sg/knowledge-base-back-end/epos-apps/",
+                  "name": "EPOS Apps",
+                  "description": "Configure and manage EPOS mobile applications and companion apps",
+                  "url": "https://www.epos.com.sg/knowledge-base-back-end/epos-apps/"
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 9,
+                "item": {
+                  "@type": "HowTo",
+                  "@id": "https://www.epos.com.sg/knowledge-base-back-end/set-up/",
+                  "name": "Set Up",
+                  "description": "Initial system configuration, user management, outlet setup, and general settings",
+                  "url": "https://www.epos.com.sg/knowledge-base-back-end/set-up/"
+                }
+              }
+            ]
+          },
+          {
+            "@type": "SoftwareApplication",
+            "@id": "https://www.epos.com.sg/knowledge-base-back-end/#software",
+            "name": "EPOS Backend Portal",
+            "applicationCategory": "BusinessApplication",
+            "applicationSubCategory": "Point of Sale Management System",
+            "operatingSystem": "Web Browser",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "SGD"
+            },
+            "featureList": [
+              "Sales Management",
+              "Product Configuration",
+              "Customer Management",
+              "Inventory Control",
+              "Business Reporting",
+              "Audit Tracking",
+              "Third-party Integrations",
+              "Multi-outlet Management",
+              "User Access Control"
+            ],
+            "screenshot": "https://www.epos.com.sg/wp-content/uploads/backend-portal-screenshot.jpg",
+            "provider": {
+              "@id": "https://www.epos.com.sg/#organization"
+            },
+            "availableLanguage": "en-SG"
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://www.epos.com.sg/#website",
+            "url": "https://www.epos.com.sg/",
+            "name": "EPOS POS System",
+            "description": "Leading POS system provider in Singapore",
+            "publisher": {
+              "@id": "https://www.epos.com.sg/#organization"
+            },
+            "inLanguage": "en-SG"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://www.epos.com.sg/#organization",
+            "name": "EPOS Pte. Ltd.",
+            "url": "https://www.epos.com.sg/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://www.epos.com.sg/wp-content/uploads/2025/12/EPOS_Full-Color.webp",
+              "contentUrl": "https://www.epos.com.sg/wp-content/uploads/2025/12/EPOS_Full-Color.webp"
+            },
+            "sameAs": [
+              "https://www.facebook.com/epossg",
+              "https://www.instagram.com/epossg/",
+              "https://www.youtube.com/@epospossystemsingapore9807",
+              "https://www.linkedin.com/company/14524422",
+              "https://www.xiaohongshu.com/user/profile/5ecf5cbc000000000100162e"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "2 Leng Kee Road, #02-07 Thye Hong Centre",
+              "addressLocality": "Singapore",
+              "postalCode": "159086",
+              "addressCountry": "SG"
+            },
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+65-8482-1888",
+              "email": "sales@epos.com.sg",
+              "contactType": "customer service",
+              "areaServed": "SG",
+              "availableLanguage": ["en"]
+            }
+          }
+        ]
       }
-    },
-    {
-      "@type": "BreadcrumbList",
-      "@id": "https://www.epos.com.sg/knowledge-base-back-end/#breadcrumb",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://www.epos.com.sg/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Knowledge Base",
-          "item": "https://www.epos.com.sg/knowledge-base/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "Backend Portal"
-        }
-      ]
-    },
-    {
-      "@type": "ItemList",
-      "@id": "https://www.epos.com.sg/knowledge-base-back-end/#itemlist",
-      "name": "EPOS Backend Portal Knowledge Base Categories",
-      "description": "Complete documentation for managing your EPOS system through the backend portal",
-      "numberOfItems": 9,
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "item": {
-            "@type": "HowTo",
-            "@id": "https://www.epos.com.sg/knowledge-base-back-end/erp-sales/",
-            "name": "Sales",
-            "description": "Manage sales transactions, payment methods, orders, and sales-related operations through the backend portal",
-            "url": "https://www.epos.com.sg/knowledge-base-back-end/erp-sales/"
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "item": {
-            "@type": "HowTo",
-            "@id": "https://www.epos.com.sg/knowledge-base-back-end/products/",
-            "name": "Products",
-            "description": "Configure and manage products, pricing, categories, modifiers, and product-related settings",
-            "url": "https://www.epos.com.sg/knowledge-base-back-end/products/"
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "item": {
-            "@type": "HowTo",
-            "@id": "https://www.epos.com.sg/knowledge-base-back-end/customers/",
-            "name": "Customers",
-            "description": "Manage customer database, loyalty programmes, customer groups, and customer-related features",
-            "url": "https://www.epos.com.sg/knowledge-base-back-end/customers/"
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 4,
-          "item": {
-            "@type": "HowTo",
-            "@id": "https://www.epos.com.sg/knowledge-base-back-end/inventory/",
-            "name": "Inventory",
-            "description": "Control stock levels, manage suppliers, handle stock transfers, and monitor inventory operations",
-            "url": "https://www.epos.com.sg/knowledge-base-back-end/inventory/"
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 5,
-          "item": {
-            "@type": "HowTo",
-            "@id": "https://www.epos.com.sg/knowledge-base-back-end/reporting/",
-            "name": "Reporting",
-            "description": "Generate and analyse sales reports, inventory reports, customer insights, and business analytics",
-            "url": "https://www.epos.com.sg/knowledge-base-back-end/reporting/"
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 6,
-          "item": {
-            "@type": "HowTo",
-            "@id": "https://www.epos.com.sg/knowledge-base-back-end/audit/",
-            "name": "Auditing",
-            "description": "Track system changes, monitor user activities, and maintain audit trails for compliance",
-            "url": "https://www.epos.com.sg/knowledge-base-back-end/audit/"
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 7,
-          "item": {
-            "@type": "HowTo",
-            "@id": "https://www.epos.com.sg/knowledge-base-back-end/integrations/",
-            "name": "Integrations",
-            "description": "Connect third-party services, payment gateways, accounting software, and e-commerce platforms",
-            "url": "https://www.epos.com.sg/knowledge-base-back-end/integrations/"
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 8,
-          "item": {
-            "@type": "HowTo",
-            "@id": "https://www.epos.com.sg/knowledge-base-back-end/epos-apps/",
-            "name": "EPOS Apps",
-            "description": "Configure and manage EPOS mobile applications and companion apps",
-            "url": "https://www.epos.com.sg/knowledge-base-back-end/epos-apps/"
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 9,
-          "item": {
-            "@type": "HowTo",
-            "@id": "https://www.epos.com.sg/knowledge-base-back-end/set-up/",
-            "name": "Set Up",
-            "description": "Initial system configuration, user management, outlet setup, and general settings",
-            "url": "https://www.epos.com.sg/knowledge-base-back-end/set-up/"
-          }
-        }
-      ]
-    },
-    {
-      "@type": "SoftwareApplication",
-      "@id": "https://www.epos.com.sg/knowledge-base-back-end/#software",
-      "name": "EPOS Backend Portal",
-      "applicationCategory": "BusinessApplication",
-      "applicationSubCategory": "Point of Sale Management System",
-      "operatingSystem": "Web Browser",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "SGD"
-      },
-      "featureList": [
-        "Sales Management",
-        "Product Configuration",
-        "Customer Management",
-        "Inventory Control",
-        "Business Reporting",
-        "Audit Tracking",
-        "Third-party Integrations",
-        "Multi-outlet Management",
-        "User Access Control"
-      ],
-      "screenshot": "https://www.epos.com.sg/wp-content/uploads/backend-portal-screenshot.jpg",
-      "provider": {
-        "@id": "https://www.epos.com.sg/#organization"
-      },
-      "availableLanguage": "en-SG"
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://www.epos.com.sg/#website",
-      "url": "https://www.epos.com.sg/",
-      "name": "EPOS POS System",
-      "description": "Leading POS system provider in Singapore",
-      "publisher": {
-        "@id": "https://www.epos.com.sg/#organization"
-      },
-      "inLanguage": "en-SG"
-    },
-    {
-      "@type": "Organization",
-      "@id": "https://www.epos.com.sg/#organization",
-      "name": "EPOS Pte. Ltd.",
-      "url": "https://www.epos.com.sg/",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://www.epos.com.sg/wp-content/uploads/2025/12/EPOS_Full-Color.webp",
-        "contentUrl": "https://www.epos.com.sg/wp-content/uploads/2025/12/EPOS_Full-Color.webp"
-      },
-      "sameAs": [
-        "https://www.facebook.com/epossg",
-        "https://www.instagram.com/epossg/",
-        "https://www.youtube.com/@epospossystemsingapore9807",
-        "https://www.linkedin.com/company/14524422",
-        "https://www.xiaohongshu.com/user/profile/5ecf5cbc000000000100162e"
-      ],
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "2 Leng Kee Road, #02-07 Thye Hong Centre",
-        "addressLocality": "Singapore",
-        "postalCode": "159086",
-        "addressCountry": "SG"
-      },
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+65-8482-1888",
-        "email": "sales@epos.com.sg",
-        "contactType": "customer service",
-        "areaServed": "SG",
-        "availableLanguage": ["en"]
-      }
-    }
-  ]
-}
-
-
-</script>
-<?php
-	}
+    </script>
+  <?php
+  }
 }
 add_action('wp_head', 'epos_add_kitchen_display_system_schema');
 function epos_add_kitchen_display_system_schema()
 {
-	if (is_page('kitchen-display-system')) {
+  if (is_page('kitchen-display-system')) {
 
-?>
-<script type="application/ld+json" class="epos-schema">
-  {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "TechArticle",
-      "@id": "https://www.epos.com.sg/kitchen-display-system/#article",
-      "url": "https://www.epos.com.sg/kitchen-display-system/",
-      "headline": "Kitchen Display System (KDS)",
-      "name": "Kitchen Display System (KDS) - Complete User Guide",
-      "description": "Comprehensive guide to EPOS Kitchen Display System (KDS). Learn how to view orders, use elapsed timer, complete orders, dismiss items, and access order history. Reduces paper usage and enables direct interaction with kitchen orders.",
-      "articleBody": "The Kitchen Display System (KDS) is an interactive screen designed to display kitchen orders efficiently. Compared to a traditional kitchen printer, the KDS offers several advantages: Reduces paper usage, Enables staff to interact directly with kitchen orders, Allows staff to access past order histories.",
-      "about": {
-        "@id": "https://www.epos.com.sg/kitchen-display-system/#software"
-      },
-      "author": {
-        "@type": "Organization",
-        "@id": "https://www.epos.com.sg/#organization"
-      },
-      "publisher": {
-        "@id": "https://www.epos.com.sg/#organization"
-      },
-      "isPartOf": {
-        "@id": "https://www.epos.com.sg/#website"
-      },
-      "breadcrumb": {
-        "@id": "https://www.epos.com.sg/kitchen-display-system/#breadcrumb"
-      },
-      "inLanguage": "en-SG",
-      "articleSection": "EPOS Knowledge Base",
-      "keywords": [
-        "kitchen display system",
-        "KDS",
-        "restaurant technology",
-        "kitchen order management",
-        "digital kitchen display",
-        "F&B POS system",
-        "kitchen order tracking"
-      ],
-      "hasPart": [
-        {
-          "@type": "HowToSection",
-          "name": "Overview",
-          "description": "Introduction to Kitchen Display System and its advantages over traditional kitchen printers"
-        },
-        {
-          "@type": "HowToSection",
-          "name": "View Options",
-          "description": "Learn to toggle between Order View and Table View, and use action buttons for sorting and refreshing"
-        },
-        {
-          "@type": "HowToSection",
-          "name": "Elapsed Timer",
-          "description": "Monitor order waiting times with colour-coded elapsed timer (green, yellow, red) and configure timer settings"
-        },
-        {
-          "@type": "HowToSection",
-          "name": "Complete Orders",
-          "description": "Check off completed items and remove finished orders from the display"
-        },
-        {
-          "@type": "HowToSection",
-          "name": "Dismiss Orders",
-          "description": "Handle order cancellations and item dismissals from the KDS"
-        },
-        {
-          "@type": "HowToSection",
-          "name": "Order History",
-          "description": "Access and review past completed and voided orders"
-        }
-      ],
-      "video": {
-        "@type": "VideoObject",
-        "name": "KDS Complete Orders Process",
-        "description": "Video demonstration of checking items and completing orders in the Kitchen Display System",
-        "contentUrl": "https://www.epos.com.sg/wp-content/uploads/2024/11/KDS-check-video.mp4",
-        "thumbnailUrl": "https://www.epos.com.sg/wp-content/uploads/kds-video-thumbnail.jpg",
-        "uploadDate": "2024-11-01"
+  ?>
+    <script type="application/ld+json" class="epos-schema">
+      {
+        "@context": "https://schema.org",
+        "@graph": [{
+            "@type": "TechArticle",
+            "@id": "https://www.epos.com.sg/kitchen-display-system/#article",
+            "url": "https://www.epos.com.sg/kitchen-display-system/",
+            "headline": "Kitchen Display System (KDS)",
+            "name": "Kitchen Display System (KDS) - Complete User Guide",
+            "description": "Comprehensive guide to EPOS Kitchen Display System (KDS). Learn how to view orders, use elapsed timer, complete orders, dismiss items, and access order history. Reduces paper usage and enables direct interaction with kitchen orders.",
+            "articleBody": "The Kitchen Display System (KDS) is an interactive screen designed to display kitchen orders efficiently. Compared to a traditional kitchen printer, the KDS offers several advantages: Reduces paper usage, Enables staff to interact directly with kitchen orders, Allows staff to access past order histories.",
+            "about": {
+              "@id": "https://www.epos.com.sg/kitchen-display-system/#software"
+            },
+            "author": {
+              "@type": "Organization",
+              "@id": "https://www.epos.com.sg/#organization"
+            },
+            "publisher": {
+              "@id": "https://www.epos.com.sg/#organization"
+            },
+            "isPartOf": {
+              "@id": "https://www.epos.com.sg/#website"
+            },
+            "breadcrumb": {
+              "@id": "https://www.epos.com.sg/kitchen-display-system/#breadcrumb"
+            },
+            "inLanguage": "en-SG",
+            "articleSection": "EPOS Knowledge Base",
+            "keywords": [
+              "kitchen display system",
+              "KDS",
+              "restaurant technology",
+              "kitchen order management",
+              "digital kitchen display",
+              "F&B POS system",
+              "kitchen order tracking"
+            ],
+            "hasPart": [{
+                "@type": "HowToSection",
+                "name": "Overview",
+                "description": "Introduction to Kitchen Display System and its advantages over traditional kitchen printers"
+              },
+              {
+                "@type": "HowToSection",
+                "name": "View Options",
+                "description": "Learn to toggle between Order View and Table View, and use action buttons for sorting and refreshing"
+              },
+              {
+                "@type": "HowToSection",
+                "name": "Elapsed Timer",
+                "description": "Monitor order waiting times with colour-coded elapsed timer (green, yellow, red) and configure timer settings"
+              },
+              {
+                "@type": "HowToSection",
+                "name": "Complete Orders",
+                "description": "Check off completed items and remove finished orders from the display"
+              },
+              {
+                "@type": "HowToSection",
+                "name": "Dismiss Orders",
+                "description": "Handle order cancellations and item dismissals from the KDS"
+              },
+              {
+                "@type": "HowToSection",
+                "name": "Order History",
+                "description": "Access and review past completed and voided orders"
+              }
+            ],
+            "video": {
+              "@type": "VideoObject",
+              "name": "KDS Complete Orders Process",
+              "description": "Video demonstration of checking items and completing orders in the Kitchen Display System",
+              "contentUrl": "https://www.epos.com.sg/wp-content/uploads/2024/11/KDS-check-video.mp4",
+              "thumbnailUrl": "https://www.epos.com.sg/wp-content/uploads/kds-video-thumbnail.jpg",
+              "uploadDate": "2024-11-01"
+            }
+          },
+          {
+            "@type": "SoftwareApplication",
+            "@id": "https://www.epos.com.sg/kitchen-display-system/#software",
+            "name": "EPOS Kitchen Display System (KDS)",
+            "applicationCategory": "BusinessApplication",
+            "applicationSubCategory": "Restaurant Kitchen Management System",
+            "operatingSystem": "Windows, Android, iOS"
+          }
+        ]
       }
-    },
-    {
-      "@type": "SoftwareApplication",
-      "@id": "https://www.epos.com.sg/kitchen-display-system/#software",
-      "name": "EPOS Kitchen Display System (KDS)",
-      "applicationCategory": "BusinessApplication",
-      "applicationSubCategory": "Restaurant Kitchen Management System",
-      "operatingSystem": "Windows, Android, iOS"
-    }
-  ]
-}
-</script>
+    </script>
 <?php
-	}
+  }
+}
+
+
+add_action('wp_head', 'epos_add_schema_from_acf');
+function epos_add_schema_from_acf()
+{
+
+  if (!is_singular()) {
+    return;
+  }
+
+  $schema = get_field('schema_json');
+
+  if (empty($schema)) {
+    return;
+  }
+
+  $replacements = [
+    '{{url}}'   => esc_url(get_permalink()),
+    '{{title}}' => esc_js(get_the_title()),
+  ];
+
+  $schema = str_replace(
+    array_keys($replacements),
+    array_values($replacements),
+    $schema
+  );
+
+  echo '<script type="application/ld+json" class="epos-schema">';
+  echo wp_kses_post($schema);
+  echo '</script>';
 }
