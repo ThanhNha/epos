@@ -86,7 +86,7 @@ function job_openings_shortcode()
 
         <div class="label-search-group" style="display: none;">
             <div class="show-tags-choised"></div>
-            <button id="clear-filters"><i class="fa-solid fa-rotate-right"></i> Clear Filters</button>
+            <button id="clear-filters"><i class="fa-solid fa-rotate-right"></i> Clear filters</button>
         </div>
 
         <div class="job-list" id="job-list">
@@ -120,7 +120,7 @@ function job_openings_shortcode()
 
             <div class="job-loading-overlay" id="job-loading" style="display: none;">
                 <div class="job-loading-inner">
-                    <img src="/wp-content/uploads/2025/05/EPOS_Logo_2-3.png" alt="Loading..." class="loading-logo">
+                    <img src="https://www.epos.com.sg/wp-content/uploads/2025/12/EPOS_Full-Color.webp" alt="Loading..." class="loading-logo">
                 </div>
             </div>
         </div>
@@ -128,7 +128,7 @@ function job_openings_shortcode()
             No jobs found matching your criteria.
         </div>
         <div class="load-more-wrapper" style="text-align: center; margin-top: 20px;">
-            <button id="load-more" class="load-more-btn">Load More</button>
+            <button id="load-more" class="load-more-btn">Show more</button>
         </div>
     </div>
 

@@ -297,7 +297,9 @@ $radius: 8px;
 // ===== Loading Overlay =====
 .job-list {
   position: relative;
-  transition: height 0.4s ease, opacity 0.3s ease;
+  transition:
+    height 0.4s ease,
+    opacity 0.3s ease;
   overflow: hidden;
   margin-top: 40px;
 
@@ -337,11 +339,69 @@ $radius: 8px;
 .load-more-btn {
   background-color: $color-ldp;
   border-radius: $radius;
-  font-weight: 500;
+  font-weight: 600;
   padding: 6px 25px;
   color: #fff;
   margin: 0 0;
+  text-transform: capitalize;
   &:hover {
     background-color: $color-ldp-2;
   }
+}
+.inside-life-row {
+  .col {
+    .col-inner {
+      height: 100%;
+      .inside-life-item {
+        padding: 20px;
+        border-radius: 24px;
+        background: #eaf7ff;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
+        height: 100%;
+        .box-text-inner {
+          h3 {
+            color: #777777;
+            font-weight: 700;
+            font-size: 24px !important;
+            line-height: 32px;
+          }
+          h4 {
+            color: #777777;
+            font-weight: 700;
+            font-size: 20px !important;
+            line-height: 32px;
+            margin-bottom: 10px;
+          }
+        }
+        &::after {
+          content: "";
+          position: absolute;
+          width: 60px;
+          height: 60px;
+          top: -30px;
+          right: -10px;
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-image: url("https://www.epos.com.sg/wp-content/uploads/2025/05/bde-icon-icon.png");
+        }
+      }
+    }
+  }
+}
+
+.text-box-why-epos {
+  h4 {
+    color: #001a32;
+    font-weight: 700;
+    font-size: 16px !important;
+  }
+  p {
+    font-size: 16px;
+    font-weight: 500;
+    color: #777777;
+    line-height: 24px;
+  }
+}
+.btn-banner{
+  margin: 20px 0px !important;
 }

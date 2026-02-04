@@ -3,7 +3,7 @@ function floating_mail_shortcode() {
     ob_start();
     ?>
     <a class="floating-mail-btn" href="/contact-us">
-        <img src="/wp-content/uploads/2025/07/envelope-solid-full-1.svg" alt="Mail Us">
+        <img width="30" height="30"  src="https://www.epos.com.sg/wp-content/uploads/2025/07/envelope-solid-full-1.svg" alt="Mail Us">
     </a>
     <?php
     return ob_get_clean();

@@ -139,3 +139,11 @@ function get_tax_percent()
   if (empty($all_tax_rates)) return;
   return $all_tax_rates[0];
 }
+
+add_action('wp_head', function () {
+?>
+  <script src="https://analytics.ahrefs.com/analytics.js"
+    data-key="Z1UqAsymR4Ni8UJ62O7ziw"
+    async></script>
+<?php
+});
