@@ -1,0 +1,132 @@
+<?php
+
+/**
+ * Handle Meta Conversions API (Server-Side Tracking)
+ */
+class My_FB_CAPI
+{
+  private $access_token;
+  private $pixel_id;
+  private $api_version  = 'v19.0';
+
+  public function __construct()
+  {
+    $this->access_token = get_my_fb_access_token();
+    $this->pixel_id     = get_my_fb_pixel_id();
+
+    // Hook into WooCommerce purchase
+    if ($this->access_token && $this->pixel_id) {
+      add_action('woocommerce_order_status_processing', array($this, 'send_purchase_to_capi'));
+      add_action('woocommerce_add_to_cart', array($this, 'send_specific_add_to_cart_to_capi'), 10, 6);
+    }
+  }
+
+  public function send_specific_add_to_cart_to_capi($cart_item_key, $product_id, $quantity)
+  {
+    $target_id = 39234;
+
+    /* Only proceed if it's our target product */
+    if ($product_id != $target_id) {
+      return;
+    }
+
+    $product = wc_get_product($product_id);
+    if (! $product) return;
+
+    $user_data = [
+      'client_ip_address' => $_SERVER['REMOTE_ADDR'] ?? '',
+      'client_user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? '',
+      'em' => is_user_logged_in() ? hash('sha256', wp_get_current_user()->user_email) : '',
+    ];
+
+    /* Prepare Custom Data */
+    $custom_data = [
+      'content_ids'  => [(string)$product_id],
+      'content_type' => 'product',
+      'value'        => (float) $product->get_price() * $quantity,
+      'currency'     => get_woocommerce_currency(),
+      'content_name' => $product->get_name(),
+    ];
+
+    $this->send_event_to_meta(
+      'AddToCart',
+      My_FB_Init::get_event_id(),
+      $custom_data,
+      $user_data
+    );
+  }
+
+  /**
+   * Send events to Meta
+   */
+  public function send_event_to_meta($event_name, $event_id, $custom_data, $user_data)
+  {
+    $url = "https://graph.facebook.com/{$this->api_version}/{$this->pixel_id}/events?access_token={$this->access_token}";
+
+    $body = [
+      'data' => [
+        [
+          'event_name' => $event_name,
+          'event_time' => time(),
+          'event_id'   => $event_id,
+          'action_source' => 'website',
+          'event_source_url' => home_url(add_query_arg([], $GLOBALS['wp']->request)),
+          'user_data'  => $user_data,
+          'custom_data' => $custom_data,
+        ]
+      ]
+    ];
+
+    $response = wp_remote_post($url, [
+      'method'    => 'POST',
+      'body'      => json_encode($body),
+      'headers'   => ['Content-Type' => 'application/json'],
+      'timeout'   => 15,
+    ]);
+
+    return $response;
+  }
+
+  /**
+   * Track Purchase via CAPI
+   */
+  public function send_purchase_to_capi($order_id)
+  {
+    $order = wc_get_order($order_id);
+
+    if (! $order) return;
+
+    if ($order->get_meta('_fb_capi_sent') === 'yes') {
+      return;
+    }
+    //Prepare Custom Data
+    $custom_data = [
+      'value'    => (float) $order->get_total(),
+      'currency' => strtoupper($order->get_currency()),
+    ];
+
+    $user_data = [
+      'client_ip_address' => $_SERVER['REMOTE_ADDR'],
+      'client_user_agent' => $_SERVER['HTTP_USER_AGENT'],
+      'em' => hash('sha256', strtolower(trim($order->get_billing_email()))),
+      'ph' => hash('sha256', $order->get_billing_phone()),
+    ];
+
+    $response = $this->send_event_to_meta(
+      'Purchase',
+      'PURCHASE_' . $order->get_id(),
+      $custom_data,
+      $user_data
+    );
+
+    if (! is_wp_error($response)) {
+      $response_code = wp_remote_retrieve_response_code($response);
+      if ($response_code >= 200 && $response_code < 300) {
+
+        /* Update meta and save order object */
+        $order->update_meta_data('_fb_capi_sent', 'yes');
+        $order->save();
+      }
+    }
+  }
+}
