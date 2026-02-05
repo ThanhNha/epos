@@ -62,7 +62,7 @@ add_action('woocommerce_order_details_after_customer_details', function ($order)
 // Show in mail
 add_filter('woocommerce_email_order_meta_fields', function ($fields, $sent_to_admin, $order) {
     $eg = $order->get_meta('order_eg');
-     $mcc = $order->get_meta('_supported_mcc');
+    $mcc = $order->get_meta('_supported_mcc');
     if ($eg) {
         $fields['order_eg'] = [
             'label' => __('UEN/Business Registration Number', 'woocommerce'),
@@ -131,3 +131,27 @@ add_action('woocommerce_checkout_process', function () {
     }
 });
 
+add_action('woocommerce_single_product_summary', 'bluetap_show_promo_ends_text', 25);
+function bluetap_show_promo_ends_text()
+{
+
+    global $product;
+
+    //39234
+    $product_id = 34592;
+
+    if (! $product || $product->get_id() != $product_id) {
+        return;
+    }
+
+    if ($product->is_on_sale()) {
+
+        $sale_end = $product->get_date_on_sale_to();
+
+        if ($sale_end) {
+            echo '<p class="bluetap-promo-ends">';
+            echo 'Promo Ends ' . date_i18n('d M', $sale_end->getTimestamp());
+            echo '</p>';
+        }
+    }
+}
