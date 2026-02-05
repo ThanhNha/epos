@@ -138,7 +138,7 @@ function bluetap_show_promo_ends_text()
     global $product;
 
     //39234
-    $product_id = 34592;
+    $product_id = 39234;
 
     if (! $product || $product->get_id() != $product_id) {
         return;
