@@ -29,7 +29,6 @@ class My_FB_CAPI
     if ($product_id != $target_id) {
       return;
     }
-
     $product = wc_get_product($product_id);
     if (! $product) return;
 
