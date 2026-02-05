@@ -7,7 +7,7 @@ function cart_has_product_bluetap360()
     }
 
     foreach (WC()->cart->get_cart() as $cart_item) {
-        if ((int) $cart_item['product_id'] === 34592) {  //39234
+        if ((int) $cart_item['product_id'] === 39234) {  //39234
             return true;
         }
     }
