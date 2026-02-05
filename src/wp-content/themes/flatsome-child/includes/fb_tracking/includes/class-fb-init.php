@@ -3,7 +3,7 @@ class My_FB_Init
 {
   public function __construct()
   {
-    add_action('wp_head', array($this, 'inject_base_pixel'));
+    //add_action('wp_head', array($this, 'inject_base_pixel'));
   }
 
   /**
@@ -51,7 +51,7 @@ class My_FB_Init
       fbq('track', 'PageView');
     </script>
     <noscript><img height="1" width="1" style="display:none"
-        src="https://www.facebook.com/tr?id=977422665297634&ev=PageView&noscript=1" /></noscript>
+        src="https://www.facebook.com/tr?id=1227525757617954&ev=PageView&noscript=1" /></noscript>
     <!-- End Meta Pixel Code -->
 <?php
   }
