@@ -663,6 +663,16 @@ textarea {
 .bluetap-promo-ends {
   margin-bottom: 20px !important;
   font-weight: 400;
-  color: $blue-dark;
+  color: red;
   font-style: italic;
+}
+
+body.checkout {
+  .header-main {
+    .header-nav {
+      > .menu-item {
+        margin: 0 9px;
+      }
+    }
+  }
 }
