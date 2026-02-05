@@ -109,10 +109,10 @@ add_action('woocommerce_after_checkout_billing_form', function ($checkout) {
 ?>
 
     <div id="supported-mcc-field">
-        <label for="supported_mcc">Supported MCC <span class="required" aria-hidden="true">*</span></label>
+        <label for="supported_mcc">MCC <span class="required" aria-hidden="true">*</span></label>
 
         <select name="supported_mcc" class="woocommerce-select" required>
-            <option value="">-- Select MCC --</option>
+            <option value="">Only applicable to supported MCCs</option>
 
             <?php foreach ($options as $option): ?>
                 <option value="<?php echo esc_attr($option['value']); ?>">

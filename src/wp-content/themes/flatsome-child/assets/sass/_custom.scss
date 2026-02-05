@@ -243,10 +243,10 @@ body.payment-soundbox {
       }
     }
   }
-  .nav{
-    .tab{
-      &.active{
-        a{
+  .nav {
+    .tab {
+      &.active {
+        a {
           color: white !important;
           @include desktop {
             color: #1b459b !important;
@@ -643,4 +643,18 @@ body.payment-soundbox {
 }
 .button {
   border: none !important;
+}
+
+#supported-mcc-field {
+  select {
+    font-size: 15px !important;
+    font-weight: 400 !important;
+    color: #777;
+  }
+}
+input[type=text], input[type=email], select, textarea {
+  &:focus{
+        border: 1px solid #ddd!important;
+  }
+
 }
