@@ -7,7 +7,7 @@ class My_FB_CAPI
 {
   private $access_token;
   private $pixel_id;
-  private $api_version  = 'v19.0';
+  private $api_version  = 'v24.0';
 
   public function __construct()
   {
@@ -73,7 +73,9 @@ class My_FB_CAPI
           'user_data'  => $user_data,
           'custom_data' => $custom_data,
         ]
-      ]
+      ],
+      'test_event_code' => 'TEST96734'
+
     ];
 
     $response = wp_remote_post($url, [
