@@ -101,7 +101,7 @@ function customAccordion() {
             // Scroll on mobile
             if (
               /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(
-                navigator.userAgent
+                navigator.userAgent,
               ) &&
               $.fn.scrollTo
             ) {
@@ -139,7 +139,7 @@ function customAccordion() {
           $content.slideDown(200, function () {
             if (
               /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(
-                navigator.userAgent
+                navigator.userAgent,
               ) &&
               $.fn.scrollTo
             ) {
@@ -196,7 +196,7 @@ $(document).ready(function () {
       {
         scrollTop: $("#contact").offset().top - 100,
       },
-      800
+      800,
     );
   });
 });
@@ -254,5 +254,24 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
     });
+  });
+});
+
+// Bluetap Promo Popup
+document.addEventListener("DOMContentLoaded", function () {
+  const popup = document.getElementById("BlueTap-Promo");
+
+  if (!popup) return;
+  setTimeout(function () {
+    popup.classList.add("show");
+  }, 3000);
+
+  document.addEventListener("click", function (e) {
+    if (
+      e.target.classList.contains("bluetap-promo-close") ||
+      e.target.classList.contains("bluetap-promo-overlay")
+    ) {
+      popup.classList.remove("show");
+    }
   });
 });
