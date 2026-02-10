@@ -7,7 +7,7 @@ function cart_has_product_bluetap360()
     }
 
     foreach (WC()->cart->get_cart() as $cart_item) {
-        if ((int) $cart_item['product_id'] === 39234) {  //39234
+        if ((int) $cart_item['product_id'] === 34592) {  //39234
             return true;
         }
     }
@@ -115,7 +115,7 @@ add_action('woocommerce_after_checkout_billing_form', function ($checkout) {
             <option value="">Only applicable to supported MCCs</option>
 
             <?php foreach ($options as $option): ?>
-                <option value="<?php echo esc_attr($option['value']); ?>">
+                <option value="<?php echo esc_attr($option['label'] . ' - ' . $option['value']); ?>">
                     <?php echo esc_html($option['label'] . ' - ' . $option['value']); ?>
                 </option>
             <?php endforeach; ?>
@@ -215,7 +215,8 @@ function easyparcel_only_sf_domestic_free_shipping($rates, $package)
     return $rates;
 }
 
-function cart_has_product_id_safe($target_product_id) {
+function cart_has_product_id_safe($target_product_id)
+{
     if (! WC()->cart || WC()->cart->is_empty()) return false;
 
     foreach (WC()->cart->get_cart() as $cart_item) {
@@ -247,3 +248,36 @@ function exclude_shipping_tax_when_product_id_in_cart($rates, $package)
 
     return $rates;
 }
+
+add_action('woocommerce_checkout_process', function () {
+
+    if (! cart_has_product_bluetap360()) {
+        return;
+    }
+
+    if (empty($_POST['order_eg'])) {
+        return;
+    }
+
+    $uen = sanitize_text_field($_POST['order_eg']);
+    $product_id = 34592; // 39234
+
+    $orders = wc_get_orders([
+        'limit'      => 1,
+        'status'     => ['processing', 'completed'],
+        'meta_key'   => 'order_eg',
+        'meta_value' => $uen,
+    ]);
+
+    foreach ($orders as $order) {
+        foreach ($order->get_items() as $item) {
+            if ((int) $item->get_product_id() === $product_id) {
+                wc_add_notice(
+                    __('This UEN has already purchased Bluetap360. Each UEN is allowed to purchase only once.', 'woocommerce'),
+                    'error'
+                );
+                return;
+            }
+        }
+    }
+});
