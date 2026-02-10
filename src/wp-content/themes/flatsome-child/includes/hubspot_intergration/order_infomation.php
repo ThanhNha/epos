@@ -13,6 +13,12 @@ function sync_wc_order_to_hubspot($order_id, $posted_data, $order)
     return;
   }
 
+  $is_bluetap_order = $order->get_meta('bluetap360_order');
+
+  if (!$is_bluetap_order == 'yes') {
+    return;
+  }
+
   $hubspot_access_token =  get_field('hubspot_token', 'option');
 
   $payment_status = $order->get_status() == 'processing' || $order->get_status() == 'completed' ? 'PAID' : 'INITIATED CHECKOUT';
@@ -56,11 +62,13 @@ function sync_wc_order_to_hubspot($order_id, $posted_data, $order)
     'total_pricing' => $total,
     'product_name' => get_products_data($order),
     'message' => $order_notes,
+    "productsservices" => "EPOS360",
 
     'utm_source'     => $utm_source ?: 'Website',
     'utm_campaign'     => $utm_campaign,
     'utm_medium'     => $utm_medium,
     "hs_latest_source" => "OTHER_CAMPAIGNS"
+
   ];
 
   //Try to update first, if 404 then create
@@ -77,4 +85,3 @@ function sync_wc_order_to_hubspot($order_id, $posted_data, $order)
     error_log('HubSpot Sync Error: ' . $response->get_error_message());
   }
 }
-

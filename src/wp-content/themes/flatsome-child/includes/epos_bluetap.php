@@ -102,7 +102,7 @@ add_action('woocommerce_checkout_create_order', function ($order, $data) {
     foreach (WC()->cart->get_cart() as $cart_item) {
         if ((int) $cart_item['product_id'] === BLUETAP_PRODUCT_ID) {
 
-            $order->update_meta_data('bluetap360_order', 'bluetap360_order');
+            $order->update_meta_data('bluetap360_order', 'yes');
             break;
         }
     }
