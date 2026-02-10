@@ -2,6 +2,7 @@ import "./slider";
 import "./blog";
 import "./infiniteScroll";
 import "./careers-page";
+import"./easyparcel";
 ("use strict");
 $ = jQuery;
 
@@ -275,3 +276,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+
+
+

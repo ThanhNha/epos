@@ -102,7 +102,7 @@ add_action('woocommerce_checkout_create_order', function ($order, $data) {
     foreach (WC()->cart->get_cart() as $cart_item) {
         if ((int) $cart_item['product_id'] === BLUETAP_PRODUCT_ID) {
 
-            $order->update_meta_data('bluetap360_order', 'bluetap360_order');
+            $order->update_meta_data('bluetap360_order', 'yes');
             break;
         }
     }
@@ -308,9 +308,25 @@ add_action('woocommerce_check_cart_items', function () {
 
 add_filter('woocommerce_is_sold_individually', function ($return, $product) {
 
-    if ((int) $product->get_id() === BLUETAP_PRODUCT_ID) { 
+    if ((int) $product->get_id() === BLUETAP_PRODUCT_ID) {
         return true;
     }
 
     return $return;
 }, 10, 2);
+
+add_filter('woocommerce_package_rates', function ($rates, $package) {
+
+    if (! cart_has_product_bluetap360()) {
+        return $rates;
+    }
+    foreach ($rates as $rate_id => $rate) {
+        if (strpos($rate->method_id, 'flat_rate') !== false) {
+            unset($rates[$rate_id]);
+        }
+    }
+
+    return $rates;
+
+}, 999, 2);
+
