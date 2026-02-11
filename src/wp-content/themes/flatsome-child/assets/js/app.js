@@ -2,7 +2,6 @@ import "./slider";
 import "./blog";
 import "./infiniteScroll";
 import "./careers-page";
-import "./easyparcel";
 ("use strict");
 $ = jQuery;
 
@@ -260,7 +259,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Bluetap Promo Popup
 document.addEventListener("DOMContentLoaded", function () {
-  if (window.location.pathname !== "/product/epos360-bluetap/") return;
   const popup = document.getElementById("BlueTap-Promo");
 
   if (!popup) return;
