@@ -324,6 +324,9 @@ add_filter('woocommerce_package_rates', function ($rates, $package) {
         if (strpos($rate->method_id, 'flat_rate') !== false) {
             unset($rates[$rate_id]);
         }
+        if (strpos($rate->method_id, 'local_pickup') !== false) {
+            unset($rates[$rate_id]);
+        }
     }
 
     return $rates;
