@@ -7,7 +7,7 @@ function cart_has_product_bluetap360()
     }
 
     foreach (WC()->cart->get_cart() as $cart_item) {
-        if ((int) $cart_item['product_id'] === 39234) {  //39234
+        if (is_bluetap_product($cart_item['product_id'])) {
             return true;
         }
     }
@@ -95,6 +95,14 @@ add_action('woocommerce_checkout_create_order', function ($order, $data) {
             sanitize_text_field($_POST['supported_mcc'])
         );
     }
+
+    foreach (WC()->cart->get_cart() as $cart_item) {
+        if (is_bluetap_product($cart_item['product_id'])) {
+
+            $order->update_meta_data('bluetap360_order', 'yes');
+            break;
+        }
+    }
 }, 99, 2);
 
 
@@ -115,7 +123,7 @@ add_action('woocommerce_after_checkout_billing_form', function ($checkout) {
             <option value="">Only applicable to supported MCCs</option>
 
             <?php foreach ($options as $option): ?>
-                <option value="<?php echo esc_attr($option['value']); ?>">
+                <option value="<?php echo esc_attr($option['label'] . ' - ' . $option['value']); ?>">
                     <?php echo esc_html($option['label'] . ' - ' . $option['value']); ?>
                 </option>
             <?php endforeach; ?>
@@ -137,10 +145,9 @@ function bluetap_show_promo_ends_text()
 
     global $product;
 
-    //39234
-    $product_id = 39234;
 
-    if (! $product || $product->get_id() != $product_id) {
+
+    if (! $product || ! is_bluetap_product($product->get_id())) {
         return;
     }
 
