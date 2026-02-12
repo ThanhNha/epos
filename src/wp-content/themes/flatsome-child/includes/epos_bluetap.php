@@ -9,7 +9,7 @@ function cart_has_product_bluetap360()
     }
 
     foreach (WC()->cart->get_cart() as $cart_item) {
-        if ((int) $cart_item['product_id'] === BLUETAP_PRODUCT_ID) {
+        if (is_bluetap_product($cart_item['product_id'])) {
             return true;
         }
     }
@@ -100,7 +100,7 @@ add_action('woocommerce_checkout_create_order', function ($order, $data) {
     }
 
     foreach (WC()->cart->get_cart() as $cart_item) {
-        if ((int) $cart_item['product_id'] === BLUETAP_PRODUCT_ID) {
+        if (is_bluetap_product($cart_item['product_id'])) {
 
             $order->update_meta_data('bluetap360_order', 'yes');
             break;
@@ -150,7 +150,7 @@ function bluetap_show_promo_ends_text()
 
 
 
-    if (! $product || $product->get_id() != BLUETAP_PRODUCT_ID) {
+    if (! $product || ! is_bluetap_product($product->get_id())) {
         return;
     }
 
