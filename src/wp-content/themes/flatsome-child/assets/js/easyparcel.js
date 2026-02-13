@@ -24,7 +24,7 @@
             replaceShippingLabel();
         }
     });
-
+wr
     // WooCommerce AJAX (checkout only)
     if (window.jQuery) {
         jQuery(document.body).on(
@@ -50,3 +50,4 @@
     });
 
 })();
+
