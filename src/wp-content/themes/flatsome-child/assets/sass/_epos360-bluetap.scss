@@ -209,8 +209,19 @@ body {
     }
 
     @media (max-width: 768px) {
+      .payment-teminal-banner {
+        .button {
+          width: 149px;
+          height: 55px;
+          display: inline-block;
+          margin-right: 10px;
+          &:last-child {
+            margin-right: 0px;
+          }
+        }
+      }
       .payment-teminal-banner .section-bg.bg-loaded {
-        background-image: url(https://epos-staging.theshin.info/wp-content/uploads/2026/02/BlueTap-Background-Top-1-2.png) !important;
+        background-image: url(https://epos-staging.theshin.info/wp-content/uploads/2026/02/BlueTap-Background-Top-1-3-scaled.png) !important;
       }
       .comparison-wrapper {
         overflow-x: auto;
