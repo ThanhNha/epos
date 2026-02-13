@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div id="logo-360" class="flex-col logo">
                     <a href="<?php echo esc_url(home_url('/')); ?>">
-                     <img width="250" height="72" src="/wp-content/uploads/2026/01/Logo360.svg" class="header_logo header-logo" alt="logo-epos-360">
+                        <img width="250" height="72" src="/wp-content/uploads/2026/01/Logo360.svg" class="header_logo header-logo" alt="logo-epos-360">
                     </a>
                 </div>
 
@@ -25,19 +25,26 @@
 
                 <!-- Right Elements -->
                 <div class="flex-col hide-for-medium flex-right">
-                   <!-- <?php
-                    if (class_exists('FlatsomeNavDropdown')) {
-                        wp_nav_menu(array(
-                            'theme_location' => '360_menu',
-                            'container'      => false,
-                            'menu_class'     => 'header-nav header-nav-main nav nav-left nav-line-bottom  ',
-                            'depth'          => 3,
-                            'walker'         => new FlatsomeNavDropdown(),
-                            'fallback_cb'    => false,
-                        ));
-                    }
-                    ?> -->
-                    <?php echo do_shortcode('[block id="epos360-header-button"]'); ?>
+                    <!-- <?php
+                            if (class_exists('FlatsomeNavDropdown')) {
+                                wp_nav_menu(array(
+                                    'theme_location' => '360_menu',
+                                    'container'      => false,
+                                    'menu_class'     => 'header-nav header-nav-main nav nav-left nav-line-bottom  ',
+                                    'depth'          => 3,
+                                    'walker'         => new FlatsomeNavDropdown(),
+                                    'fallback_cb'    => false,
+                                ));
+                            }
+                            ?> -->
+                    <?php if (is_page('epos360')) : ?>
+                        <?php echo do_shortcode('[block id="epos360-header-button"]'); ?>
+                    <?php endif; ?>
+
+                    <?php if (is_page('epos360-bluetap')) : ?>
+                        <?php echo do_shortcode('[block id="button-epos360-bluetap"]'); ?>
+                    <?php endif; ?>
+
                 </div>
 
 
