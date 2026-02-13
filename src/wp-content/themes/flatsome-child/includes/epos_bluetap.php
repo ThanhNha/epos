@@ -1,4 +1,6 @@
 <?php
+define('BLUETAP_PRODUCT_ID', 34592); // This is ID on live site: 39234
+
 // Check cart item has Bluetap360
 function cart_has_product_bluetap360()
 {
@@ -7,7 +9,7 @@ function cart_has_product_bluetap360()
     }
 
     foreach (WC()->cart->get_cart() as $cart_item) {
-        if ((int) $cart_item['product_id'] === 39234) {  //39234
+        if (is_bluetap_product($cart_item['product_id'])) {
             return true;
         }
     }
@@ -76,6 +78,7 @@ add_filter('woocommerce_email_order_meta_fields', function ($fields, $sent_to_ad
             'value' => $mcc,
         ];
     }
+
     return $fields;
 }, 10, 3);
 
@@ -94,6 +97,14 @@ add_action('woocommerce_checkout_create_order', function ($order, $data) {
             '_supported_mcc',
             sanitize_text_field($_POST['supported_mcc'])
         );
+    }
+
+    foreach (WC()->cart->get_cart() as $cart_item) {
+        if (is_bluetap_product($cart_item['product_id'])) {
+
+            $order->update_meta_data('bluetap360_order', 'yes');
+            break;
+        }
     }
 }, 99, 2);
 
@@ -115,7 +126,7 @@ add_action('woocommerce_after_checkout_billing_form', function ($checkout) {
             <option value="">Only applicable to supported MCCs</option>
 
             <?php foreach ($options as $option): ?>
-                <option value="<?php echo esc_attr($option['value']); ?>">
+                <option value="<?php echo esc_attr($option['label'] . ' - ' . $option['value']); ?>">
                     <?php echo esc_html($option['label'] . ' - ' . $option['value']); ?>
                 </option>
             <?php endforeach; ?>
@@ -137,10 +148,9 @@ function bluetap_show_promo_ends_text()
 
     global $product;
 
-    //39234
-    $product_id = 39234;
 
-    if (! $product || $product->get_id() != $product_id) {
+
+    if (! $product || ! is_bluetap_product($product->get_id())) {
         return;
     }
 
@@ -155,3 +165,168 @@ function bluetap_show_promo_ends_text()
         }
     }
 }
+
+
+add_filter('woocommerce_package_rates', 'easyparcel_only_sf_domestic_free_shipping', 100, 2);
+function easyparcel_only_sf_domestic_free_shipping($rates, $package)
+{
+
+    $has_free  = false;
+    $has_other = false;
+
+    foreach ($package['contents'] as $item) {
+        if (empty($item['data'])) continue;
+
+        $product = $item['data'];
+        $class   = $product->get_shipping_class();
+
+        if ($class === 'free-shipping') {
+            $has_free = true;
+        } else {
+            $has_other = true;
+        }
+    }
+
+    foreach ($rates as $rate_id => $rate) {
+
+        $method_id = $rate->method_id;
+        $label     = $rate->label;
+
+        $is_easyparcel = (
+            stripos($method_id, 'easyparcel') !== false ||
+            stripos($label, 'SF') !== false ||
+            stripos($label, 'EasyParcel') !== false
+        );
+
+        if (! $has_free || $has_other) {
+            if ($is_easyparcel) {
+                unset($rates[$rate_id]);
+            }
+            continue;
+        }
+
+        if ($is_easyparcel) {
+
+            if (stripos($label, 'SF Domestic') === false) {
+                unset($rates[$rate_id]);
+                continue;
+            }
+
+            $rates[$rate_id]->cost = 0;
+
+            if (! empty($rates[$rate_id]->taxes)) {
+                foreach ($rates[$rate_id]->taxes as $key => $tax) {
+                    $rates[$rate_id]->taxes[$key] = 0;
+                }
+            }
+        }
+    }
+
+    return $rates;
+}
+
+function cart_has_product_id_safe($target_product_id)
+{
+    if (! WC()->cart || WC()->cart->is_empty()) return false;
+
+    foreach (WC()->cart->get_cart() as $cart_item) {
+        $product = $cart_item['data'];
+        if (! $product) continue;
+
+        $product_id = $product->get_parent_id() ?: $product->get_id();
+
+        if ((int) $product_id === (int) $target_product_id) {
+            return true;
+        }
+    }
+    return false;
+}
+
+add_filter('woocommerce_package_rates', 'exclude_shipping_tax_when_product_id_in_cart', 20, 2);
+function exclude_shipping_tax_when_product_id_in_cart($rates, $package)
+{
+
+    if (! cart_has_product_id_safe(BLUETAP_PRODUCT_ID)) {
+        return $rates;
+    }
+
+    foreach ($rates as $rate_key => $rate) {
+        $rates[$rate_key]->taxes = [];
+        $rates[$rate_key]->tax_status = 'none';
+    }
+
+    return $rates;
+}
+
+add_action('woocommerce_checkout_process', function () {
+
+    if (! cart_has_product_bluetap360()) {
+        return;
+    }
+
+    if (empty($_POST['order_eg'])) {
+        return;
+    }
+
+    $uen = sanitize_text_field($_POST['order_eg']);
+
+    $orders = wc_get_orders([
+        'limit'      => 1,
+        'status'     => ['processing', 'completed'],
+        'meta_key'   => 'order_eg',
+        'meta_value' => $uen,
+    ]);
+
+    foreach ($orders as $order) {
+        foreach ($order->get_items() as $item) {
+            if ((int) $item->get_product_id() === BLUETAP_PRODUCT_ID) {
+                wc_add_notice(
+                    __('This UEN has already purchased Bluetap360. Each UEN is allowed to purchase only once.', 'woocommerce'),
+                    'error'
+                );
+                return;
+            }
+        }
+    }
+});
+
+add_action('woocommerce_check_cart_items', function () {
+
+    foreach (WC()->cart->get_cart() as $cart_item) {
+        if ((int) $cart_item['product_id'] === BLUETAP_PRODUCT_ID && $cart_item['quantity'] > 1) {
+
+            wc_add_notice(
+                __('Each UEN is allowed to purchase only one Bluetap product. Please adjust the quantity.', 'woocommerce'),
+                'error'
+            );
+
+            WC()->cart->set_quantity($cart_item['key'], 1);
+            break;
+        }
+    }
+});
+
+add_filter('woocommerce_is_sold_individually', function ($return, $product) {
+
+    if ((int) $product->get_id() === BLUETAP_PRODUCT_ID) {
+        return true;
+    }
+
+    return $return;
+}, 10, 2);
+
+add_filter('woocommerce_package_rates', function ($rates, $package) {
+
+    if (! cart_has_product_bluetap360()) {
+        return $rates;
+    }
+    foreach ($rates as $rate_id => $rate) {
+        if (strpos($rate->method_id, 'flat_rate') !== false) {
+            unset($rates[$rate_id]);
+        }
+    }
+
+    return $rates;
+
+}, 999, 2);
+
