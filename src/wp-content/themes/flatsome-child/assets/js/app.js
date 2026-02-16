@@ -2,6 +2,7 @@ import "./slider";
 import "./blog";
 import "./infiniteScroll";
 import "./careers-page";
+import"./easyparcel";
 ("use strict");
 $ = jQuery;
 
@@ -274,4 +275,21 @@ document.addEventListener("DOMContentLoaded", function () {
       popup.classList.remove("show");
     }
   });
+});
+
+
+const video = document.getElementById("myVideo");
+const playBtn = document.getElementById("playBtn");
+
+playBtn.addEventListener("click", () => {
+    video.play();
+    playBtn.classList.add("hide");
+});
+
+video.addEventListener("pause", () => {
+    playBtn.classList.remove("hide");
+});
+
+video.addEventListener("ended", () => {
+    playBtn.classList.remove("hide");
 });

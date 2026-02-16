@@ -6,15 +6,18 @@
                 <!-- Logo -->
                 <div id="logo-360" class="flex-col logo">
                     <a href="<?php echo esc_url(home_url('/')); ?>">
-                     <img width="250" height="72" src="/wp-content/uploads/2026/01/Logo360.svg" class="header_logo header-logo" alt="logo-epos-360">
+                        <img width="250" height="72" src="/wp-content/uploads/2026/01/Logo360.svg" class="header_logo header-logo" alt="logo-epos-360">
                     </a>
                 </div>
 
                 <!-- Mobile Left Elements -->
                 <div class="flex-col show-for-medium flex-left mobile-left d-none">
-                    <ul class="mobile-nav nav nav-left <?php flatsome_nav_classes('main-mobile'); ?>">
-                        <?php flatsome_header_elements('header_mobile_elements_left', 'mobile'); ?>
-                    </ul>
+                    <?php if (is_page('epos360')) : ?>
+
+                        <ul class="mobile-nav nav nav-left <?php flatsome_nav_classes('main-mobile'); ?>">
+                            <?php flatsome_header_elements('header_mobile_elements_left', 'mobile'); ?>
+                        </ul>
+                    <?php endif; ?>
                 </div>
 
                 <!-- Left Elements -->
@@ -25,19 +28,26 @@
 
                 <!-- Right Elements -->
                 <div class="flex-col hide-for-medium flex-right">
-                   <!-- <?php
-                    if (class_exists('FlatsomeNavDropdown')) {
-                        wp_nav_menu(array(
-                            'theme_location' => '360_menu',
-                            'container'      => false,
-                            'menu_class'     => 'header-nav header-nav-main nav nav-left nav-line-bottom  ',
-                            'depth'          => 3,
-                            'walker'         => new FlatsomeNavDropdown(),
-                            'fallback_cb'    => false,
-                        ));
-                    }
-                    ?> -->
-                    <?php echo do_shortcode('[block id="epos360-header-button"]'); ?>
+                    <!-- <?php
+                            if (class_exists('FlatsomeNavDropdown')) {
+                                wp_nav_menu(array(
+                                    'theme_location' => '360_menu',
+                                    'container'      => false,
+                                    'menu_class'     => 'header-nav header-nav-main nav nav-left nav-line-bottom  ',
+                                    'depth'          => 3,
+                                    'walker'         => new FlatsomeNavDropdown(),
+                                    'fallback_cb'    => false,
+                                ));
+                            }
+                            ?> -->
+                    <?php if (is_page('epos360')) : ?>
+                        <?php echo do_shortcode('[block id="epos360-header-button"]'); ?>
+                    <?php endif; ?>
+
+                    <?php if (is_page('epos360-bluetap')) : ?>
+                        <?php echo do_shortcode('[block id="button-epos360-bluetap"]'); ?>
+                    <?php endif; ?>
+
                 </div>
 
 
@@ -45,8 +55,12 @@
                 <!-- Mobile Right Elements -->
                 <div class="flex-col show-for-medium flex-right">
                     <ul class="mobile-nav nav nav-right <?php flatsome_nav_classes('main-mobile'); ?>">
-
+                        <?php if (is_page('epos360-bluetap')) : ?>
+                            <?php echo do_shortcode('[block id="button-epos360-bluetap"]'); ?>
+                        <?php endif; ?>
                     </ul>
+
+
                 </div>
 
             </div>
