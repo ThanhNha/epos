@@ -79,18 +79,3 @@ function adjust_local_pickup($rate, $rate_key)
  *
  */
 
-
-
-// Force free shipping for products with 'free-shipping' shipping class
-add_filter( 'woocommerce_package_rates', 'force_free_shipping_for_bluetap', 10, 2 );
-function force_free_shipping_for_bluetap( $rates, $package ) {
-    foreach ( WC()->cart->get_cart() as $item ) {
-        if ( has_term( 'free-shipping', 'product_shipping_class', $item['product_id'] ) ) {
-            foreach ( $rates as $rate_id => $rate ) {
-                $rates[$rate_id]->cost = 0;
-            }
-            break;
-        }
-    }
-    return $rates;
-}
