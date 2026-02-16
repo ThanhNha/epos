@@ -12,9 +12,12 @@
 
                 <!-- Mobile Left Elements -->
                 <div class="flex-col show-for-medium flex-left mobile-left d-none">
-                    <ul class="mobile-nav nav nav-left <?php flatsome_nav_classes('main-mobile'); ?>">
-                        <?php flatsome_header_elements('header_mobile_elements_left', 'mobile'); ?>
-                    </ul>
+                    <?php if (is_page('epos360')) : ?>
+
+                        <ul class="mobile-nav nav nav-left <?php flatsome_nav_classes('main-mobile'); ?>">
+                            <?php flatsome_header_elements('header_mobile_elements_left', 'mobile'); ?>
+                        </ul>
+                    <?php endif; ?>
                 </div>
 
                 <!-- Left Elements -->
@@ -52,8 +55,12 @@
                 <!-- Mobile Right Elements -->
                 <div class="flex-col show-for-medium flex-right">
                     <ul class="mobile-nav nav nav-right <?php flatsome_nav_classes('main-mobile'); ?>">
-
+                        <?php if (is_page('epos360-bluetap')) : ?>
+                            <?php echo do_shortcode('[block id="button-epos360-bluetap"]'); ?>
+                        <?php endif; ?>
                     </ul>
+
+
                 </div>
 
             </div>
