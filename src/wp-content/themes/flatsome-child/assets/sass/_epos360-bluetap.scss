@@ -125,14 +125,24 @@ body {
     }
 
     .ldp-claim-row {
-      background-image: url("/wp-content/uploads/2026/02/Intro-Section.png");
+      background-image: url(https://www.epos.com.sg/wp-content/uploads/2026/02/Intro-Section-4.png);
+      background-size: contain;
+      background-repeat: no-repeat;
       border-radius: 24px;
       overflow: hidden;
       .content-img {
         padding: 0px !important;
       }
       .content-col {
-        padding: 20px !important;
+        padding: 20px 20px 0 !important;
+        @include desktop {
+          padding: 20px !important;
+        }
+        .col-inner{
+          @include only-mobile {
+            padding: 0 10px !important;
+          }
+        }
       }
     }
     //
