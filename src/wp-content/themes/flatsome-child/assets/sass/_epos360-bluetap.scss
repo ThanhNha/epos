@@ -18,50 +18,66 @@ body {
       background-repeat: no-repeat !important;
       background-size: cover !important;
     }
-    .text-secondary{
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    a,
+    span {
+      font-family: "Poppins", sans-serif !important;
+    }
+    .text-secondary {
       color: $epos360-secondary !important;
-      h1{
+      h1 {
         color: $epos360-secondary !important;
       }
-       h2{
+      h2 {
         color: $epos360-secondary !important;
       }
-       h3{
+      h3 {
         color: $epos360-secondary !important;
       }
-       h4{
+      h4 {
         color: $epos360-secondary !important;
       }
-       h5{
+      h5 {
         color: $epos360-secondary !important;
       }
-       h6{
+      h6 {
         color: $epos360-secondary !important;
       }
     }
-    .text-primary{
+    .text-primary {
       color: $epos360-primary !important;
-      h1{
+      h1 {
         color: $epos360-primary !important;
       }
-       h2{
+      h2 {
         color: $epos360-primary !important;
       }
-       h3{
+      h3 {
         color: $epos360-primary !important;
       }
-       h4{
+      h4 {
         color: $epos360-primary !important;
       }
-       h5{
+      h5 {
         color: $epos360-primary !important;
       }
-       h6{
+      h6 {
         color: $epos360-primary !important;
       }
     }
-
-    .button{
+    .px-15px {
+      @include desktop {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+      }
+    }
+    .button {
       &.primary {
         background-color: $epos360-primary !important;
         border-color: $epos360-primary !important;
@@ -180,7 +196,7 @@ body {
       display: grid;
       grid-template-columns: 25% 25% 25% 25%;
       align-items: flex-end;
-      margin-bottom: 40px;
+      margin-bottom: 0px;
       .product {
         text-align: center;
         img {
@@ -188,10 +204,27 @@ body {
           height: auto;
         }
         h3 {
-          margin-top: 12px;
+          @include desktop {
+            color: #fff;
+            background-color: $epos360-secondary;
+            border-right: 1px solid #fff;
+            padding: 15px 2px;
+          }
+          margin-top: 15px;
+          color: $epos360-secondary;
           font-size: 16px;
           font-weight: 600;
-          color: #1a2b6d;
+        }
+        &:nth-child(2) {
+          h3 {
+            border-radius: 8px 0 0 8px;
+          }
+        }
+        &:last-child {
+          h3 {
+            border-right: none;
+            border-radius: 0 8px 8px 0;
+          }
         }
       }
     }
@@ -200,6 +233,17 @@ body {
       width: 100%;
       border-collapse: collapse;
       border: 0px !important;
+      tr {
+        background-color: #fff;
+        padding: 5px 0 !important;
+        &.button-row {
+          background-color: transparent;
+          th,
+          td {
+            border-bottom: none !important;
+          }
+        }
+      }
       th {
         vertical-align: top;
         font-size: 14px;
@@ -251,6 +295,9 @@ body {
       }
     }
     .row-easy-onboarding {
+      @include desktop {
+        padding: 80px;
+      }
       background-color: #fff;
       padding: 30px;
       border-radius: 24px;
@@ -258,33 +305,122 @@ body {
       position: relative;
       .easy-onboarding-custom {
         position: relative;
+        padding-bottom: 0 !important;
+        .col-inner {
+          display: flex;
+          align-items: start;
+          justify-content: space-between;
+          gap: 70px;
+        }
         .icon-box {
           z-index: 1;
-          &.has-bg-custom {
+          &:last-child {
             .icon-box-img {
-              background-color: $epos360-primary;
+              &::after {
+                display: none;
+              }
+            }
+          }
+          &.has-bg-custom {
+            width: 100%;
+            h3 {
+              font-weight: 400 !important;
+              color: $epos360-secondary !important;
+              font-size: 24px !important;
+            }
+            p {
+              font-size: 18px !important;
+              color: $epos360-secondary !important;
+              font-weight: 600 !important;
+              span {
+                font-weight: 500 !important;
+              }
+            }
+            .icon-box-img {
+              background-color: $epos360-primary !important;
               border-radius: 100%;
               padding: 15px;
               z-index: 2;
+              position: relative;
+              &:after {
+                content: "";
+                position: absolute;
+                top: 50%;
+                right: -160%;
+                width: 130px;
+                height: 3px;
+                background: $epos360-primary !important;
+                z-index: 1;
+              }
             }
           }
-          &::after {
-            content: "";
-            width: 90%;
-            height: 2px;
-            background-color: $epos360-primary;
-            position: absolute;
-            top: 32px;
-            left: 20px;
-            z-index: 1;
+        }
+      }
+      .easy-onboarding-custom-mobile {
+        position: relative;
+        padding-bottom: 0 !important;
+        .col-inner {
+          display: flex;
+          flex-direction: column;
+          align-items: start;
+          justify-content: space-between;
+          gap: 30px;
+        }
+        .icon-box {
+          z-index: 1;
+          &:last-child {
+            .icon-box-img {
+              &::after {
+                display: none;
+              }
+            }
           }
-          &:last-child::after {
-            display: none;
+          &.has-bg-custom {
+            width: 100%;
+            display: flex;
+            gap: 20px;
+            h3 {
+              font-weight: 400 !important;
+              color: $epos360-secondary !important;
+              font-size: 16px !important;
+            }
+            p {
+              font-size: 16px !important;
+              color: $epos360-secondary !important;
+              font-weight: 600 !important;
+              span {
+                font-weight: 500 !important;
+              }
+            }
+            .icon-box-img {
+              background-color: $epos360-primary !important;
+              border-radius: 100%;
+              height: 60px;
+              padding: 15px;
+              z-index: 2;
+              position: relative;
+              &:after {
+                content: "";
+                position: absolute;
+                left: 50%;
+                top: 100%;
+                width: 3px;
+                height: 85px;
+                background: $epos360-primary !important;
+                z-index: 1;
+              }
+            }
           }
         }
       }
     }
-
+    @include desktop {
+      .payment-teminal-banner {
+        .section-bg.bg-loaded {
+          background-position-y: bottom;
+        }
+      }
+    }
     @media (max-width: 768px) {
       .medium-logo-center .logo {
         order: 1;
@@ -318,7 +454,7 @@ body {
         }
       }
       .payment-teminal-banner .section-bg.bg-loaded {
-        background-image: url(https://epos-staging.theshin.info/wp-content/uploads/2026/02/BlueTap-Background-Top-1-3-scaled.png) !important;
+        background-image: url(https://www.epos.com.sg/wp-content/uploads/2026/02/Background-Hero-Banner.webp) !important;
       }
       .comparison-wrapper {
         overflow-x: auto;
@@ -400,9 +536,47 @@ body {
     .wapp-chatCta {
       display: none;
     }
-    .custom-accordion .accordion-item .accordion-title span {
-      color: #001a32 !important;
-      font-weight: 500 !important;
+
+    .custom-accordion {
+      .accordion-item {
+        margin-bottom: 1rem;
+        background-color: #fff !important;
+        border-radius: 6px;
+        .toggle {
+          left: auto;
+          right: 0px !important;
+          opacity: 1;
+          i {
+            &::before {
+              color: $title-icon-box-color !important;
+            }
+          }
+        }
+        .accordion-title {
+          border: 1px solid #e5e5e5;
+          border-radius: 6px;
+          padding: 15px 45px 15px 20px;
+          background-color: #fff !important;
+          &.active {
+            border: 1px solid transparent;
+            background-color: #fff !important;
+            border-radius: 6px 6px 0 0;
+          }
+          span {
+            color: #555555 !important;
+            font-weight: 500 !important;
+          }
+        }
+        &.shin {
+          background-color: #fff !important;
+
+          .accordion-inner {
+            background-color: #fff !important;
+            border-radius: 0 0 6px 6px;
+            padding: 10px 20px;
+          }
+        }
+      }
     }
   }
 }
