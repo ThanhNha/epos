@@ -293,3 +293,26 @@ video.addEventListener("pause", () => {
 video.addEventListener("ended", () => {
     playBtn.classList.remove("hide");
 });
+
+
+//popup bluetap-360
+document.addEventListener("DOMContentLoaded", function() {
+
+  const trigger = document.getElementById("cashback-trigger");
+  const popup = document.getElementById("cashback-popup");
+  const closeBtn = document.querySelector(".popup-close");
+  const overlay = document.querySelector(".popup-overlay");
+
+  trigger.addEventListener("click", function(e) {
+    e.preventDefault();
+   popup.style.display = "flex";
+  });
+
+  function closePopup() {
+    popup.style.display = "none";
+  }
+
+  closeBtn.addEventListener("click", closePopup);
+  overlay.addEventListener("click", closePopup);
+
+});
