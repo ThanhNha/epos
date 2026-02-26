@@ -29,6 +29,6 @@ require_once(THEME_DIR . '-child' . "/includes/fb_tracking/init.php");
 // require_once(THEME_DIR . '-child' . "/includes/gtm_tracking/init.php");
 
 // // Include HubSpot Integration files
-// foreach (glob(THEME_DIR . '-child' . "/includes/hubspot_intergration/*.php") as $file_name) {
-//   require_once($file_name);
-// }
+foreach (glob(THEME_DIR . '-child' . "/includes/hubspot_intergration/*.php") as $file_name) {
+  require_once($file_name);
+}
