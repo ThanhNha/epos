@@ -30,7 +30,12 @@
 
 		<?php do_action('flatsome_before_header'); ?>
 		<?php $request_uri = trim($_SERVER['REQUEST_URI'], '/'); ?>
-		<?php if ($request_uri === 'epos360' || strpos($request_uri, 'epos360/') === 0) : ?>
+		<?php if (
+			$request_uri === 'epos360' ||
+			strpos($request_uri, 'epos360/') === 0 ||
+			$request_uri === 'epos360-bluetap' ||
+			strpos($request_uri, 'epos360-bluetap/') === 0
+		) :  ?>
 			<?php get_template_part('header', '360'); ?>
 		<?php else : ?>
 			<header id="header" class="header <?php flatsome_header_classes(); ?>">
