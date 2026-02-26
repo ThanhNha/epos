@@ -6,7 +6,7 @@ body {
     #content {
       background: #ffffff;
       background: linear-gradient(
-        100deg,
+        0deg,
         rgba(255, 255, 255, 1) 0%,
         rgba(217, 241, 253, 1) 24%,
         rgba(217, 241, 253, 1) 41%,
@@ -232,15 +232,15 @@ body {
         }
         h3 {
           @include desktop {
-            color: #fff;
-            background-color: $epos360-secondary;
-            border-right: 1px solid #fff;
-            padding: 15px 2px;
+            font-size: 16px;padding: 15px 2px;
           }
           margin-top: 15px;
-          color: $epos360-secondary;
-          font-size: 16px;
+          color: #fff;
+          background-color: $epos360-secondary;
+          border-right: 1px solid #fff;
+          padding: 10px 0px;
           font-weight: 600;
+          font-size: 14px;
         }
         &:nth-child(2) {
           h3 {
@@ -463,8 +463,14 @@ body {
         .sub-title-banner {
           h3 {
             font-size: 32px !important;
-            font-weight: 400 !important;
+            font-weight: 600 !important;
             line-height: 34px !important;
+          }
+        }
+        .icon-box {
+          h3 {
+            font-size: 24px !important;
+            font-weight: 500 !important;
           }
         }
         .section-bg.bg-loaded {
@@ -472,16 +478,46 @@ body {
         }
       }
     }
+    @include only-mobile {
+      .payment-teminal-banner {
+        .sub-title-banner {
+          h3 {
+            font-size: 22px !important;
+            font-weight: 600 !important;
+            line-height: 24px !important;
+          }
+        }
+        .icon-box {
+          h3 {
+            font-size: 18px !important;
+            font-weight: 500 !important;
+          }
+        }
+        .section-bg.bg-loaded {
+          background-position-y: bottom;
+        }
+      }
+      .easy-onboarding {
+        .section-content {
+          margin: 0 15px !important;
+        }
+      }
+    }
+
     .gallery-marquees {
+      .col-inner {
+        @include desktop {
+          margin-left: -8%;
+        }
+      }
       .gallery-customizes {
         display: flex;
         flex-wrap: nowrap;
         flex-direction: column;
         will-change: transform;
-        // gap: 20px;
         @include desktop {
           flex-direction: row;
-          gap: 30px;
+          gap: 40px;
         }
       }
 
@@ -494,7 +530,7 @@ body {
 
       .gallery-col {
         @include desktop {
-          height: 83px;
+          height: 89px !important;
           width: auto !important;
         }
         width: 100% !important;
@@ -684,7 +720,7 @@ body {
           background-color: #fff !important;
           &.active {
             border: 1px solid transparent;
-            background-color: #fff !important;
+            background-color: #eaf7ff !important;
             border-radius: 6px 6px 0 0;
           }
           span {
@@ -693,10 +729,11 @@ body {
           }
         }
         &.shin {
-          background-color: #fff !important;
+          background-color: #eaf7ff !important;
+          box-shadow: $shadow;
 
           .accordion-inner {
-            background-color: #fff !important;
+            background-color: #eaf7ff !important;
             border-radius: 0 0 6px 6px;
             padding: 10px 20px;
           }
