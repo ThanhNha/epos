@@ -2,7 +2,6 @@ import "./slider";
 import "./blog";
 import "./infiniteScroll";
 import "./careers-page";
-// import"./easyparcel";
 ("use strict");
 $ = jQuery;
 
