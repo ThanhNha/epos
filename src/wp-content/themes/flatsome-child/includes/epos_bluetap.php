@@ -166,65 +166,6 @@ function bluetap_show_promo_ends_text()
     }
 }
 
-
-add_filter('woocommerce_package_rates', 'easyparcel_only_sf_domestic_free_shipping', 100, 2);
-function easyparcel_only_sf_domestic_free_shipping($rates, $package)
-{
-
-    $has_free  = false;
-    $has_other = false;
-
-    foreach ($package['contents'] as $item) {
-        if (empty($item['data'])) continue;
-
-        $product = $item['data'];
-        $class   = $product->get_shipping_class();
-
-        if ($class === 'free-shipping') {
-            $has_free = true;
-        } else {
-            $has_other = true;
-        }
-    }
-
-    foreach ($rates as $rate_id => $rate) {
-
-        $method_id = $rate->method_id;
-        $label     = $rate->label;
-
-        $is_easyparcel = (
-            stripos($method_id, 'easyparcel') !== false ||
-            stripos($label, 'SF') !== false ||
-            stripos($label, 'EasyParcel') !== false
-        );
-
-        if (! $has_free || $has_other) {
-            if ($is_easyparcel) {
-                unset($rates[$rate_id]);
-            }
-            continue;
-        }
-
-        if ($is_easyparcel) {
-
-            if (stripos($label, 'SF Domestic') === false) {
-                unset($rates[$rate_id]);
-                continue;
-            }
-
-            $rates[$rate_id]->cost = 0;
-
-            if (! empty($rates[$rate_id]->taxes)) {
-                foreach ($rates[$rate_id]->taxes as $key => $tax) {
-                    $rates[$rate_id]->taxes[$key] = 0;
-                }
-            }
-        }
-    }
-
-    return $rates;
-}
-
 function cart_has_product_id_safe($target_product_id)
 {
     if (! WC()->cart || WC()->cart->is_empty()) return false;
@@ -242,21 +183,6 @@ function cart_has_product_id_safe($target_product_id)
     return false;
 }
 
-add_filter('woocommerce_package_rates', 'exclude_shipping_tax_when_product_id_in_cart', 20, 2);
-function exclude_shipping_tax_when_product_id_in_cart($rates, $package)
-{
-
-    if (! cart_has_product_id_safe(BLUETAP_PRODUCT_ID)) {
-        return $rates;
-    }
-
-    foreach ($rates as $rate_key => $rate) {
-        $rates[$rate_key]->taxes = [];
-        $rates[$rate_key]->tax_status = 'none';
-    }
-
-    return $rates;
-}
 
 add_action('woocommerce_checkout_process', function () {
 
@@ -316,17 +242,52 @@ add_filter('woocommerce_is_sold_individually', function ($return, $product) {
 }, 10, 2);
 
 add_filter('woocommerce_package_rates', function ($rates, $package) {
+    $has_bluetap = false;
+    $has_others  = false;
 
-    if (! cart_has_product_bluetap360()) {
-        return $rates;
+    foreach ($package['contents'] as $item) {
+        if (is_bluetap_product($item['data']->get_id())) {
+            $has_bluetap = true;
+        } else {
+            $has_others = true;
+        }
     }
+
+    $is_exclusive_bluetap = ($has_bluetap && !$has_others);
+
     foreach ($rates as $rate_id => $rate) {
-        if (strpos($rate->method_id, 'flat_rate') !== false) {
-            unset($rates[$rate_id]);
+        $method_id = $rate->get_method_id();
+        $is_easyparcel = (stripos($method_id, 'easyparcel') !== false);
+
+        if ($is_exclusive_bluetap) {
+            if (!$is_easyparcel) {
+                unset($rates[$rate_id]);
+            } else {
+                // Customize EasyParcel
+                $rates[$rate_id]->set_label('EPOS');
+                $rates[$rate_id]->cost = 0;
+                
+                $taxes = [];
+                foreach ($rates[$rate_id]->taxes as $key => $tax) {
+                    $taxes[$key] = 0;
+                }
+                $rates[$rate_id]->taxes = $taxes;
+            }
+        } else {
+            if ($is_easyparcel) {
+                unset($rates[$rate_id]);
+            }
         }
     }
 
     return $rates;
-
 }, 999, 2);
 
+
+add_filter('woocommerce_cart_shipping_method_full_label', function ($label, $method) {
+    if (trim($method->get_label()) === 'EPOS') {
+        $label = "EPOS";
+    }
+
+    return $label;
+}, 20, 2);
