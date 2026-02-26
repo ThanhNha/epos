@@ -205,7 +205,7 @@ add_action('woocommerce_checkout_process', function () {
 
     foreach ($orders as $order) {
         foreach ($order->get_items() as $item) {
-            if ((int) $item->get_product_id() === BLUETAP_PRODUCT_ID) {
+            if (is_bluetap_product($item->get_product_id())) {
                 wc_add_notice(
                     __('This UEN has already purchased Bluetap360. Each UEN is allowed to purchase only once.', 'woocommerce'),
                     'error'
@@ -219,7 +219,7 @@ add_action('woocommerce_checkout_process', function () {
 add_action('woocommerce_check_cart_items', function () {
 
     foreach (WC()->cart->get_cart() as $cart_item) {
-        if ((int) $cart_item['product_id'] === BLUETAP_PRODUCT_ID && $cart_item['quantity'] > 1) {
+        if (is_bluetap_product($cart_item['product_id']) && $cart_item['quantity'] > 1) {
 
             wc_add_notice(
                 __('Each UEN is allowed to purchase only one Bluetap product. Please adjust the quantity.', 'woocommerce'),
@@ -234,7 +234,7 @@ add_action('woocommerce_check_cart_items', function () {
 
 add_filter('woocommerce_is_sold_individually', function ($return, $product) {
 
-    if ((int) $product->get_id() === BLUETAP_PRODUCT_ID) {
+    if (is_bluetap_product($product->get_id())) {
         return true;
     }
 
