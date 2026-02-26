@@ -276,35 +276,34 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-
 const video = document.getElementById("myVideo");
 const playBtn = document.getElementById("playBtn");
 
-playBtn.addEventListener("click", () => {
+if (playBtn && video) {
+  playBtn.addEventListener("click", () => {
     video.play();
     playBtn.classList.add("hide");
-});
+  });
 
-video.addEventListener("pause", () => {
+  video.addEventListener("pause", () => {
     playBtn.classList.remove("hide");
-});
+  });
 
-video.addEventListener("ended", () => {
+  video.addEventListener("ended", () => {
     playBtn.classList.remove("hide");
-});
-
+  });
+}
 
 //popup bluetap-360
-document.addEventListener("DOMContentLoaded", function() {
-
+document.addEventListener("DOMContentLoaded", function () {
   const trigger = document.getElementById("cashback-trigger");
   const popup = document.getElementById("cashback-popup");
   const closeBtn = document.querySelector(".popup-close");
   const overlay = document.querySelector(".popup-overlay");
 
-  trigger.addEventListener("click", function(e) {
+  trigger.addEventListener("click", function (e) {
     e.preventDefault();
-   popup.style.display = "flex";
+    popup.style.display = "flex";
   });
 
   function closePopup() {
@@ -313,5 +312,4 @@ document.addEventListener("DOMContentLoaded", function() {
 
   closeBtn.addEventListener("click", closePopup);
   overlay.addEventListener("click", closePopup);
-
 });
