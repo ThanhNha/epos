@@ -130,6 +130,9 @@ body {
         background-size: cover;
         background-repeat: no-repeat;
       }
+      @include only-mobile {
+        background-size: cover;
+      }
       background-image: url(https://www.epos.com.sg/wp-content/uploads/2026/02/Intro-Section-4.png);
       background-size: contain;
       background-repeat: no-repeat;
