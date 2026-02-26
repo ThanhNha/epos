@@ -24,6 +24,7 @@
 @import "./epos-360/main-epos360";
 // @import "./epos360";
 // @import "./gsap";
+@import "./epos360-bluetap";
 @import "./mobile_pos";
 @import "./404";
 
@@ -62,7 +63,7 @@
   width: 50px;
   height: 50px;
   bottom: 90px;
-  z-index: 9999;
+  z-index: 9;
   height: 50px;
   right: 30px;
 

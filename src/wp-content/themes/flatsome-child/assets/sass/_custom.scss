@@ -723,3 +723,13 @@ body.checkout {
   cursor: pointer;
   z-index: 3;
 }
+
+.cart_item {
+  .product-name {
+    .name {
+      .product-quantity {
+        display: none;
+      }
+    }
+  }
+}
