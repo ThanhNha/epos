@@ -721,5 +721,15 @@ body.checkout {
   margin: 0 !important;
   color: black;
   cursor: pointer;
-  z-index: 3;
+  z-index: 9;
+}
+
+.cart_item {
+  .product-name {
+    .name {
+      .product-quantity {
+        display: none;
+      }
+    }
+  }
 }

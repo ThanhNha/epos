@@ -41,3 +41,32 @@ body.single-product {
 .product-description .sub-desc-product {
   margin: 15px 10px 0;
 }
+
+// Bluetap Description
+.product-description {
+  .tabbed-content {
+    &.tab-description-bluetap {
+      ul.nav {
+        border-bottom: 1px solid #e5e7eb !important;
+        li {
+          &.tab {
+            a {
+              padding: 15px !important;
+              font-size: 18px !important;
+            }
+            &.active {
+              a {
+               &::before{
+                background-color: $blue-dark !important;
+               }
+              }
+            }
+          }
+        }
+      }
+      .bluetap-video {
+        margin-bottom: 20px ;
+      }
+    }
+  }
+}

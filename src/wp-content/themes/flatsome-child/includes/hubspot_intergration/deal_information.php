@@ -9,6 +9,13 @@ add_action('woocommerce_order_status_processing', 'sync_wc_paid_order_to_hubspot
 
 function sync_wc_paid_order_to_hubspot_deal($order_id, $order)
 {
+
+  $is_bluetap_order = $order->get_meta('bluetap360_order');
+
+  if (!$is_bluetap_order == 'yes') {
+    return;
+  }
+  
   $access_token = get_field('hubspot_token', 'option');
 
   $contact_id = sync_hubspot_contact_for_deal($order, $access_token);
