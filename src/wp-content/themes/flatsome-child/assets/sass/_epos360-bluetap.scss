@@ -553,6 +553,11 @@ body {
 
         .box-image {
           padding: 0% !important;
+          @include only-mobile {
+            a{
+              text-align: center;
+            }
+          }
 
           .gallery-customize {
             max-width: none !important;
