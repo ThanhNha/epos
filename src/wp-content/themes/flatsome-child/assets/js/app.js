@@ -300,7 +300,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const popup = document.getElementById("cashback-popup");
   const closeBtn = document.querySelector(".popup-close");
   const overlay = document.querySelector(".popup-overlay");
-
+  if (!trigger || !popup || !closeBtn || !overlay) return;
   trigger.addEventListener("click", function (e) {
     e.preventDefault();
     popup.style.display = "flex";
