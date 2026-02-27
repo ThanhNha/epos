@@ -553,6 +553,9 @@ body {
 
         .box-image {
           padding: 0% !important;
+          a{
+            line-height: 0;
+          }
           @include only-mobile {
             a{
               text-align: center;
