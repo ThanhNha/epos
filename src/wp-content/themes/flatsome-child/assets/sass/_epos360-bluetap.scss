@@ -510,6 +510,9 @@ body {
     }
 
     .gallery-marquees {
+      @include only-mobile {
+        padding-top: 20px !important;
+      }
       .col-inner {
         @include desktop {
           margin-left: -5%;
@@ -528,7 +531,7 @@ body {
               width: 100% !important;
               height: 83px !important;
               img {
-                height: 83px !important;
+                max-height: 83px !important;
                 object-fit: contain !important;
               }
             }
@@ -538,7 +541,7 @@ body {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 10px;
+        gap: 20px;
         .img {
           width: auto !important;
           min-width: 70px !important;
@@ -551,9 +554,9 @@ body {
           }
           .img-inner {
             width: 100% !important;
-            height: 83px !important;
+            max-height: 70px !important;
             img {
-              height: 83px !important;
+              max-height: 70px !important;
               object-fit: contain !important;
             }
           }
@@ -583,7 +586,7 @@ body {
           width: auto !important;
         }
         width: 100% !important;
-        height: 83px !important;
+        max-height: 70px !important;
         object-fit: contain !important;
         max-width: none !important;
         flex-basis: auto !important;
@@ -625,7 +628,7 @@ body {
           img {
             position: static !important;
             @include only-mobile {
-              height: 75px;
+              max-height: 75px;
               object-fit: contain !important;
               width: 200px;
             }
