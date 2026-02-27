@@ -6,7 +6,7 @@ body {
     #content {
       background: #ffffff;
       background: linear-gradient(
-        100deg,
+        0deg,
         rgba(255, 255, 255, 1) 0%,
         rgba(217, 241, 253, 1) 24%,
         rgba(217, 241, 253, 1) 41%,
@@ -130,6 +130,9 @@ body {
         background-size: cover;
         background-repeat: no-repeat;
       }
+      @include only-mobile {
+        background-size: cover;
+      }
       background-image: url(https://www.epos.com.sg/wp-content/uploads/2026/02/Intro-Section-4.png);
       background-size: contain;
       background-repeat: no-repeat;
@@ -232,15 +235,16 @@ body {
         }
         h3 {
           @include desktop {
-            color: #fff;
-            background-color: $epos360-secondary;
-            border-right: 1px solid #fff;
+            font-size: 16px;
             padding: 15px 2px;
           }
           margin-top: 15px;
-          color: $epos360-secondary;
-          font-size: 16px;
+          color: #fff;
+          background-color: $epos360-secondary;
+          border-right: 1px solid #fff;
+          padding: 10px 0px;
           font-weight: 600;
+          font-size: 14px;
         }
         &:nth-child(2) {
           h3 {
@@ -463,25 +467,106 @@ body {
         .sub-title-banner {
           h3 {
             font-size: 32px !important;
-            font-weight: 400 !important;
+            font-weight: 600 !important;
             line-height: 34px !important;
           }
         }
+        .icon-box {
+          h3 {
+            font-size: 24px !important;
+            font-weight: 500 !important;
+          }
+        }
         .section-bg.bg-loaded {
-          background-position-y: bottom;
+          background-position-y: 120% !important;
         }
       }
     }
+    @include only-mobile {
+      .payment-teminal-banner {
+        .sub-title-banner {
+          h3 {
+            font-size: 22px !important;
+            font-weight: 600 !important;
+            line-height: 24px !important;
+          }
+        }
+        .icon-box {
+          h3 {
+            font-size: 18px !important;
+            font-weight: 500 !important;
+          }
+        }
+        .section-bg.bg-loaded {
+          background-position: 42% 172% !important;
+          background-size: unset !important;
+        }
+      }
+      .easy-onboarding {
+        .section-content {
+          margin: 0 15px !important;
+        }
+      }
+    }
+
     .gallery-marquees {
+      .col-inner {
+        @include desktop {
+          margin-left: -5%;
+          width: 100%;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          .img {
+            padding-right: 20px;
+            a {
+              width: 100% !important;
+              display: block;
+              line-height: 0;
+            }
+            .img-inner {
+              width: 100% !important;
+              height: 83px !important;
+              img {
+                height: 83px !important;
+                object-fit: contain !important;
+              }
+            }
+          }
+        }
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        .img {
+          width: auto !important;
+          min-width: 70px !important;
+          max-width: 240px !important;
+          margin-bottom: 0 !important;
+          a {
+            width: 100% !important;
+            display: block;
+            line-height: 0;
+          }
+          .img-inner {
+            width: 100% !important;
+            height: 83px !important;
+            img {
+              height: 83px !important;
+              object-fit: contain !important;
+            }
+          }
+        }
+      }
       .gallery-customizes {
         display: flex;
         flex-wrap: nowrap;
         flex-direction: column;
         will-change: transform;
-        // gap: 20px;
         @include desktop {
           flex-direction: row;
-          gap: 30px;
+          gap: 40px;
         }
       }
 
@@ -494,13 +579,12 @@ body {
 
       .gallery-col {
         @include desktop {
-          height: 83px;
+          height: 86px !important;
           width: auto !important;
         }
         width: 100% !important;
         height: 83px !important;
         object-fit: contain !important;
-        // min-width: 150px !important;
         max-width: none !important;
         flex-basis: auto !important;
         padding: 0px !important;
@@ -515,6 +599,14 @@ body {
 
         .box-image {
           padding: 0% !important;
+          a {
+            line-height: 0;
+          }
+          @include only-mobile {
+            a {
+              text-align: center;
+            }
+          }
 
           .gallery-customize {
             max-width: none !important;
@@ -569,7 +661,7 @@ body {
       }
       .payment-teminal-banner {
         .button {
-          width: 149px;
+          width: 152px;
           height: 55px;
           display: inline-block;
           margin-right: 10px;
@@ -684,7 +776,7 @@ body {
           background-color: #fff !important;
           &.active {
             border: 1px solid transparent;
-            background-color: #fff !important;
+            background-color: #eaf7ff !important;
             border-radius: 6px 6px 0 0;
           }
           span {
@@ -693,10 +785,11 @@ body {
           }
         }
         &.shin {
-          background-color: #fff !important;
+          background-color: #eaf7ff !important;
+          box-shadow: $shadow;
 
           .accordion-inner {
-            background-color: #fff !important;
+            background-color: #eaf7ff !important;
             border-radius: 0 0 6px 6px;
             padding: 10px 20px;
           }
