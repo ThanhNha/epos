@@ -123,7 +123,11 @@ body {
     .gallery-marquee .gallery-col .box-image .gallery-customize {
       max-width: 250px !important;
     }
-
+.ldp-claim-now{
+  @include only-mobile {
+    padding: 30px 15px !important;
+  }
+}
     .ldp-claim-row {
       @include desktop {
         background-image: url(https://www.epos.com.sg/wp-content/uploads/2026/02/Intro-Section.png);
