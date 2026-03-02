@@ -6,7 +6,7 @@ body {
     #content {
       background: #ffffff;
       background: linear-gradient(
-        0deg,
+        310deg,
         rgba(255, 255, 255, 1) 0%,
         rgba(217, 241, 253, 1) 24%,
         rgba(217, 241, 253, 1) 41%,
@@ -222,109 +222,152 @@ body {
     }
 
     //
-    .products {
-      display: grid;
-      grid-template-columns: 25% 25% 25% 25%;
-      align-items: flex-end;
-      margin-bottom: 0px;
-      .product {
-        text-align: center;
-        img {
-          max-width: 160px;
-          height: auto;
-        }
-        h3 {
-          @include desktop {
-            font-size: 16px;
-            padding: 15px 2px;
+    .comparison-section {
+      .comparison-table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 0px !important;
+        thead {
+          tr {
+            background-color: transparent;
+            padding: 5px 0 !important;
           }
-          margin-top: 15px;
-          color: #fff;
-          background-color: $epos360-secondary;
-          border-right: 1px solid #fff;
-          padding: 10px 0px;
-          font-weight: 600;
+          .product-header {
+            th {
+              padding: 0 !important;
+
+              .product-box {
+                display: flex;
+                height: 100%;
+                flex-direction: column;
+                justify-content: space-between;
+                gap: 10px;
+                .product-image {
+                  height: 250px;
+                  img {
+                    max-height: 100%;
+                    object-fit: contain;
+                  }
+                }
+                .product-title {
+                  margin-top: 15px;
+                  background-color: $epos360-secondary;
+                  border-right: 1px solid #fff;
+                  padding: 15px 20px;
+                  font-weight: 600;
+                  @include desktop {
+                    h3 {
+                      font-size: 16px !important;
+                      color: #fff;
+                    }
+                  }
+                  h3 {
+                    color: #fff;
+                    font-size: 14px;
+                    margin-bottom: 0px;
+                    font-weight: 500;
+                  }
+                }
+              }
+              &:nth-child(2) {
+                .product-box {
+                  .product-title {
+                    border-radius: 8px 0 0 8px;
+                  }
+                }
+              }
+              &:last-child {
+                .product-box {
+                  .product-title {
+                    border-radius: 0 8px 8px 0;
+                    border-right: none;
+                  }
+                }
+              }
+            }
+          }
+        }
+        tr {
+          background-color: #fff;
+          padding: 5px 0 !important;
+          &.button-row {
+            background-color: transparent;
+            th,
+            td {
+              border-bottom: none !important;
+            }
+          }
+        }
+        th {
+          vertical-align: top;
           font-size: 14px;
+          width: 25%;
+          text-align: left;
+          font-weight: 600;
+          color: #555;
+          padding: 20px !important;
+          border: 0px !important;
+          border-bottom: 1px solid #ececec !important;
+          text-transform: capitalize;
+          vertical-align: middle;
         }
-        &:nth-child(2) {
-          h3 {
-            border-radius: 8px 0 0 8px;
+        td {
+          vertical-align: middle;
+          font-size: 14px;
+          width: 25%;
+          color: #333;
+          border: 0px !important;
+          padding: 20px !important;
+          border-bottom: 1px solid #ececec !important;
+          &.check {
+            color: $epos360-primary;
+            font-size: 18px;
           }
         }
-        &:last-child {
-          h3 {
-            border-right: none;
-            border-radius: 0 8px 8px 0;
+        .feature-label {
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+          @include desktop {
+            align-items: center;
+            gap: 8px;
+            flex-direction: row;
+          }
+
+          p {
+            margin: 0;
+            font-size: 14px;
+            font-weight: 500;
+          }
+          br {
+            display: none;
+          }
+        }
+        .button-row {
+          th {
+            padding: 40px;
+            border-bottom: none;
+            text-align: center;
+          }
+          td{
+            padding: 10px 20px;
+            border-bottom: none;
+            text-align: center;
+            .button-wrapper {
+              background-color: $epos360-secondary;
+              border-radius: 8px;
+              padding: 10px;
+              a {
+                color: #fff !important;
+                font-weight: 500 !important;
+              }
+            }
           }
         }
       }
     }
 
-    .comparison-table {
-      width: 100%;
-      border-collapse: collapse;
-      border: 0px !important;
-      tr {
-        background-color: #fff;
-        padding: 5px 0 !important;
-        &.button-row {
-          background-color: transparent;
-          th,
-          td {
-            border-bottom: none !important;
-          }
-        }
-      }
-      th {
-        vertical-align: top;
-        font-size: 14px;
-        width: 25%;
-        text-align: left;
-        font-weight: 600;
-        color: #555;
-        padding: 20px !important;
-        border: 0px !important;
-        border-bottom: 1px solid #ececec !important;
-        text-transform: capitalize;
-        vertical-align: middle;
-      }
-      td {
-        vertical-align: middle;
-        font-size: 14px;
-        width: 25%;
-        color: #333;
-        border: 0px !important;
-        padding: 20px !important;
-        border-bottom: 1px solid #ececec !important;
-      }
-    }
-    .button-row th,
-    .button-row td {
-      padding: 40px 15px;
-      border-bottom: none;
-      text-align: center;
-    }
-    .compare-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      padding: 12px 28px;
-      font-size: 14px;
-      font-weight: 600;
-      color: #fff;
-      text-decoration: none;
-      background: $epos360-secondary;
-      border-radius: 8px;
-      transition: 0.25s ease;
-      span {
-        font-size: 16px;
-        line-height: 1;
-      }
-      &:hover {
-        background: $epos360-secondary;
-      }
-    }
+    //
     .row-easy-onboarding {
       @include desktop {
         padding: 80px;
@@ -458,6 +501,9 @@ body {
                 z-index: 1;
               }
             }
+            .icon-box-text {
+              width: calc(100% - 60px);
+            }
           }
         }
       }
@@ -529,7 +575,7 @@ body {
             }
             .img-inner {
               width: 100% !important;
-              height: 83px !important;
+              max-height: 83px !important;
               img {
                 max-height: 83px !important;
                 object-fit: contain !important;
@@ -676,7 +722,7 @@ body {
       .payment-teminal-banner .section-bg.bg-loaded {
         background-image: url(https://www.epos.com.sg/wp-content/uploads/2026/02/Background-Hero-Banner.webp) !important;
       }
-      .comparison-wrapper {
+      .comparison-section {
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
         scroll-snap-type: x mandatory;
