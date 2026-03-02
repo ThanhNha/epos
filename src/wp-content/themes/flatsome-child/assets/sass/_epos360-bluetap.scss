@@ -165,7 +165,11 @@ body {
         height: 720px;
       }
     }
-
+    .col-custom-video {
+      @include only-mobile {
+        padding-bottom: 20px !important;
+      }
+    }
     .video-container {
       position: absolute;
       left: 50%;
@@ -349,7 +353,7 @@ body {
             border-bottom: none;
             text-align: center;
           }
-          td{
+          td {
             padding: 10px 20px;
             border-bottom: none;
             text-align: center;
