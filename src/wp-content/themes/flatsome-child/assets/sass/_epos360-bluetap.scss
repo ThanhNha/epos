@@ -166,6 +166,7 @@ body {
       }
     }
     .col-custom-video {
+      padding-bottom: 0px !important;
       @include only-mobile {
         padding-bottom: 20px !important;
       }
