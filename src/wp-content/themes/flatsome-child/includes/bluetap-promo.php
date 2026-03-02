@@ -10,7 +10,7 @@ add_action('wp_footer', function () {
 
         <div class="bluetap-promo-content">
             <button class="bluetap-promo-close" aria-label="Close popup">×</button>
-            <a href="/product/epos360-bluetap/" rel="noopener noreferrer">
+            <a href="/epos360-bluetap/" rel="noopener noreferrer">
                 <?php echo do_shortcode('[block id="bluetap-promo"]'); ?>
             </a>
         </div>
