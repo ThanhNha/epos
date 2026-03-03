@@ -5,8 +5,20 @@ body {
     }
     #content {
       background: #ffffff;
-      background: linear-gradient(
+      @include desktop {
+         background: linear-gradient(
         310deg,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(217, 241, 253, 1) 24%,
+        rgba(217, 241, 253, 1) 41%,
+        rgba(255, 255, 255, 1) 54%,
+        rgba(217, 241, 253, 1) 66%,
+        rgba(255, 255, 255, 1) 88%,
+        rgba(255, 255, 255, 1) 100%
+      ) !important;
+      }
+      background: linear-gradient(
+      275deg,
         rgba(255, 255, 255, 1) 0%,
         rgba(217, 241, 253, 1) 24%,
         rgba(217, 241, 253, 1) 41%,
@@ -591,7 +603,7 @@ body {
           }
         }
         .section-bg.bg-loaded {
-          background-position: 42% 172% !important;
+          background-position: 33% 184% !important;
           background-size: unset !important;
         }
       }
