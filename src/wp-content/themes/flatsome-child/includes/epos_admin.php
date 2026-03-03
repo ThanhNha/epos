@@ -84,3 +84,13 @@ function my_custom_fonts() {?>
     </style>
 <?php }
 
+add_action('init', 'block_wp_json_root_only');
+
+function block_wp_json_root_only()
+{
+    $current_url = $_SERVER['REQUEST_URI'];
+
+    if ($current_url === '/wp-json/' || $current_url === '/wp-json') {
+        wp_die('Access Denied', 'Forbidden', array('status' => 403));
+    }
+}
