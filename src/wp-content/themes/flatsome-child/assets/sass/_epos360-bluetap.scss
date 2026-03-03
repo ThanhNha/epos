@@ -233,10 +233,15 @@ body {
     //
     .comparison-section {
       .comparison-table {
-        width: auto;
+        @include desktop {
+          width: auto;
+          table-layout: auto;
+        }
+        width: 100%;
         border-collapse: collapse;
         border: 0px !important;
-        table-layout: auto;
+        table-layout: fixed;
+
         thead {
           tr {
             background-color: transparent;
@@ -277,7 +282,7 @@ body {
                   h3 {
                     font-family: "Plus Jakarta Sans", sans-serif !important;
                     color: #fff;
-                    font-size: 14px;
+                    font-size: 16px !important;
                     margin-bottom: 0px;
                     font-weight: bold !important;
                     text-transform: capitalize;
@@ -322,9 +327,11 @@ body {
             &:last-child {
               border-bottom: none !important;
               th {
+                border-bottom: none !important;
                 border-radius: 0 0 0 8px !important;
               }
               td {
+                border-bottom: none !important;
                 &:last-child {
                   border-radius: 0 0 8px 0 !important;
                 }
@@ -384,7 +391,10 @@ body {
               border: 0px !important;
             }
             td {
-              padding: 0 20px !important;
+              @include desktop {
+               padding: 0 20px !important;
+              }
+             padding: 15px !important;
               border-bottom: none;
               text-align: center;
               border: 0px !important;
