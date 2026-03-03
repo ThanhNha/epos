@@ -21,7 +21,7 @@ add_action('template_redirect', function () {
         foreach ($dom->getElementsByTagName('a') as $el) {
             if (!$el->hasAttribute('name')) {
                 $el->setAttribute('name', 'epos');
-            } 
+            }
         }
 
         foreach ($dom->getElementsByTagName('button') as $el) {
@@ -34,7 +34,4 @@ add_action('template_redirect', function () {
     });
 });
 
-// // optimize jquery
-// add_action('wp_enqueue_scripts', function () {
-//     wp_scripts()->add_data('jquery-core', 'group', 1);
-// }, 100);
+
