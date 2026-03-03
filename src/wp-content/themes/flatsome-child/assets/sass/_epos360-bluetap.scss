@@ -6,19 +6,19 @@ body {
     #content {
       background: #ffffff;
       @include desktop {
-         background: linear-gradient(
-        310deg,
-        rgba(255, 255, 255, 1) 0%,
-        rgba(217, 241, 253, 1) 24%,
-        rgba(217, 241, 253, 1) 41%,
-        rgba(255, 255, 255, 1) 54%,
-        rgba(217, 241, 253, 1) 66%,
-        rgba(255, 255, 255, 1) 88%,
-        rgba(255, 255, 255, 1) 100%
-      ) !important;
+        background: linear-gradient(
+          310deg,
+          rgba(255, 255, 255, 1) 0%,
+          rgba(217, 241, 253, 1) 24%,
+          rgba(217, 241, 253, 1) 41%,
+          rgba(255, 255, 255, 1) 54%,
+          rgba(217, 241, 253, 1) 66%,
+          rgba(255, 255, 255, 1) 88%,
+          rgba(255, 255, 255, 1) 100%
+        ) !important;
       }
       background: linear-gradient(
-      275deg,
+        275deg,
         rgba(255, 255, 255, 1) 0%,
         rgba(217, 241, 253, 1) 24%,
         rgba(217, 241, 253, 1) 41%,
@@ -294,7 +294,7 @@ body {
                   h3 {
                     font-family: "Plus Jakarta Sans", sans-serif !important;
                     color: #fff;
-                    font-size: 16px !important;
+                    font-size: 16px;
                     margin-bottom: 0px;
                     font-weight: bold !important;
                     text-transform: capitalize;
@@ -404,9 +404,9 @@ body {
             }
             td {
               @include desktop {
-               padding: 0 20px !important;
+                padding: 0 20px !important;
               }
-             padding: 15px !important;
+              padding: 15px !important;
               border-bottom: none;
               text-align: center;
               border: 0px !important;
