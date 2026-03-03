@@ -21,7 +21,7 @@ add_action('template_redirect', function () {
         foreach ($dom->getElementsByTagName('a') as $el) {
             if (!$el->hasAttribute('name')) {
                 $el->setAttribute('name', 'epos');
-            } 
+            }
         }
 
         foreach ($dom->getElementsByTagName('button') as $el) {
@@ -34,7 +34,13 @@ add_action('template_redirect', function () {
     });
 });
 
-// // optimize jquery
-// add_action('wp_enqueue_scripts', function () {
-//     wp_scripts()->add_data('jquery-core', 'group', 1);
-// }, 100);
+add_action('init', 'block_wp_json_root_only');
+
+function block_wp_json_root_only()
+{
+    $current_url = $_SERVER['REQUEST_URI'];
+
+    if ($current_url === '/wp-json/' || $current_url === '/wp-json') {
+        wp_die('Access Denied', 'Forbidden', array('status' => 403));
+    }
+}
