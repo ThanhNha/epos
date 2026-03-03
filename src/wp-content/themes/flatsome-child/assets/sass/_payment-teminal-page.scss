@@ -70,32 +70,33 @@ body.payment-terminal {
     }
   }
 }
-
-.comparison-table {
-  width: 100%;
-  border-collapse: collapse;
-  border: 0px !important;
-  th {
-    vertical-align: top;
-    font-size: 14px;
-    width: 25%;
-    text-align: left;
-    font-weight: 600;
-    color: #555;
-    padding: 20px !important;
+body.payment-terminal {
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
     border: 0px !important;
-    border-bottom: 1px solid #ececec !important;
-    text-transform: capitalize;
-    vertical-align: middle;
-  }
-  td {
-    vertical-align: middle;
-    font-size: 14px;
-    width: 37.5%;
-    color: #333;
-    border: 0px !important;
-    padding: 20px !important;
-    border-bottom: 1px solid #ececec !important;
+    th {
+      vertical-align: top;
+      font-size: 14px;
+      width: 25%;
+      text-align: left;
+      font-weight: 600;
+      color: #555;
+      padding: 20px !important;
+      border: 0px !important;
+      border-bottom: 1px solid #ececec !important;
+      text-transform: capitalize;
+      vertical-align: middle;
+    }
+    td {
+      vertical-align: middle;
+      font-size: 14px;
+      width: 37.5%;
+      color: #333;
+      border: 0px !important;
+      padding: 20px !important;
+      border-bottom: 1px solid #ececec !important;
+    }
   }
 }
 /* Mobile responsive */
