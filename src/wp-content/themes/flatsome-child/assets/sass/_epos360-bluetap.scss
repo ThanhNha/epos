@@ -83,6 +83,9 @@ body {
         color: $epos360-primary !important;
       }
     }
+    .button{
+      margin-bottom: 0 !important;
+    }
     .px-15px {
       @include desktop {
         padding-left: 15px !important;
@@ -166,6 +169,9 @@ body {
           @include only-mobile {
             padding: 0 10px !important;
           }
+        }
+        .button {
+          margin-bottom: 15px !important;
         }
       }
     }
@@ -287,14 +293,13 @@ body {
                   font-weight: 600;
                   @include desktop {
                     h3 {
-                      font-size: 26px !important;
+                      font-size: 22px !important;
                       color: #fff;
                     }
                   }
                   h3 {
-                    font-family: "Plus Jakarta Sans", sans-serif !important;
                     color: #fff;
-                    font-size: 16px;
+                    font-size: 20px !important;
                     margin-bottom: 0px;
                     font-weight: bold !important;
                     text-transform: capitalize;
@@ -366,12 +371,34 @@ body {
             vertical-align: middle;
             font-size: 16px;
             color: #333;
-            border: 0px !important;
             padding: 20px !important;
             border-bottom: 1px solid #ececec !important;
+            border-top: 0 !important;
+            border-left: 1px solid #ececec !important;
+            border-right: 1px solid #ececec !important;
             &.check {
               color: $epos360-primary;
               font-size: 18px;
+            }
+            @include desktop {
+              &:nth-child(2) {
+                padding: 20px 40px !important;
+              }
+              &:nth-child(3) {
+                padding: 20px 33px !important;
+              }
+              &:nth-child(4) {
+                padding: 20px 42px !important;
+              }
+            }
+            &:nth-child(2) {
+              padding: 20px 54px !important;
+            }
+            &:nth-child(3) {
+              padding: 20px 65px !important;
+            }
+            &:nth-child(4) {
+              padding: 20px 20px !important;
             }
           }
           .feature-label {
@@ -404,9 +431,9 @@ body {
             }
             td {
               @include desktop {
-                padding: 0 20px !important;
+                padding: 0 40px !important;
               }
-              padding: 15px !important;
+              padding: 15px 32px !important;
               border-bottom: none;
               text-align: center;
               border: 0px !important;
@@ -801,12 +828,12 @@ body {
       }
 
       .comparison-table {
-        min-width: 1000px;
+        min-width: 1060px;
         scroll-snap-align: start;
         table-layout: fixed;
         th:nth-child(1),
         td:nth-child(1) {
-          width: 120px;
+          width: 220px;
         }
 
         th:nth-child(2),
