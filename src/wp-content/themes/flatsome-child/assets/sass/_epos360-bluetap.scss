@@ -171,7 +171,7 @@ body {
           }
         }
         .button {
-          margin-bottom: 15px !important;
+          margin-bottom: 21px !important;
         }
       }
     }
@@ -380,18 +380,7 @@ body {
               color: $epos360-primary;
               font-size: 18px;
             }
-            @include desktop {
               &:nth-child(2) {
-                padding: 20px 40px !important;
-              }
-              &:nth-child(3) {
-                padding: 20px 33px !important;
-              }
-              &:nth-child(4) {
-                padding: 20px 42px !important;
-              }
-            }
-            &:nth-child(2) {
               padding: 20px 54px !important;
             }
             &:nth-child(3) {
@@ -400,6 +389,18 @@ body {
             &:nth-child(4) {
               padding: 20px 20px !important;
             }
+            @include desktop {
+              &:nth-child(2) {
+                padding: 20px 54px !important;
+              }
+              &:nth-child(3) {
+                padding: 20px 40px !important;
+              }
+              &:nth-child(4) {
+                padding: 20px 52px !important;
+              }
+            }
+          
           }
           .feature-label {
             display: flex;
