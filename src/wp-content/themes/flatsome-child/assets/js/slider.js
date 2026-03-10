@@ -2,11 +2,8 @@ function initSlider() {
   const $slider = jQuery(".testimonial-slider .col-inner");
 
   if (!$slider.length || typeof $slider.slick !== "function") {
-    // console.warn("Slider element not found or Slick not loaded.");
     return;
   }
-
-  // console.log("Initializing testimonial slider...");
 
   // Strrigger Read more
   testimonialDes();
@@ -103,46 +100,12 @@ jQuery(document).ready(function ($) {
     if ($(".testimonial-slider .col-inner").length > 0) {
       initSlider();
     }
-    // if (typeof marqueeInit === "function") {
-    //   marqueeInit({
-    //     uniqueid: "gallery-customizes",
-    //     style: {},
-    //     type: "class",
-    //     moveatleast: 3,
-    //     savedirection: "1",
-    //     mouse: "cursor driven",
-    //     inc: 3,
-    //     neutral: 200,
-    //     random: false,
-    //   });
-    // }
   }, 2000);
 
-  setTimeout(function () {
-    var head = jQuery("#hs-form-iframe-0").contents().find("head");
-    if (head.length > 0) {
-      var css = `
-        <style type="text/css">
-          span {
-         font-family: 'Montserrat', sans-serif !important;}
-          .hs-form__virality-link { display: none; }
-          .actions, .hbspt-form form { margin-bottom: 0px !important; }
-          .hs-button:hover { box-shadow: inset 0 0 0 100px rgba(0,0,0,.2); }
-          .hs-button { background: #54BD95 !important; border: 0px !important; }
-          ${
-            isMobile()
-              ? "@media (max-width: 768px) { .hs-button { width: 100%; } }"
-              : ""
-          }
-        </style>
-      `;
-      jQuery(head).append(css);
-    }
-  }, 5000);
 
   function isMobile() {
     return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-      navigator.userAgent
+      navigator.userAgent,
     );
   }
 });
