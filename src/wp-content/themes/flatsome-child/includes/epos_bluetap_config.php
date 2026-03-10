@@ -1,7 +1,5 @@
 <?php
-/**
- * Add a custom Bluetap settings field in WooCommerce Products settings.
- */
+//Add a custom Bluetap settings field in WooCommerce Products settings.//
 add_filter('woocommerce_get_settings_products', function ($settings, $current_section) {
 
     if ($current_section === '') {
@@ -30,9 +28,7 @@ add_filter('woocommerce_get_settings_products', function ($settings, $current_se
     return $settings;
 }, 10, 2);
 
-/**
- * Bluetap Product IDs (Global Access)
- */
+// Bluetap Product IDs (Global Access)//
 function bluetap_product_ids()
 {
 
