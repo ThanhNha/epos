@@ -6,9 +6,7 @@ function load_gsap_scrolltrigger_only_page()
 
         $version = time();
 
-        /* =====================
-         * GSAP
-         * ===================== */
+        // GSAP //
         wp_enqueue_script(
             'gsap',
             get_stylesheet_directory_uri() . '/assets/js/gsap/gsap.min.js',
@@ -33,9 +31,7 @@ function load_gsap_scrolltrigger_only_page()
             true
         );
 
-        /* =====================
-         * Custom GSAP + fullPage
-         * ===================== */
+        // Custom GSAP + fullPage //
         wp_enqueue_script(
             'gsap-custom',
             get_stylesheet_directory_uri() . '/assets/js/gsap/gsap-scroll.js',
