@@ -42,29 +42,4 @@ function preload_fonts()
 }
 add_action('wp_head', 'preload_fonts', 1);
 
-// Fix aria-hidden="true" if has link inside
-function fix_focusable_elements($html)
-{
-    $html = preg_replace(
-        '/(<div[^>]*aria-hidden="true"[^>]*>)(.*?)(<\/div>)/is',
-        function ($matches) {
-            $content = preg_replace('/<a /i', '<a tabindex="-1" ', $matches[2]);
-            return $matches[1] . $content . $matches[3];
-        },
-        $html
-    );
-    return $html;
-}
 
-function start_buffer()
-{
-    ob_start('fix_focusable_elements');
-}
-
-function end_buffer()
-{
-    ob_end_flush();
-}
-
-add_action('wp_head', 'start_buffer');
-add_action('wp_footer', 'end_buffer');

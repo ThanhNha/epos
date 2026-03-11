@@ -119,30 +119,46 @@ jQuery(document).ready(function ($) {
   }, 2000);
 
   setTimeout(function () {
-    var head = jQuery("#hs-form-iframe-0").contents().find("head");
-    if (head.length > 0) {
-      var css = `
-        <style type="text/css">
-          span {
-         font-family: 'Montserrat', sans-serif !important;}
-          .hs-form__virality-link { display: none; }
-          .actions, .hbspt-form form { margin-bottom: 0px !important; }
-          .hs-button:hover { box-shadow: inset 0 0 0 100px rgba(0,0,0,.2); }
-          .hs-button { background: #54BD95 !important; border: 0px !important; }
-          ${
-            isMobile()
-              ? "@media (max-width: 768px) { .hs-button { width: 100%; } }"
-              : ""
-          }
-        </style>
-      `;
-      jQuery(head).append(css);
-    }
+    jQuery("iframe[id^='hs-form-iframe']").each(function () {
+      var head = jQuery(this).contents().find("head");
+      if (head.length > 0) {
+        var css =
+          '<style type="text/css">' +
+          /* input + textarea + select */
+          "input[type='text'], input[type='email'], input[type='tel'], textarea, select { " +
+          "border-radius: 8px !important; " +
+          "padding: 10px !important; " +
+          "font-family: 'Poppins', sans-serif !important;" +
+          "} " +
+          /* hs input height except checkbox & radio */
+          ".hs-input:not([type='checkbox']):not([type='radio']) { " +
+          "height: 47px !important; " +
+          "box-sizing: border-box;" +
+          "} " +
+          /* checkbox + radio auto height */
+          "input[type='checkbox'], input[type='radio'] { " +
+          "height: auto !important;" +
+          "} " +
+          /* placeholder */
+          "::placeholder { font-family: 'Poppins', sans-serif !important; } " +
+          /* label spacing */
+          "label { display:block; margin-bottom:10px !important; } " +
+          /* button */
+          ".hs-button { border-radius:8px !important; padding: 17px 24px  !important;} " +
+          /* link visited */
+          ".hs-form a:visited { color:#ffffff !important; } " +
+          /* link hover */
+          ".hs-form a:hover { color:#58cc52 !important; } " +
+          "</style>";
+
+        head.append(css);
+      }
+    });
   }, 5000);
 
   function isMobile() {
     return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-      navigator.userAgent
+      navigator.userAgent,
     );
   }
 });
