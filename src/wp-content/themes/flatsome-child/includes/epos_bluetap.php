@@ -1,6 +1,4 @@
 <?php
-define('BLUETAP_PRODUCT_ID', 34592); // This is ID on live site: 39234
-
 // Check cart item has Bluetap360
 function cart_has_product_bluetap360()
 {
