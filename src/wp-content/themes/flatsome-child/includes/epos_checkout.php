@@ -20,10 +20,7 @@ function modify_when_is_local_pickup($fields)
 
   return $fields;
 }
-/**
- * Custom Address  shipping fields
- *
- */
+// Custom Address  shipping fields //
 
 add_filter('woocommerce_default_address_fields', 'custom_override_default_checkout_fields', 10, 1);
 function custom_override_default_checkout_fields($address_fields)
@@ -43,15 +40,10 @@ function custom_override_checkout_fields($fields)
   $fields['billing']['billing_address_2']['placeholder'] = __('Apartment, suite, unit etc...', 'woocommerce');
   $fields['billing']['billing_address_2']['required'] = true; // Making Address 2 field required
   $fields['billing_company']['required'] = true;
-  //  var_dump($fields);
   return $fields;
 }
 
-
-/**
- * Custom require fields by Shipping Method
- *
- */
+// Custom require fields by Shipping Method //
 
 add_filter('woocommerce_checkout_fields', 'remove_billing_checkout_fields', 90, 1);
 function remove_billing_checkout_fields($fields)
@@ -74,10 +66,7 @@ function remove_billing_checkout_fields($fields)
   return $fields;
 }
 
-/**
- * Hide Shipping fields by Shipping Method
- *
- */
+// Hide Shipping fields by Shipping Method//
 
 add_filter('woocommerce_checkout_fields', 'disable_shipping_local_pickup');
 function disable_shipping_local_pickup($fields)
@@ -96,52 +85,52 @@ function disable_shipping_local_pickup($fields)
     wc_enqueue_js("hideAddPress();");
   }
   wc_enqueue_js('function hideAddPress() {
-    $("#billing_country_field").addClass("hidden");
-  
-    $("#billing_address_1_field").addClass("hidden");
-    $("#billing_address_1_field input").val("");
-  
-    $("#billing_address_2_field").addClass("hidden");
-    $("#billing_address_2_field input").val("");
-  
-    $("#billing_state_field").addClass("hidden");
-    $("#billing_state_field input").val("");
-  
-    $("#billing_postcode_field").addClass("hidden");
-    $("#billing_postcode_field input").val("");
-  
-    $("#billing_state_field").addClass("hidden");
-    $("#billing_state_field input").val("");
-  
-    $("#billing_city_field").addClass("hidden");
-    $("#billing_city_field input").val("");
-  
-    $(".woocommerce-NoticeGroup").addClass("hidden");
-  }
-  ');
+$("#billing_country_field").addClass("hidden");
+
+$("#billing_address_1_field").addClass("hidden");
+$("#billing_address_1_field input").val("");
+
+$("#billing_address_2_field").addClass("hidden");
+$("#billing_address_2_field input").val("");
+
+$("#billing_state_field").addClass("hidden");
+$("#billing_state_field input").val("");
+
+$("#billing_postcode_field").addClass("hidden");
+$("#billing_postcode_field input").val("");
+
+$("#billing_state_field").addClass("hidden");
+$("#billing_state_field input").val("");
+
+$("#billing_city_field").addClass("hidden");
+$("#billing_city_field input").val("");
+
+$(".woocommerce-NoticeGroup").addClass("hidden");
+}
+');
 
   // Hide shipping on checkout shipping change
   wc_enqueue_js('function showAddPress() {
-    $("#billing_country_field").removeClass("hidden hide");
-    $("#billing_address_1_field").removeClass("hidden hide");
-    $("#billing_address_2_field").removeClass("hidden hide");
-    $("#billing_city_field").removeClass("hidden hide");
-    $("#billing_state_field").removeClass("hidden hide");
-    $("#billing_postcode_field").removeClass("hidden hide");
-    $("#billing_state_field").removeClass("hidden hide");
-    $("#billing_state_field").removeClass("hidden hide");
-  }  ');
+$("#billing_country_field").removeClass("hidden hide");
+$("#billing_address_1_field").removeClass("hidden hide");
+$("#billing_address_2_field").removeClass("hidden hide");
+$("#billing_city_field").removeClass("hidden hide");
+$("#billing_state_field").removeClass("hidden hide");
+$("#billing_postcode_field").removeClass("hidden hide");
+$("#billing_state_field").removeClass("hidden hide");
+$("#billing_state_field").removeClass("hidden hide");
+}  ');
 
 
   wc_enqueue_js("
-      $('form.checkout').on('change','input[name^=\"shipping_method\"]',function() {
-         var val = $( this ).val();
-         if (val.match('^local_pickup')) {
-           hideAddPress();
-         } else {
-            showAddPress();
-         }
-      });
-   ");
+  $('form.checkout').on('change','input[name^=\"shipping_method\"]',function() {
+      var val = $( this ).val();
+      if (val.match('^local_pickup')) {
+        hideAddPress();
+      } else {
+        showAddPress();
+      }
+  });
+");
   return $fields;
 }
