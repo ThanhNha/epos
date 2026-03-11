@@ -2,11 +2,8 @@ function initSlider() {
   const $slider = jQuery(".testimonial-slider .col-inner");
 
   if (!$slider.length || typeof $slider.slick !== "function") {
-    // console.warn("Slider element not found or Slick not loaded.");
     return;
   }
-
-  // console.log("Initializing testimonial slider...");
 
   // Strrigger Read more
   testimonialDes();
@@ -103,19 +100,6 @@ jQuery(document).ready(function ($) {
     if ($(".testimonial-slider .col-inner").length > 0) {
       initSlider();
     }
-    // if (typeof marqueeInit === "function") {
-    //   marqueeInit({
-    //     uniqueid: "gallery-customizes",
-    //     style: {},
-    //     type: "class",
-    //     moveatleast: 3,
-    //     savedirection: "1",
-    //     mouse: "cursor driven",
-    //     inc: 3,
-    //     neutral: 200,
-    //     random: false,
-    //   });
-    // }
   }, 2000);
 
   setTimeout(function () {
