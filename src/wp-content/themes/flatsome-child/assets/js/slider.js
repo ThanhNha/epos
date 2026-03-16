@@ -101,37 +101,73 @@ jQuery(document).ready(function ($) {
       initSlider();
     }
   }, 2000);
-
+  // Font Poppins
   setTimeout(function () {
     jQuery("iframe[id^='hs-form-iframe']").each(function () {
-      var head = jQuery(this).contents().find("head");
-      if (head.length > 0) {
+      var iframe = jQuery(this).contents();
+      var head = iframe.find("head");
+
+      // check form id
+      var targetForm = iframe.find(
+        "#hsForm_8cb9dee2-73d0-4646-9ff2-22e0e0bf5035",
+      );
+
+      if (head.length > 0 && targetForm.length > 0) {
         var css =
           '<style type="text/css">' +
-          /* input + textarea + select */
           "input[type='text'], input[type='email'], input[type='tel'], textarea, select { " +
           "border-radius: 8px !important; " +
           "padding: 10px !important; " +
           "font-family: 'Poppins', sans-serif !important;" +
           "} " +
-          /* hs input height except checkbox & radio */
           ".hs-input:not([type='checkbox']):not([type='radio']) { " +
           "height: 47px !important; " +
           "box-sizing: border-box;" +
           "} " +
-          /* checkbox + radio auto height */
           "input[type='checkbox'], input[type='radio'] { " +
           "height: auto !important;" +
           "} " +
-          /* placeholder */
           "::placeholder { font-family: 'Poppins', sans-serif !important; } " +
-          /* label spacing */
           "label { display:block; margin-bottom:10px !important; } " +
-          /* button */
           ".hs-button { border-radius:8px !important; padding: 17px 24px  !important;} " +
-          /* link visited */
           ".hs-form a:visited { color:#ffffff !important; } " +
-          /* link hover */
+          ".hs-form a:hover { color:#58cc52 !important; } " +
+          "</style>";
+
+        head.append(css);
+      }
+    });
+  }, 5000);
+  //font Montserrat
+  setTimeout(function () {
+    jQuery("iframe[id^='hs-form-iframe']").each(function () {
+      var iframe = jQuery(this).contents();
+      var head = iframe.find("head");
+
+      // check form id
+      var targetForm = iframe.find(
+        "#hsForm_e6f14b90-9cc2-44dc-9547-4097ec030031, #hsForm_702cef7e-0096-4839-b15e-6c45e65932cf",
+      );
+
+      if (head.length > 0 && targetForm.length > 0) {
+        var css =
+          '<style type="text/css">' +
+          "input[type='text'], input[type='email'], input[type='tel'], textarea, select { " +
+          "border-radius: 8px !important; " +
+          "padding: 10px !important; " +
+          "font-family: 'Montserrat', sans-serif !important;" +
+          "} " +
+          ".hs-input:not([type='checkbox']):not([type='radio']) { " +
+          "height: 47px !important; " +
+          "box-sizing: border-box;" +
+          "} " +
+          "input[type='checkbox'], input[type='radio'] { " +
+          "height: auto !important;" +
+          "} " +
+          "::placeholder { font-family: 'Montserrat', sans-serif !important; } " +
+          "label { display:block; margin-bottom:10px !important; } " +
+          ".hs-button { border-radius:8px !important; padding: 17px 24px  !important;} " +
+          ".hs-form a:visited { color:#ffffff !important; } " +
           ".hs-form a:hover { color:#58cc52 !important; } " +
           "</style>";
 
