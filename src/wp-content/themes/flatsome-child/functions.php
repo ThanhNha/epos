@@ -23,6 +23,8 @@ foreach (glob(THEME_DIR . '-child' . "/includes/*.php") as $file_name) {
   require_once($file_name);
 }
 
+// Include ant bot files
+require_once(THEME_DIR . '-child' . "/includes/ant_bot/init.php");
 
 require_once(THEME_DIR . '-child' . "/includes/fb_tracking/init.php");
 // Include Facebook Tracking files
