@@ -218,6 +218,12 @@ foreach (glob(THEME_DIR . '-child' . "/includes/workable/*.php") as $file_name) 
 
 function remove_rest_api_users($rest_endpoints)
 {
+  // Allow direct access to the daily report endpoint
+  $request_path = untrailingslashit( $_SERVER['REQUEST_URI'] );
+  if ( strpos( $request_path, '/wp-json/reports/v1/daily' ) !== false ) {
+    return $rest_endpoints;
+  }
+  // Block everything else
   if (! is_user_logged_in() || ! current_user_can('administrator')) {
     return new WP_Error(
       'no_rest_api_sorry',
