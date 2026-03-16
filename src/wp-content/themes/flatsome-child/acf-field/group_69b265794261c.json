@@ -24,10 +24,10 @@
         },
         {
             "key": "field_69b26579ee398",
-            "label": "Monthly Target",
-            "name": "monthly_target",
+            "label": "Monthly Targets",
+            "name": "monthly_targets",
             "aria-label": "",
-            "type": "number",
+            "type": "repeater",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -36,13 +36,38 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
-            "min": "",
-            "max": "",
-            "step": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
+            "layout": "table",
+            "pagination": 0,
+            "min": 12,
+            "max": 12,
+            "collapsed": "",
+            "button_label": "Add Row",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_69b7bbf82937c",
+                    "label": "Target",
+                    "name": "target",
+                    "aria-label": "",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "min": "",
+                    "max": "",
+                    "step": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_69b26579ee398"
+                }
+            ]
         }
     ],
     "location": [
@@ -63,5 +88,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1773635819
+    "modified": 1773648909
 }
