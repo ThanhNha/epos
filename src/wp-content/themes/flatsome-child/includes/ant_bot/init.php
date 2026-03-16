@@ -61,7 +61,7 @@ function ad_collect_orders_and_build_report() {
   $report_generator->set_origin_sg();
   // $report_generator->turn_debug_mode_on();
   // $report_generator->turn_print_on();
-  // $report_generator->set_debug_date('2026-03-15 00:00:00');
+  $report_generator->set_debug_date('2026-03-14 00:00:00');
   
   $message = $report_generator->generate_report();
  
