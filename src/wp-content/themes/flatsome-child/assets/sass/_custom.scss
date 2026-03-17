@@ -644,7 +644,16 @@ body.payment-soundbox {
 .button {
   border: none !important;
 }
-
+.star-rating {
+  font-size: 14px !important;
+}
+.testimonial-box {
+  .testimonial-text {
+    p {
+      font-size: 14px !important;
+    }
+  }
+}
 #supported-mcc-field {
   select {
     font-size: 15px !important;
@@ -721,7 +730,7 @@ body.checkout {
   margin: 0 !important;
   color: black;
   cursor: pointer;
-  z-index: 3;
+  z-index: 9;
 }
 
 .cart_item {

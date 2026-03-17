@@ -21,7 +21,7 @@ add_action('template_redirect', function () {
         foreach ($dom->getElementsByTagName('a') as $el) {
             if (!$el->hasAttribute('name')) {
                 $el->setAttribute('name', 'epos');
-            } 
+            }
         }
 
         foreach ($dom->getElementsByTagName('button') as $el) {
@@ -34,7 +34,12 @@ add_action('template_redirect', function () {
     });
 });
 
-// // optimize jquery
-// add_action('wp_enqueue_scripts', function () {
-//     wp_scripts()->add_data('jquery-core', 'group', 1);
-// }, 100);
+
+function preload_fonts()
+{
+    echo '<link rel="preload" href="/wp-content/themes/flatsome-child/assets/fonts/Montserrat/Montserrat-Regular.woff2" as="font" type="font/woff2" crossorigin>';
+    echo '<link rel="preload" href="/wp-content/themes/flatsome-child/assets/fonts/PlusJakartaSans/PlusJakartaSans-Bold.woff2" as="font" type="font/woff2" crossorigin>';
+}
+add_action('wp_head', 'preload_fonts', 1);
+
+

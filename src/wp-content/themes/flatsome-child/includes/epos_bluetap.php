@@ -1,6 +1,4 @@
 <?php
-define('BLUETAP_PRODUCT_ID', 34592); // This is ID on live site: 39234
-
 // Check cart item has Bluetap360
 function cart_has_product_bluetap360()
 {
@@ -254,11 +252,14 @@ add_filter('woocommerce_package_rates', function ($rates, $package) {
     }
 
     $is_exclusive_bluetap = ($has_bluetap && !$has_others);
+    $easyparcel_found = false;
 
     foreach ($rates as $rate_id => $rate) {
         $method_id = $rate->get_method_id();
         $is_easyparcel = (stripos($method_id, 'easyparcel') !== false);
-
+        if ($is_easyparcel) {
+            $easyparcel_found = true;
+        }
         if ($is_exclusive_bluetap) {
             if (!$is_easyparcel) {
                 unset($rates[$rate_id]);
@@ -266,7 +267,7 @@ add_filter('woocommerce_package_rates', function ($rates, $package) {
                 // Customize EasyParcel
                 $rates[$rate_id]->set_label('EPOS');
                 $rates[$rate_id]->cost = 0;
-                
+
                 $taxes = [];
                 foreach ($rates[$rate_id]->taxes as $key => $tax) {
                     $taxes[$key] = 0;
@@ -278,6 +279,17 @@ add_filter('woocommerce_package_rates', function ($rates, $package) {
                 unset($rates[$rate_id]);
             }
         }
+    }
+    // if it's exclusive bluetap and no easyparcel found, add free shipping method
+    if ($is_exclusive_bluetap && !$easyparcel_found) {
+
+        $rates['bluetap_free_shipping'] = new WC_Shipping_Rate(
+            'bluetap_free_shipping',
+            'EPOS',
+            0,
+            [],
+            'free_shipping'
+        );
     }
 
     return $rates;
