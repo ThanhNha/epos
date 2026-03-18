@@ -7,6 +7,11 @@ function sync_wc_paid_order_to_hubspot_contact($order_id, $order)
 {
   $hubspot_access_token = get_field('hubspot_token', 'option');
 
+  $is_bluetap_order = $order->get_meta('bluetap360_order');
+
+  if (!$is_bluetap_order == 'yes') {
+    return;
+  }
 
   // Data Extraction
   $email      = $order->get_billing_email();
