@@ -145,4 +145,26 @@ jQuery(document).ready(function ($) {
       navigator.userAgent,
     );
   }
+
+  if ($(".our-portfolio-slider").length) {
+    console.log("sss");
+
+    $(".our-portfolio-slider").slick({
+      slidesToShow: 2,
+      slidesToScroll: 1,
+      arrows: false,
+      dots: true,
+      infinite: true,
+      // autoplay: true,
+      autoplaySpeed: 5000,
+      responsive: [
+        {
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 1,
+          },
+        },
+      ],
+    });
+  }
 });
