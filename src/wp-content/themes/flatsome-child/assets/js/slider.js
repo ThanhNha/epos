@@ -109,7 +109,7 @@ jQuery(document).ready(function ($) {
 
       // check form id
       var targetForm = iframe.find(
-        "#hsForm_8cb9dee2-73d0-4646-9ff2-22e0e0bf5035",
+        "#hsForm_8cb9dee2-73d0-4646-9ff2-22e0e0bf5035,  #hsForm_702cef7e-0096-4839-b15e-6c45e65932cf",
       );
 
       if (head.length > 0 && targetForm.length > 0) {
@@ -146,7 +146,7 @@ jQuery(document).ready(function ($) {
 
       // check form id
       var targetForm = iframe.find(
-        "#hsForm_e6f14b90-9cc2-44dc-9547-4097ec030031, #hsForm_702cef7e-0096-4839-b15e-6c45e65932cf",
+        "#hsForm_e6f14b90-9cc2-44dc-9547-4097ec030031",
       );
 
       if (head.length > 0 && targetForm.length > 0) {
