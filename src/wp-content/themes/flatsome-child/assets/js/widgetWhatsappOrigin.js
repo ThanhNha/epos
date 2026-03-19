@@ -164,7 +164,7 @@ function whatsappContact({
   background: #e8ded4
     url(https://oweb.zohowebstatic.com/sites/oweb/images/zohobigin/images/wapp-background.jpg);
   background-size: cover;
-  max-height: 200px;
+  max-height: 305px;
   overflow: auto;
   padding: 20px 20px 15px;
 }
@@ -344,7 +344,7 @@ function whatsappContact({
                       <button class="wapp-smarttag-btn ${
                         key == 0 ? "active" : ""
                       }" data-tags="${option}" value="${option}">${option}</button>
-                    </span>`
+                    </span>`,
                     )
                     .join("")}
                 </div>
@@ -354,8 +354,8 @@ function whatsappContact({
           <div class="wapp-btnSection">
             <a class="whatsapp-link" style="text-decoration:none;width:100%"
               href="https://api.whatsapp.com/send?phone=${d_phoneNumber}&text=${encodeURIComponent(
-      d_prefilltextDefault
-    )}"
+                d_prefilltextDefault,
+              )}"
               rel="noopener noreferrer" target="_blank">
               <button class="wapp-chatCta"><span class="wapp-icon"></span><span class="wapp-ctaTxt">${d_ctaText}</span></button>
             </a>
@@ -399,7 +399,7 @@ function whatsappContact({
         dynamicMsgElement.innerText = `${selectedOption}`;
         const updatedPrefillMsg = `${d_prefillMessages} ${selectedOption}`;
         whatsappLink.href = `https://api.whatsapp.com/send?phone=${d_phoneNumber}&text=${encodeURIComponent(
-          updatedPrefillMsg
+          updatedPrefillMsg,
         )}`;
       }
     });
@@ -408,13 +408,13 @@ function whatsappContact({
 whatsappContact({
   buttonName: "Start Chat",
   brandImageUrl:
-    "https://www.epos.com.sg/wp-content/uploads/2020/01/pos-system.svg",
-  brandName: "EPOS POS System",
+    "https://www.epos.com.sg/wp-content/uploads/2025/12/EPOS_Full-Color.webp",
+  brandName: "EPOS Singapore",
   brandStatusText: "Typically replies within a day",
   buttonPosition: "bottom-right",
   phoneNumber: "6584821888",
   welcomeMessage: "Hi there! 👋 How can I help you?",
   prefillMessages: "I am looking for: ",
   replyOptions:
-    "F&B POS System,Retail POS System,Soundbox,EPOS Rewards,Others,Tech Support",
+    "F&B POS,RETAIL POS,EPOS REWARDS,EPOS360 BLUETAP,PAYMENT TERMINAL,SOUNDBOX,OTHERS,TECH SUPPORT",
 });
