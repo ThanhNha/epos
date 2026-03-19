@@ -29,20 +29,27 @@
 	<div id="wrapper">
 
 		<?php do_action('flatsome_before_header'); ?>
-		<?php $request_uri = trim($_SERVER['REQUEST_URI'], '/'); ?>
-		<?php if (
-			$request_uri === 'epos360' ||
-			strpos($request_uri, 'epos360/') === 0 ||
-			$request_uri === 'epos360-bluetap' ||
-			strpos($request_uri, 'epos360-bluetap/') === 0
-		) :  ?>
-			<?php get_template_part('header', '360'); ?>
-		<?php else : ?>
-			<header id="header" class="header <?php flatsome_header_classes(); ?>">
-				<?php get_template_part('template-parts/header/header', 'wrapper'); ?>
-			</header>
-		<?php endif; ?>
+		<?php
+		switch (true) {
 
+			case is_page('epos360'):
+			case is_page('epos360-bluetap'):
+				get_template_part('header', '360');
+				break;
+
+			case is_page('ecommerce-web-development'):
+				get_template_part('header', 'ecommerce');
+				break;
+
+			default:
+		?>
+				<header id="header" class="header <?php flatsome_header_classes(); ?>">
+					<?php get_template_part('template-parts/header/header', 'wrapper'); ?>
+				</header>
+		<?php
+				break;
+		}
+		?>
 		<?php do_action('flatsome_after_header'); ?>
 		<?php
 		$main_classes = flatsome_main_classes(false);
