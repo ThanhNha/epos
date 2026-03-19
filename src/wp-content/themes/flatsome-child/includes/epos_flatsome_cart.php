@@ -42,7 +42,7 @@ function flatsome_custom_cart_shortcode()
                         <?php
                         if (get_theme_mod('custom_cart_icon')) { ?>
                             <span class="image-icon header-cart-icon" data-icon-label="<?php echo WC()->cart->cart_contents_count; ?>">
-                                <img class="cart-img-icon" alt="<?php _e('Cart', 'woocommerce'); ?>" src="<?php echo do_shortcode(get_theme_mod('custom_cart_icon')); ?>" />
+                                <img class="cart-img-icon" alt="<?php _e('Cart', 'woocommerce'); ?>" src="https://www.epos.com.sg/wp-content/uploads/2026/03/Sticky-CTA-Icons-Cart.webp" />
                             </span>
                         <?php } else { ?>
                             <?php if (!$icon_style) { ?>
