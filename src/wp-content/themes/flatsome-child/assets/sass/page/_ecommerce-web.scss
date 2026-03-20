@@ -152,12 +152,14 @@ body.ecommerce-web-development {
             font-weight: 600 !important;
           }
         }
-        font-size: 32px !important;
-        font-weight: 600 !important;
-        line-height: 1.2;
-        i {
-          font-size: 26px !important;
+        @include desktop {
+          font-size: 32px !important;
           font-weight: 600 !important;
+          line-height: 1.2;
+          i {
+            font-size: 26px !important;
+            font-weight: 600 !important;
+          }
         }
       }
     }
