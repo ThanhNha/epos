@@ -1,3 +1,5 @@
+// TODO: centralize configs for all buttons
+// maybe combine this with _buttons.scss
 .html_topbar_right {
   display: flex !important;
   align-items: center;
@@ -63,8 +65,8 @@
     box-shadow: none !important;
 
     &:hover {
-      color: white !important;
-      background-color: $epos360-secondary !important;
+      color: $epos360-button-hover-alt !important;
+      background-color: $epos360-button-border !important;
     }
   }
 
