@@ -111,6 +111,37 @@ body.ecommerce-web-development {
       }
     }
   }
+  .banner-content-col {
+    .sub-title-banner {
+      h3 {
+        font-size: 32px !important;
+        font-weight: 600 !important;
+        line-height: 1.2;
+        i {
+          font-size: 26px !important;
+          font-weight: 600 !important;
+        }
+      }
+    }
+    .icon-box{
+      display: flex !important;
+      align-items: center !important;
+      .icon-box-text{
+        padding-left: 8px !important;
+        p{
+          font-size: 24px !important;
+          font-weight: 500 !important;
+        }
+      }
+      .icon-box-img{
+        .icon-inner{
+          img{
+            padding-top: 0 !important;
+          }
+        }
+      }
+    }
+  }
   .px-15px {
     @include desktop {
       padding-left: 15px !important;
