@@ -104,7 +104,7 @@ body.ecommerce-web-development {
         }
       }
       &.white-bg {
-        border: 1px solid #fff !important;
+        border: 1px solid $epos360-secondary !important;
         background-color: #fff !important;
       }
     }
@@ -309,6 +309,9 @@ body.ecommerce-web-development {
   .why-should-row {
     .box {
       .box-text {
+        @include only-mobile {
+          padding-bottom: 0px !important;
+        }
         .box-text-inner {
           h4 {
             font-size: 18px !important;
