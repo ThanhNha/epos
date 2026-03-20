@@ -354,9 +354,13 @@ body.ecommerce-web-development {
         bottom: 0px !important;
       }
       li {
+        @include only-mobile {
+          margin: 0 10px !important;
+        }
         button {
           &::before {
             color: $epos360-primary !important;
+            font-size: 14px !important;
           }
         }
       }
