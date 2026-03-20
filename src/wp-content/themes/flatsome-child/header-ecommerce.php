@@ -4,9 +4,9 @@
             <div class="header-inner flex-row container <?php flatsome_logo_position(); ?>" role="navigation">
 
                 <!-- Logo -->
-                <div id="logo-360" class="flex-col logo">
+                <div id="logo-ecommerce" class="flex-col logo">
                     <a href="<?php echo esc_url(home_url('/')); ?>">
-                        <img width="250" height="72" src="/wp-content/uploads/2026/03/EPOS_Zippy_International_RGB_Horizontal_Full-Colour-1.svg" class="header_logo header-logo" alt="logo-epos-ecommerce-web">
+                        <img width="250" height="72" src="https://www.epos.com.sg/wp-content/uploads/2026/03/EPOS_Zippy_International_RGB_Horizontal_Full-Colour.webp" class="header_logo header-logo" alt="logo-epos-ecommerce-web">
                     </a>
                 </div>
 
