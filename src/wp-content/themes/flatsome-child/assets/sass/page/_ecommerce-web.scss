@@ -52,7 +52,11 @@ body.ecommerce-web-development {
       color: $epos360-primary !important;
     }
   }
-
+  .section.bg-image {
+    @include only-mobile {
+      margin: 0 10px !important;
+    }
+  }
   .button {
     margin-bottom: 0 !important;
     &.primary {
@@ -123,19 +127,19 @@ body.ecommerce-web-development {
         }
       }
     }
-    .icon-box{
+    .icon-box {
       display: flex !important;
       align-items: center !important;
-      .icon-box-text{
+      .icon-box-text {
         padding-left: 8px !important;
-        p{
+        p {
           font-size: 24px !important;
           font-weight: 500 !important;
         }
       }
-      .icon-box-img{
-        .icon-inner{
-          img{
+      .icon-box-img {
+        .icon-inner {
+          img {
             padding-top: 0 !important;
           }
         }
@@ -159,6 +163,12 @@ body.ecommerce-web-development {
       font-size: 33px !important;
     }
     font-size: 24px !important;
+  }
+  .fs-22 {
+    @include desktop {
+      font-size: 28px !important;
+    }
+    font-size: 22px !important;
   }
   .ldp-claim-row {
     border-radius: 24px;
