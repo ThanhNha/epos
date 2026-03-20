@@ -131,6 +131,16 @@ body.ecommerce-web-development {
     }
   }
   .banner-content-col {
+    h1{
+      @include desktop {
+        font-size: 48px !important;
+        font-weight: 600 !important;
+        line-height: 1.2;
+      }
+      font-size: 26px !important;
+      font-weight: 600 !important;
+      line-height: 1.2;
+    }
     .sub-title-banner {
       h3 {
         @include desktop {
@@ -142,15 +152,27 @@ body.ecommerce-web-development {
             font-weight: 600 !important;
           }
         }
+        font-size: 21px !important;
+        font-weight: 600 !important;
+        line-height: 1.2;
+        i {
+          font-size: 18px !important;
+          font-weight: 600 !important;
+        }
       }
     }
     .icon-box {
       display: flex !important;
       align-items: center !important;
+      margin-bottom: 8px !important;
       .icon-box-text {
         padding-left: 8px !important;
         p {
-          font-size: 24px !important;
+          @include desktop {
+            font-size: 24px !important;
+            font-weight: 500 !important;
+          }
+          font-size: 16px !important;
           font-weight: 500 !important;
         }
       }
@@ -169,9 +191,24 @@ body.ecommerce-web-development {
       padding-right: 15px !important;
     }
   }
+  .pb-15px {
+    @include desktop {
+      padding-bottom: 15px !important;
+    }
+  }
   .px-0 {
     @include only-mobile {
       padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+  }
+  .ps-0 {
+    @include only-mobile {
+      padding-left: 0 !important;
+    }
+  }
+  .pe-0 {
+    @include only-mobile {
       padding-right: 0 !important;
     }
   }
@@ -243,7 +280,7 @@ body.ecommerce-web-development {
         @include desktop {
           padding: 50px !important;
         }
-        padding: 30px 0px !important;
+        padding: 30px 0px 0px !important;
       }
     }
   }
@@ -346,6 +383,9 @@ body.ecommerce-web-development {
           .box-text-inner {
             text-align: start !important;
             .tag-portfolio {
+              @include only-mobile {
+                width: 70px;
+              }
               padding: 6px 10px;
               background-color: $epos360-primary;
               color: #fff;
@@ -357,7 +397,13 @@ body.ecommerce-web-development {
               font-weight: 600;
             }
             h3 {
-              font-size: 34px !important;
+              @include desktop {
+                font-size: 34px !important;
+                font-weight: 600;
+                color: $epos360-primary !important;
+                margin-bottom: 10px;
+              }
+              font-size: 22px !important;
               font-weight: 600;
               color: $epos360-primary !important;
               margin-bottom: 10px;
@@ -377,7 +423,7 @@ body.ecommerce-web-development {
     }
     .slick-dots {
       @include only-mobile {
-        bottom: 0px !important;
+        bottom: -18px !important;
       }
       li {
         @include only-mobile {
