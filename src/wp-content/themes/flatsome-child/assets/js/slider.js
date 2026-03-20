@@ -147,15 +147,12 @@ jQuery(document).ready(function ($) {
   }
 
   if ($(".our-portfolio-slider").length) {
-    console.log("sss");
-
     $(".our-portfolio-slider").slick({
       slidesToShow: 2,
       slidesToScroll: 1,
       arrows: false,
       dots: true,
       infinite: true,
-      // autoplay: true,
       autoplaySpeed: 5000,
       responsive: [
         {

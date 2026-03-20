@@ -6,6 +6,17 @@ body.ecommerce-web-development {
       background-color: #fff !important;
     }
   }
+  #logo-ecommerce {
+    img {
+      width: 280px !important;
+      object-fit: contain !important;
+    }
+  }
+  .header-ecommerce-web {
+    @include only-mobile {
+      box-shadow: $shadow !important;
+    }
+  }
   h1,
   h2,
   h3,
@@ -56,6 +67,11 @@ body.ecommerce-web-development {
     @include only-mobile {
       margin: 0 10px !important;
     }
+    &.section-banner {
+      @include only-mobile {
+        margin: 30px 10px 0 10px !important;
+      }
+    }
   }
   .button {
     margin-bottom: 0 !important;
@@ -90,7 +106,6 @@ body.ecommerce-web-development {
       &.white-bg {
         border: 1px solid #fff !important;
         background-color: #fff !important;
-        box-shadow: $shadow;
       }
     }
     &.back-to-top {
@@ -118,12 +133,14 @@ body.ecommerce-web-development {
   .banner-content-col {
     .sub-title-banner {
       h3 {
-        font-size: 32px !important;
-        font-weight: 600 !important;
-        line-height: 1.2;
-        i {
-          font-size: 26px !important;
+        @include desktop {
+          font-size: 32px !important;
           font-weight: 600 !important;
+          line-height: 1.2;
+          i {
+            font-size: 26px !important;
+            font-weight: 600 !important;
+          }
         }
       }
     }
@@ -150,6 +167,12 @@ body.ecommerce-web-development {
     @include desktop {
       padding-left: 15px !important;
       padding-right: 15px !important;
+    }
+  }
+  .px-0 {
+    @include only-mobile {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
     }
   }
   .fs-36 {
