@@ -131,7 +131,7 @@ body.ecommerce-web-development {
     }
   }
   .banner-content-col {
-    h1{
+    h1 {
       @include desktop {
         font-size: 48px !important;
         font-weight: 600 !important;
@@ -143,20 +143,20 @@ body.ecommerce-web-development {
     }
     .sub-title-banner {
       h3 {
-        @include desktop {
-          font-size: 32px !important;
+        @include only-mobile {
+          font-size: 21px !important;
           font-weight: 600 !important;
           line-height: 1.2;
           i {
-            font-size: 26px !important;
+            font-size: 18px !important;
             font-weight: 600 !important;
           }
         }
-        font-size: 21px !important;
+        font-size: 32px !important;
         font-weight: 600 !important;
         line-height: 1.2;
         i {
-          font-size: 18px !important;
+          font-size: 26px !important;
           font-weight: 600 !important;
         }
       }
