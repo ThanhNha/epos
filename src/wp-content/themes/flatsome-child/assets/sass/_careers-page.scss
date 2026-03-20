@@ -408,3 +408,30 @@ $radius: 8px;
 .btn-banner{
   margin: 20px 0px !important;
 }
+
+@include only-tablet {
+  .section.careers {
+    &__with-epos {
+      padding-bottom: 29px !important;
+    }
+    
+    &__why-epos {
+      .col .col-inner .text p {
+        margin-bottom: 0;
+      }
+
+      .stack.stack-row {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+    }
+
+    &__benefits {
+      padding-top: 29px !important;
+
+      h2 {
+        margin-top: 20px;
+      }
+    }
+  }
+}
