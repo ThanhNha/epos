@@ -1,0 +1,58 @@
+body {
+  &.contact-us ,&.return-policy {
+     font-family: "Poppins", sans-serif !important;
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    a,
+    span {
+      font-family: "Poppins", sans-serif !important;
+    }
+    .text-secondary {
+      color: $epos360-secondary !important;
+      h1 {
+        color: $epos360-secondary !important;
+      }
+      h2 {
+        color: $epos360-secondary !important;
+      }
+      h3 {
+        color: $epos360-secondary !important;
+      }
+      h4 {
+        color: $epos360-secondary !important;
+      }
+      h5 {
+        color: $epos360-secondary !important;
+      }
+      h6 {
+        color: $epos360-secondary !important;
+      }
+    }
+    .text-primary {
+      color: $epos360-primary !important;
+      h1 {
+        color: $epos360-primary !important;
+      }
+      h2 {
+        color: $epos360-primary !important;
+      }
+      h3 {
+        color: $epos360-primary !important;
+      }
+      h4 {
+        color: $epos360-primary !important;
+      }
+      h5 {
+        color: $epos360-primary !important;
+      }
+      h6 {
+        color: $epos360-primary !important;
+      }
+    } 
+  }
+}
