@@ -27,6 +27,37 @@ class GMT_Events
         };
         console.log(data)
         window.dataLayer.push(data);
+
+
+        // 2. Add to cart via URL (?add-to-cart=ID)
+        function getParam(name) {
+          let url = new URL(window.location.href);
+          return url.searchParams.get(name);
+        }
+
+        var product_id = getParam('add-to-cart');
+
+        if (product_id) {
+
+          window.dataLayer = window.dataLayer || [];
+
+          let data = {
+            'event': 'add_to_cart',
+            'ecommerce': {
+              'currency': '<?php echo get_woocommerce_currency(); ?>',
+              'value':  0,
+              'items': [{
+                'item_id': product_id,
+                'item_name': 'Product',
+                'quantity':  1
+              }]
+            }
+          };
+
+          console.log('URL add_to_cart:', data);
+          window.dataLayer.push(data);
+        }
+
       });
     </script>
 <?php
