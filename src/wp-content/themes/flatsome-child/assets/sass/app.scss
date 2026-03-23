@@ -10,7 +10,6 @@
 @import "feedback";
 @import "ldp";
 @import "fonts/fonts";
-@import "footer";
 @import "./custom";
 @import "./header";
 @import "./cta-block";
@@ -22,11 +21,13 @@
 @import "./careers-page";
 @import "./payment-teminal-page";
 @import "./epos-360/main-epos360";
+@import "footer";
 // @import "./epos360";
 // @import "./gsap";
 @import "./epos360-bluetap";
 @import "./mobile_pos";
 @import "./contact-page";
+@import"./page/ecommerce-web";
 @import "./404";
 
 .net-row {
@@ -79,6 +80,7 @@
     height: auto;
     &::after {
       right: 0px !important;
+      background-color: #2341aa !important;
     }
   }
   .image-icon img {

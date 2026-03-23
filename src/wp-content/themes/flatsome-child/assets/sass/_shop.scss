@@ -1,7 +1,10 @@
+// TODO: centralize configs for all buttons
+// maybe combine this with _buttons.scss
 .html_topbar_right {
   display: flex !important;
   align-items: center;
-  gap: 15px;
+  gap: 16px;
+  
   &:hover {
     a {
       &::before {
@@ -9,28 +12,61 @@
       }
     }
   }
+
   a:hover {
     &::before {
       opacity: 1 !important;
     }
   }
+
   .menu-btn-demo,
   .menu-btn-shop {
-    background: $blue-dark !important;
-    padding: 0.25rem 0.75rem !important;
+    font-family: Poppins, sans-serif !important;
+    font-weight: 600;
+    padding: 4px 12px !important;
     border: transparent;
     font-size: 16px;
     border-radius: 8px !important;
-    color: white;
     display: block;
-    line-height: 40px !important;
+    line-height: 43px !important;
     transition: all 0.3s linear;
     text-transform: capitalize;
-    &:hover {
-      color: white !important;
+    min-height: 55px;
+    min-width: 152px;
+    border: 2px solid $epos360-secondary !important;
+
+    @include tablet {
+      padding: 6px 24px !important;
+      line-height: 40px !important;
+      min-height: unset;
+      min-width: unset;
     }
+
     &::before {
       display: none;
+    }
+  }
+
+  .menu-btn-demo {
+    color: white !important;
+    background-color: $epos360-secondary !important;
+    box-shadow: none !important;
+    
+    &:hover {
+      color: white !important;
+      background-color: $epos360-button-hover-alt !important;
+      border-color: $epos360-button-hover-alt !important;
+    }
+  }
+
+  .menu-btn-shop {
+    background-color: transparent !important;
+    color: $epos360-secondary !important;
+    box-shadow: none !important;
+
+    &:hover {
+      color: $epos360-button-hover-alt !important;
+      background-color: $epos360-button-border !important;
     }
   }
 
