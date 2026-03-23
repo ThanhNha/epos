@@ -270,6 +270,36 @@
       }
     }
   }
+  &.unified-padding {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-top: 50px !important;
+    padding-bottom: 50px !important;
+    @include tablet {
+      padding-top: 55px !important;
+      padding-bottom: 55px !important;
+    }
+  }
+  &.no-top {
+    padding-top: 0 !important;
+  }
+  &.no-bottom {
+    padding-bottom: 0 !important;
+  }
+  &.has-title {
+    padding-top: 37px !important;
+    @include tablet {
+      padding-top: 42px !important;
+    }
+  }
+  &.no-margin-bottom {
+    margin-bottom: 0 !important;
+  }
+}
+.col {
+  &.no-bottom {
+    padding-bottom: 0 !important;
+  }
 }
 
 .icon-style-bg-color {
@@ -793,6 +823,42 @@
     color: $main-ldp !important;
   }
 }
+.text-white {
+  color: #fff !important;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #fff !important;
+  }
+}
 .fw-bold {
   font-weight: bold !important;
+}
+.col-the-smarter-way {
+  @include desktop {
+    padding: 15px !important;
+  }
+  .col-inner {
+    padding: 30px;
+    @include desktop {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+  }
+  &.bg-white {
+    > .col-inner {
+      background-color: white !important;
+      box-shadow: $shadow !important;
+    }
+  }
+}
+.text-uppercase {
+  text-transform: uppercase !important;
+}
+.text-underline {
+  text-decoration: underline !important;
 }

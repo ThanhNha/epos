@@ -7,10 +7,22 @@
       > li {
         &.menu-item {
           a {
+            font-family: "Poppins", sans-serif !important;
             text-transform: capitalize;
             color: $blue-dark;
             font-size: 15px;
             font-weight: 600;
+            &.nav-top-link {
+              color: $epos360-deep-blue !important;
+              min-height: 44px;
+            }
+            &::before {
+              background-color: $epos360-secondary;
+              opacity: 0 !important;
+            }
+            &:hover::before {
+              opacity: 1 !important;
+            }
           }
         }
         &.has-dropdown {
@@ -22,14 +34,14 @@
         }
         &.active,
         &:hover {
-          a {
-            color: $title-icon-box-color !important;
-            &::before {
-              display: none;
-            }
-          }
           .icon-angle-down {
             color: $title-icon-box-color !important;
+            transform: rotate(180deg);
+          }
+        }
+        &:hover {
+          a::before {
+            opacity: 1 !important;
           }
         }
         .sub-menu {
@@ -43,6 +55,9 @@
                 color: $blue-dark !important;
                 border-bottom: 0;
                 border-bottom: 1px solid $blue-dark;
+                &[name="epos"] {
+                  color: $epos360-deep-blue !important;
+                }
                 &:hover {
                   color: $title-icon-box-color !important;
                 }
@@ -57,14 +72,13 @@
                   a {
                     border-bottom: 0;
                     font-size: 14px;
-                    color: $blue-dark !important;
+                    color: $epos360-secondary !important;
                     text-decoration: none;
                   }
                   &:hover {
-                    background-color: $title-icon-box-color !important ;
                     border-radius: 8px;
                     a {
-                      color: white !important;
+                      color: $epos360-primary !important;
                     }
                   }
                   &.active {
@@ -77,24 +91,47 @@
             }
             li:not(.menu-item-has-children) {
               a {
+                position: relative;
+                display: inline-block;
                 border-bottom: 0;
                 font-size: 14px;
                 color: $blue-dark !important;
               }
+              a::before {
+                content: '';
+                opacity: 1 !important;
+                position: absolute;
+                left: 0;
+                bottom: 3px;
+                right: 100%;
+                height: 2px;
+                background-color: $epos360-secondary;
+                transition: right 0.3s ease, background-color 0.3s ease;
+              }
+              a::after {
+                content: "";
+                font-family: "fl-icons" !important;
+                position: absolute;
+                top: 10px;
+                right: -9px;
+                opacity: 0;
+                margin-left: 5px;
+                transform: rotate(-90deg);
+                transition: right 0.3s ease, opacity 0.3s ease;
+              }
               &:hover {
-                background-color: $title-icon-box-color !important ;
-                border-radius: 8px;
                 a {
-                  color: white !important;
+                  color: $epos360-primary !important;
+                }
+                a::before {
+                  right: 0;
+                  background-color: $epos360-primary;
+                }
+                a::after {
+                  opacity: 1;
+                  right: -15px;
                 }
               }
-            }
-          }
-        }
-        &.html_topbar_right {
-          &:hover {
-            a {
-              color: white !important;
             }
           }
         }
@@ -142,7 +179,7 @@
   }
 }
 .header-main{
-   li.html.custom{
+   li.html.custom:not(.html_topbar_right){
     display: block !important;
    }
 }

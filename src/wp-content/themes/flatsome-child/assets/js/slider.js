@@ -109,7 +109,7 @@ jQuery(document).ready(function ($) {
 
       // check form id
       var targetForm = iframe.find(
-        "#hsForm_8cb9dee2-73d0-4646-9ff2-22e0e0bf5035",
+        "#hsForm_8cb9dee2-73d0-4646-9ff2-22e0e0bf5035,  #hsForm_702cef7e-0096-4839-b15e-6c45e65932cf",
       );
 
       if (head.length > 0 && targetForm.length > 0) {
@@ -146,7 +146,7 @@ jQuery(document).ready(function ($) {
 
       // check form id
       var targetForm = iframe.find(
-        "#hsForm_e6f14b90-9cc2-44dc-9547-4097ec030031, #hsForm_702cef7e-0096-4839-b15e-6c45e65932cf",
+        "#hsForm_e6f14b90-9cc2-44dc-9547-4097ec030031",
       );
 
       if (head.length > 0 && targetForm.length > 0) {
@@ -180,5 +180,24 @@ jQuery(document).ready(function ($) {
     return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
       navigator.userAgent,
     );
+  }
+
+  if ($(".our-portfolio-slider").length) {
+    $(".our-portfolio-slider").slick({
+      slidesToShow: 2,
+      slidesToScroll: 1,
+      arrows: false,
+      dots: true,
+      infinite: true,
+      autoplaySpeed: 5000,
+      responsive: [
+        {
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 1,
+          },
+        },
+      ],
+    });
   }
 });
