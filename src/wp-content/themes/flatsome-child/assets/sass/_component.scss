@@ -837,3 +837,28 @@
 .fw-bold {
   font-weight: bold !important;
 }
+.col-the-smarter-way {
+  @include desktop {
+    padding: 15px !important;
+  }
+  .col-inner {
+    padding: 30px;
+    @include desktop {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+  }
+  &.bg-white {
+    > .col-inner {
+      background-color: white !important;
+      box-shadow: $shadow !important;
+    }
+  }
+}
+.text-uppercase {
+  text-transform: uppercase !important;
+}
+.text-underline {
+  text-decoration: underline !important;
+}
