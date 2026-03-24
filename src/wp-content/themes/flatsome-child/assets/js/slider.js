@@ -109,7 +109,7 @@ jQuery(document).ready(function ($) {
 
       // check form id
       var targetForm = iframe.find(
-        "#hsForm_8cb9dee2-73d0-4646-9ff2-22e0e0bf5035,  #hsForm_702cef7e-0096-4839-b15e-6c45e65932cf",
+        "#hsForm_8cb9dee2-73d0-4646-9ff2-22e0e0bf5035,  #hsForm_702cef7e-0096-4839-b15e-6c45e65932cf , #hsForm_167f3840-2ffd-4e77-bf0c-b9e01e471da4",
       );
 
       if (head.length > 0 && targetForm.length > 0) {
