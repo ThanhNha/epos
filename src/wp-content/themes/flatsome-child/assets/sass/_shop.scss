@@ -4,7 +4,7 @@
   display: flex !important;
   align-items: center;
   gap: 16px;
-  
+
   &:hover {
     a {
       &::before {
@@ -51,7 +51,7 @@
     color: white !important;
     background-color: $epos360-secondary !important;
     box-shadow: none !important;
-    
+
     &:hover {
       color: white !important;
       background-color: $epos360-button-hover-alt !important;
