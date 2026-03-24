@@ -21,7 +21,7 @@ body.error404 {
     letter-spacing: -4px;
     line-height: 1;
     margin-bottom: 30px;
-    color: $blue-dark;
+    color: $epos360-secondary;
   }
 
   /* 404 title */
@@ -45,7 +45,7 @@ body.error404 {
   .btn-home {
     display: inline-block;
     padding: 14px 34px;
-    background: $blue-dark;
+    background: $epos360-secondary;
     color: #fff;
     font-weight: 600;
     border-radius: 30px;
@@ -53,7 +53,7 @@ body.error404 {
     transition: all 0.3s ease;
 
     &:hover {
-      background: $blue-dark;
+      background: $epos360-secondary;
       transform: translateY(-2px);
       box-shadow: 0 8px 20px rgba(30, 99, 255, 0.35);
     }

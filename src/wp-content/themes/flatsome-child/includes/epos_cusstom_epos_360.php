@@ -7,4 +7,4 @@ function epos360_add_poppins_font()
             </style>';
     });
 }
-add_action('wp', 'epos360_add_poppins_font');
+// add_action('wp', 'epos360_add_poppins_font');
