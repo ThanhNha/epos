@@ -837,6 +837,9 @@
 .fw-bold {
   font-weight: bold !important;
 }
+.fw-semibold {
+  font-weight: 600 !important;
+}
 .col-the-smarter-way {
   @include desktop {
     padding: 15px !important;

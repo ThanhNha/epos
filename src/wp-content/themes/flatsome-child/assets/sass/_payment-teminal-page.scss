@@ -52,11 +52,11 @@ body.payment-terminal {
       color: $epos360-primary !important;
     }
   }
-  .button{
-    &.primary{
+  .button {
+    &.primary {
       background-color: $epos360-primary !important;
     }
-    &.secondary{
+    &.secondary {
       background-color: $epos360-secondary !important;
     }
   }
@@ -82,6 +82,15 @@ body.payment-terminal {
       > .col-inner {
         background-color: white !important;
         box-shadow: $shadow !important;
+      }
+    }
+    .img-inner {
+      @include only-mobile {
+        padding-top: 190px !important;
+        img {
+          width: 100%;
+          height: 190px !important;
+        }
       }
     }
   }
