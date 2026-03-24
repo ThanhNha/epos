@@ -63,6 +63,7 @@ body.ecommerce-web-development {
       color: $epos360-primary !important;
     }
   }
+
   .section.bg-image {
     @include only-mobile {
       margin: 0 10px !important;
@@ -90,8 +91,8 @@ body.ecommerce-web-development {
       border-color: $epos360-secondary !important;
       color: #fff !important;
       &:hover {
-        background-color: darken($epos360-secondary, 10%) !important;
-        border-color: darken($epos360-secondary, 10%) !important;
+        background-color: rgb(17, 24, 39) !important;
+        border-color: rgb(17, 24, 39) !important;
         color: #fff !important;
       }
       &.is-outline {
@@ -99,8 +100,9 @@ body.ecommerce-web-development {
         color: $epos360-secondary !important;
         border-color: $epos360-secondary !important;
         &:hover {
-          background-color: $epos360-secondary !important;
-          color: #fff !important;
+          background-color: $epos360-button-border !important;
+          color: $epos360-button-hover-alt !important;
+          border-color: rgb(17, 24, 39) !important;
         }
       }
       &.white-bg {
@@ -420,7 +422,7 @@ body.ecommerce-web-development {
     }
     &.slick-dotted.slick-slider {
       @include only-mobile {
-        margin-bottom: 0px !important;
+        margin-bottom: 15px !important;
       }
     }
     .slick-dots {

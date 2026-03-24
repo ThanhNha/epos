@@ -823,9 +823,45 @@
     color: $main-ldp !important;
   }
 }
+.text-white {
+  color: #fff !important;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #fff !important;
+  }
+}
 .fw-bold {
   font-weight: bold !important;
 }
 .fw-semibold {
   font-weight: 600 !important;
+}
+.col-the-smarter-way {
+  @include desktop {
+    padding: 15px !important;
+  }
+  .col-inner {
+    padding: 30px;
+    @include desktop {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+  }
+  &.bg-white {
+    > .col-inner {
+      background-color: white !important;
+      box-shadow: $shadow !important;
+    }
+  }
+}
+.text-uppercase {
+  text-transform: uppercase !important;
+}
+.text-underline {
+  text-decoration: underline !important;
 }
