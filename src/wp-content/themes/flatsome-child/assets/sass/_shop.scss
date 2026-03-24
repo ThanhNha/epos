@@ -61,13 +61,13 @@
 
   .menu-btn-shop {
     background-color: transparent !important;
-    color:  rgb(17, 24, 39) !important;
+    color: $epos360-button-hover;
     box-shadow: none !important;
-    border-color: rgb(17, 24, 39) !important;
 
     &:hover {
-      color: $epos360-button-hover-alt !important;
+      color: rgb(17, 24, 39) !important;
       background-color: $epos360-button-border !important;
+      border-color: rgb(17, 24, 39) !important;
     }
   }
 
