@@ -9,7 +9,7 @@
           a {
             font-family: "Poppins", sans-serif !important;
             text-transform: capitalize;
-            color: $blue-dark;
+            color: $epos360-secondary;
             font-size: 15px;
             font-weight: 600;
             &.nav-top-link {
@@ -28,7 +28,7 @@
         &.has-dropdown {
           .icon-angle-down {
             font-size: 20px;
-            color: $blue-dark;
+            color: $epos360-secondary;
             opacity: 0.8;
           }
         }
@@ -52,9 +52,9 @@
             > li.menu-item-has-children {
               margin-bottom: 5px;
               a {
-                color: $blue-dark !important;
+                color: $epos360-secondary !important;
                 border-bottom: 0;
-                border-bottom: 1px solid $blue-dark;
+                border-bottom: 1px solid $epos360-secondary;
                 &[name="epos"] {
                   color: $epos360-deep-blue !important;
                 }
@@ -95,7 +95,7 @@
                 display: inline-block;
                 border-bottom: 0;
                 font-size: 14px;
-                color: $blue-dark !important;
+                color: $epos360-secondary !important;
               }
               a::before {
                 content: '';

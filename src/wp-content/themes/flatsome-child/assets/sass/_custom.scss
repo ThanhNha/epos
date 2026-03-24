@@ -227,9 +227,9 @@ body.payment-soundbox {
         &.active,
         &:hover {
           a {
-            color: $blue-dark !important;
+            color: $epos360-secondary !important;
             &::before {
-              background-color: $blue-dark;
+              background-color: $epos360-secondary;
               height: 2px;
             }
           }
@@ -279,7 +279,7 @@ body.payment-soundbox {
           margin-bottom: 0px !important;
           span {
             text-transform: capitalize;
-            color: $blue-dark !important;
+            color: $epos360-secondary !important;
             font-weight: 600 !important;
           }
         }
@@ -342,7 +342,7 @@ body.payment-soundbox {
         margin-bottom: 0px !important;
         span {
           text-transform: capitalize;
-          color: $blue-dark !important;
+          color: $epos360-secondary !important;
           font-weight: 600 !important;
         }
       }
@@ -367,7 +367,7 @@ body.payment-soundbox {
     p {
       color: $main-ldp !important;
       &.title {
-        color: $blue-dark !important;
+        color: $epos360-secondary !important;
         font-size: 20px !important;
         font-weight: 600;
         margin-bottom: 10px;
@@ -379,8 +379,8 @@ body.payment-soundbox {
     > .col-inner {
       padding: 25px !important;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-      border-top: 2px solid $blue-dark;
-      border-bottom: 2px solid $blue-dark;
+      border-top: 2px solid $epos360-secondary;
+      border-bottom: 2px solid $epos360-secondary;
       p {
         color: white !important;
         &.title {
@@ -410,7 +410,7 @@ body.payment-soundbox {
       }
       &.active {
         a {
-          color: $blue-dark !important;
+          color: $epos360-secondary !important;
           font-weight: bold;
 
           &::before {
@@ -420,7 +420,7 @@ body.payment-soundbox {
             top: 0;
             bottom: 0;
             width: 3px;
-            border-left: 3px solid $blue-dark !important;
+            border-left: 3px solid $epos360-secondary !important;
           }
         }
       }
@@ -451,7 +451,7 @@ body.payment-soundbox {
       }
       h4 {
         margin-bottom: 0px !important;
-        color: $blue-dark;
+        color: $epos360-secondary;
         font-size: 18px !important;
         @include desktop {
           font-size: 20px !important;
@@ -483,7 +483,7 @@ body.payment-soundbox {
         }
         h4 {
           margin-bottom: 0px !important;
-          color: $blue-dark;
+          color: $epos360-secondary;
         }
       }
     }
@@ -494,10 +494,10 @@ body.payment-soundbox {
   }
 }
 .careers-at-epos main .ldp-claim-row {
-  background: #2eaf7d;
+  background: $epos360-primary;
   border-radius: 24px;
   overflow: hidden;
-  background-image: url(https://www.epos.com.sg/wp-content/uploads/2025/05/Brand-Mark.png);
+      background-image: url(https://www.epos.com.sg/wp-content/uploads/2026/02/Intro-Section.png);
 }
 .careers-at-epos main .ldp-claim-row .content-img {
   padding: 0px !important;
@@ -544,10 +544,10 @@ body.payment-soundbox {
     align-items: center;
     justify-content: center;
     margin-bottom: 15px;
-    border: 3px solid $color-ldp;
+    border: 3px solid $epos360-primary;
     transition: all 0.2s linear;
     &:hover {
-      background: $color-ldp;
+      background: $epos360-primary;
     }
     img {
       max-width: 60%;
@@ -566,7 +566,7 @@ body.payment-soundbox {
         border-bottom: none;
       }
       &:hover {
-        border-right: 3px solid $color-ldp;
+        border-right: 3px solid $epos360-primary;
       }
       a {
         font-weight: bold;

@@ -35,11 +35,3 @@ add_action('template_redirect', function () {
 });
 
 
-function preload_fonts()
-{
-    echo '<link rel="preload" href="/wp-content/themes/flatsome-child/assets/fonts/Montserrat/Montserrat-Regular.woff2" as="font" type="font/woff2" crossorigin>';
-    echo '<link rel="preload" href="/wp-content/themes/flatsome-child/assets/fonts/PlusJakartaSans/PlusJakartaSans-Bold.woff2" as="font" type="font/woff2" crossorigin>';
-}
-add_action('wp_head', 'preload_fonts', 1);
-
-
