@@ -876,8 +876,11 @@
     padding-bottom: 8px !important;
   }
 }
-.banner-button {
+@include only-mobile{
+  .banner-button {
   .button {
     width: 80%;
   }
 }
+}
+

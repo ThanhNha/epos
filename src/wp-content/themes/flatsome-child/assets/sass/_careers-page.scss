@@ -385,9 +385,6 @@ $radius: 8px;
           background-image: url(https://www.epos.com.sg/wp-content/uploads/2026/03/Quotation_Icons.webp);
         }
       }
-      @include only-mobile {
-        padding-top: 30px !important
-      }
     }
   }
 }
