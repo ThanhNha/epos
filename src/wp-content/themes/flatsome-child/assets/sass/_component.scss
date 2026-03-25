@@ -241,7 +241,7 @@
 }
 .section {
   &.bg-image {
-    margin: 10px !important;
+    margin: 0 10px 0 10px !important;
     width: auto !important;
     @include desktop {
       margin: 30px !important;

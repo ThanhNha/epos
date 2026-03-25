@@ -74,9 +74,9 @@ a.button {
       }
     }
     &:hover {
-      background-color: $epos360-button-hover-alt !important;
+      background-color: $epos360-button-primary-hover !important;
       color: white !important;
-      border-color: $epos360-button-hover-alt !important;
+      border-color: $epos360-button-primary-hover !important;
     }
   }
   &.secondary {
