@@ -31,6 +31,18 @@ function job_openings_shortcode()
         }
     }
 
+
+    // ✅ SORT JOBS: Singapore first
+    usort($jobs, function ($a, $b) {
+        $a_loc = strtolower($a['location']);
+        $b_loc = strtolower($b['location']);
+
+        if ($a_loc === 'singapore' && $b_loc !== 'singapore') return -1;
+        if ($b_loc === 'singapore' && $a_loc !== 'singapore') return 1;
+
+        return strtotime($b['posted']) - strtotime($a['posted']);
+    });
+
     $employment_types = array_unique($employment_types);
     sort($employment_types);
 ?>

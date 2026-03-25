@@ -345,7 +345,7 @@ $radius: 8px;
   margin: 0 0;
   text-transform: capitalize;
   &:hover {
-    background-color: $color-ldp-2;
+    background-color: $epos360-button-hover-alt !important;
   }
 }
 .inside-life-row {
@@ -382,8 +382,11 @@ $radius: 8px;
           right: -10px;
           background-size: cover;
           background-repeat: no-repeat;
-          background-image: url("https://www.epos.com.sg/wp-content/uploads/2025/05/bde-icon-icon.png");
+          background-image: url(https://www.epos.com.sg/wp-content/uploads/2026/03/Quotation_Icons.webp);
         }
+      }
+      @include only-mobile {
+        padding-top: 50px !important;
       }
     }
   }
@@ -405,7 +408,7 @@ $radius: 8px;
     line-height: 24px;
   }
 }
-.btn-banner{
+.btn-banner {
   margin: 20px 0px !important;
 }
 
@@ -414,7 +417,7 @@ $radius: 8px;
     &__with-epos {
       padding-bottom: 29px !important;
     }
-    
+
     &__why-epos {
       .col .col-inner .text p {
         margin-bottom: 0;
@@ -432,6 +435,34 @@ $radius: 8px;
       h2 {
         margin-top: 20px;
       }
+    }
+  }
+}
+.careers-at-epos main {
+  .ldp-claim-row {
+    background: $epos360-primary;
+    border-radius: 24px;
+    overflow: hidden;
+    // background-image: url(https://www.epos.com.sg/wp-content/uploads/2026/02/Intro-Section.png);
+  }
+  .content-img {
+    padding: 0px !important;
+      .col-inner {
+        height: 100%;
+        .img{
+          height: 100%;
+        }
+      }
+  }
+  .content-col {
+    padding: 0px !important;
+    .col-inner {
+      padding: 30px 50px !important;
+      height: 100%;
+      background-image: url(https://www.epos.com.sg/wp-content/uploads/2026/02/Intro-Section.png);
+      background-size: cover;
+      background-repeat: no-repeat;
+      overflow: hidden;
     }
   }
 }
