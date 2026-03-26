@@ -426,7 +426,9 @@ body.payment-terminal {
     align-items: center;
     &:last-child {
       border-bottom: none;
-      padding-bottom: 0;
+      @include only-mobile {
+        padding-bottom: 0;
+      }
     }
     .spec-label {
       font-weight: 600;
