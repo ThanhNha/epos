@@ -1,10 +1,10 @@
 .quantity {
   .button.is-form {
-    background: $blue-dark;
+    background: $epos360-secondary;
     text-shadow: none !important;
     color: #fff !important;
     &:hover {
-      background: $blue-dark;
+      background: $epos360-secondary;
     }
   }
 }
@@ -41,6 +41,7 @@ a.button {
 .button {
   border-radius: 12px !important;
   padding: 8px 12px !important;
+  box-shadow: none !important;
   @include desktop {
     border-radius: 12px !important;
     padding: 8px 24px !important;
@@ -51,28 +52,67 @@ a.button {
     border-radius: 5px !important;
   }
   &.primary {
-    background: $color-ldp !important;
-    color: white !important;
-  }
-  &.secondary {
-    background: $blue-dark !important;
+    background: $epos360-primary !important;
     color: white !important;
     &.is-outline {
-      border: 2px solid $blue-dark !important;
-      color: $blue-dark !important;
+      border: 2px solid $epos360-primary !important;
+      color: $epos360-primary !important;
       background: transparent !important;
       &:hover {
-        background: $blue-dark !important;
+        background: $epos360-primary !important;
         color: white !important;
       }
+      &.white-bg {
+        border: 2px solid $epos360-primary !important;
+        background-color: #fff !important;
+        color: $epos360-primary !important;
+        &:hover {
+          background-color: $epos360-button-border !important;
+          color: $epos360-button-hover-alt !important;
+          border-color: rgb(17, 24, 39) !important;
+        }
+      }
+    }
+    &:hover {
+      background-color: $epos360-button-primary-hover !important;
+      color: white !important;
+      border-color: $epos360-button-primary-hover !important;
+    }
+  }
+  &.secondary {
+    background: $epos360-secondary !important;
+    color: white !important;
+    &.is-outline {
+      border: 2px solid $epos360-secondary !important;
+      color: $epos360-secondary !important;
+      background: transparent !important;
+      &:hover {
+        background: $epos360-secondary !important;
+        color: white !important;
+      }
+      &.white-bg {
+        border: 2px solid $epos360-secondary !important;
+        background-color: #fff !important;
+        color: $epos360-secondary !important;
+        &:hover {
+          background-color: $epos360-button-border !important;
+          color: $epos360-button-hover-alt !important;
+          border-color: rgb(17, 24, 39) !important;
+        }
+      }
+    }
+    &:hover {
+      background-color: $epos360-button-hover-alt !important;
+      color: white !important;
+      border-color: $epos360-button-hover-alt !important;
     }
   }
   &.outline {
-    border: 2px solid $blue-dark !important;
-    color: $blue-dark !important;
+    border: 2px solid $epos360-secondary !important;
+    color: $epos360-secondary !important;
     background: transparent !important;
     &:hover {
-      background: $blue-dark !important;
+      background: $epos360-secondary !important;
       color: white !important;
     }
   }
@@ -94,8 +134,8 @@ a.button {
   &.button-tab {
     padding: 3px 5px !important;
     border-radius: 8px !important;
-    color: $blue-dark !important;
-    border: 1px solid $blue-dark !important;
+    color: $epos360-secondary !important;
+    border: 1px solid $epos360-secondary !important;
     background: transparent !important;
     width: 100%;
     @include tablet {
@@ -105,7 +145,7 @@ a.button {
       width: 25%;
     }
     &:hover {
-      background: $blue-dark !important;
+      background: $epos360-secondary !important;
       color: white !important;
     }
     span {
@@ -113,7 +153,7 @@ a.button {
     }
   }
   span {
-    font-family: "Montserrat", sans-serif !important;
+    font-family: "Poppins", sans-serif !important;
   }
   &.same-size {
     @include only-mobile {
@@ -125,14 +165,14 @@ a.button {
 }
 
 .btn-ldp {
-  background-color: $color-ldp !important;
+  background-color: $epos360-primary !important;
   border-radius: $radius !important;
   font-weight: 500;
   &.white {
     width: fit-content;
     max-width: 250px;
     background-color: #fff !important;
-    color: $color-ldp !important;
+    color: $epos360-primary !important;
   }
   &.large {
     padding: 4px 18px;
@@ -147,6 +187,6 @@ a.button {
     background: transparent !important;
   }
   &.main {
-    background: $blue-dark !important;
+    background: $epos360-secondary !important;
   }
 }
