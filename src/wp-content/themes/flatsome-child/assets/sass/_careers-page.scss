@@ -347,6 +347,11 @@ $radius: 8px;
   &:hover {
     background-color: $epos360-button-primary-hover !important;
   }
+  @include only-mobile {
+    width: 100%;
+    min-width: 282px;
+    max-width: 282px;
+  }
 }
 .inside-life-row {
   .col {
@@ -470,8 +475,8 @@ body {
       @include only-mobile {
         .button {
           width: 100%;
-          min-width: 250px;
-          max-width: 250px;
+          min-width: 282px;
+          max-width: 282px;
         }
       }
     }
