@@ -98,8 +98,8 @@ body.payment-terminal {
         &.mobile-img-h-190px {
           .img-inner {
             @include only-mobile {
-              padding-top: 190px;
-              height: 190px;
+              padding-top: 190px !important;
+              height: 190px !important;
             }
           }
         }
