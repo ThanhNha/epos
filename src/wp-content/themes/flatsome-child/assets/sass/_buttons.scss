@@ -78,8 +78,18 @@ a.button {
   }
 
   &.back-to-top {
+    height: 42px !important;
+    width: 42px !important;
     border-radius: 50% !important;
     padding: 4px 15px !important;
+    background: $epos360-secondary !important;
+    border-color: $epos360-secondary !important;
+    i {
+      font-size: 24px !important;
+      left: -2px !important;
+      top: -2px !important;
+      color: white !important;
+    }
   }
   &.button-tab {
     padding: 3px 5px !important;
@@ -104,6 +114,13 @@ a.button {
   }
   span {
     font-family: "Montserrat", sans-serif !important;
+  }
+  &.same-size {
+    @include only-mobile {
+      width: 100% !important;
+      min-width: 282px !important;
+      max-width: 282px !important;
+    }
   }
 }
 
