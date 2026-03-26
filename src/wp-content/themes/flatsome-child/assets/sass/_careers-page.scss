@@ -444,12 +444,12 @@ $radius: 8px;
   }
   .content-img {
     padding: 0px !important;
-      .col-inner {
+    .col-inner {
+      height: 100%;
+      .img {
         height: 100%;
-        .img{
-          height: 100%;
-        }
       }
+    }
   }
   .content-col {
     padding: 0px !important;
@@ -460,6 +460,19 @@ $radius: 8px;
       background-size: cover;
       background-repeat: no-repeat;
       overflow: hidden;
+    }
+  }
+}
+body {
+  &.careers-at-epos {
+    .banner-button,
+    .same-button {
+      @include only-mobile {
+        .button {
+          width: 100%;
+          min-width: 250px;
+        }
+      }
     }
   }
 }
