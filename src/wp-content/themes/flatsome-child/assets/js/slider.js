@@ -108,13 +108,13 @@ jQuery(document).ready(function ($) {
       var head = iframe.find("head");
 
       // check form id
-      var targetForm = iframe.find(
-        "#hsForm_8cb9dee2-73d0-4646-9ff2-22e0e0bf5035,  #hsForm_702cef7e-0096-4839-b15e-6c45e65932cf",
-      );
+      // var targetForm = iframe.find(
+      //   "#hsForm_8cb9dee2-73d0-4646-9ff2-22e0e0bf5035,  #hsForm_702cef7e-0096-4839-b15e-6c45e65932cf",
+      // );
 
-      if (head.length > 0 && targetForm.length > 0) {
+      if (head.length > 0) {
         var css =
-          '<style type="text/css">' +
+          '<style type="text/css" class="hs-form-styling">' +
           "input[type='text'], input[type='email'], input[type='tel'], textarea, select { " +
           "border-radius: 8px !important; " +
           "padding: 10px !important; " +
@@ -132,6 +132,7 @@ jQuery(document).ready(function ($) {
           ".hs-button { border-radius:8px !important; padding: 17px 24px  !important;} " +
           ".hs-form a:visited { color:#ffffff !important; } " +
           ".hs-form a:hover { color:#58cc52 !important; } " +
+          ".actions { margin-top: 18px; margin-bottom: 0px; padding: 17px 0px 0px;} " +
           "</style>";
 
         head.append(css);
@@ -139,42 +140,42 @@ jQuery(document).ready(function ($) {
     });
   }, 5000);
   //font Montserrat
-  setTimeout(function () {
-    jQuery("iframe[id^='hs-form-iframe']").each(function () {
-      var iframe = jQuery(this).contents();
-      var head = iframe.find("head");
+  // setTimeout(function () {
+  //   jQuery("iframe[id^='hs-form-iframe']").each(function () {
+  //     var iframe = jQuery(this).contents();
+  //     var head = iframe.find("head");
 
-      // check form id
-      var targetForm = iframe.find(
-        "#hsForm_e6f14b90-9cc2-44dc-9547-4097ec030031",
-      );
+  //     // check form id
+  //     var targetForm = iframe.find(
+  //       "#hsForm_e6f14b90-9cc2-44dc-9547-4097ec030031",
+  //     );
 
-      if (head.length > 0 && targetForm.length > 0) {
-        var css =
-          '<style type="text/css">' +
-          "input[type='text'], input[type='email'], input[type='tel'], textarea, select { " +
-          "border-radius: 8px !important; " +
-          "padding: 10px !important; " +
-          "font-family: 'Montserrat', sans-serif !important;" +
-          "} " +
-          ".hs-input:not([type='checkbox']):not([type='radio']) { " +
-          "height: 47px !important; " +
-          "box-sizing: border-box;" +
-          "} " +
-          "input[type='checkbox'], input[type='radio'] { " +
-          "height: auto !important;" +
-          "} " +
-          "::placeholder { font-family: 'Montserrat', sans-serif !important; } " +
-          "label { display:block; margin-bottom:10px !important; } " +
-          ".hs-button { border-radius:8px !important; padding: 17px 24px  !important;} " +
-          ".hs-form a:visited { color:#ffffff !important; } " +
-          ".hs-form a:hover { color:#58cc52 !important; } " +
-          "</style>";
+  //     if (head.length > 0 && targetForm.length > 0) {
+  //       var css =
+  //         '<style type="text/css">' +
+  //         "input[type='text'], input[type='email'], input[type='tel'], textarea, select { " +
+  //         "border-radius: 8px !important; " +
+  //         "padding: 10px !important; " +
+  //         "font-family: 'Montserrat', sans-serif !important;" +
+  //         "} " +
+  //         ".hs-input:not([type='checkbox']):not([type='radio']) { " +
+  //         "height: 47px !important; " +
+  //         "box-sizing: border-box;" +
+  //         "} " +
+  //         "input[type='checkbox'], input[type='radio'] { " +
+  //         "height: auto !important;" +
+  //         "} " +
+  //         "::placeholder { font-family: 'Montserrat', sans-serif !important; } " +
+  //         "label { display:block; margin-bottom:10px !important; } " +
+  //         ".hs-button { border-radius:8px !important; padding: 17px 24px  !important;} " +
+  //         ".hs-form a:visited { color:#ffffff !important; } " +
+  //         ".hs-form a:hover { color:#58cc52 !important; } " +
+  //         "</style>";
 
-        head.append(css);
-      }
-    });
-  }, 5000);
+  //       head.append(css);
+  //     }
+  //   });
+  // }, 5000);
 
   function isMobile() {
     return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
