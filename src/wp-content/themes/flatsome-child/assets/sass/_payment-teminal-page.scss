@@ -52,11 +52,11 @@ body.payment-terminal {
       color: $epos360-primary !important;
     }
   }
-  .button{
-    &.primary{
+  .button {
+    &.primary {
       background-color: $epos360-primary !important;
     }
-    &.secondary{
+    &.secondary {
       background-color: $epos360-secondary !important;
     }
   }
@@ -68,14 +68,41 @@ body.payment-terminal {
 
   .col-the-smarter-way {
     @include desktop {
-      padding: 15px !important;
+      &:nth-child(1) {
+        padding: 15px !important;
+      }
+      &:nth-child(2) {
+        padding: 15px !important;
+      }
+      &:nth-child(3) {
+        padding: 15px 15px 0 15px !important;
+      }
+      &:nth-child(4) {
+        padding: 15px 15px 0 15px !important;
+      }
     }
     .col-inner {
-      padding: 30px;
+      padding: 20px;
       @include desktop {
+        padding: 30px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+      }
+      .img {
+        @include desktop {
+          &:not(:last-child) {
+            margin-bottom: 0px !important;
+          }
+        }
+        &.mobile-img-h-190px {
+          .img-inner {
+            @include only-mobile {
+              padding-top: 190px !important;
+              height: 190px !important;
+            }
+          }
+        }
       }
     }
     &.bg-white {
@@ -96,6 +123,7 @@ body.payment-terminal {
       border-collapse: collapse;
       border: 0px !important;
       table-layout: fixed;
+      margin-bottom: 0px;
 
       thead {
         tr {
@@ -267,14 +295,14 @@ body.payment-terminal {
       tfoot {
         .button-row {
           th {
-            padding: 40px;
+            padding: 30px 40px 25px 40px;
             border-bottom: none;
             text-align: center;
             border: 0px !important;
           }
           td {
             @include desktop {
-              padding: 0 40px !important;
+              padding: 20px 30px 0 !important;
             }
             padding: 15px 32px !important;
             border-bottom: none;
@@ -296,26 +324,6 @@ body.payment-terminal {
     }
   }
   @media (max-width: 768px) {
-    .medium-logo-center .logo {
-      order: 1;
-      margin: 0 !important;
-      width: 180px;
-    }
-    .medium-logo-center .flex-right {
-      -webkit-box-flex: 1;
-      -ms-flex: 1 1 0px;
-      flex: none;
-      -webkit-box-ordinal-group: 4;
-      -ms-flex-order: 3;
-      order: 3;
-      .mobile-nav {
-        .button-secondary-epos360 {
-          padding: 4px 12px !important;
-          font-size: 14px !important;
-          background-color: $epos360-secondary !important;
-        }
-      }
-    }
     .payment-teminal-banner {
       .button {
         width: 152px;
@@ -406,6 +414,9 @@ body.payment-terminal {
     align-items: center;
     &:last-child {
       border-bottom: none;
+      @include only-mobile {
+        padding-bottom: 0;
+      }
     }
     .spec-label {
       font-weight: 600;
@@ -417,6 +428,14 @@ body.payment-terminal {
       color: #7a7a7a;
       font-size: 15px;
       line-height: 1.6;
+    }
+  }
+
+  .custom-accordion {
+    .accordion-item {
+      &:last-child {
+        margin-bottom: 0px;
+      }
     }
   }
 }

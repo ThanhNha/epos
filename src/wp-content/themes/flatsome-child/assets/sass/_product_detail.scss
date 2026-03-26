@@ -6,13 +6,13 @@ body.single-product {
       margin-bottom: 0;
       border-radius: 30px;
       height: auto;
-      border: 1px solid $blue-dark;
+      border: 1px solid $epos360-secondary;
       align-items: center;
       .button {
         background-color: transparent !important;
         width: 40px !important;
         font-size: 22px !important;
-        color: $blue-dark !important;
+        color: $epos360-secondary !important;
         &.minus {
           border-top-left-radius: 30px !important;
           border-bottom-left-radius: 30px !important;
@@ -57,7 +57,7 @@ body.single-product {
             &.active {
               a {
                &::before{
-                background-color: $blue-dark !important;
+                background-color: $epos360-secondary !important;
                }
               }
             }

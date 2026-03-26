@@ -81,8 +81,8 @@ body.ecommerce-web-development {
       border-color: $epos360-primary !important;
       color: #fff !important;
       &:hover {
-        background-color: darken($epos360-primary, 10%) !important;
-        border-color: darken($epos360-primary, 10%) !important;
+        background-color: $epos360-button-primary-hover !important;
+        border-color: $epos360-button-primary-hover !important;
         color: #fff !important;
       }
     }
@@ -106,7 +106,7 @@ body.ecommerce-web-development {
         }
       }
       &.white-bg {
-        border: 1px solid $epos360-secondary !important;
+        border: 2px solid $epos360-secondary !important;
         background-color: #fff !important;
       }
     }
