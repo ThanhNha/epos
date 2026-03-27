@@ -130,6 +130,7 @@ jQuery(document).ready(function ($) {
           "::placeholder { font-family: 'Poppins', sans-serif !important; } " +
           "label { display:block; margin-bottom:10px !important; } " +
           ".hs-button { border-radius:8px !important; padding: 17px 24px  !important;} " +
+          ".hs-button:hover { background-color: #20821c !important;color: #fff !important; border-color: #20821c !important; } " +
           ".hs-form a:visited { color:#ffffff !important; } " +
           ".hs-form a:hover { color:#58cc52 !important; } " +
           ".actions { margin-top: 18px; margin-bottom: 0px; padding: 17px 0px 0px;} " +
