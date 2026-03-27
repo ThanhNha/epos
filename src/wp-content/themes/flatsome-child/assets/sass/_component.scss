@@ -249,6 +249,17 @@
     @include tablet {
       margin: 15px !important;
     }
+    &.no-margin-y {
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+    }
+    &.no-margin-x {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+    }
+    &.no-margin {
+      margin: 0 !important;
+    }
   }
   &.no-opacity {
     .section-bg {
@@ -876,11 +887,10 @@
     padding-bottom: 8px !important;
   }
 }
-@include only-mobile{
+@include only-mobile {
   .banner-button {
-  .button {
-    width: 80%;
+    .button {
+      width: 80%;
+    }
   }
 }
-}
-
