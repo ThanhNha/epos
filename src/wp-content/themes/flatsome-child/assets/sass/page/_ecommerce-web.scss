@@ -74,57 +74,6 @@ body.ecommerce-web-development {
       }
     }
   }
-  .button {
-    margin-bottom: 0 !important;
-    &.primary {
-      background-color: $epos360-primary !important;
-      border-color: $epos360-primary !important;
-      color: #fff !important;
-      &:hover {
-        background-color: $epos360-button-primary-hover !important;
-        border-color: $epos360-button-primary-hover !important;
-        color: #fff !important;
-      }
-    }
-    &.secondary {
-      background-color: $epos360-secondary !important;
-      border-color: $epos360-secondary !important;
-      color: #fff !important;
-      &:hover {
-        background-color: rgb(17, 24, 39) !important;
-        border-color: rgb(17, 24, 39) !important;
-        color: #fff !important;
-      }
-      &.is-outline {
-        background-color: transparent !important;
-        color: $epos360-secondary !important;
-        border-color: $epos360-secondary !important;
-        &:hover {
-          background-color: $epos360-button-border !important;
-          color: $epos360-button-hover-alt !important;
-          border-color: rgb(17, 24, 39) !important;
-        }
-      }
-      &.white-bg {
-        border: 2px solid $epos360-secondary !important;
-        background-color: #fff !important;
-      }
-    }
-    &.back-to-top {
-      height: 42px !important;
-      width: 42px !important;
-      border-radius: 50% !important;
-      padding: 4px 15px !important;
-      background: $epos360-secondary !important;
-      border-color: $epos360-secondary !important;
-      i {
-        font-size: 24px !important;
-        left: -2px !important;
-        top: -2px !important;
-        color: white !important;
-      }
-    }
-  }
   .banner-button {
     .button {
       @include only-mobile {
