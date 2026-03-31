@@ -15,7 +15,7 @@ function sync_wc_paid_order_to_hubspot_deal($order_id, $order)
   if (!$is_bluetap_order == 'yes') {
     return;
   }
-  
+
   $access_token = get_field('hubspot_token', 'option');
 
   $contact_id = sync_hubspot_contact_for_deal($order, $access_token);
@@ -79,6 +79,7 @@ function sync_hubspot_contact_for_deal($order, $token)
   $utm_source   = $order->get_meta('_wc_order_attribution_utm_source') ?: 'website';
   $utm_medium   = $order->get_meta('_wc_order_attribution_utm_medium');
   $utm_campaign = $order->get_meta('_wc_order_attribution_utm_campaign');
+  $utm_term     = $order->get_meta('_wc_order_attribution_utm_term');
 
   // Construct HubSpot Properties
   $properties = [
@@ -101,6 +102,7 @@ function sync_hubspot_contact_for_deal($order, $token)
     'utm_source'     => $utm_source ?: 'Website',
     'utm_medium'     => $utm_medium,
     'utm_campaign'     => $utm_campaign,
+    'utm_term'     => $utm_term,
     "hs_latest_source" => "OTHER_CAMPAIGNS"
   ];
 
