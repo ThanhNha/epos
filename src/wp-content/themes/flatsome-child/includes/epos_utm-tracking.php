@@ -3,12 +3,10 @@ add_action('init', function () {
 
     if (!function_exists('WC') || !WC()->session) return;
 
-    $field = 'utm_term';
-
-    if (!empty($_GET[$field])) {
+    if (!empty($_GET['utm_term'])) {
         WC()->session->set(
-            '_wc_order_attribution_' . $field,
-            sanitize_text_field(wp_unslash($_GET[$field]))
+            '_wc_order_attribution_utm_term',
+            sanitize_text_field(wp_unslash($_GET['utm_term']))
         );
     }
 }, 5);
@@ -17,13 +15,9 @@ add_action('woocommerce_checkout_create_order', function ($order) {
 
     if (!function_exists('WC') || !WC()->session) return;
 
-    $field = 'utm_term';
-
-    $key = '_wc_order_attribution_' . $field;
-
-    $value = WC()->session->get($key);
+    $value = WC()->session->get('_wc_order_attribution_utm_term');
 
     if (!empty($value)) {
-        $order->update_meta_data($key, $value);
+        $order->update_meta_data('_wc_order_attribution_utm_term', $value);
     }
 }, 20);
