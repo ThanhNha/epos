@@ -4,11 +4,7 @@ add_action('init', function () {
     if (!function_exists('WC') || !WC()->session) return;
 
     $fields = [
-        'utm_source',
-        'utm_medium',
-        'utm_campaign',
         'utm_term',
-        'utm_content'
     ];
 
     foreach ($fields as $field) {
@@ -26,11 +22,7 @@ add_action('woocommerce_checkout_create_order', function ($order) {
     if (!function_exists('WC') || !WC()->session) return;
 
     $fields = [
-        'utm_source',
-        'utm_medium',
-        'utm_campaign',
         'utm_term',
-        'utm_content'
     ];
 
     foreach ($fields as $field) {
